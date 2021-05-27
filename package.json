@@ -4,7 +4,8 @@
   "description": "",
   "main": "./client/dist/bundle.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "bundle": "webpack --watch"
   },
   "repository": {
     "type": "git",
