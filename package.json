@@ -1,0 +1,30 @@
+{
+  "name": "fec",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./client/dist/bundle.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/themightybaras/hr-rpp28-fec-bara.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/themightybaras/hr-rpp28-fec-bara/issues"
+  },
+  "homepage": "https://github.com/themightybaras/hr-rpp28-fec-bara#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jquery": "^3.6.0",
+    "node": "^16.1.0",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "underscore": "^1.13.1"
+  }
+}
