@@ -19,6 +19,8 @@
   "homepage": "https://github.com/themightybaras/hr-rpp28-fec-bara#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "eslint": "^7.27.0",
+    "eslint-config-hackreactor": "github:reactorcore/eslint-config-hackreactor",
     "express": "^4.17.1",
     "jquery": "^3.6.0",
     "node": "^16.1.0",
