@@ -12,3 +12,5 @@ test('add adds two numbers together', () => {
 // });
 
 //testing pull request with CircleCI
+//added Husky
+
