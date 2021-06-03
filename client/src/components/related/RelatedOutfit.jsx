@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ItemsList from './ItemsList.jsx';
 
 // Main container for all components related to related products and outfit
 // Functional stateless component
@@ -16,7 +16,8 @@ import ReactDOM from 'react-dom';
 const RelatedOutfit = () => {
   return (
     <div>
-    Related Products and Outfit!
+      <ItemsList list='related'/>
+      <ItemsList list='outfit'/>
     </div>
   );
 };
