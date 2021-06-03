@@ -13,4 +13,10 @@ import ReactDOM from 'react-dom';
 // Outfit component will make get request with cookies, server will parse and make necessary get requests to the API
 // return two carousel components
 
-export default Related;
+const RelatedOutfit = () => {
+  return <div>
+    Related Products and Outfit!
+  </div>;
+};
+
+export default RelatedOutfit;
