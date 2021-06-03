@@ -22,6 +22,8 @@ class ItemsList extends React.Component {
     this.state = {
       products: [{}]
     };
+    this.getProducts.bind(this);
+    this.getProducts(this.props.list);
   }
 
   getTitle () {
@@ -30,6 +32,11 @@ class ItemsList extends React.Component {
     } else {
       return 'Outfit';
     }
+  }
+
+  getProducts(endpoint) {
+    // Ajax GET request to server based on input with data
+    console.log(`Request to /${endpoint}`);
   }
 
   render() {
