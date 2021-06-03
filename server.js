@@ -15,7 +15,7 @@ app.get('/qa/questions', (req, res) => {
   axios({
     method: 'get',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions',
-    params: { product_id : 22126}
+    params: { product_id: 22126}
   })
     .then((response) => {
       res.send(response.data);
