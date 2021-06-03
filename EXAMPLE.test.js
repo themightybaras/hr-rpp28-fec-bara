@@ -7,6 +7,6 @@ test('add adds two numbers together', () => {
 });
 
 //fail
-test('add adds two numbers together', () => {
-  expect(add(1, 2)).toBe(4);
-});
+// test('add adds two numbers together', () => {
+//   expect(add(1, 2)).toBe(4);
+// });
