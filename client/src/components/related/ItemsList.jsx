@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductCard from './ProductCard.jsx';
 
 // Component to render carousel for either related products list or outfit items
 // Stateful component
@@ -23,10 +24,19 @@ class ItemsList extends React.Component {
     };
   }
 
+  getTitle () {
+    if (this.props.list === 'related') {
+      return 'Related Products';
+    } else {
+      return 'Outfit';
+    }
+  }
+
   render() {
     return (
       <div>
-        {this.props.list === 'related' ? 'related' : 'outfit'}
+        {this.getTitle()}
+        <ProductCard />
       </div>
     );
   }

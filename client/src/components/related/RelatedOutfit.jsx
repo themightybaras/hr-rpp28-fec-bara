@@ -13,6 +13,8 @@ import ItemsList from './ItemsList.jsx';
 // Outfit component will make get request with cookies, server will parse and make necessary get requests to the API
 // return two carousel components
 
+
+
 const RelatedOutfit = () => {
   return (
     <div>
