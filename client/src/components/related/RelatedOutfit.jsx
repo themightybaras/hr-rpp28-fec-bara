@@ -14,9 +14,11 @@ import ReactDOM from 'react-dom';
 // return two carousel components
 
 const RelatedOutfit = () => {
-  return <div>
+  return (
+    <div>
     Related Products and Outfit!
-  </div>;
+    </div>
+  );
 };
 
 export default RelatedOutfit;
