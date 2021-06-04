@@ -1,5 +1,8 @@
 const express = require('express');
 const PATH = require('path');
+const axios = require('axios');
+const APIKey = require('./config.js');
+const $ = require('jquery');
 const app = express();
 const port = 3000;
 

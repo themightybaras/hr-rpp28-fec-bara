@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ItemsList from './ItemsList.jsx';
 
 // Main container for all components related to related products and outfit
 // Functional stateless component
@@ -13,10 +13,13 @@ import ReactDOM from 'react-dom';
 // Outfit component will make get request with cookies, server will parse and make necessary get requests to the API
 // return two carousel components
 
+
+
 const RelatedOutfit = () => {
   return (
     <div>
-    Related Products and Outfit!
+      <ItemsList list='related'/>
+      <ItemsList list='outfit'/>
     </div>
   );
 };
