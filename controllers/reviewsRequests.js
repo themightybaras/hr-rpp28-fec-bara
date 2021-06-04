@@ -1,9 +1,9 @@
 
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
-const APIKey = require('.config.js');
+const APIKey = require('../config.js');
 
 module.exports = {
-  getRewiews: function(req, res) {
+  getReviews: function(req, res) {
     axios.defaults.headers.common['Authorization'] = APIKey;
     axios({
       method: 'get',

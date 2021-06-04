@@ -1,4 +1,4 @@
-var controller = require('./controllers');
+var reviewsRequests = require('./controllers/reviewsRequests');
 var router = require('express').Router();
 
 // connect controller methods to their corresponding routes
@@ -11,10 +11,10 @@ var router = require('express').Router();
 
 
 //review routes
-router.get('/reviews', controllers.reviewRequests.getReviews);
-router.get('/reviews/meta', controllers.reviewRequests.getReviewMetadata);
-router.post('/reviews', controllers.reviewRequests.addReview);
-router.put('/reviews/:review_id/helpful', controllers.reviewRequests.markHelpful);
-router.put('/reviews/:review_id/report', controllers.reviewRequests.reportReview);
+router.get('/reviews', reviewsRequests.getReviews);
+router.get('/reviews/meta', reviewsRequests.getReviewMetadata);
+router.post('/reviews', reviewsRequests.addReview);
+router.put('/reviews/:review_id/helpful', reviewsRequests.markHelpful);
+router.put('/reviews/:review_id/report', reviewsRequests.reportReview);
 
 module.exports = router;
