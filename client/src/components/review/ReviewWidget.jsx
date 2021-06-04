@@ -14,13 +14,14 @@ class ReviewWidget extends React.Component {
       filters: []
       //more things to keep track of ?
     };
+
   }
 
   //functions that will need to be passed to different components as props
   // how do i get what the current product is?
   // compoenet render?
   // get product reviews... also use the state for how many to display
-  getProductReview() {
+  getProductReviews() {
     //api request
   }
 

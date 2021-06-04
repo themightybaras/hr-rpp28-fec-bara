@@ -12,8 +12,10 @@ class IndividualReview extends React.Component {
       helpful: false
     };
   }
+
   // function for helpful
   // api add helpful
+
   // function for report
   // api report
 
@@ -21,7 +23,7 @@ class IndividualReview extends React.Component {
   // style??
   // return ()
   // single list item with ....
-  // star rating
+  // star rating and display
   //date
   // summary sentance
   // review body
@@ -29,7 +31,7 @@ class IndividualReview extends React.Component {
   // reviewer name
   // response
   // rating helpfulness
-  // report
+  // report clickable
 }
 
 export default IndividualReview;
