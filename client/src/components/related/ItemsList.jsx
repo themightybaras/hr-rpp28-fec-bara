@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ProductCard from './ProductCard.jsx';
 
 // Component to render carousel for either related products list or outfit items
 // Stateful component
@@ -15,5 +15,38 @@ import ReactDOM from 'react-dom';
 
 
 // if outfit, use rest parameter to map cards?
+
+class ItemsList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [{}]
+    };
+    this.getProducts.bind(this);
+    this.getProducts(this.props.list);
+  }
+
+  getTitle () {
+    if (this.props.list === 'related') {
+      return 'Related Products';
+    } else {
+      return 'Outfit';
+    }
+  }
+
+  getProducts(endpoint) {
+    // Ajax GET request to server based on input with data
+    console.log(`Request to /${endpoint}`);
+  }
+
+  render() {
+    return (
+      <div>
+        {this.getTitle()}
+        <ProductCard />
+      </div>
+    );
+  }
+}
 
 export default ItemsList;
