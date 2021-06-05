@@ -43,13 +43,13 @@ class ItemsList extends React.Component {
 
     // Try react-grid-gallery or
     return (
-      <div className = "carousel">
-        <ul className = "cardsList">
-          <h4>{this.getTitle()}</h4>
+      <div >
+        <h4>{this.getTitle()}</h4>
+        <div className = "carousel">
           <ProductCard />
           <ProductCard />
+        </div>
 
-        </ul>
       </div>
     );
   }
