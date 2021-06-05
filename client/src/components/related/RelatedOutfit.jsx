@@ -19,7 +19,7 @@ const RelatedOutfit = () => {
   return (
     <div id='relatedWidget'>
       <ItemsList list='related'/>
-      {/* <ItemsList list='outfit'/> */}
+      <ItemsList list='outfit'/>
     </div>
   );
 };
