@@ -9,11 +9,11 @@ class Answer extends React.Component {
   render() {
     return (
       <div>
-        <h3 class='answer-marker'>A: </h3>
-        <div class='answer'>{this.props.answer.body}</div>
+        <h3 className='answer-marker'>A: </h3>
+        <div className='answer'>{this.props.answer.body}</div>
         <br />
-        <div class='answer-user'>by {this.props.answer.answerer_name}</div>
-        <div class='answer-date'>{this.props.answer.date.split('T')[0]}</div>
+        <div className='answer-user'>by {this.props.answer.answerer_name}</div>
+        <div className='answer-date'>{this.props.answer.date.split('T')[0]}</div>
       </div>
     );
   }
