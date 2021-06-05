@@ -9,17 +9,18 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-
     };
   }
   render() {
     return (
       <div>
         <h1>Test</h1>
-        <Overview/>
-        <RelatedOutfit/>
-        <QuestionsList/>
-        <ReviewWidget/>
+        <div>
+          <Overview />
+          <RelatedOutfit />
+          <QuestionsList />
+          <ReviewWidget />
+        </div>
       </div>
     );
   }
