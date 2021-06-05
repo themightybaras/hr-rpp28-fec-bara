@@ -1,10 +1,14 @@
 import React from 'react';
 import $ from 'jquery';
+import Question from './Question.jsx';
 
 class QuestionsList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      questions: []
+    };
+    this.productID = 22126;
     this.fetch = this.fetch.bind(this);
 
     this.fetch();
@@ -13,9 +17,9 @@ class QuestionsList extends React.Component {
   fetch() {
     $.ajax({
       type: 'GET',
-      url: 'qa/questions',
+      url: `qa/questions?product_id=${this.productID}`,
       success: (data) => {
-        console.log(data);
+        this.setState({questions: data.results});
       },
       error: (err) => {
         console.log('ERROR: ', err.message);
@@ -27,6 +31,11 @@ class QuestionsList extends React.Component {
     return (
       <div>
         <h3>Questions & Answers</h3>
+        <div>
+          {this.state.questions.map((element) => (
+            <div key={element.question_id}><Question question={element} /></div>
+          ))}
+        </div>
       </div>
     );
   }

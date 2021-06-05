@@ -1,0 +1,8 @@
+.answer-marker, .answer {
+  display: inline;
+}
+
+.answer-user, .answer-date {
+  display: inline;
+  font-size: small;
+}
