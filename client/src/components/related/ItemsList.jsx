@@ -40,9 +40,11 @@ class ItemsList extends React.Component {
   }
 
   render() {
+
+    // Try react-grid-gallery or
     return (
       <div>
-        {this.getTitle()}
+        <h4>{this.getTitle()}</h4>
         <ProductCard />
       </div>
     );

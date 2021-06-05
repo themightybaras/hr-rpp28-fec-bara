@@ -6,22 +6,27 @@ import React from 'react';
 const ProductCard = () => {
   return (
     <div className="productcard">
-      <div>
+      <span>
         Action Item
-      </div>
+      </span>
+      <br></br>
       <img className='relatedImage' src='http://d.ibtimes.co.uk/en/full/429795/13-year-old-norwegian-magnus-carlsen-concentrates-during-match-belarus-player-alexei-fedorov.jpg'></img>
-      <div>
+      <br></br>
+      <span>
         category
-      </div>
-      <div>
-        name
-      </div>
-      <div>
+      </span>
+      <br></br>
+      <span>
+        <strong>name</strong>
+      </span>
+      <br></br>
+      <span>
         price
-      </div>
-      <div>
+      </span>
+      <br></br>
+      <span>
         review
-      </div>
+      </span>
     </div>
   );
 };
