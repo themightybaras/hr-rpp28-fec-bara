@@ -2,7 +2,17 @@
   display: inline;
 }
 
-.answer-user, .answer-date {
+.answer-by, .answer-user, .answer-date {
   display: inline;
   font-size: small;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
+.answer-by {
+  padding-left: 25px;
+}
+
+#Seller {
+  font-weight: bold;
 }
