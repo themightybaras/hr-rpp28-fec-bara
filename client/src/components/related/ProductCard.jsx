@@ -6,7 +6,19 @@ import React from 'react';
 const ProductCard = () => {
   return (
     <div className="productcard">
-      Card
+      <img className='relatedImage' src='http://d.ibtimes.co.uk/en/full/429795/13-year-old-norwegian-magnus-carlsen-concentrates-during-match-belarus-player-alexei-fedorov.jpg'></img>
+      <div>
+        category
+      </div>
+      <div>
+        name
+      </div>
+      <div>
+        price
+      </div>
+      <div>
+        review
+      </div>
     </div>
   );
 };
