@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
+import Gallery from './Gallery.jsx';
 
 class Overview extends React.Component {
   constructor (props) {
@@ -8,17 +10,40 @@ class Overview extends React.Component {
       expanded: false,
     };
   }
+  apiCall(type, endpoint) {
+    $.ajax({
+      type: type,
+      url: endpoint,
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(error) {
+        console.log('Error!', error);
+      }
+    });
+  }
+
   render() {
     return (
       <div id="container">
-        <h2>Overview</h2>
         <div id="carousel">
-
+          Image carousel
+          <Gallery/>
         </div>
-        <div id="style-selector">
-        </div>
-        <div id="cart">
+        <div id="product-info">
+          Rating and category
+          <form>
+            <div id="style-selector">
+              Style selector
+            </div>
+            <div id="cart">
 
+            </div>
+          </form>
+          <div id="product-info">
+            <div>Description here</div>
+            <div>Details</div>
+          </div>
         </div>
       </div>
     );
