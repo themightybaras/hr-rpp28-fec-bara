@@ -31,7 +31,7 @@ const getRelated = (req, res) => {
           method: 'get',
           url: `${baseURL}/products/${id}`
         })
-          .then((response) => {
+          .then((response1) => {
             // response.data is the resulting object
             // Extend with result of style call for same ID
             return axios({
@@ -39,7 +39,7 @@ const getRelated = (req, res) => {
               url: `${baseURL}/products/${id}/styles`
             })
               .then((response2) => {
-                return _.extend(response.data, response2.data);
+                return _.extend(response1.data, response2.data);
               });
             // return response.data;
           });
