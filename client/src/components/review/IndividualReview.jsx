@@ -1,54 +1,57 @@
 // this will be the fomatter for each individual card
 
 import React from 'react';
+import $ from 'jquery';
 
 // class component with state
-class IndividualReview extends React.Component {
-  constructor(props) {
-    super(props);
-    // state will be for helpful and reported
-    this.state = {
-      reported: false,
-      helpful: false
-    };
-  }
+var IndividualReview = (props) => {
 
-  // function for helpful
-  // api add helpful
+  const markHelpful = () => {
+    $.ajax({
+      type: 'PUT',
+      url: `/reviews/${props.review.review_id}/helpful`,
+      success: (successMessage) => {
+        // rerender review?
+        console.log(successMessage);
+      },
+      error: (err) => {
+        console.log('ERROR Marking Review Helpful:', err.message);
+      }
+    });
+  };
 
-  // function for report
-  // api report
+  const reportReview = () => {
+    $.ajax({
+      type: 'PUT',
+      url: `/reviews/${props.review.review_id}/report`,
+      success: (successMessage) => {
+        console.log(successMessage);
+        // re-render reviews list
+      },
+      error: (err) => {
+        console.log('ERROR Reporting Review:', err.message);
+      }
+    });
+  };
 
-  // render ()
-  // style??
-  // return ()
-  // single list item with ....
-  // star rating and display
-  //date
-  // summary sentance
-  // review body
-  // recommend
-  // reviewer name
-  // response
-  // rating helpfulness
-  // report clickable
-  render(props) {
-    return (
-      <div>
-        <span>Star Rating:</span><br/>
-        <span>Date</span><br/>
-        <span>Summary Sentance</span><br/>
-        <p>Body</p><br/>
-        <span>Recommended?</span><br/>
-        <span>Reviewer Name</span><br/>
-        <span>Response From Seller</span><br/>
-        <button>Helpful (number of helpful votes)</button>
-        <button>Report</button>
-        <br/>
-        <span>---------------------------------------------------------</span>
-      </div>
-    );
-  }
-}
+  return (
+    <div className = "individualReview">
+      <span>{props.review.rating} STAR THING GOES HERE</span><br/>
+      <span>VERIFIED???  </span>
+      <span>{props.review.reviewer_name}  </span>
+      <span>{new Date(props.review.date).toLocaleDateString({}, {timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric'})}</span><br/>
+      <b>{props.review.summary}</b><br/>
+      <p>{props.review.body}</p><br/>
+      <span> IMAGES ???? </span><br/>
+      <span>Conditional render if recommend or not</span><br/>
+      <span> CONDITIONAL RENDER Response:</span><br/>
+      <p>{props.review.response}</p><br/>
+      <span>Helpful?</span><span>({props.review.helpfulness})</span><span onClick = {markHelpful}>Yes (ON CLICK ADD helpfulness)</span>
+      <span onClick = {reportReview}>Report</span>
+      <br/>
+      <span><b>---------------------------------------------------------</b></span>
+    </div>
+  );
+};
 
 export default IndividualReview;

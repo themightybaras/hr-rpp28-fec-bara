@@ -8,9 +8,7 @@ module.exports = {
     axios.defaults.headers.common['Authorization'] = APIKey;
     axios({
       method: 'get',
-      url: baseURL + req.url,
-      //need to add params : page, count, sort, and product id
-      // params: {product_id: req.query.productID}
+      url: baseURL + req.url
     })
       .then((response) => {
         res.status(200).send(response.data);
@@ -57,15 +55,13 @@ module.exports = {
     axios.defaults.headers.common['Authorization'] = APIKey;
     axios({
       method: 'put',
-      url: baseURL + '/reviews/' + req.body.review_id + '/helpful',
-      //need to add params review id
-      params: {}
+      url: baseURL + req.url
     })
       .then((response) => {
-        res.send(response.data);
+        res.status(200).send('Marked Helpful in API');
       })
       .catch((err) => {
-        res.sendStatus(404);
+        res.status(400).send('ERROR Marking Review Helpful in API:', err);
       });
 
   },
@@ -74,15 +70,13 @@ module.exports = {
     axios.defaults.headers.common['Authorization'] = APIKey;
     axios({
       method: 'put',
-      url: baseURL + '/reviews/' + req.body.review_id + '/report',
-      //need to add params review id
-      params: {}
+      url: baseURL + req.url
     })
       .then((response) => {
-        res.send(response.data);
+        res.status(200).send('Reported in API');
       })
       .catch((err) => {
-        res.sendStatus(404);
+        res.status(400).send('ERROR Reporting Review in API:', err);
       });
   }
 

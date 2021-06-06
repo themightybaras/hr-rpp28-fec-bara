@@ -33,7 +33,6 @@ class ReviewWidget extends React.Component {
     });
   }
 
-
   render() {
     return (
       <div>
