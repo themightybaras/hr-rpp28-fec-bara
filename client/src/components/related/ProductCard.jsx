@@ -5,16 +5,16 @@ import {ActionItem, Image, Category, Name, Price, Review} from './CardComponents
 
 
 // renders image, info, action button
-const ProductCard = ({category, name, image}) => {
+const ProductCard = ({product}) => {
   return (
     <div className="productcard">
       <ActionItem />
       <br />
       <Image />
       <br />
-      <Category category={category}/>
+      <Category category={product.category}/>
       <br />
-      <Name name={name}/>
+      <Name name={product.name}/>
       <br />
       <Price />
       <br />

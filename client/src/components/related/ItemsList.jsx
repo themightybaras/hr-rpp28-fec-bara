@@ -72,7 +72,7 @@ class ItemsList extends React.Component {
         <div className = "carousel">
           <button type="button" onClick={this.leftArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Left </button>
           {this.state.products.slice(this.state.firstCard, this.state.firstCard + 3).map((product, i) => {
-            return <ProductCard key={i} category = {product.category} name={product.name} />;
+            return <ProductCard key={i} product={product}/>;
           })}
           <button type="button" onClick={this.rightArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Right </button>
         </div>
