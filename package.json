@@ -21,6 +21,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "babel-jest": "^27.0.2",
+    "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "eslint": "^7.27.0",
     "eslint-config-hackreactor": "github:reactorcore/eslint-config-hackreactor",
