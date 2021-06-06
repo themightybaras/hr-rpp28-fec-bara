@@ -39,7 +39,13 @@ const getRelated = (req, res) => {
               url: `${baseURL}/products/${id}/styles`
             })
               .then((response2) => {
-                return _.extend(response1.data, response2.data);
+                // Extend product info with product styles
+                let combinedProducts = _.extend(response1.data, response2.data);
+                // Get rid of results that aren't default=true
+                let limitedResults = _.where(combinedProducts.results, {'default?': true});
+                limitedResults = limitedResults.length === 0 ? [combinedProducts.results[0]] : limitedResults;
+                combinedProducts.results = limitedResults;
+                return combinedProducts;
               });
           });
       });
