@@ -1,21 +1,22 @@
 
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 const APIKey = require('../config.js');
+var axios = require('axios');
 
 module.exports = {
   getReviews: function(req, res) {
     axios.defaults.headers.common['Authorization'] = APIKey;
     axios({
       method: 'get',
-      url: baseURL + '/reviews',
+      url: baseURL + req.url,
       //need to add params : page, count, sort, and product id
-      params: {}
+      // params: {product_id: req.query.productID}
     })
       .then((response) => {
-        res.send(response.data);
+        res.status(200).send(response.data);
       })
       .catch((err) => {
-        res.sendStatus(404);
+        res.status(400).send('Error getting Reviews from API:', err);
       });
   },
 

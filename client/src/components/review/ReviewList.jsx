@@ -8,11 +8,13 @@ import IndividualReview from './IndividualReview.jsx';
 // review list will take in props from reviewWidget
 // review list will need to map over the props and pass them to individual review as props
 var ReviewList = (props) => {
-  <ul classname = 'reviewList'>
-    {props.reviews.map(review =>
-      <IndividualReview review = {review}/>
-    )}
-  </ul>;
+  return (
+    <ul className = 'reviewList'>
+      {props.reviews.map(review =>
+        <IndividualReview key = {review.review_id} review = {review}/>
+      )}
+    </ul>
+  );
 };
 
 export default ReviewList;

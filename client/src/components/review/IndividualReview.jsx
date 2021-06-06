@@ -32,6 +32,11 @@ class IndividualReview extends React.Component {
   // response
   // rating helpfulness
   // report clickable
+  render() {
+    return (
+      <h1>SOMETHING</h1>
+    );
+  }
 }
 
 export default IndividualReview;
