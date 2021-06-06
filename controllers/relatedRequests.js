@@ -23,7 +23,7 @@ const getRelated = (req, res) => {
     url: baseURL + '/products/22126/related'
   })
     .then((response) => {
-    // For each related product (id)
+    // For each related product (id), retrieve product info and product styles objects
     //    Map ID to promisified GET request (maybe multiple, depending on above)
     // OPTIMIZATION - only pull first three related products for initial render
       let prodCalls = _.uniq(response.data).map((id) => {
@@ -41,10 +41,9 @@ const getRelated = (req, res) => {
               .then((response2) => {
                 return _.extend(response1.data, response2.data);
               });
-            // return response.data;
           });
       });
-      // Use Promise.all() to wait for all resolved API calls for additional product info
+      // Resolve all API Calls then return to client
       Promise.all(prodCalls).then((products) => {
         // use _.pick (and combining function) if data size is reducing performance
         res.send(products);
