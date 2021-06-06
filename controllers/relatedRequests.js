@@ -1,4 +1,5 @@
 const axios = require('axios');
+const _ = require('underscore');
 const Promise = require('bluebird');
 const APIKey = require('../config.js');
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
@@ -35,7 +36,12 @@ const getRelated = (req, res) => {
       });
       // Use Promise.all() to wait for all resolved API calls for additional product info
       Promise.all(stdProdCalls).then((products) => {
-        res.send(products);
+        // use _.pick (and combining function) if data size is reducing performance
+        let uniqueProducts = _.uniq(products, 'id');
+        // let trimmed = products.map((product) => {
+        //   return _.uniq(product, 'id');
+        // });
+        res.send(uniqueProducts);
       });
       //  Send response data
     })

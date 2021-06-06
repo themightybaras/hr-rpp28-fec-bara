@@ -41,6 +41,8 @@ class ItemsList extends React.Component {
     // Ajax GET request to server based on input with data
     $.get('/related', 22126, (data) => {
       console.log('Related products response: ', data);
+      // Use refs if this causes unnecessary rendering or long execution time
+      this.setState({ products: data});
     });
 
   }
@@ -52,8 +54,10 @@ class ItemsList extends React.Component {
       <div >
         <h4>{this.getTitle()}</h4>
         <div className = "carousel">
-          <ProductCard />
-          <ProductCard />
+          {this.state.products.map((product) => {
+            return <ProductCard key={product.id}/>;
+          })}
+          {/* <ProductCard /> */}
         </div>
 
       </div>
