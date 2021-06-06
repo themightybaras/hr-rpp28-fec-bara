@@ -37,7 +37,7 @@ class ReviewWidget extends React.Component {
   render() {
     return (
       <div>
-        <h3>REVIEW AND RATING WIDGET</h3>
+        <h1>REVIEW AND RATING WIDGET</h1>
         <ReviewList reviews = {this.state.productReviews} />
       </div>
     );

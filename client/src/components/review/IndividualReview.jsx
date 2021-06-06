@@ -32,9 +32,21 @@ class IndividualReview extends React.Component {
   // response
   // rating helpfulness
   // report clickable
-  render() {
+  render(props) {
     return (
-      <h1>SOMETHING</h1>
+      <div>
+        <span>Star Rating:</span><br/>
+        <span>Date</span><br/>
+        <span>Summary Sentance</span><br/>
+        <p>Body</p><br/>
+        <span>Recommended?</span><br/>
+        <span>Reviewer Name</span><br/>
+        <span>Response From Seller</span><br/>
+        <button>Helpful (number of helpful votes)</button>
+        <button>Report</button>
+        <br/>
+        <span>---------------------------------------------------------</span>
+      </div>
     );
   }
 }
