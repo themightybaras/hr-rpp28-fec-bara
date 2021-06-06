@@ -41,7 +41,6 @@ class ItemsList extends React.Component {
   getProducts() {
     // Ajax GET request to server based on input with data
     $.get('/related', 22126, (data) => {
-      console.log('Related products response: ', data);
       // Use refs if this causes unnecessary rendering or long execution time
       this.setState({ products: data});
     });
@@ -63,7 +62,7 @@ class ItemsList extends React.Component {
         <div className = "carousel">
           {/* Only render three cards at a time.  */}
           {this.state.products.slice(this.state.firstCard, this.state.firstCard + 3).map((product, i) => {
-            return <ProductCard key={i}/>;
+            return <ProductCard key={i} name={product.name}/>;
           })}
           <button type="button" onClick={this.rightArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Right </button>
         </div>

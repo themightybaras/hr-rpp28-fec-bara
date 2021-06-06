@@ -5,7 +5,7 @@ import {ActionItem, Image, Category, Name, Price, Review} from './CardComponents
 
 
 // renders image, info, action button
-const ProductCard = () => {
+const ProductCard = ({name}) => {
   return (
     <div className="productcard">
       <ActionItem />
@@ -14,7 +14,7 @@ const ProductCard = () => {
       <br />
       <Category />
       <br />
-      <Name />
+      <Name name={name}/>
       <br />
       <Price />
       <br />

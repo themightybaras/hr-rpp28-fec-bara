@@ -39,13 +39,8 @@ const getRelated = (req, res) => {
       // Use Promise.all() to wait for all resolved API calls for additional product info
       Promise.all(stdProdCalls).then((products) => {
         // use _.pick (and combining function) if data size is reducing performance
-        //let uniqueProducts = _.uniq(products, 'id');
-        // let trimmed = products.map((product) => {
-        //   return _.uniq(product, 'id');
-        // });
         res.send(products);
       });
-      //  Send response data
     })
     .catch((err) => {
       res.sendStatus(404);

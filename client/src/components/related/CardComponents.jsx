@@ -20,10 +20,10 @@ const Category = () => {
     </span>
   );
 };
-const Name = () => {
+const Name = ({name}) => {
   return (
     <span>
-      <strong>Name</strong>
+      <strong>{name}</strong>
     </span>
   );
 };
