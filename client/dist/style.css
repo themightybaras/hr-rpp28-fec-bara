@@ -11,6 +11,7 @@
   margin: 1%;
 }
 
+/* flex-flow (combo of flex-direction and flex-wrap) */
 .carousel {
   height: auto;
   width: 100%;
