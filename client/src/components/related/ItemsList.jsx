@@ -54,6 +54,14 @@ class ItemsList extends React.Component {
     }
   }
 
+  leftArrowClick() {
+    if (this.state.firstCard > 0) {
+      this.setState((state) => (
+        { firstCard: state.firstCard - 1}
+      ));
+    }
+  }
+
   render() {
 
     return (
@@ -61,6 +69,7 @@ class ItemsList extends React.Component {
         <h4>{this.getTitle()}</h4>
         <div className = "carousel">
           {/* Only render three cards at a time.  */}
+          <button type="button" onClick={this.leftArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Left </button>
           {this.state.products.slice(this.state.firstCard, this.state.firstCard + 3).map((product, i) => {
             return <ProductCard key={i} name={product.name}/>;
           })}
