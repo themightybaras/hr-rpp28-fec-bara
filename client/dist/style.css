@@ -6,24 +6,32 @@
 .productcard {
   border: 1px solid black;
   height: fit-content;
+  flex-basis: 20%;
   width:auto;
-  max-width: 10%;
+  max-width: 40%;
   margin: 1%;
 }
 
 /* flex-flow (combo of flex-direction and flex-wrap) */
 .carousel {
   height: auto;
-  width: 100%;
+  /* width: 100%; */
   display: inline-flex;
   left: 0;
   position: relative;
-  /* overflow: hidden; */
+  overflow: hidden;
   /* margin: 0 auto; */
 }
 
-.relatedWidget {
+#relatedWidget {
   position: relative;
+  height: fit-content;
+  max-height: 5%;
+}
+
+button.carousel {
+  border: none;
+  background-color: white;
 }
 
 .answer-marker, .answer {

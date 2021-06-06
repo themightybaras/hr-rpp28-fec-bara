@@ -25,7 +25,9 @@ const getRelated = (req, res) => {
     .then((response) => {
     // For each related product (id)
     //    Map ID to promisified GET request (maybe multiple, depending on above)
-      let stdProdCalls = response.data.map((id) => {
+    // OPTIMIZATION - only pull first three related products for initial render
+      // let stdProdCalls = _.chain(response.data).uniq().value().slice(0, 3).map((id) => {
+      let stdProdCalls = _.chain(response.data).uniq().value().map((id) => {
         return axios({
           method: 'get',
           url: `${baseURL}/products/${id}`
@@ -37,11 +39,11 @@ const getRelated = (req, res) => {
       // Use Promise.all() to wait for all resolved API calls for additional product info
       Promise.all(stdProdCalls).then((products) => {
         // use _.pick (and combining function) if data size is reducing performance
-        let uniqueProducts = _.uniq(products, 'id');
+        //let uniqueProducts = _.uniq(products, 'id');
         // let trimmed = products.map((product) => {
         //   return _.uniq(product, 'id');
         // });
-        res.send(uniqueProducts);
+        res.send(products);
       });
       //  Send response data
     })

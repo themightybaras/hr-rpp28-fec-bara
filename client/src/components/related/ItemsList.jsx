@@ -21,7 +21,8 @@ class ItemsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [{}]
+      products: [{}],
+      firstCard: 0
     };
     this.getProducts.bind(this);
     this.getProducts();
@@ -44,22 +45,28 @@ class ItemsList extends React.Component {
       // Use refs if this causes unnecessary rendering or long execution time
       this.setState({ products: data});
     });
+  }
 
+  rightArrowClick() {
+    if (this.state.firstCard < this.state.products.length - 1) {
+      this.setState((state) => (
+        { firstCard: state.firstCard + 1}
+      ));
+    }
   }
 
   render() {
 
-    // Try react-grid-gallery or
     return (
       <div >
         <h4>{this.getTitle()}</h4>
         <div className = "carousel">
-          {this.state.products.map((product) => {
-            return <ProductCard key={product.id}/>;
+          {/* Only render three cards at a time.  */}
+          {this.state.products.slice(this.state.firstCard, this.state.firstCard + 3).map((product, i) => {
+            return <ProductCard key={i}/>;
           })}
-          {/* <ProductCard /> */}
+          <button type="button" onClick={this.rightArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Right </button>
         </div>
-
       </div>
     );
   }
