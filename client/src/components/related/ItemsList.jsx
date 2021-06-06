@@ -47,7 +47,7 @@ class ItemsList extends React.Component {
   }
 
   rightArrowClick() {
-    if (this.state.firstCard < this.state.products.length - 1) {
+    if (this.state.firstCard < this.state.products.length - 3) {
       this.setState((state) => (
         { firstCard: state.firstCard + 1}
       ));
