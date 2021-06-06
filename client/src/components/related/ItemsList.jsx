@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 import ProductCard from './ProductCard.jsx';
 
 // Component to render carousel for either related products list or outfit items
@@ -23,7 +24,8 @@ class ItemsList extends React.Component {
       products: [{}]
     };
     this.getProducts.bind(this);
-    this.getProducts(this.props.list);
+    this.getProducts();
+    // this.getProducts(this.props.list);
   }
 
   getTitle () {
@@ -34,9 +36,13 @@ class ItemsList extends React.Component {
     }
   }
 
-  getProducts(endpoint) {
+  // getProducts(endpoint) {
+  getProducts() {
     // Ajax GET request to server based on input with data
-    console.log(`Request to /${endpoint}`);
+    $.get('/related', 22126, (data) => {
+      console.log('Related products response: ', data);
+    });
+
   }
 
   render() {

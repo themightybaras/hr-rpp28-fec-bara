@@ -17,3 +17,19 @@ const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 //    Map ID to promisified GET request (maybe multiple, depending on above)
 // Use Promise.all() to wait for all resolved API calls for additional product info
 //  Send response data
+
+const getRelated = (req, res) => {
+  axios.defaults.headers.common['Authorization'] = APIKey;
+  axios({
+    method: 'get',
+    url: baseURL + '/products/22126/related'
+  })
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      res.sendStatus(404);
+    });
+};
+
+module.exports.getRelated = getRelated;
