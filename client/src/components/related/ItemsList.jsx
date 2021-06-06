@@ -39,8 +39,8 @@ class ItemsList extends React.Component {
   getProducts() {
     // Ajax GET request to server based on input with data
     $.get('/related', 22126, (data) => {
-      console.log('Result from product calls: ', data);
-      console.log('image? ', data[0].results[0].photos[0]);
+      // console.log('Result from product calls: ', data);
+      // console.log('image? ', data[0].results[0].photos[0]);
       // console.log('image? ', data[0].results[0].photos[0].thumbnail_url);
       // Use refs if this causes unnecessary rendering or long execution time
       this.setState({ products: data});
