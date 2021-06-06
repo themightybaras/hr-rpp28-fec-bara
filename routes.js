@@ -1,11 +1,12 @@
 var reviewsRequests = require('./controllers/reviewsRequests');
 var questionsRequests = require('./controllers/questionsRequests');
+var overviewRequests = require('./controllers/overviewRequests');
 var router = require('express').Router();
 
 // connect controller methods to their corresponding routes
 
 //overview routes
-
+router.get('/products', overviewRequests.getProducts);
 //question routes
 router.get('/qa/questions', questionsRequests.getQuestions);
 //related routes
