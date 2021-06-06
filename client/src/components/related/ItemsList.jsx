@@ -41,6 +41,7 @@ class ItemsList extends React.Component {
   getProducts() {
     // Ajax GET request to server based on input with data
     $.get('/related', 22126, (data) => {
+      console.log('Result from both product calls: ', data);
       // Use refs if this causes unnecessary rendering or long execution time
       this.setState({ products: data});
     });
