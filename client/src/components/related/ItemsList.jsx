@@ -22,9 +22,13 @@ class ItemsList extends React.Component {
       products: [{}],
       firstCard: 0
     };
-    this.getProducts.bind(this);
-    this.getProducts();
+
+    this.getProducts = this.getProducts.bind(this);
     // this.getProducts(this.props.list);
+  }
+
+  componentDidMount() {
+    this.getProducts();
   }
 
   getTitle () {
