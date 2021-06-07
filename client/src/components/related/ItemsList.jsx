@@ -22,9 +22,13 @@ class ItemsList extends React.Component {
       products: [{}],
       firstCard: 0
     };
-    this.getProducts.bind(this);
-    this.getProducts();
+
+    this.getProducts = this.getProducts.bind(this);
     // this.getProducts(this.props.list);
+  }
+
+  componentDidMount() {
+    this.getProducts();
   }
 
   getTitle () {
@@ -35,13 +39,9 @@ class ItemsList extends React.Component {
     }
   }
 
-  // getProducts(endpoint) {
   getProducts() {
     // Ajax GET request to server based on input with data
     $.get('/related', 22126, (data) => {
-      // console.log('Result from product calls: ', data);
-      // console.log('image? ', data[0].results[0].photos[0]);
-      // console.log('image? ', data[0].results[0].photos[0].thumbnail_url);
       // Use refs if this causes unnecessary rendering or long execution time
       this.setState({ products: data});
     });
@@ -69,11 +69,11 @@ class ItemsList extends React.Component {
       <div >
         <h4>{this.getTitle()}</h4>
         <div className = "carousel">
-          <button type="button" onClick={this.leftArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Left </button>
+          {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
           {this.state.products.slice(this.state.firstCard, this.state.firstCard + 3).map((product, i) => {
-            return <ProductCard key={i} name={product.name} />;
+            return <ProductCard key={i} product={product}/>;
           })}
-          <button type="button" onClick={this.rightArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Right </button>
+          {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
         </div>
       </div>
     );

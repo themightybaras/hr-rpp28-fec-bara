@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+.actionItem {
+  float: right;
+}
+
 .productcard {
   border: 1px solid black;
   height: fit-content;
@@ -15,10 +19,11 @@
 /* flex-flow (combo of flex-direction and flex-wrap) */
 .carousel {
   height: auto;
-  /* width: 100%; */
   display: inline-flex;
+  width: 100%;
   left: 0;
   position: relative;
+  justify-content: space-around;
   overflow: hidden;
   /* margin: 0 auto; */
 }
