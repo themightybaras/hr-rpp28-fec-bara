@@ -2,18 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Gallery from './Gallery.jsx';
-
+import Checkout from './Checkout.jsx';
+import Description from './Description.jsx';
 class Overview extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       expanded: false,
     };
+    console.log(props);
   }
-  apiCall(type, endpoint) {
+  getProducts() {
     $.ajax({
-      type: type,
-      url: endpoint,
+      type: 'get',
+      url: '/products',
       success: function(data) {
         console.log(data);
       },
@@ -28,7 +30,7 @@ class Overview extends React.Component {
       <div id="container">
         <div id="carousel">
           Image carousel
-          <Gallery/>
+          <Gallery apiCall={this.apiCall}/>
         </div>
         <div id="product-info">
           Rating and category
@@ -41,7 +43,7 @@ class Overview extends React.Component {
             </div>
           </form>
           <div id="product-info">
-            <div>Description here</div>
+            <Description/>
             <div>Details</div>
           </div>
         </div>

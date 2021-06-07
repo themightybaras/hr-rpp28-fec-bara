@@ -12,7 +12,7 @@ class Question extends React.Component {
     return (
       <div>
         <h3 className='question'>Q: {this.props.question.question_body}</h3>
-        <AnswersList answers={Object.values(this.props.question.answers)} />
+        <AnswersList answers={Object.values(this.props.question.answers)} questionId={this.props.question.question_id} />
       </div>
     );
   }
