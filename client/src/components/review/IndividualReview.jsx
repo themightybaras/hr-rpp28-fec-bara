@@ -2,6 +2,8 @@
 
 import React from 'react';
 import $ from 'jquery';
+import StarRating from './StarRating.jsx';
+
 
 // class component with state
 var IndividualReview = (props) => {
@@ -34,9 +36,10 @@ var IndividualReview = (props) => {
     });
   };
 
+
   return (
     <div className = "individualReview">
-      <span>{props.review.rating} STAR THING GOES HERE</span><br/>
+      <StarRating rating ={props.review.rating}></StarRating>
       <span>VERIFIED???  </span>
       <span>{props.review.reviewer_name}  </span>
       <span>{new Date(props.review.date).toLocaleDateString({}, {timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric'})}</span><br/>
