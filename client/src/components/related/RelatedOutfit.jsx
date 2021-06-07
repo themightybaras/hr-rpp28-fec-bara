@@ -17,9 +17,9 @@ import ItemsList from './ItemsList.jsx';
 
 const RelatedOutfit = () => {
   return (
-    <div>
+    <div id='relatedWidget'>
       <ItemsList list='related'/>
-      <ItemsList list='outfit'/>
+      {/* <ItemsList list='outfit'/> */}
     </div>
   );
 };
