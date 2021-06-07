@@ -1,5 +1,6 @@
 var reviewsRequests = require('./controllers/reviewsRequests');
 var questionsRequests = require('./controllers/questionsRequests');
+const relatedRequests = require('./controllers/relatedRequests');
 var router = require('express').Router();
 
 // connect controller methods to their corresponding routes
@@ -8,8 +9,9 @@ var router = require('express').Router();
 
 //question routes
 router.get('/qa/questions', questionsRequests.getQuestions);
-//related routes
 
+//related routes
+router.get('/related', relatedRequests.getRelated);
 
 //review routes
 router.get('/reviews', reviewsRequests.getReviews);

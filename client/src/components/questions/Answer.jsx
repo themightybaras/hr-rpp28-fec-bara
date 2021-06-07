@@ -12,8 +12,11 @@ class Answer extends React.Component {
         <h3 className='answer-marker'>A: </h3>
         <div className='answer'>{this.props.answer.body}</div>
         <br />
-        <div className='answer-user'>by {this.props.answer.answerer_name}</div>
-        <div className='answer-date'>{this.props.answer.date.split('T')[0]}</div>
+        <div className='answer-by'>by</div>
+        <div className='answer-user' id={this.props.answer.answerer_name}>{this.props.answer.answerer_name}</div>
+        <div className='answer-date'>{
+          new Date(this.props.answer.date).toLocaleDateString({}, {timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric'})}
+        </div>
       </div>
     );
   }
