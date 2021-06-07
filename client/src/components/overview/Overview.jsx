@@ -9,28 +9,40 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       expanded: false,
+      products: []
     };
-    console.log(props);
+    this.renderProducts.bind(this);
   }
+
   getProducts() {
-    $.ajax({
-      type: 'get',
-      url: '/products',
-      success: function(data) {
-        console.log(data);
-      },
-      error: function(error) {
-        console.log('Error!', error);
-      }
+    $.get('/products', null, (data) => {
+      this.setState({products: data});
     });
   }
 
+
+  renderProducts(collection) {
+    if (collection) {
+      return collection.map(product => {
+        return <p>
+          <img src='https://img.freepik.com/free-psd/clothing-mock-up-tag-soft-fabric_23-2148783705.jpg?size=500'></img>
+          <br></br>
+          <b>{product.name}</b>
+          <br></br>
+          {product.description}</p>;
+      });
+    }
+  }
+
   render() {
+    if (this.state.products.length === 0) {
+      this.getProducts();
+    }
     return (
       <div id="container">
         <div id="carousel">
-          Image carousel
-          <Gallery apiCall={this.apiCall}/>
+          <Gallery render={this.renderProducts} products={this.state.products}/>
+          {this.renderProducts()}
         </div>
         <div id="product-info">
           Rating and category

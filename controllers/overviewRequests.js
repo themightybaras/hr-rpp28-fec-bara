@@ -9,7 +9,7 @@ const getProducts = (req, res) => {
     url: baseURL + '/products'
   })
     .then((data) => {
-      console.log(data.data);
+      res.send(data.data);
     })
     .catch((err) => {
       console.log(err);
