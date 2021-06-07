@@ -46,7 +46,8 @@ var IndividualReview = (props) => {
       <span>Conditional render if recommend or not</span><br/>
       <span> CONDITIONAL RENDER Response:</span><br/>
       <p>{props.review.response}</p><br/>
-      <span>Helpful?</span><span>({props.review.helpfulness})</span><span onClick = {markHelpful}>Yes (ON CLICK ADD helpfulness)</span>
+      <span>Helpful? </span><span>({props.review.helpfulness})</span><span onClick = {markHelpful}> Yes</span>
+      <span>  |  </span>
       <span onClick = {reportReview}>Report</span>
       <br/>
       <span><b>---------------------------------------------------------</b></span>

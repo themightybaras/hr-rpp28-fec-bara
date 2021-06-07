@@ -37,7 +37,15 @@ class ReviewWidget extends React.Component {
     return (
       <div>
         <h1>REVIEW AND RATING WIDGET</h1>
-        <ReviewList reviews = {this.state.productReviews} />
+        <div id= 'reviewList'>
+          <ReviewList reviews = {this.state.productReviews} />
+        </div>
+        <span>Conditionally render the more reviews button below</span>
+        <div>
+          <button>MORE REVIEWS</button>
+          <span>   </span>
+          <button>ADD REVIEW +</button>
+        </div>
       </div>
     );
   }
