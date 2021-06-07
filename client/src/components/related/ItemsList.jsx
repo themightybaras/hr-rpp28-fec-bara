@@ -46,7 +46,6 @@ class ItemsList extends React.Component {
       // console.log('image? ', data[0].results[0].photos[0].thumbnail_url);
       // Use refs if this causes unnecessary rendering or long execution time
       this.setState({ products: data});
-      console.log('Current State: ', this.state.products);
     });
   }
 

@@ -19,10 +19,10 @@
 /* flex-flow (combo of flex-direction and flex-wrap) */
 .carousel {
   height: auto;
-  /* width: 100%; */
   display: inline-flex;
   left: 0;
   position: relative;
+  justify-content: space-around;
   overflow: hidden;
   /* margin: 0 auto; */
 }
