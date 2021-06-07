@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'underscore';
 
 // Individual card components
 const ActionItem = () => {
@@ -9,9 +10,20 @@ const ActionItem = () => {
   );
 };
 
-const Image = () => {
+const Image = ({results}) => {
+  let image = '';
+  if (results !== undefined) {
+    let defaultProduct = _.where(results, { 'default?': true});
+    if (defaultProduct.length > 0) {
+      image = defaultProduct[0].photos[0].thumbnail_url;
+    } else {
+      image = results[0].photos[0].thumbnail_url;
+    }
+    // image = defaultProduct
+    // image = _.where(results, { 'default?': true})[0].photos[0].thumbnail_url;
+  }
   return (
-    <img className='relatedImage' src="https://images.unsplash.com/photo-1477420143023-6a0e0b04b69a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"></img>
+    <img className='relatedImage' src={image}></img>
   );
 };
 
