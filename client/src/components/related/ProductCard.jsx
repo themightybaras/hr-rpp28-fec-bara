@@ -40,7 +40,7 @@ const ProductCard = ({product}) => {
       <br />
       <Name name={product.name}/>
       <br />
-      <Price />
+      <Price price={product.default_price}/>
       <br />
       <Review />
     </div>

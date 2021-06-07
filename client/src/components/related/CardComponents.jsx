@@ -29,10 +29,10 @@ const Name = ({name}) => {
     </span>
   );
 };
-const Price = () => {
+const Price = ({price}) => {
   return (
     <span>
-      price
+      {`$${price}`}
     </span>
   );
 };
