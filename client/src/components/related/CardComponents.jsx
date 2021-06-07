@@ -3,7 +3,7 @@ import React from 'react';
 // Individual card components
 const ActionItem = () => {
   return (
-    <span>
+    <span className='actionItem'>
         Action Item
     </span>
   );

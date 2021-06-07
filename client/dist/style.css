@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+.actionItem {
+  float: right;
+}
+
 .productcard {
   border: 1px solid black;
   height: fit-content;
