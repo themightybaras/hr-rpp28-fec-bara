@@ -12,8 +12,6 @@ app.use(express.static(PATH.join(__dirname, 'client', 'dist')));
 var router = require('./routes.js');
 app.use('/', router);
 
-app.get('/products', router);
-
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

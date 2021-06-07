@@ -5,9 +5,9 @@ var overviewRequests = require('./controllers/overviewRequests')
 var router = require('express').Router();
 
 // connect controller methods to their corresponding routes
-router.get('/products', overviewRequests.getProducts);
 
 //overview routes
+router.get('/products', overviewRequests.getProducts);
 //question routes
 router.get('/qa/questions', questionsRequests.getQuestions);
 
