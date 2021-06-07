@@ -9,6 +9,7 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      currentProductId: 22126
     };
   }
   render() {
@@ -19,7 +20,7 @@ class App extends React.Component {
           <Overview />
           <RelatedOutfit />
           <QuestionsList />
-          <ReviewWidget />
+          <ReviewWidget currentProductId = {this.state.currentProductId} />
         </div>
       </div>
     );

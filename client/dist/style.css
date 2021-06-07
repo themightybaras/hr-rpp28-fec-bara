@@ -54,6 +54,21 @@ button.carousel {
   font-weight: bold;
 }
 
+
+/* REVIEW and RATING CSS */
+
+.stars {
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
+}
+
+.stars::before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+}
+
 .more-questions-button {
   background-color: white;
   font-size: 15px;
@@ -80,3 +95,4 @@ button.carousel {
   max-height: 50vh;
   overflow: auto;
 }
+
