@@ -48,7 +48,7 @@ class ItemsList extends React.Component {
 
   addToOutfit() {
     // POST request to server with id
-    $.post('/outfit', this.props.currentProductId, (data) => {
+    $.post('/outfit', { 'id': this.props.currentProductId.toString() }, (data) => {
       // Call getOutfit or reset state with current products (spread) plus current data
       console.log('Data from outfit post response: ', data);
     });
