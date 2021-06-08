@@ -1,9 +1,12 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Gallery from './Gallery.jsx';
 import Checkout from './Checkout.jsx';
 import Description from './Description.jsx';
+import StarRating from '../review/StarRating.jsx';
+
 class Overview extends React.Component {
   constructor (props) {
     super(props);
@@ -14,30 +17,28 @@ class Overview extends React.Component {
     this.renderProducts.bind(this);
   }
 
-  getProducts() {
+  componentDidMount() {
     $.get('/products', null, (data) => {
       this.setState({products: data});
     });
   }
 
-
   renderProducts(collection) {
     if (collection) {
       return collection.map(product => {
-        return <p>
+        return <div key={product.name}>
           <img src='https://img.freepik.com/free-psd/clothing-mock-up-tag-soft-fabric_23-2148783705.jpg?size=500'></img>
           <br></br>
           <b>{product.name}</b>
           <br></br>
-          {product.description}</p>;
+          <StarRating/>
+          <br></br>
+          {product.description}</div>;
       });
     }
   }
 
   render() {
-    if (this.state.products.length === 0) {
-      this.getProducts();
-    }
     return (
       <div id="container">
         <div id="carousel">
