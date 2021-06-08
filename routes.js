@@ -13,6 +13,7 @@ router.get('/qa/questions', questionsRequests.getQuestions);
 
 //related routes
 router.get('/related', relatedRequests.getRelated);
+router.post('/outfit', relatedRequests.addToOutfit);
 
 //review routes
 router.get('/reviews', reviewsRequests.getReviews);

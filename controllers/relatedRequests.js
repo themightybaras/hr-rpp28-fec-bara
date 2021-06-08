@@ -15,6 +15,11 @@ const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 
 // How do we select a style for the related product - documentation says defautl style
 
+const addToOutfit = (req, res) => {
+  console.log('Outfit request', req);
+  res.end();
+};
+
 const getRelated = (req, res) => {
   axios.defaults.headers.common['Authorization'] = APIKey;
   // Get related products (returns array of product IDs)
@@ -56,3 +61,4 @@ const getRelated = (req, res) => {
 };
 
 module.exports.getRelated = getRelated;
+module.exports.addToOutfit = addToOutfit;

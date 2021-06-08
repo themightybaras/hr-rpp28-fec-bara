@@ -1,9 +1,9 @@
 import React from 'react';
 
-const AddOutfitCard = () => {
+const AddOutfitCard = ({addToOutfit}) => {
 
   return (
-    <div className="productcard addoutfit">
+    <div className="productcard addoutfit" onClick={addToOutfit}>
       Click here to add this product to your outfit!
     </div>
   );

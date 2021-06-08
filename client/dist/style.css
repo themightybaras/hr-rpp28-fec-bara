@@ -16,6 +16,10 @@
   margin: 1%;
 }
 
+.addoutfit {
+  float: left;
+}
+
 /* flex-flow (combo of flex-direction and flex-wrap) */
 .carousel {
   height: auto;
