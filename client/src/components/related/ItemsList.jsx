@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import _ from 'underscore';
 import ProductCard from './ProductCard.jsx';
 import AddOutfitCard from './AddOutfitCard.jsx';
 
@@ -26,6 +27,7 @@ class ItemsList extends React.Component {
     };
 
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
+
     if (props.list === 'related') {
       this.getRelatedProducts(props.currentProductId);
     }
@@ -47,11 +49,11 @@ class ItemsList extends React.Component {
   }
 
   addToOutfit() {
-    // POST request to server with id
-    $.post('/outfit', { 'id': this.props.currentProductId.toString() }, (data) => {
-      // Call getOutfit or reset state with current products (spread) plus current data
-      console.log('Data from outfit post response: ', data);
-    });
+    if (!_.findWhere(this.state.products, {id: 22126})) {
+      $.post('/outfit', { 'id': this.props.currentProductId.toString() }, (data) => {
+        // Call getOutfit or reset state with current products (spread) plus current data
+      });
+    }
   }
 
   rightArrowClick() {
