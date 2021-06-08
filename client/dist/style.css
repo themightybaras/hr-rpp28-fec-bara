@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+.actionItem {
+  float: right;
+}
+
 .productcard {
   border: 1px solid black;
   height: fit-content;
@@ -15,10 +19,11 @@
 /* flex-flow (combo of flex-direction and flex-wrap) */
 .carousel {
   height: auto;
-  /* width: 100%; */
   display: inline-flex;
+  width: 100%;
   left: 0;
   position: relative;
+  justify-content: space-around;
   overflow: hidden;
   /* margin: 0 auto; */
 }
@@ -36,6 +41,7 @@ button.carousel {
 
 .answer-marker, .answer {
   display: inline;
+  font-size: 16px;
 }
 
 .answer-by, .answer-user, .answer-date {
@@ -49,9 +55,10 @@ button.carousel {
   padding-left: 25px;
 }
 
-#Seller {
+#seller {
   font-weight: bold;
 }
+
 
 /* REVIEW and RATING CSS */
 
@@ -66,3 +73,31 @@ button.carousel {
   content: "★★★★★";
   letter-spacing: 3px;
 }
+
+.more-questions-button {
+  background-color: white;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 15px;
+}
+
+.more-answers-button {
+  background-color: white;
+  border: none;
+  font-weight: bold;
+  padding: 5px;
+}
+
+#questions-list {
+  /* the maximum height of the questions list should be capped
+  such that the entire Questions & Answers module should fit on a single screen.
+  is max-height 70% screensize good enough? */
+  max-height: 70vh;
+  overflow: auto;
+}
+
+#answers-list {
+  max-height: 50vh;
+  overflow: auto;
+}
+

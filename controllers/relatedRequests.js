@@ -39,6 +39,7 @@ const getRelated = (req, res) => {
               url: `${baseURL}/products/${id}/styles`
             })
               .then((response2) => {
+                // Extend product info with product styles and return
                 return _.extend(response1.data, response2.data);
               });
           });
