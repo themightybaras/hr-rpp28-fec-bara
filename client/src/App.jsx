@@ -18,7 +18,7 @@ class App extends React.Component {
         <h1>Test</h1>
         <div>
           <Overview />
-          <RelatedOutfit />
+          <RelatedOutfit currentProductId = {this.state.currentProductId}/>
           <QuestionsList />
           <ReviewWidget currentProductId = {this.state.currentProductId} />
         </div>
