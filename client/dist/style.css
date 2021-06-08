@@ -60,19 +60,6 @@ button.carousel {
 }
 
 
-/* REVIEW and RATING CSS */
-
-.stars {
-  display: inline-block;
-  font-size: var(--star-size);
-  font-family: Times;
-  line-height: 1;
-}
-
-.stars::before {
-  content: "★★★★★";
-  letter-spacing: 3px;
-}
 
 .more-questions-button {
   background-color: white;
@@ -101,3 +88,29 @@ button.carousel {
   overflow: auto;
 }
 
+/* REVIEW and RATING CSS */
+
+.stars {
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
+}
+
+.stars::before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+}
+
+#reviewWidgetContainer {
+  display: flex;
+  background-color: blue;
+}
+
+#reviewListContainer {
+  background-color: hotpink;
+}
+
+#ratingSectionContainer {
+  background-color: lawngreen;
+}

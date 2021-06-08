@@ -4,6 +4,7 @@
 import React from 'react';
 import $ from 'jquery';
 import ReviewList from './ReviewList.jsx';
+import RatingSection from './RatingSection.jsx';
 
 class ReviewWidget extends React.Component {
   constructor(props) {
@@ -37,14 +38,17 @@ class ReviewWidget extends React.Component {
     return (
       <div>
         <h1>REVIEW AND RATING WIDGET</h1>
-        <div id= 'reviewList'>
-          <ReviewList reviews = {this.state.productReviews} />
-        </div>
-        <span>Conditionally render the more reviews button below</span>
-        <div>
-          <button>MORE REVIEWS</button>
-          <span>   </span>
-          <button>ADD REVIEW +</button>
+        <div id= 'reviewWidgetContainer'>
+          <div id= 'ratingSectionContainer'>
+            <RatingSection reviews = {this.state.productReviews}/>
+          </div>
+          <div id= 'reviewListContainer'>
+            <ReviewList reviews = {this.state.productReviews} />
+            <span>Conditionally render the more reviews button below</span>
+            <button>MORE REVIEWS</button>
+            <span>   </span>
+            <button>ADD REVIEW +</button>
+          </div>
         </div>
       </div>
     );
