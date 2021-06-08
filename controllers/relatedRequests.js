@@ -16,7 +16,7 @@ const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 // How do we select a style for the related product - documentation says defautl style
 
 const addToOutfit = (req, res) => {
-  console.log('Outfit request', req);
+  console.log('Outfit request cookies', req.cookies);
   res.end();
 };
 
