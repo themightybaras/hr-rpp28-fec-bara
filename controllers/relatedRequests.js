@@ -31,6 +31,18 @@ const addToOutfit = (req, res) => {
   res.end();
 };
 
+const removeFromOutfit = (req, res) => {
+  let idToRemove = req.url.split('?')[1];
+  console.log();
+  let newCookie = _.without(req.cookies.atelier.split(','), idToRemove);
+  if (newCookie.length > 0) {
+    res.cookie('atelier', newCookie);
+  } else {
+    res.clearCookie();
+  }
+  // res.cookie();
+};
+
 const getOutfit = (req, res) => {
   // parse req cookies
   // construct promises array
@@ -102,3 +114,4 @@ const getRelated = (req, res) => {
 module.exports.getRelated = getRelated;
 module.exports.addToOutfit = addToOutfit;
 module.exports.getOutfit = getOutfit;
+module.exports.removeFromOutfit = removeFromOutfit;

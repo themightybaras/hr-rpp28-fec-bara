@@ -34,6 +34,7 @@ class ItemsList extends React.Component {
     }
     if (props.list === 'outfit') {
       this.getOutfit();
+      this.removeFromOutfit();
     }
   }
 
@@ -66,6 +67,17 @@ class ItemsList extends React.Component {
         // Call getOutfit or reset state with current products (spread) plus current data
       });
     }
+  }
+
+  removeFromOutfit(id) {
+    $.ajax({
+      url: `/outfit?${id}`,
+      type: 'DELETE',
+      success: () => {
+        //Remove from local state or call getOutfit
+      }
+    });
+
   }
 
   rightArrowClick() {
