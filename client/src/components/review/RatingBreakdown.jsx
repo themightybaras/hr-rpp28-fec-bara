@@ -5,7 +5,7 @@ const RatingBreakdown = (props) => {
   return (
     <div>
       <h4>Rating Breakdown Here</h4>
-      <h2>{props.avgRating}</h2>
+      <span id='largeAverageRating'>{props.avgRating}</span>
       <StarRating rating = {props.avgRating} />
 
     </div>

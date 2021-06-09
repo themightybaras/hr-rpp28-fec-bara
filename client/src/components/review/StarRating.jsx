@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StarRating = (props) => {
-
   const StarDisplay = styled.div`
     background: linear-gradient(90deg, black ${props.rating / 5 * 100}%, white ${100 - (props.rating / 5 * 100)}%);
     -webkit-background-clip: text;
@@ -11,6 +10,7 @@ const StarRating = (props) => {
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
   `;
+
 
   return (
     <StarDisplay className = 'stars'></StarDisplay>
