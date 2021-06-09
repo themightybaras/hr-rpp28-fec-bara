@@ -26,7 +26,6 @@ const addToOutfit = (req, res) => {
   } else {
     // Else define new cookie with atelier property = rq body id
     res.cookie('atelier', req.body.id);
-
   }
   res.end();
 };
@@ -40,33 +39,26 @@ const removeFromOutfit = (req, res) => {
   } else {
     res.clearCookie();
   }
-  // res.cookie();
+  res.end();
 };
 
 const getOutfit = (req, res) => {
-  // parse req cookies
-  // construct promises array
   let outfitCalls = req.cookies.atelier.split(',').map((id) => {
     return axios({
       method: 'get',
       url: `${baseURL}/products/${id}`
     })
       .then((response1) => {
-        // response.data is the resulting object
-        // Extend with result of style call for same ID
         return axios({
           method: 'get',
           url: `${baseURL}/products/${id}/styles`
         })
           .then((response2) => {
-            // Extend product info with product styles and return
             return _.extend(response1.data, response2.data);
           });
       });
   });
-    // Resolve all API Calls then return to client
   Promise.all(outfitCalls).then((products) => {
-    // use _.pick (and combining function) if data size is reducing performance
     res.send(products);
   });
 };
