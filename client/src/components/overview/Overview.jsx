@@ -24,10 +24,11 @@ class Overview extends React.Component {
   }
 
   renderProducts(collection) {
+    var index = 0;
     if (collection) {
       return collection.map(product => {
         return <div key={product.name}>
-          <img src='https://img.freepik.com/free-psd/clothing-mock-up-tag-soft-fabric_23-2148783705.jpg?size=500'></img>
+          <img src={product.photos[0].thumbnail_url}></img>
           <br></br>
           <b>{product.name}</b>
           <br></br>
@@ -43,7 +44,7 @@ class Overview extends React.Component {
       <div id="container">
         <div id="carousel">
           <Gallery render={this.renderProducts} products={this.state.products}/>
-          {this.renderProducts()}
+
         </div>
         <div id="product-info">
           Rating and category
