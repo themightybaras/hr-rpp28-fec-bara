@@ -66,7 +66,7 @@ const getOutfit = (req, res) => {
       res.send(products);
     });
   } else {
-    res.end();
+    res.send([]);
   }
 };
 

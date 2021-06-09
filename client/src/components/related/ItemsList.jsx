@@ -97,6 +97,7 @@ class ItemsList extends React.Component {
       type: 'DELETE',
       success: () => {
         //Remove from local state or call getOutfit
+        this.getOutfit();
         // setState using function
         //    filter state products to remove argument id (maybe omit?)
         //    setState with new array of products
