@@ -27,6 +27,7 @@ class ItemsList extends React.Component {
     };
 
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
+    this.getOutfit = this.getOutfit.bind(this);
 
     if (props.list === 'related') {
       this.getRelatedProducts(props.currentProductId);
@@ -48,8 +49,15 @@ class ItemsList extends React.Component {
     });
   }
 
+  getOutfit() {
+    // get request to /outfit that parses cookie and gets info for all products
+    $.get('/outfit', (outfit) => {
+      console.log('Outfit:', outfit);
+    });
+  }
+
   addToOutfit() {
-    if (!_.findWhere(this.state.products, {id: 22126})) {
+    if (!_.findWhere(this.state.products, {id: this.props.currentProductId})) {
       $.post('/outfit', { 'id': this.props.currentProductId.toString() }, (data) => {
         // Call getOutfit or reset state with current products (spread) plus current data
       });

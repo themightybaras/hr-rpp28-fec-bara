@@ -18,8 +18,27 @@ const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 const addToOutfit = (req, res) => {
   console.log('Body: ', req.body);
   console.log('Outfit request cookies', req.cookies);
-  res.cookie('atelier', req.body.id);
+  console.log('Find?: ', req.cookies.atelier.indexOf(req.body.id));
+  // If req.cookies has atelier property
+  if (req.cookies.atelier) {
+    //    if indexOf id < 0
+    if (req.cookies.atelier.indexOf(req.body.id) < 0) {
+      //      Add if to string (maybe split, sort, join - order may matter elsewhere in app)
+      res.cookie('atelier', req.cookies.atelier.split(',').push(req.body.id).sort().join(','));
+    }
+  } else {
+    // Else define new cookie with atelier property = rq body id
+    res.cookie('atelier', req.body.id);
+
+  }
   res.end();
+};
+
+const getOutfit = (req, res) => {
+  // parse req cookies
+  // construct promises array
+  //    Same as get related? move to separate function
+  // send back to client
 };
 
 const getRelated = (req, res) => {
