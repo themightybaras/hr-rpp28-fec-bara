@@ -77,7 +77,8 @@ class ItemsList extends React.Component {
   addToOutfit() {
     if (!_.findWhere(this.state.products, {id: this.props.currentProductId})) {
       $.post('/outfit', { 'id': this.props.currentProductId.toString() }, (data) => {
-        // Call getOutfit or reset state with current products (spread) plus current data
+        // Call getOutfit or reset state with current products (spread) plus current data (sort)
+        this.getOutfit();
       });
     } else {
       console.log('Product already added to your outfit');
@@ -96,6 +97,9 @@ class ItemsList extends React.Component {
       type: 'DELETE',
       success: () => {
         //Remove from local state or call getOutfit
+        // setState using function
+        //    filter state products to remove argument id (maybe omit?)
+        //    setState with new array of products
       }
     });
   }
