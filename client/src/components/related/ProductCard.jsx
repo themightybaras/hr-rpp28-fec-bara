@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'underscore';
 import {ActionItem, Image, Category, Name, Price, Review} from './CardComponents.jsx';
 
-const ProductCard = ({product}) => {
+const ProductCard = ({product, actionHandler}) => {
 
   // ! revise sale price
   let originalPrice = product.default_price;
@@ -13,7 +13,7 @@ const ProductCard = ({product}) => {
 
   return (
     <div className="productcard">
-      <ActionItem />
+      <ActionItem product={product} actionHandler={actionHandler}/>
       <br />
       <Image results={product.results}/>
       <br />
