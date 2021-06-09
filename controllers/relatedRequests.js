@@ -16,9 +16,6 @@ const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 // How do we select a style for the related product - documentation says defautl style
 
 const addToOutfit = (req, res) => {
-  console.log('Body: ', req.body);
-  console.log('Outfit request cookies', req.cookies);
-  console.log('Find?: ', req.cookies.atelier.indexOf(req.body.id));
   // If req.cookies has atelier property
   if (req.cookies.atelier) {
     //    if indexOf id < 0
@@ -37,8 +34,29 @@ const addToOutfit = (req, res) => {
 const getOutfit = (req, res) => {
   // parse req cookies
   // construct promises array
-  //    Same as get related? move to separate function
-  // send back to client
+  let outfitCalls = req.cookies.atelier.split(',').map((id) => {
+    return axios({
+      method: 'get',
+      url: `${baseURL}/products/${id}`
+    })
+      .then((response1) => {
+        // response.data is the resulting object
+        // Extend with result of style call for same ID
+        return axios({
+          method: 'get',
+          url: `${baseURL}/products/${id}/styles`
+        })
+          .then((response2) => {
+            // Extend product info with product styles and return
+            return _.extend(response1.data, response2.data);
+          });
+      });
+  });
+    // Resolve all API Calls then return to client
+  Promise.all(outfitCalls).then((products) => {
+    // use _.pick (and combining function) if data size is reducing performance
+    res.send(products);
+  });
 };
 
 const getRelated = (req, res) => {
@@ -83,3 +101,4 @@ const getRelated = (req, res) => {
 
 module.exports.getRelated = getRelated;
 module.exports.addToOutfit = addToOutfit;
+module.exports.getOutfit = getOutfit;

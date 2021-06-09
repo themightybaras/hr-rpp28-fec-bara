@@ -14,6 +14,7 @@ router.get('/qa/questions', questionsRequests.getQuestions);
 //related routes
 router.get('/related', relatedRequests.getRelated);
 router.post('/outfit', relatedRequests.addToOutfit);
+router.get('/outfit', relatedRequests.getOutfit);
 
 //review routes
 router.get('/reviews', reviewsRequests.getReviews);

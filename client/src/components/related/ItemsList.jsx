@@ -32,6 +32,9 @@ class ItemsList extends React.Component {
     if (props.list === 'related') {
       this.getRelatedProducts(props.currentProductId);
     }
+    if (props.list === 'outfit') {
+      this.getOutfit();
+    }
   }
 
   getTitle () {
@@ -43,16 +46,17 @@ class ItemsList extends React.Component {
   }
 
   getRelatedProducts(id) {
-    $.get('/related', id, (data) => {
+    $.get('/related', id, (products) => {
       // Use refs if this causes unnecessary rendering or long execution time
-      this.setState({ products: data });
+      this.setState({ products });
     });
   }
 
   getOutfit() {
     // get request to /outfit that parses cookie and gets info for all products
-    $.get('/outfit', (outfit) => {
-      console.log('Outfit:', outfit);
+    $.get('/outfit', (products) => {
+      this.setState({ products });
+      console.log('Outfit:', products);
     });
   }
 
