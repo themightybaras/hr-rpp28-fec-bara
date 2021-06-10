@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StarDisplay = styled.div`
-  background: -webkit-linear-gradient(left, black ${({rating}) => rating * 20}%, white ${({rating}) => 100 - (rating * 20)}%);
+  background: -webkit-linear-gradient(left, black ${({rating}) => rating * 20}%, white ${({rating}) => rating * 20 }%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1px;
