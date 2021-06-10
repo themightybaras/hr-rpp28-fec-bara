@@ -1,14 +1,14 @@
 import React from 'react';
 
-class AddQuestion extends React.Component {
+class AddAnswer extends React.Component {
   render() {
     return (
-      <div className = {this.props.addQuestionModalOpen ? 'modal display-block' : 'modal display-none'}>
+      <div className={this.props.addAnswerModalOpen ? 'modal display-block' : 'model display-none'}>
         <form>
           <div className='add-form-container'>
-            <label htmlFor='your-question'><b>Your Question</b></label>
+            <label htmlFor='your-answer'><b>Your Answer</b></label>
             <br />
-            <textarea id='your-question' name='your-question' className='form-input' maxlength='1000' required />
+            <textarea id='your-answer' name='your-answer' className='form-input' maxlength='1000' required />
             <br />
             <label htmlFor='your-nickname'><b>What is Your Nickname</b></label>
             <br />
@@ -18,7 +18,7 @@ class AddQuestion extends React.Component {
             <br />
             <input type='text' id='your-email' name='your-email' className='form-input' maxlength='60' required />
             <br />
-            <button type='button' onClick={this.props.toggleAddQuestionModal}>Submit Question</button>
+            <button type='button' onClick={this.props.toggleAddAnswerModal}>Submit Answer</button>
           </div>
         </form>
       </div>
@@ -26,4 +26,4 @@ class AddQuestion extends React.Component {
   }
 }
 
-export default AddQuestion;
+export default AddAnswer;
