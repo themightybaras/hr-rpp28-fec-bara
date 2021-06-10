@@ -6,17 +6,14 @@ class AddAnswer extends React.Component {
       <div className={this.props.addAnswerModalOpen ? 'modal display-block' : 'model display-none'}>
         <form>
           <div className='add-form-container'>
-            <label htmlFor='your-answer'><b>Your Answer</b></label>
+            <div><b>Your Answer</b></div>
+            <textarea name='your-answer' className='form-input' maxLength='1000' required />
             <br />
-            <textarea id='your-answer' name='your-answer' className='form-input' maxlength='1000' required />
+            <div><b>What is Your Nickname</b></div>
+            <input type='text' name='your-nickname' className='form-input' maxLength='60' required />
             <br />
-            <label htmlFor='your-nickname'><b>What is Your Nickname</b></label>
-            <br />
-            <input type='text' id='your-nickname' name='your-nickname' className='form-input' maxlength='60' required />
-            <br />
-            <label htmlFor='your-email'><b>Your Email</b></label>
-            <br />
-            <input type='text' id='your-email' name='your-email' className='form-input' maxlength='60' required />
+            <div><b>Your Email</b></div>
+            <input type='text' name='your-email' className='form-input' maxLength='60' required />
             <br />
             <button type='button' onClick={this.props.toggleAddAnswerModal}>Submit Answer</button>
           </div>
