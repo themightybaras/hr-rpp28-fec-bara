@@ -2,18 +2,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const StarDisplay = styled.div`
+  background: -webkit-linear-gradient(left, black ${({rating}) => rating * 20}%, white ${({rating}) => 100 - (rating * 20)}%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+`;
+
+
 const StarRating = (props) => {
-  const StarDisplay = styled.div`
-    background: linear-gradient(90deg, black ${props.rating / 5 * 100}%, white ${100 - (props.rating / 5 * 100)}%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-  `;
-
-
   return (
-    <StarDisplay className = 'stars'></StarDisplay>
+    <StarDisplay className = 'stars' rating={props.rating}></StarDisplay>
   );
 };
 
