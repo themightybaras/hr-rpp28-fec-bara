@@ -13,6 +13,7 @@ class QuestionsList extends React.Component {
       addQuestionModalOpen: false
     };
     this.productID = 22126;
+    //this.productID = 22161;
     this.fetch = this.fetch.bind(this);
     this.clickMoreQuestionsButtonHandler = this.clickMoreQuestionsButtonHandler.bind(this);
     this.toggleAddQuestionModal = this.toggleAddQuestionModal.bind(this);
@@ -55,6 +56,9 @@ class QuestionsList extends React.Component {
     return (
       <div>
         <h3>Questions & Answers</h3>
+        <div>
+          <input id='search-questions' type='text' placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
+        </div>
         <div id='questions-list'>
           {this.state.questionsToDisplay.map((element) => (
             <div key={element.question_id}><Question question={element} /></div>
