@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import Question from './Question.jsx';
+import AddQuestion from './AddQuestion.jsx';
 
 class QuestionsList extends React.Component {
   constructor(props) {
@@ -8,11 +9,14 @@ class QuestionsList extends React.Component {
     this.state = {
       questions: [],
       questionsToDisplay: [],
-      showMoreQuestionsButton: false
+      showMoreQuestionsButton: false,
+      addQuestionModalOpen: false
     };
     this.productID = 22126;
+    //this.productID = 22161;
     this.fetch = this.fetch.bind(this);
     this.clickMoreQuestionsButtonHandler = this.clickMoreQuestionsButtonHandler.bind(this);
+    this.toggleAddQuestionModal = this.toggleAddQuestionModal.bind(this);
 
     this.fetch();
   }
@@ -34,8 +38,8 @@ class QuestionsList extends React.Component {
     });
   }
 
-  clickMoreQuestionsButtonHandler(e) {
-    e.preventDefault();
+  clickMoreQuestionsButtonHandler(event) {
+    event.preventDefault();
     let nQuestionsToDisplay = this.state.questionsToDisplay.length + 2;
     this.setState({questionsToDisplay: this.state.questions.slice(0, nQuestionsToDisplay)});
     if (this.state.questions.length <= nQuestionsToDisplay) {
@@ -43,10 +47,18 @@ class QuestionsList extends React.Component {
     }
   }
 
+  toggleAddQuestionModal(event) {
+    event.preventDefault();
+    this.setState({addQuestionModalOpen: !this.state.addQuestionModalOpen});
+  }
+
   render() {
     return (
       <div>
         <h3>Questions & Answers</h3>
+        <div>
+          <input id='search-questions' type='text' placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
+        </div>
         <div id='questions-list'>
           {this.state.questionsToDisplay.map((element) => (
             <div key={element.question_id}><Question question={element} /></div>
@@ -58,7 +70,11 @@ class QuestionsList extends React.Component {
             <button type='button' className='more-questions-button' onClick={this.clickMoreQuestionsButtonHandler}>
               MORE QUESTIONS
             </button> : null}
+          <button type='button' className='add-question-button' onClick={this.toggleAddQuestionModal}>
+            ADD A QUESTION +
+          </button>
         </div>
+        <AddQuestion addQuestionModalOpen={this.state.addQuestionModalOpen} toggleAddQuestionModal={this.toggleAddQuestionModal} />
       </div>
     );
   }

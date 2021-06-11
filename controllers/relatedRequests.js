@@ -15,6 +15,61 @@ const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 
 // How do we select a style for the related product - documentation says defautl style
 
+const addToOutfit = (req, res) => {
+  // If req.cookies has atelier property
+  if (req.cookies.atelier) {
+    //    if indexOf id < 0
+    if (req.cookies.atelier.indexOf(req.body.id) < 0) {
+      //      Add if to string (maybe split, sort, join - order may matter elsewhere in app)
+      res.cookie('atelier', req.cookies.atelier.split(',').push(req.body.id).sort().join(','));
+    }
+  } else {
+    // Else define new cookie with atelier property = rq body id
+    res.cookie('atelier', req.body.id);
+  }
+  console.log('Response cookie after calling addToOutfit: ', res.cookies);
+  res.end();
+};
+
+const removeFromOutfit = (req, res) => {
+  console.log('Cookie before removal: ', req.cookies);
+  let idToRemove = req.url.split('?')[1];
+  let newCookie = _.without(req.cookies.atelier.split(','), idToRemove);
+  if (newCookie.length > 0) {
+    res.cookie('atelier', newCookie);
+  } else {
+    res.clearCookie('atelier');
+  }
+  console.log('Cookie after removal: ', res.cookies);
+  res.end();
+};
+
+const getOutfit = (req, res) => {
+  console.log(' Req cookie when getting outfit: ', req.cookies);
+  if (req.cookies.atelier) {
+    let outfitCalls = req.cookies.atelier.split(',').map((id) => {
+      return axios({
+        method: 'get',
+        url: `${baseURL}/products/${id}`
+      })
+        .then((response1) => {
+          return axios({
+            method: 'get',
+            url: `${baseURL}/products/${id}/styles`
+          })
+            .then((response2) => {
+              return _.extend(response1.data, response2.data);
+            });
+        });
+    });
+    Promise.all(outfitCalls).then((products) => {
+      res.send(products);
+    });
+  } else {
+    res.send([]);
+  }
+};
+
 const getRelated = (req, res) => {
   axios.defaults.headers.common['Authorization'] = APIKey;
   // Get related products (returns array of product IDs)
@@ -56,3 +111,6 @@ const getRelated = (req, res) => {
 };
 
 module.exports.getRelated = getRelated;
+module.exports.addToOutfit = addToOutfit;
+module.exports.getOutfit = getOutfit;
+module.exports.removeFromOutfit = removeFromOutfit;

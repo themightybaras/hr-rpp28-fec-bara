@@ -2,9 +2,14 @@ import React from 'react';
 import _ from 'underscore';
 
 // Individual card components
-const ActionItem = () => {
+const ActionItem = ({product, actionHandler}) => {
+
+  let actionItemHandler = () => {
+    actionHandler(product.id);
+  };
+
   return (
-    <span className='actionItem'>
+    <span className='actionItem' onClick={actionItemHandler}>
         Action Item
     </span>
   );
