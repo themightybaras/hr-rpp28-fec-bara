@@ -63,9 +63,11 @@ class ReviewWidget extends React.Component {
           <div id= 'ratingSectionContainer'>
             <RatingSection reviews = {this.state.productReviews}/>
           </div>
-          <div id= 'reviewListContainer'>
+          <div id= 'reviewContainer'>
             <SortingForm sortValue = {this.state.sortBy} numberOfReviews = {this.state.numberOfReviews} changeSorting = {this.changeSorting} />
-            <ReviewList reviews = {this.state.productReviews.slice(0, this.state.displayXReviews)} />
+            <div id = 'reviewListContainer'>
+              <ReviewList reviews = {this.state.productReviews.slice(0, this.state.displayXReviews)} />
+            </div>
             <div>
               {moreReviewsCanDisplay
                 ? <button onClick={this.displayMore}>More Reviews</button>
