@@ -17,5 +17,4 @@ const SortingForm = (props) => {
 };
 
 
-
 export default SortingForm;
