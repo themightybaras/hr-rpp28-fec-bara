@@ -19,3 +19,10 @@ test('Simple text components render text passed as a prop', () => {
   expect(testCategory.text()).toEqual(testText);
   expect(testName.text()).toEqual(testText);
 });
+
+// Test image
+//    renders image for default product when there is one
+//    renders first image of first product
+//    renders placeholder image
+
+// Test strikethrough for price

@@ -27,12 +27,12 @@ const addToOutfit = (req, res) => {
     // Else define new cookie with atelier property = rq body id
     res.cookie('atelier', req.body.id);
   }
-  console.log('Response cookie after calling addToOutfit: ', res.cookies);
+  // console.log('Response cookie after calling addToOutfit: ', res.cookies);
   res.end();
 };
 
 const removeFromOutfit = (req, res) => {
-  console.log('Cookie before removal: ', req.cookies);
+  // console.log('Cookie before removal: ', req.cookies);
   let idToRemove = req.url.split('?')[1];
   let newCookie = _.without(req.cookies.atelier.split(','), idToRemove);
   if (newCookie.length > 0) {
@@ -40,7 +40,7 @@ const removeFromOutfit = (req, res) => {
   } else {
     res.clearCookie('atelier');
   }
-  console.log('Cookie after removal: ', res.cookies);
+  // console.log('Cookie after removal: ', res.cookies);
   res.end();
 };
 
@@ -63,6 +63,7 @@ const getOutfit = (req, res) => {
         });
     });
     Promise.all(outfitCalls).then((products) => {
+      console.log(products[0].results[1].photos);
       res.send(products);
     });
   } else {

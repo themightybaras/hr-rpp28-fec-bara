@@ -27,7 +27,7 @@ const getProductStyles = ((req, res) => {
     url: baseURL + req.url
   })
     .then (data => {
-      console.log(data.data);
+      //console.log(data.data);
       res.send(data.data);
     });
   // res.send('hello');
