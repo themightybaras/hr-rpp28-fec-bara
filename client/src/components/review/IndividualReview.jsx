@@ -14,8 +14,8 @@ var IndividualReview = (props) => {
       type: 'PUT',
       url: `/reviews/${props.review.review_id}/helpful`,
       success: (successMessage) => {
-        // rerender review?
         console.log(successMessage);
+        alert ('Awesome! Glad you think this review is helpful! We will take note.');
       },
       error: (err) => {
         console.log('ERROR Marking Review Helpful:', err.message);
@@ -29,7 +29,7 @@ var IndividualReview = (props) => {
       url: `/reviews/${props.review.review_id}/report`,
       success: (successMessage) => {
         console.log(successMessage);
-        // re-render reviews list
+        alert ('Thank your for your feedback, we will investigate this post');
       },
       error: (err) => {
         console.log('ERROR Reporting Review:', err.message);
