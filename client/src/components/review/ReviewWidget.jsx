@@ -68,14 +68,13 @@ class ReviewWidget extends React.Component {
             <div id = 'reviewListContainer'>
               <ReviewList reviews = {this.state.productReviews.slice(0, this.state.displayXReviews)} />
             </div>
-            <div>
+            <div id = 'reviewButtons'>
               {moreReviewsCanDisplay
                 ? <button onClick={this.displayMore} className= 'moreReviewsButton'>MORE REVIEWS</button>
                 : <div id='maxOutOnReviews'/>
               }
+              <button className = 'addReviewButton'> ADD REVIEW +</button>
             </div>
-            <span>   </span>
-            <button className = 'addReviewButton'> ADD REVIEW +</button>
           </div>
         </div>
       </div>

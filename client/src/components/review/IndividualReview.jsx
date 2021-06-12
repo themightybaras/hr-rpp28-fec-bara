@@ -40,10 +40,11 @@ var IndividualReview = (props) => {
 
   return (
     <div className = "individualReview">
+      <br/>
       <StarRating rating ={props.review.rating}></StarRating>
-      <span>VERIFIED???  </span>
-      <span>{props.review.reviewer_name}  </span>
+      <span className="reviewerName"> Verified Purchaser ✓   {props.review.reviewer_name}  </span>
       <span className = 'reviewDate'>{new Date(props.review.date).toLocaleDateString({}, {timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric'})}</span><br/>
+      <br/>
       <b>{props.review.summary}</b><br/>
       <p>{props.review.body}</p><br/>
       <div>
@@ -69,9 +70,13 @@ var IndividualReview = (props) => {
       <span>  |  </span>
       <span onClick = {reportReview}>Report</span>
       <br/>
+      <br/>
       <span><b>---------------------------------------------------------</b></span>
     </div>
   );
 };
 
 export default IndividualReview;
+
+
+// VERIFIED USER IS CURRENTLY HARDCODED
