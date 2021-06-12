@@ -14,14 +14,16 @@ class ReviewWidget extends React.Component {
       productID: props.currentProductId,
       productReviews: [],
       numberOfReviews: 0,
-      sortBy: 'relevant',
       displayXReviews: 2,
+      sortBy: 'relevant',
+      count: 10000000000000,
       filters: []
       //more things to keep track of ?
     };
     this.getProductReviews = this.getProductReviews.bind(this);
     this.getProductReviews();
     this.changeSorting = this.changeSorting.bind(this);
+    this.displayMore = this.displayMore.bind(this);
   }
 
   getProductReviews() {
@@ -31,7 +33,8 @@ class ReviewWidget extends React.Component {
       data: {
         // eslint-disable-next-line camelcase
         product_id: this.state.productID,
-        sort: this.state.sortBy
+        sort: this.state.sortBy,
+        count: this.state.count
       },
       success: (data) => {
         this.setState({productReviews: data.results});
@@ -47,7 +50,12 @@ class ReviewWidget extends React.Component {
     this.setState({sortBy: e.target.value}, ()=>{ this.getProductReviews(); });
   }
 
+  displayMore(e) {
+    this.setState({displayXReviews: this.state.displayXReviews += 2});
+  }
+
   render() {
+    const moreReviewsCanDisplay = this.state.numberOfReviews >= this.state.displayXReviews;
     return (
       <div>
         <h1>REVIEW AND RATING WIDGET</h1>
@@ -57,9 +65,13 @@ class ReviewWidget extends React.Component {
           </div>
           <div id= 'reviewListContainer'>
             <SortingForm sortValue = {this.state.sortBy} numberOfReviews = {this.state.numberOfReviews} changeSorting = {this.changeSorting} />
-            <ReviewList reviews = {this.state.productReviews} />
-            <span>Conditionally render the more reviews button below</span><br/>
-            <button>MORE REVIEWS</button>
+            <ReviewList reviews = {this.state.productReviews.slice(0, this.state.displayXReviews)} />
+            <div>
+              {moreReviewsCanDisplay
+                ? <button onClick={this.displayMore}>More Reviews</button>
+                : <div id='maxOutOnReviews'/>
+              }
+            </div>
             <span>   </span>
             <button>ADD REVIEW +</button>
           </div>
