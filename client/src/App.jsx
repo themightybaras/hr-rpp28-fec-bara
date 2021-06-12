@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Overview from './components/overview/Overview.jsx';
 import RelatedOutfit from './components/related/RelatedOutfit.jsx';
-import QuestionsList from './components/questions/QuestionsList.jsx';
+import QuestionList from './components/questions/QuestionList.jsx';
 import ReviewWidget from './components/review/ReviewWidget.jsx';
 
 class App extends React.Component {
@@ -19,7 +19,7 @@ class App extends React.Component {
         <div>
           <Overview />
           <RelatedOutfit currentProductId = {this.state.currentProductId}/>
-          <QuestionsList />
+          <QuestionList />
           <ReviewWidget currentProductId = {this.state.currentProductId} />
         </div>
       </div>
