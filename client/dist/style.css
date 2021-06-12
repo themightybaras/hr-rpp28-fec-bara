@@ -173,21 +173,15 @@ button.carousel {
 #reviewWidgetContainer {
   display: flex;
   justify-content: space-evenly;
-  background-color: blue;
 }
+
+
 
 #reviewListContainer {
-  background-color: hotpink;
-}
-
-#reviewList {
   max-height: 100vh;
-  overflow: auto;
+  overflow-y: scroll;
 }
 
-#ratingSectionContainer {
-  background-color: lawngreen;
-}
 
 #largeAverageRating {
   font-size: 75px;

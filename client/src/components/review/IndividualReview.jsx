@@ -42,14 +42,14 @@ var IndividualReview = (props) => {
       <StarRating rating ={props.review.rating}></StarRating>
       <span>VERIFIED???  </span>
       <span>{props.review.reviewer_name}  </span>
-      <span>{new Date(props.review.date).toLocaleDateString({}, {timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric'})}</span><br/>
+      <span className = 'reviewDate'>{new Date(props.review.date).toLocaleDateString({}, {timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric'})}</span><br/>
       <b>{props.review.summary}</b><br/>
       <p>{props.review.body}</p><br/>
       <span> IMAGES ???? </span><br/>
       <span>Conditional render if recommend or not</span><br/>
       <span> CONDITIONAL RENDER Response:</span><br/>
       <p>{props.review.response}</p><br/>
-      <span>Helpful? </span><span>({props.review.helpfulness})</span><span onClick = {markHelpful}> Yes</span>
+      <span>Helpful? </span><span className = "helpfulRating">({props.review.helpfulness})</span><span className = 'yesButton' onClick = {markHelpful}> Yes</span>
       <span>  |  </span>
       <span onClick = {reportReview}>Report</span>
       <br/>
