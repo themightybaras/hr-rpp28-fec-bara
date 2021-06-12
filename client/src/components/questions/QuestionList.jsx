@@ -1,9 +1,9 @@
 import React from 'react';
 import $ from 'jquery';
 import Question from './Question.jsx';
-import AddQuestion from './AddQuestion.jsx';
+import AddQuestionOrAnswer from './AddQuestionOrAnswer.jsx';
 
-class QuestionsList extends React.Component {
+class QuestionList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -74,11 +74,11 @@ class QuestionsList extends React.Component {
             ADD A QUESTION +
           </button>
         </div>
-        <AddQuestion addQuestionModalOpen={this.state.addQuestionModalOpen} toggleAddQuestionModal={this.toggleAddQuestionModal} />
+        <AddQuestionOrAnswer addModalOpen={this.state.addQuestionModalOpen} toggleAddModal={this.toggleAddQuestionModal} isQuestionModal={true} />
       </div>
     );
   }
 }
 
-export default QuestionsList;
+export default QuestionList;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Answer from './Answer.jsx';
 import $ from 'jquery';
 
-class AnswersList extends React.Component {
+class AnswerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,4 +52,4 @@ class AnswersList extends React.Component {
 
 }
 
-export default AnswersList;
+export default AnswerList;

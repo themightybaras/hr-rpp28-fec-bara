@@ -1,6 +1,6 @@
 import React from 'react';
-import AddAnswer from './AddAnswer.jsx';
-import AnswersList from './AnswersList.jsx';
+import AddQuestionOrAnswer from './AddQuestionOrAnswer.jsx';
+import AnswerList from './AnswerList.jsx';
 
 class Question extends React.Component {
   constructor(props) {
@@ -23,8 +23,8 @@ class Question extends React.Component {
           <div className='question'><b>Q: {this.props.question.question_body}</b></div>
           <a href='#' className='add-answer' onClick={this.toggleAddAnswerModal}>Add Answer</a>
         </div>
-        <AnswersList answers={Object.values(this.props.question.answers)} questionId={this.props.question.question_id} />
-        <AddAnswer addAnswerModalOpen={this.state.addAnswerModalOpen} toggleAddAnswerModal={this.toggleAddAnswerModal} />
+        <AnswerList answers={Object.values(this.props.question.answers)} questionId={this.props.question.question_id} />
+        <AddQuestionOrAnswer addModalOpen={this.state.addAnswerModalOpen} toggleAddModal={this.toggleAddAnswerModal} isQuestionModal={false} />
       </div>
     );
   }

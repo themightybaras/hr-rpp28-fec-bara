@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
 import Question from '../../../client/src/components/questions/Question.jsx';
 
-test('testQuestion', () => {
+test('test question block', () => {
 
   const questionSample = {
     question_id: 153695,
