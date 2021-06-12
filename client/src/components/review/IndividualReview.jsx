@@ -61,7 +61,7 @@ var IndividualReview = (props) => {
       </div>
       <div>
         {props.review.response
-          ? <p className = 'response'>Response: {props.review.response}</p>
+          ? <p className = 'response'>Response from Seller: {props.review.response}</p>
           : <div/>
         }
       </div>
