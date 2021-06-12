@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
-import Answer from '../../../client/src/components/questions/Answer.jsx';
+import Answer from '../../client/src/components/questions/Answer.jsx';
 
 test('test answer block', () => {
 
