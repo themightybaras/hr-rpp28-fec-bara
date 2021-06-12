@@ -8,6 +8,7 @@ var router = require('express').Router();
 
 //overview routes
 router.get('/products', overviewRequests.getProducts);
+router.get('/products/:product_id/styles', overviewRequests.getProductStyles);
 //question routes
 router.get('/qa/questions', questionsRequests.getQuestions);
 
