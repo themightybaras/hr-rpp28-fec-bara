@@ -3,6 +3,7 @@
 import React from 'react';
 import $ from 'jquery';
 import StarRating from './StarRating.jsx';
+import ReviewImages from './ReviewImages.jsx';
 
 
 // class component with state
@@ -13,8 +14,8 @@ var IndividualReview = (props) => {
       type: 'PUT',
       url: `/reviews/${props.review.review_id}/helpful`,
       success: (successMessage) => {
-        // rerender review?
         console.log(successMessage);
+        alert ('Awesome! Glad you think this review is helpful! We will take note.');
       },
       error: (err) => {
         console.log('ERROR Marking Review Helpful:', err.message);
@@ -28,7 +29,7 @@ var IndividualReview = (props) => {
       url: `/reviews/${props.review.review_id}/report`,
       success: (successMessage) => {
         console.log(successMessage);
-        // re-render reviews list
+        alert ('Thank your for your feedback, we will investigate this post');
       },
       error: (err) => {
         console.log('ERROR Reporting Review:', err.message);
@@ -39,19 +40,36 @@ var IndividualReview = (props) => {
 
   return (
     <div className = "individualReview">
+      <br/>
       <StarRating rating ={props.review.rating}></StarRating>
-      <span>VERIFIED???  </span>
-      <span>{props.review.reviewer_name}  </span>
+      <span className="reviewerName"> Verified Purchaser ✓   {props.review.reviewer_name}  </span>
       <span className = 'reviewDate'>{new Date(props.review.date).toLocaleDateString({}, {timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric'})}</span><br/>
+      <br/>
       <b>{props.review.summary}</b><br/>
       <p>{props.review.body}</p><br/>
-      <span> IMAGES ???? </span><br/>
-      <span>Conditional render if recommend or not</span><br/>
-      <span> CONDITIONAL RENDER Response:</span><br/>
-      <p>{props.review.response}</p><br/>
+      <div>
+        {props.review.photos.length
+          ? <ReviewImages photos = {props.review.photos}/>
+          : <div/>
+        }
+      </div>
+      <div>
+        {props.review.recommend
+          ? <span className= 'recommended'>✓ I recommend this product</span>
+          : <div/>
+        }
+      </div>
+      <div>
+        {props.review.response
+          ? <p className = 'response'>Response from Seller: {props.review.response}</p>
+          : <div/>
+        }
+      </div>
+      <br/>
       <span>Helpful? </span><span className = "helpfulRating">({props.review.helpfulness})</span><span className = 'yesButton' onClick = {markHelpful}> Yes</span>
       <span>  |  </span>
       <span onClick = {reportReview}>Report</span>
+      <br/>
       <br/>
       <span><b>---------------------------------------------------------</b></span>
     </div>
@@ -59,3 +77,6 @@ var IndividualReview = (props) => {
 };
 
 export default IndividualReview;
+
+
+// VERIFIED USER IS CURRENTLY HARDCODED
