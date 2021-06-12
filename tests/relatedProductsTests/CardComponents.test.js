@@ -7,6 +7,7 @@ import RelatedOutfit from '../../client/src/components/related/RelatedOutfit.jsx
 import ProductCard from '../../client/src/components/related/ProductCard.jsx';
 import ItemsList from '../../client/src/components/related/ItemsList.jsx';
 import {ActionItem, Image, Category, Name, Price, Review} from '../../client/src/components/related/CardComponents.jsx';
+import ExampleOutfit from './ExampleData.js';
 
 test('Simple text components render text passed as a prop', () => {
   let testText = 'Test';
