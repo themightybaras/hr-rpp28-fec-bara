@@ -70,12 +70,12 @@ class ReviewWidget extends React.Component {
             </div>
             <div>
               {moreReviewsCanDisplay
-                ? <button onClick={this.displayMore}>More Reviews</button>
+                ? <button onClick={this.displayMore} className= 'moreReviewsButton'>MORE REVIEWS</button>
                 : <div id='maxOutOnReviews'/>
               }
             </div>
             <span>   </span>
-            <button>ADD REVIEW +</button>
+            <button className = 'addReviewButton'> ADD REVIEW +</button>
           </div>
         </div>
       </div>

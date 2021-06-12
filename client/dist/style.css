@@ -71,7 +71,7 @@ button.carousel {
   font-weight: bold;
 }
 
-.more-questions-button, .add-question-button {
+.more-questions-button, .add-question-button, .moreReviewsButton, .addReviewButton{
   display: inline-block;
   background-color: white;
   font-size: 15px;
@@ -80,7 +80,7 @@ button.carousel {
   margin-right: 10px;
 }
 
-.more-answers-button {
+.more-answers-button{
   background-color: white;
   border: none;
   font-weight: bold;
@@ -170,11 +170,21 @@ button.carousel {
   letter-spacing: 3px;
 }
 
+.response {
+  background-color: #ebebeb ;
+}
+
+.reviewImage {
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
 #reviewWidgetContainer {
   display: flex;
   justify-content: space-evenly;
 }
-
 
 
 #reviewListContainer {

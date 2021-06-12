@@ -9,13 +9,13 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentProductId: 22222
+      currentProductId: 22161
     };
   }
   render() {
     return (
       <div>
-        <h1>Test</h1>
+        <h1>The MightyBaras Project Atelier</h1>
         <div>
           <Overview />
           <RelatedOutfit currentProductId = {this.state.currentProductId}/>

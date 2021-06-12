@@ -3,6 +3,7 @@
 import React from 'react';
 import $ from 'jquery';
 import StarRating from './StarRating.jsx';
+import ReviewImages from './ReviewImages.jsx';
 
 
 // class component with state
@@ -45,10 +46,25 @@ var IndividualReview = (props) => {
       <span className = 'reviewDate'>{new Date(props.review.date).toLocaleDateString({}, {timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric'})}</span><br/>
       <b>{props.review.summary}</b><br/>
       <p>{props.review.body}</p><br/>
-      <span> IMAGES ???? </span><br/>
-      <span>Conditional render if recommend or not</span><br/>
-      <span> CONDITIONAL RENDER Response:</span><br/>
-      <p>{props.review.response}</p><br/>
+      <div>
+        {props.review.photos.length
+          ? <ReviewImages photos = {props.review.photos}/>
+          : <div/>
+        }
+      </div>
+      <div>
+        {props.review.recommend
+          ? <span className= 'recommended'>✓ I recommend this product</span>
+          : <div/>
+        }
+      </div>
+      <div>
+        {props.review.response
+          ? <p className = 'response'>Response: {props.review.response}</p>
+          : <div/>
+        }
+      </div>
+      <br/>
       <span>Helpful? </span><span className = "helpfulRating">({props.review.helpfulness})</span><span className = 'yesButton' onClick = {markHelpful}> Yes</span>
       <span>  |  </span>
       <span onClick = {reportReview}>Report</span>
