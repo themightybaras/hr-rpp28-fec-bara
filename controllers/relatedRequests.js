@@ -32,21 +32,25 @@ const addToOutfit = (req, res) => {
 };
 
 const removeFromOutfit = (req, res) => {
-  // console.log('Cookie before removal: ', req.cookies);
+  console.log('Cookie before removal: ', req.cookies);
   let idToRemove = req.url.split('?')[1];
-  let newCookie = _.without(req.cookies.atelier.split(','), idToRemove);
+  // let newCookie = _.without(req.cookies.atelier.split(','), idToRemove);
+  let newCookie = _.without(req.cookies.atelier, idToRemove);
   if (newCookie.length > 0) {
     res.cookie('atelier', newCookie);
+    res.end();
   } else {
     res.clearCookie('atelier');
+    res.end();
   }
-  // console.log('Cookie after removal: ', res.cookies);
-  res.end();
+  console.log('Cookie after removal: ', res.cookies);
 };
 
 const getOutfit = (req, res) => {
+  console.log('Cookies in get call: ', req.cookies.atelier);
   if (req.cookies.atelier) {
-    let outfitCalls = req.cookies.atelier.split(',').map((id) => {
+    // let outfitCalls = req.cookies.atelier.split(',').map((id) => {
+    let outfitCalls = req.cookies.atelier.map((id) => {
       return axios({
         method: 'get',
         url: `${baseURL}/products/${id}`

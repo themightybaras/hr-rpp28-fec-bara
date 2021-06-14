@@ -11,12 +11,19 @@ class ProductCard extends React.Component {
     this.state = {
       modal: false
     };
+    this.actionHandler = this.actionHandler.bind(this);
   }
   // ! revise sale price
 
   // if (list === 'related') {
   //   actionHandler = setModal(!modal);
   // }
+
+  actionHandler() {
+    if (this.props.list === 'outfit') {
+      this.props.actionHandler();
+    }
+  }
 
   render() {
 
@@ -29,7 +36,7 @@ class ProductCard extends React.Component {
     return (
       <div>
         <div className="productcard">
-          <ActionItem product={this.props.product} actionHandler={this.props.actionHandler}/>
+          <ActionItem product={this.props.product} actionHandler={this.actionHandler}/>
           <br />
           <Image results={this.props.product.results}/>
           <br />
