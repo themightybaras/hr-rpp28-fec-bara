@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 import ProductCard from './ProductCard.jsx';
 import AddOutfitCard from './AddOutfitCard.jsx';
+import RelatedModal from './RelatedModal';
 
 // Component to render carousel for either related products list or outfit items
 // Take in one prop for related vs outfit, click handler to reset current product (pass to Card)
