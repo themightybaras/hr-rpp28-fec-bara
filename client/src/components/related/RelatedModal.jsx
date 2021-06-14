@@ -12,8 +12,12 @@ import React from 'react';
 //  Click handler sets modal state to false
 // Modal disappears
 
-const RelatedModal = () => {
-  return (<div> Clicked product vs. Current product </div>);
+const RelatedModal = ({modal, actionHandler}) => {
+  return (
+    <div onClick={actionHandler} className = {modal ? 'modal display-block' : 'modal display-none'}>
+      Clicked product vs. Current product
+    </div>
+  );
 };
 
 export default RelatedModal;

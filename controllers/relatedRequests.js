@@ -45,7 +45,6 @@ const removeFromOutfit = (req, res) => {
 };
 
 const getOutfit = (req, res) => {
-  console.log(' Req cookie when getting outfit: ', req.cookies);
   if (req.cookies.atelier) {
     let outfitCalls = req.cookies.atelier.split(',').map((id) => {
       return axios({
@@ -63,7 +62,6 @@ const getOutfit = (req, res) => {
         });
     });
     Promise.all(outfitCalls).then((products) => {
-      console.log(products[0].results[1].photos);
       res.send(products);
     });
   } else {

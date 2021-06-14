@@ -3,7 +3,6 @@ import $ from 'jquery';
 import _ from 'underscore';
 import ProductCard from './ProductCard.jsx';
 import AddOutfitCard from './AddOutfitCard.jsx';
-import RelatedModal from './RelatedModal';
 
 // Component to render carousel for either related products list or outfit items
 // Take in one prop for related vs outfit, click handler to reset current product (pass to Card)
@@ -131,7 +130,7 @@ class ItemsList extends React.Component {
           {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
           {this.props.list === 'outfit' ? <AddOutfitCard addToOutfit={this.addToOutfit.bind(this)}/> : ''}
           {this.state.products.slice(this.state.firstCard, this.state.firstCard + 3).map((product, i) => {
-            return <ProductCard key={i} product={product} actionHandler={this.getActionHandler()}/>;
+            return <ProductCard key={i} product={product} actionHandler={this.getActionHandler()} list={this.props.list}/>;
           })}
           {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
         </div>
