@@ -9,9 +9,12 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentProductId: 22161
+      currentProductId: 22161,
+      currentProductName: 'CURRENT PRODUCT NAME'
     };
   }
+
+
   render() {
     return (
       <div>
@@ -20,7 +23,7 @@ class App extends React.Component {
           <Overview />
           <RelatedOutfit currentProductId = {this.state.currentProductId}/>
           <QuestionList />
-          <ReviewWidget currentProductId = {this.state.currentProductId} />
+          <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName}/>
         </div>
       </div>
     );

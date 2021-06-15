@@ -13,12 +13,13 @@ class ReviewWidget extends React.Component {
     super(props);
     this.state = {
       productID: props.currentProductId,
+      productName: props.currentProductName,
       productReviews: [],
       numberOfReviews: 0,
       displayXReviews: 2,
       sortBy: 'relevant',
       count: 10000000000000,
-      reviewFormModalShown: false
+      reviewFormModalShown: false,
     };
     this.getProductReviews = this.getProductReviews.bind(this);
     this.getProductReviews();
@@ -80,7 +81,7 @@ class ReviewWidget extends React.Component {
               }
               <button onClick={this.showReviewFormModal} className= 'addReviewButton'> ADD REVIEW +</button>
             </div>
-            <ReviewFormModal className = 'modal' onClose={this.showReviewFormModal} show={this.state.reviewFormModalShown}>MODEL YODEL</ReviewFormModal>
+            <ReviewFormModal className = 'modal' onClose={this.showReviewFormModal} show={this.state.reviewFormModalShown}/>
           </div>
         </div>
       </div>

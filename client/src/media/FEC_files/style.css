@@ -184,10 +184,6 @@ button.carousel {
     width: 150px;
 }
 
-.characteristicTitle {
-  text-decoration: underline;
-}
-
 
 #reviewWidgetContainer {
   display: flex;
