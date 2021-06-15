@@ -22,6 +22,10 @@ class ProductCard extends React.Component {
   actionHandler() {
     if (this.props.list === 'outfit') {
       this.props.actionHandler();
+    } else {
+      this.setState((state) => {
+        return { modal: !state.modal };
+      });
     }
   }
 
@@ -48,7 +52,7 @@ class ProductCard extends React.Component {
           <br />
           <Review />
         </div>
-        {/* <RelatedModal modal={this.state.modal} actionHandler={actionHandler}/> */}
+        <RelatedModal modal={this.state.modal} actionHandler={this.actionHandler}/>
       </div>
     );
   }

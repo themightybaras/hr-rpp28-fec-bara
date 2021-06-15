@@ -14,8 +14,9 @@ import React from 'react';
 
 const RelatedModal = ({modal, actionHandler}) => {
   return (
-    <div onClick={actionHandler} className = {modal ? 'modal display-block' : 'modal display-none'}>
+    <div className = {modal ? 'modal-related display-block' : 'modal-related display-none'}>
       Clicked product vs. Current product
+      <button onClick={actionHandler}> Close </button>
     </div>
   );
 };
