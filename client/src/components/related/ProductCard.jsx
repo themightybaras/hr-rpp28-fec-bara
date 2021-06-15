@@ -11,7 +11,9 @@ class ProductCard extends React.Component {
     this.state = {
       modal: false
     };
-    this.actionHandler = this.actionHandler.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+    this.clickHandler = this.props.list === 'outfit' ? this.props.actionHandler : this.toggleModal;
+    //this.actionHandler = this.actionHandler.bind(this);
   }
   // ! revise sale price
 
@@ -19,14 +21,10 @@ class ProductCard extends React.Component {
   //   actionHandler = setModal(!modal);
   // }
 
-  actionHandler() {
-    if (this.props.list === 'outfit') {
-      this.props.actionHandler();
-    } else {
-      this.setState((state) => {
-        return { modal: !state.modal };
-      });
-    }
+  toggleModal() {
+    this.setState((state) => {
+      return { modal: !state.modal };
+    });
   }
 
   render() {
@@ -40,7 +38,7 @@ class ProductCard extends React.Component {
     return (
       <div>
         <div className="productcard">
-          <ActionItem product={this.props.product} actionHandler={this.actionHandler}/>
+          <ActionItem product={this.props.product} actionHandler={this.clickHandler}/>
           <br />
           <Image results={this.props.product.results}/>
           <br />
@@ -52,7 +50,7 @@ class ProductCard extends React.Component {
           <br />
           <Review />
         </div>
-        <RelatedModal modal={this.state.modal} actionHandler={this.actionHandler}/>
+        <RelatedModal modal={this.state.modal} actionHandler={this.clickHandler}/>
       </div>
     );
   }

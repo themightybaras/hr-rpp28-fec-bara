@@ -34,6 +34,7 @@ const addToOutfit = (req, res) => {
 const removeFromOutfit = (req, res) => {
   console.log('Cookie before removal: ', req.cookies);
   let idToRemove = req.url.split('?')[1];
+  console.log('id to remove: ', idToRemove);
   // let newCookie = _.without(req.cookies.atelier.split(','), idToRemove);
   let newCookie = _.without(req.cookies.atelier, idToRemove);
   if (newCookie.length > 0) {

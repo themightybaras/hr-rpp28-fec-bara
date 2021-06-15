@@ -49,7 +49,7 @@ class ItemsList extends React.Component {
 
   getActionHandler() {
     if (this.props.list === 'related') {
-      return this.compareProducts;
+      return this.compareProducts; // try passing null
     } else {
       return this.removeFromOutfit;
     }
@@ -92,6 +92,7 @@ class ItemsList extends React.Component {
   }
 
   removeFromOutfit(id) {
+    console.log('id: ', id);
     $.ajax({
       url: `/outfit?${id}`,
       type: 'DELETE',
@@ -99,8 +100,13 @@ class ItemsList extends React.Component {
         //Remove from local state or call getOutfit
         //this.getOutfit();
         console.log('current state: ', this.state.products);
-        let newOutfit = _.reject(this.state.products, (product) => {
-          return product.id === id;
+        // let newOutfit = _.reject(this.state.products, (product) => {
+        //   console.log('product in reject: ', product);
+        //   return product.id === id;
+        // });
+        let newOutfit = this.state.products.filter(product => {
+          console.log('product id: ', product.id);
+          return product.id !== id;
         });
         console.log('new state? ', newOutfit);
         // this.setState((state) => {
