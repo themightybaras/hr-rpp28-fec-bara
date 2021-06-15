@@ -73,7 +73,58 @@ class ReviewFormModal extends React.Component {
                 <input type='radio' id='A size too big' name='size' value='5'/>
                 <span>   A size too big</span>
               </div>
+              <div id ='widthQuestionContainer' onChange={this.formInputChange}>
+                <span className='characteristicTitle'>Width:</span><span>  {this.state.widthDisplayValue}</span><br/>
+                <span>Too Narrow   </span>
+                <input type='radio' id='Too Narrow' name='width' value='1'/>
+                <input type='radio' id='Slightly Narrow' name='width' value='2'/>
+                <input type='radio' id='Perfect' name='width' value='3'/>
+                <input type='radio' id='Slightly Wide' name='width' value='4'/>
+                <input type='radio' id='Too Wide' name='width' value='5'/>
+                <span>   Too Wide</span>
+              </div>
+              <div id ='comfortQuestionContainer' onChange={this.formInputChange}>
+                <span className='characteristicTitle'>Comfort:</span><span>  {this.state.comfortDisplayValue}</span><br/>
+                <span>Uncomfortable   </span>
+                <input type='radio' id='Uncomfortable' name='comfort' value='1'/>
+                <input type='radio' id='Slightly uncomfortable' name='comfort' value='2'/>
+                <input type='radio' id='Ok' name='comfort' value='3'/>
+                <input type='radio' id='Comfortable' name='comfort' value='4'/>
+                <input type='radio' id='Perfect' name='comfort' value='5'/>
+                <span>   Perfect</span>
+              </div>
+              <div id ='qualityQuestionContainer' onChange={this.formInputChange}>
+                <span className='characteristicTitle'>Quality:</span><span>  {this.state.qualityDisplayValue}</span><br/>
+                <span>Poor   </span>
+                <input type='radio' id='Poor' name='quality' value='1'/>
+                <input type='radio' id='Below Average' name='quality' value='2'/>
+                <input type='radio' id='What I Expected' name='quality' value='3'/>
+                <input type='radio' id='Pretty great' name='quality' value='4'/>
+                <input type='radio' id='Perfect' name='quality' value='5'/>
+                <span>   Perfect</span>
+              </div>
+              <div id ='lengthQuestionContainer' onChange={this.formInputChange}>
+                <span className='characteristicTitle'>Length:</span><span>  {this.state.lengthDisplayValue}</span><br/>
+                <span>Runs Short   </span>
+                <input type='radio' id='Runs short' name='length' value='1'/>
+                <input type='radio' id='Runs slightly short' name='length' value='2'/>
+                <input type='radio' id='Perfect' name='length' value='3'/>
+                <input type='radio' id='Runs slightly long' name='length' value='4'/>
+                <input type='radio' id='Runs long' name='length' value='5'/>
+                <span>   Runs Long</span>
+              </div>
+              <div id ='fitQuestionContainer' onChange={this.formInputChange}>
+                <span className='characteristicTitle'>Fit:</span><span>  {this.state.fitDisplayValue}</span><br/>
+                <span>Runs Tight   </span>
+                <input type='radio' id='Runs tight' name='fit' value='1'/>
+                <input type='radio' id='Runs slightly tight' name='fit' value='2'/>
+                <input type='radio' id='Perfect' name='fit' value='3'/>
+                <input type='radio' id='Runs slightly loose' name='fit' value='4'/>
+                <input type='radio' id='Runs loose' name='fit' value='5'/>
+                <span>   Runs Loose</span>
+              </div>
             </div>
+
           </form>
           <button onClick = {this.props.onClose}>Close</button>
         </div>
