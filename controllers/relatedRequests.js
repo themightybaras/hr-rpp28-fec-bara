@@ -84,9 +84,10 @@ const removeFromOutfit = (req, res) => {
 const getRelated = (req, res) => {
   axios.defaults.headers.common['Authorization'] = APIKey;
   // Get related products (returns array of product IDs)
+  let currentProductId = req.url.split('=')[1];
   axios({
     method: 'get',
-    url: baseURL + '/products/22126/related'
+    url: baseURL + `/products/${currentProductId}/related`
   })
     .then((response) => {
     // For each related product (id), retrieve product info and product styles objects

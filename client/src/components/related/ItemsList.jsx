@@ -57,7 +57,7 @@ class ItemsList extends React.Component {
 
   // API calls
   getRelatedProducts(id) {
-    $.get('/related', id, (products) => {
+    $.get('/related', {'id': id }, (products) => {
       // Use refs if this causes unnecessary rendering or long execution time
       this.setState({ products });
     });
