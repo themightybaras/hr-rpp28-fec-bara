@@ -43,7 +43,7 @@ class ItemsList extends React.Component {
     if (this.props.list === 'related') {
       return 'Related Products';
     } else {
-      return 'Outfit';
+      return 'Your Outfit';
     }
   }
 
