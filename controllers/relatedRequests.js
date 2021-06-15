@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 const APIKey = require('../config.js');
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 
-// OUTFIT
+// OUTFIT - add type handling if more errors
 
 const addToOutfit = (req, res) => {
   console.log('add to outfit, cookies', req.cookies);
