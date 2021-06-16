@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+import axios from 'axios';
 import Question from './Question.jsx';
 import AddQuestionOrAnswer from './AddQuestionOrAnswer.jsx';
 
@@ -9,11 +9,10 @@ class QuestionList extends React.Component {
     this.state = {
       questions: [],
       questionsToDisplay: [],
-      showMoreQuestionsButton: false,
+      showMoreQuestionsButton: true,
       addQuestionModalOpen: false
     };
     this.productID = 22126;
-    //this.productID = 22161;
     this.fetch = this.fetch.bind(this);
     this.clickMoreQuestionsButtonHandler = this.clickMoreQuestionsButtonHandler.bind(this);
     this.toggleAddQuestionModal = this.toggleAddQuestionModal.bind(this);
@@ -22,20 +21,17 @@ class QuestionList extends React.Component {
   }
 
   fetch() {
-    $.ajax({
-      type: 'GET',
-      url: `qa/questions?product_id=${this.productID}`,
-      success: (data) => {
-        this.setState({questions: data.results});
-        this.setState({questionsToDisplay: data.results.slice(0, 2)});
-        if (data.results.length > 2 ) {
-          this.setState({showMoreQuestionsButton: true});
+    return axios.get(`qa/questions?product_id=${this.productID}`)
+      .then((response) => {
+        this.setState({questions: response.data.results});
+        this.setState({questionsToDisplay: response.data.results.slice(0, 2)});
+        if (response.data.results.length <= 2 ) {
+          this.setState({showMoreQuestionsButton: false});
         }
-      },
-      error: (err) => {
-        console.log('ERROR: ', err.message);
-      }
-    });
+      })
+      .catch((err) => {
+        console.log('ERROR: ', err.messages);
+      });
   }
 
   clickMoreQuestionsButtonHandler(event) {
