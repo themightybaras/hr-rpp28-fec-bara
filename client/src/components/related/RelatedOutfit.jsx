@@ -15,11 +15,11 @@ import ItemsList from './ItemsList.jsx';
 
 
 
-const RelatedOutfit = ({currentProductId}) => {
+const RelatedOutfit = ({currentProductId, changeCurrentProduct}) => {
   return (
     <div id='relatedWidget'>
-      <ItemsList list='related' currentProductId={currentProductId}/>
-      <ItemsList list='outfit' currentProductId={currentProductId}/>
+      <ItemsList list='related' currentProductId={currentProductId} changeCurrentProduct={changeCurrentProduct}/>
+      <ItemsList list='outfit' currentProductId={currentProductId} changeCurrentProduct={changeCurrentProduct}/>
     </div>
   );
 };

@@ -2,13 +2,17 @@ var reviewsRequests = require('./controllers/reviewsRequests');
 var questionsRequests = require('./controllers/questionsRequests');
 const relatedRequests = require('./controllers/relatedRequests');
 var overviewRequests = require('./controllers/overviewRequests');
+var appRequests = require('./controllers/appRequests');
 var router = require('express').Router();
 
 // connect controller methods to their corresponding routes
 
+// App routes
+router.get('/app', appRequests.getCurrentProductInfo);
 //overview routes
 router.get('/products', overviewRequests.getProducts);
 router.get('/products/:product_id/styles', overviewRequests.getProductStyles);
+
 //question routes
 router.get('/qa/questions', questionsRequests.getQuestions);
 

@@ -116,6 +116,25 @@ button.carousel {
 }
 
 .add-form-container, .addReviewFormContent {
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  width:40%;
+  height:40%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-related {
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  width:40%;
+  height:40%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+
+.add-form-container {
   position:fixed;
   background: white;
   width: 80%;
