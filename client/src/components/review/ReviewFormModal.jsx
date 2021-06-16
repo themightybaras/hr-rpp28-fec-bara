@@ -78,10 +78,10 @@ class ReviewFormModal extends React.Component {
             <h2>Write Your Review </h2>
             <h3> About the {this.props.currentProductName}</h3><br/>
             <div>
-              <h3>Rate the product:</h3><br/>
+              <h4>Rate the product:</h4><br/>
               <ClickableStarRating collectRating = {this.formInputSelectionChange}/><br/>
               {this.state.ratingDisplayValue
-                ? <span>{this.state.ratingDisplayValue}</span>
+                ? <span id='ratingSelection'>{this.state.ratingDisplayValue}</span>
                 : null
               }
               <br/>
@@ -166,9 +166,9 @@ class ReviewFormModal extends React.Component {
                 <input type='radio' id='Runs loose' name='fit' value='5'/>
                 <span>   Runs Loose</span>
               </div><br/>
+              <br/>
             </div>
             <div id= 'reviewTextAnswersContainer'>
-              <h3>What would you like to let others know about your experience with the product?</h3>
               <label htmlFor='summary'> Title your review: </label><br/>
               <textarea id = 'summary' name='summary' onChange = {this.formTextChange} rows='1' cols='62' maxLength='60' value={this.state.summary} placeholder='Example: Best Purchase Ever!' required />
               {/* <span> Current Character Count: {this.state.summaryCharacterCount}</span> */}

@@ -232,6 +232,10 @@ button.carousel {
   color: black;
 }
 
+#ratingSelection {
+  font-size: xx-large;
+}
+
 #reviewWidgetContainer {
   display: flex;
   justify-content: space-evenly;
