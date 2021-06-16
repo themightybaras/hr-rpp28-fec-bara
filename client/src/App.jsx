@@ -24,10 +24,12 @@ class App extends React.Component {
     this.getCurrentProductInfo();
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.currentProductId !== prevProps.currentProductId) {
-      this.getCurrentProductInfo();
-    }
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Previous state: ', prevState); // this is always logging an empty object
+    console.log('Current state: ', this.state);
+    // if (this.state.currentProductId !== prevState.currentProductId) {
+    //   this.getCurrentProductInfo();
+    // }
   }
 
   getCurrentProductInfo() {
@@ -38,13 +40,10 @@ class App extends React.Component {
 
   // Click handler for product cards
   changeCurrentProduct(id) {
-    console.log('State before: ', this.state.currentProductId);
-    console.log('should change to: ', id); // id here is correct
     // this.setState((state) => {
     //   return { currentProductId: state.currentProductId - state.currentProductId + id };
     // });
     this.setState({ currentProductId: id });
-    // console.log('State after: ', this.state.currentProductId);
     //this.getCurrentProductInfo();
   }
 

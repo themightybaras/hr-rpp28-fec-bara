@@ -13,7 +13,7 @@ const getCurrentProductInfo = (req, res) => {
     url: baseURL + `/products/${currentProductId}`
   })
     .then((response) => {
-      res.send(response.data);
+      res.status(200).send(response.data);
     });
 };
 

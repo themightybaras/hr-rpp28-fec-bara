@@ -54,7 +54,7 @@ const getOutfit = (req, res) => {
         });
     });
     Promise.all(outfitCalls).then((products) => {
-      res.send(products);
+      res.status(200).send(products);
     });
   } else {
     res.send([]);
@@ -114,7 +114,7 @@ const getRelated = (req, res) => {
       // Resolve all API Calls then return to client
       Promise.all(prodCalls).then((products) => {
         // use _.pick (and combining function) if data size is reducing performance
-        res.send(products);
+        res.status(200).send(products);
       });
     })
     .catch((err) => {

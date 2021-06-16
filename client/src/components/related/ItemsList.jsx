@@ -22,6 +22,7 @@ class ItemsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentProductId: props.currentProductId,
       products: [],
       firstCard: 0
     };
@@ -29,16 +30,28 @@ class ItemsList extends React.Component {
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
     this.getOutfit = this.getOutfit.bind(this);
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
+    this.addToOutfit = this.addToOutfit.bind(this);
 
-    if (props.list === 'related') {
-      this.getRelatedProducts(props.currentProductId);
-    }
-    if (props.list === 'outfit') {
-      this.getOutfit();
-    }
+    // if (props.list === 'related') {
+    //   this.getRelatedProducts(this.state.currentProductId);
+    //   // this.getRelatedProducts(props.currentProductId);
+    // }
+    // if (props.list === 'outfit') {
+    //   this.getOutfit();
+    // }
   }
 
-  // Helper functions for rendering related vs. outfit
+  componentDidMount() {
+    if (this.props.list === 'related') {
+      this.getRelatedProducts(this.state.currentProductId);
+      // this.getRelatedProducts(props.currentProductId);
+    }
+    if (this.props.list === 'outfit') {
+      this.getOutfit();
+    }
+
+  }
+
   getTitle () {
     if (this.props.list === 'related') {
       return 'Related Products';
@@ -68,7 +81,6 @@ class ItemsList extends React.Component {
     $.get('/outfit', (products) => {
       if (products) {
         this.setState({ products });
-        console.log('Outfit:', products);
       }
     });
   }
@@ -81,7 +93,7 @@ class ItemsList extends React.Component {
         this.getOutfit();
       });
     } else {
-      console.log('Product already added to your outfit');
+      console.log('Product already added to your outfit'); // ALERT
     }
   }
 
@@ -92,18 +104,13 @@ class ItemsList extends React.Component {
   }
 
   removeFromOutfit(id) {
-    console.log('id: ', id);
     $.ajax({
       url: `/outfit?${id}`,
       type: 'DELETE',
       success: () => {
-        //this.getOutfit();
-        console.log('current state: ', this.state.products);
         let newOutfit = this.state.products.filter(product => {
-          console.log('product id: ', product.id);
           return product.id !== id;
         });
-        console.log('new state? ', newOutfit);
         this.setState({ products: newOutfit });
       }
     });
