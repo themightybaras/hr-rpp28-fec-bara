@@ -18,19 +18,6 @@ test('test question list block', () => {
   );
 
   expect(getSpy).toBeCalled();
-
-});
-
-test('test question list block', () => {
-
-  axios.get.mockResolvedValue({data: sampleData});
-
-  const getSpy = jest.spyOn(axios, 'get');
-  const questionListBlock = shallow(
-    <QuestionList />
-  );
-
-  expect(getSpy).toBeCalled();
   expect(questionListBlock.find('#search-questions').exists()).toBe(true);
   expect(questionListBlock.find('.more-questions-button').text()).toBe('MORE QUESTIONS');
   expect(questionListBlock.find('.add-question-button').text()).toBe('ADD A QUESTION +');
