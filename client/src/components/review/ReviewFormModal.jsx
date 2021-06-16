@@ -1,4 +1,5 @@
 import React from 'react';
+import ClickableStarRating from './ClickableStarRating.jsx';
 
 
 class ReviewFormModal extends React.Component {
@@ -7,10 +8,10 @@ class ReviewFormModal extends React.Component {
     super(props);
     this.state = {
       // REVIEW FORM ANSWERS
-      stars: 0,
-      starsDisplayAnswer: 'no stars selected',
+      rating: 0,
+      ratingDisplayValue: null,
       recommend: 'unanswered',
-      recommendDisplayAnswer: null,
+      recommendDisplayValue: null,
       //characteristics
       size: 0,
       sizeDisplayValue: 'none selected',
@@ -23,11 +24,22 @@ class ReviewFormModal extends React.Component {
       length: 0,
       lengthDisplayValue: 'none selected',
       fit: 0,
-      fitDisplayValue: 'none selected'
+      fitDisplayValue: 'none selected',
+      summary: undefined,
+      summaryCharacterCount: 0,
+      body: undefined,
+      bodyCharacterCount: 0,
+      photos: [],
+      nickname: undefined,
+      nicknameCharacterCount: 0,
+      email: undefined,
+      emailCharacterCount: 0
+
     };
 
     this.formInputSelectionChange = this.formInputSelectionChange.bind(this);
     this.formTextChange = this.formTextChange.bind(this);
+    //this.collectRating = this.collectRating.bind(this);
   }
 
 
@@ -40,13 +52,20 @@ class ReviewFormModal extends React.Component {
     this.setState({
       [name]: value,
       [displayName]: id
-    }, () =>{ console.log(this.state); });
+    });
   }
 
   formTextChange(e) {
-    console.log('text changed');
+    const target = e.target;
+    const value = target.value; // what is entered into the field
+    const count = value.length;
+    const name = target.name; //how it is refered to in state
+    const characterCount = `${name}CharacterCount`;
+    this.setState({
+      [name]: value,
+      [characterCount]: count,
+    });
   }
-
 
   render() {
     if (!this.props.show) {
@@ -56,18 +75,31 @@ class ReviewFormModal extends React.Component {
       <div className = 'modal' id = 'addReviewContainer'>
         <div className = 'addReviewFormContent'>
           <form>
-            <h2>Write Your Review About the {this.state.productName}</h2>
-            <span>Clickable star ranking goes here</span><br/>
+            <h2>Write Your Review </h2>
+            <h3> About the {this.props.currentProductName}</h3><br/>
+            <div>
+              <h3>Rate the product:</h3><br/>
+              <ClickableStarRating collectRating = {this.formInputSelectionChange}/><br/>
+              {this.state.ratingDisplayValue
+                ? <span>{this.state.ratingDisplayValue}</span>
+                : null
+              }
+              <br/>
+            </div><br/>
             <div id= 'recommendQuestionContainer' onChange={this.formInputSelectionChange}>
-              <h4>Do you recommend this product?</h4>
-              <span>{this.state.recommendDisplayValue}</span><br/>
+              <h4>Do you recommend this product? *</h4>
+              {this.state.recommendDisplayValue
+                ? <div><span>{this.state.recommendDisplayValue}</span><br/></div>
+                : null
+              }
               <input type='radio' id = 'Yes, I recommend this product' name='recommend' value='yes' required/>
               <label htmlFor='Yes, I recommend this product'>Yes</label>
               <input type='radio' id = 'No, I do not recommend this product' name='recommend' value='no'/>
               <label htmlFor='No, I do not recommend this product'>No</label>
-            </div>
+            </div><br/>
             <div id='characteristicsQuestionsContainer'>
-              <h4>Please Rate The Following Characteristics</h4>
+              <h4>Please Rate The Following Characteristics *</h4>
+              <br/>
               <div id ='sizeQuestionContainer' onChange={this.formInputSelectionChange}>
                 <span className='characteristicTitle'>Size</span><span>:  {this.state.sizeDisplayValue}</span><br/>
                 <br/>
@@ -136,9 +168,33 @@ class ReviewFormModal extends React.Component {
               </div><br/>
             </div>
             <div id= 'reviewTextAnswersContainer'>
-              <label htmlFor='summarySentance'> Title you review: </label><br/>
-              <textarea id = 'summarySentance' onChange = {this.formTextChange} maxLength='60' placeholder='Example: Best purchase ever!' required />
+              <h3>What would you like to let others know about your experience with the product?</h3>
+              <label htmlFor='summary'> Title your review: </label><br/>
+              <textarea id = 'summary' name='summary' onChange = {this.formTextChange} rows='1' cols='62' maxLength='60' value={this.state.summary} placeholder='Example: Best Purchase Ever!' required />
+              {/* <span> Current Character Count: {this.state.summaryCharacterCount}</span> */}
+              <br/>
+              <br/>
+              <label htmlFor='body'> Write your review: </label><br/>
+              <textarea id = 'body' name='body' onChange = {this.formTextChange} rows='10' cols='100' minLength='50' maxLength= '1000' value={this.state.body} placeholder='Why did you like the product or not?' required /><br/>
+              {this.state.bodyCharacterCount >= 50
+                ? <span className='disclaimer'>Minimum Reached</span>
+                : <span className= 'disclaimer'>Minimum required characters left { 50 - this.state.bodyCharacterCount }</span>
+              }
             </div>
+            <br/>
+            <span>image upload</span><br/>
+            <br/>
+            <div id= 'contactInputsContainer'>
+              <label htmlFor = 'nickname'>What is your nickname?</label><br/>
+              <textarea id = 'nickname' name='nickname' onChange = {this.formTextChange} rows='1' cols='62' maxLength='60' value={this.state.nickname} placeholder='Example: jackson11!' required /><br/>
+              <span className='disclaimer'> For privacy reasons, do not use your full name or email address</span><br/>
+              <br/>
+              <label htmlFor='email'> Your Email:</label><br/>
+              <input type='email' id='email' name='email' onChange = {this.formTextChange} maxLength='60' value={this.state.email} placeholder= 'Example: jackson11@gmail.com'required></input><br/>
+              <span className='disclaimer'>For authentication reasons, you will not be emailed</span><br/>
+              <br/>
+            </div>
+            <span>Submit button</span><br/>
           </form>
           <button onClick = {this.props.onClose}>Close</button>
         </div>
