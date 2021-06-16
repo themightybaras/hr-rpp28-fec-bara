@@ -1,8 +1,11 @@
 import React from 'react';
 
-const Placeholder = () => {
+const Placeholder = ({currentProductId}) => {
   return (
-    <img src={'https://emoji.gg/assets/emoji/7107_Duck.png'}></img>
+    <div>
+      <img src={'https://emoji.gg/assets/emoji/7107_Duck.png'}></img>
+      {currentProductId}
+    </div>
   );
 };
 

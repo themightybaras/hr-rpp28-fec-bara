@@ -12,6 +12,7 @@ class ProductCard extends React.Component {
       modal: false
     };
     this.toggleModal = this.toggleModal.bind(this);
+    this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.clickHandler = this.props.list === 'outfit' ? this.props.actionHandler : this.toggleModal;
     //this.actionHandler = this.actionHandler.bind(this);
   }
@@ -27,6 +28,10 @@ class ProductCard extends React.Component {
     });
   }
 
+  changeCurrentProduct() {
+    this.props.changeCurrentProduct(this.props.product.id);
+  }
+
   render() {
 
     let originalPrice = this.props.product.default_price;
@@ -37,18 +42,24 @@ class ProductCard extends React.Component {
 
     return (
       <div>
-        <div className="productcard">
+        <div className="productcard" >
           <ActionItem product={this.props.product} actionHandler={this.clickHandler}/>
           <br />
-          <Image results={this.props.product.results}/>
-          <br />
-          <Category category={this.props.product.category}/>
-          <br />
-          <Name name={this.props.product.name}/>
-          <br />
-          <Price price={this.props.product.default_price}/>
-          <br />
-          <Review />
+          <div onClick={this.changeCurrentProduct}>
+            <Image results={this.props.product.results} />
+          </div>
+          <div onClick={this.changeCurrentProduct}>
+            <Category category={this.props.product.category} />
+          </div>
+          <div onClick={this.changeCurrentProduct}>
+            <Name name={this.props.product.name} />
+          </div>
+          <div onClick={this.changeCurrentProduct}>
+            <Price price={this.props.product.default_price} />
+          </div>
+          <div onClick={this.changeCurrentProduct}>
+            <Review />
+          </div>
         </div>
         <RelatedModal modal={this.state.modal} actionHandler={this.clickHandler}/>
       </div>

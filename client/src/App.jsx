@@ -16,25 +16,36 @@ class App extends React.Component {
       currentProductInfo: {}
     };
 
-    this.getCurrentProductInfo.bind(this);
-    this.changeCurrentProduct.bind(this);
+    this.getCurrentProductInfo = this.getCurrentProductInfo.bind(this);
+    this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
+  }
+
+  componentDidMount() {
     this.getCurrentProductInfo();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.currentProductId !== prevProps.currentProductId) {
+      this.getCurrentProductInfo();
+    }
+  }
 
   getCurrentProductInfo() {
-    // API call for currentProductID
     $.get('/app', { 'id': this.state.currentProductId }, (currentProductInfo) => {
-      // Use refs if this causes unnecessary rendering or long execution time
       this.setState({ currentProductInfo: currentProductInfo });
     });
-
-    // Set state upon completion
   }
 
   // Click handler for product cards
   changeCurrentProduct(id) {
-    // set state to input id
+    console.log('State before: ', this.state.currentProductId);
+    console.log('should change to: ', id); // id here is correct
+    // this.setState((state) => {
+    //   return { currentProductId: state.currentProductId - state.currentProductId + id };
+    // });
+    this.setState({ currentProductId: id });
+    // console.log('State after: ', this.state.currentProductId);
+    //this.getCurrentProductInfo();
   }
 
   render() {
@@ -42,8 +53,8 @@ class App extends React.Component {
       <div>
         <h1>The MightyBaras Project Atelier</h1>
         <div>
-          <Placeholder />
-          <RelatedOutfit currentProductId = {this.state.currentProductId}/>
+          <Placeholder currentProductId = {this.state.currentProductId}/>
+          <RelatedOutfit currentProductId = {this.state.currentProductId} changeCurrentProduct={this.changeCurrentProduct}/>
           <QuestionList />
           <ReviewWidget currentProductId = {this.state.currentProductId} />
         </div>

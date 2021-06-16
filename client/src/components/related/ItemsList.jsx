@@ -134,7 +134,7 @@ class ItemsList extends React.Component {
           {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
           {this.props.list === 'outfit' ? <AddOutfitCard addToOutfit={this.addToOutfit.bind(this)}/> : ''}
           {this.state.products.slice(this.state.firstCard, this.state.firstCard + 3).map((product, i) => {
-            return <ProductCard key={i} product={product} actionHandler={this.getActionHandler()} list={this.props.list}/>;
+            return <ProductCard key={i} product={product} actionHandler={this.getActionHandler()} list={this.props.list} changeCurrentProduct={this.props.changeCurrentProduct}/>;
           })}
           {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
         </div>
