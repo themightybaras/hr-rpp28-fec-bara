@@ -83,7 +83,7 @@ class ItemsList extends React.Component {
   getRelatedProducts(id) {
     $.get('/related', {'id': id }, (products) => {
       // Use refs if this causes unnecessary rendering or long execution time
-      this.setState({ products });
+      this.setState({ products, firstCard: 0 });
     });
   }
 
@@ -91,7 +91,7 @@ class ItemsList extends React.Component {
     // get request to /outfit that parses cookie and gets info for all products
     $.get('/outfit', (products) => {
       if (products) {
-        this.setState({ products });
+        this.setState({ products, firstCard: 0 });
       }
     });
   }
