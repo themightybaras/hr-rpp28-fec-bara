@@ -44,12 +44,23 @@ class ItemsList extends React.Component {
   componentDidMount() {
     if (this.props.list === 'related') {
       this.getRelatedProducts(this.state.currentProductId);
-      // this.getRelatedProducts(props.currentProductId);
     }
     if (this.props.list === 'outfit') {
       this.getOutfit();
     }
+  }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.currentProductId !== this.props.currentProductId) {
+      this.setState({ currentProductId: this.props.currentProductId });
+      if (this.props.list === 'related') {
+        this.getRelatedProducts(this.props.currentProductId);
+      }
+      if (this.props.list === 'outfit') {
+        this.getOutfit();
+      }
+
+    }
   }
 
   getTitle () {

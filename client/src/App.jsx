@@ -25,13 +25,9 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('Previous state: ', prevState); // this is always logging an empty object
-    console.log('Current state: ', this.state);
     if (this.state.currentProductId !== prevState.currentProductId) {
       this.getCurrentProductInfo();
-      console.log('how many?');
     }
-    console.log('State after product call', this.state);
   }
 
   getCurrentProductInfo() {
