@@ -7,7 +7,7 @@ class AddQuestionOrAnswer extends React.Component {
         <form>
           <div className='add-form-container'>
             <div className='add-your-question-or-answer-label'><b>{this.props.isQuestionModal ? 'Your Question' : 'Your Answer'}</b></div>
-            <textarea name={this.props.isQuestionModel ? 'your-question' : 'your-answer'} className='form-input' maxLength='1000' required />
+            <textarea name='your-question-or-answer' className='form-input' maxLength='1000' required />
             <br />
             <div className='add-your-nickname-label'><b>What is Your Nickname</b></div>
             <input type='text' name='your-nickname' className='form-input' maxLength='60' required />
