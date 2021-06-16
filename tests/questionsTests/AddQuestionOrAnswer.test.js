@@ -18,7 +18,7 @@ test('test add question or answer block', () => {
     <AddQuestionOrAnswer addModalOpen={true} toggleAddModal={() => {}} isQuestionModal={false} />
   );
 
-  expect(addQuestionBlockNoModal.find('.modal display-none').exists()).toBe(true);
+  expect(addQuestionBlockNoModal.find('.modal display-none').exists()).toBe(false);
   expect(addQuestionBlock.find('.add-your-question-or-answer-label').text()).toBe('Your Question');
   expect(addQuestionBlock.find('.add-your-nickname-label').text()).toBe('What is Your Nickname');
   expect(addQuestionBlock.find('.add-your-email-label').text()).toBe('Your Email');
