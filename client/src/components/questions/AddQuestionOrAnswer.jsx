@@ -1,21 +1,55 @@
 import React from 'react';
+import axios from 'axios';
 
 class AddQuestionOrAnswer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      content: '',
+      nickname: '',
+      email: ''
+    };
+    this.changeContentHandler = this.changeContentHandler.bind(this);
+    this.changeNicknameHandler = this.changeNicknameHandler.bind(this);
+    this.changeEmailHandler = this.changeEmailHandler.bind(this);
+    this.clickSubmitHandler = this.clickSubmitHandler.bind(this);
+  }
+
+  changeContentHandler(event) {
+    event.preventDefault();
+    this.setState({content: event.target.value});
+  }
+
+  changeNicknameHandler(event) {
+    event.preventDefault();
+    this.setState({nickname: event.target.value});
+  }
+
+  changeEmailHandler(event) {
+    event.preventDefault();
+    this.setState({email: event.target.value});
+  }
+
+  clickSubmitHandler(event) {
+    event.preventDefault();
+    this.props.toggleAddModal();
+  }
+
   render() {
     return (
       <div className = {this.props.addModalOpen ? 'modal display-block' : 'modal display-none'}>
         <form>
           <div className='add-form-container'>
             <div className='add-your-question-or-answer-label'><b>{this.props.isQuestionModal ? 'Your Question' : 'Your Answer'}</b></div>
-            <textarea name='your-question-or-answer' className='form-input' maxLength='1000' required />
+            <textarea name='your-question-or-answer' className='form-input' maxLength='1000' onChange={this.changeContentHandler} required />
             <br />
             <div className='add-your-nickname-label'><b>What is Your Nickname</b></div>
-            <input type='text' name='your-nickname' className='form-input' maxLength='60' required />
+            <input type='text' name='your-nickname' className='form-input' maxLength='60' onChange={this.changeNicknameHandler} required />
             <br />
             <div className='add-your-email-label'><b>Your Email</b></div>
-            <input type='text' name='your-email' className='form-input' maxLength='60' required />
+            <input type='text' name='your-email' className='form-input' maxLength='60' onChange={this.changeEmailHandler} required />
             <br />
-            <button type='button' className='add-question-or-answer-submit' onClick={this.props.toggleAddModal}>{this.props.isQuestionModal ? 'Submit Question' : 'Submit Answer'}</button>
+            <button type='button' className='add-question-or-answer-submit' onClick={this.clickSubmitHandler}>{this.props.isQuestionModal ? 'Submit Question' : 'Submit Answer'}</button>
           </div>
         </form>
       </div>
