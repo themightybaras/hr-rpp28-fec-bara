@@ -114,21 +114,12 @@ button.carousel {
   background: rgba(0, 0, 0, 0.6);
 }
 
-.modal-related {
-  position: fixed;
-  top: 25%;
-  left: 25%;
-  width:40%;
-  height:40%;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.add-form-container {
+.add-form-container, .addReviewFormContent {
   position:fixed;
   background: white;
   width: 80%;
   height: auto;
-  top:20%;
+  top:50%;
   left:10%;
   /* transform: translate(-50%,-50%); */
 }
@@ -193,76 +184,18 @@ button.carousel {
     width: 150px;
 }
 
-.characteristicTitle {
-  text-decoration: underline;
-}
-
-.disclaimer {
-  font-size: small;
-}
-
-.rating {
-  float: left;
-  height: 46px;
-  padding: 0 10px;
-}
-.rating:not(:checked) > input {
-  position:absolute;
-  top:-9999px;
-}
-.rating:not(:checked) > label {
-  float:right;
-  width:1em;
-  overflow:hidden;
-  white-space:nowrap;
-  cursor:pointer;
-  font-size:20px;
-  color:#ccc;
-}
-.rating:not(:checked) > label:before {
-  content: '★ ';
-}
-.rating > input:checked ~ label {
-  color: black;
-}
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label {
-  color: black;
-}
-.rating > input:checked + label:hover,
-.rating > input:checked + label:hover ~ label,
-.rating > input:checked ~ label:hover,
-.rating > input:checked ~ label:hover ~ label,
-.rating > label:hover ~ input:checked ~ label {
-  color: black;
-}
-
-.addReviewFormContent {
-  position:fixed;
-  background: white;
-  width: 80%;
-  height: auto;
-  top:20%;
-  left:10%;
-  max-height: 50vh;
-  overflow-y: scroll;
-  padding: 0 20px;
-}
-
-
-#ratingSelection {
-  font-size: xx-large;
-}
 
 #reviewWidgetContainer {
   display: flex;
   justify-content: space-evenly;
 }
 
+
 #reviewListContainer {
   max-height: 100vh;
   overflow-y: scroll;
 }
+
 
 #largeAverageRating {
   font-size: 75px;

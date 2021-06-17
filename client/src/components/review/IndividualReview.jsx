@@ -50,19 +50,19 @@ var IndividualReview = (props) => {
       <div>
         {props.review.photos.length
           ? <ReviewImages photos = {props.review.photos}/>
-          : <div/>
+          : null
         }
       </div>
       <div>
         {props.review.recommend
           ? <span className= 'recommended'>✓ I recommend this product</span>
-          : <div/>
+          : null
         }
       </div>
       <div>
         {props.review.response
           ? <p className = 'response'>Response from Seller: {props.review.response}</p>
-          : <div/>
+          : null
         }
       </div>
       <br/>

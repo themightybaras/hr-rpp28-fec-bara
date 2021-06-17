@@ -7,7 +7,7 @@ var ReviewImages = (props) => {
   return (
     <div className = 'reviewImages'>
       {props.photos.map(photo =>
-        <img src = {photo.url} className= 'reviewImage'/>
+        <img src = {photo.url} key = {photo.id} className= 'reviewImage'/>
       )}
     </div>
   );

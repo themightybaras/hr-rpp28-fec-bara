@@ -6,24 +6,26 @@ import $ from 'jquery';
 import ReviewList from './ReviewList.jsx';
 import RatingSection from './RatingSection.jsx';
 import SortingForm from './Sorter.jsx';
+import ReviewFormModal from './ReviewFormModal.jsx';
 
 class ReviewWidget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       productID: props.currentProductId,
+      productName: props.currentProductName,
       productReviews: [],
       numberOfReviews: 0,
       displayXReviews: 2,
       sortBy: 'relevant',
       count: 10000000000000,
-      filters: []
-      //more things to keep track of ?
+      reviewFormModalShown: false,
     };
     this.getProductReviews = this.getProductReviews.bind(this);
     this.getProductReviews();
     this.changeSorting = this.changeSorting.bind(this);
     this.displayMore = this.displayMore.bind(this);
+    this.showReviewFormModal = this.showReviewFormModal.bind(this);
   }
 
   getProductReviews() {
@@ -54,6 +56,10 @@ class ReviewWidget extends React.Component {
     this.setState({displayXReviews: this.state.displayXReviews += 2});
   }
 
+  showReviewFormModal(e) {
+    this.setState({reviewFormModalShown: !this.state.reviewFormModalShown});
+  }
+
   render() {
     const moreReviewsCanDisplay = this.state.numberOfReviews >= this.state.displayXReviews;
     return (
@@ -71,10 +77,11 @@ class ReviewWidget extends React.Component {
             <div id = 'reviewButtons'>
               {moreReviewsCanDisplay
                 ? <button onClick={this.displayMore} className= 'moreReviewsButton'>MORE REVIEWS</button>
-                : <div id='maxOutOnReviews'/>
+                : null
               }
-              <button className = 'addReviewButton'> ADD REVIEW +</button>
+              <button onClick={this.showReviewFormModal} className= 'addReviewButton'> ADD REVIEW +</button>
             </div>
+            <ReviewFormModal className = 'modal' onClose={this.showReviewFormModal} show={this.state.reviewFormModalShown} currentProductName = {this.state.productName} />
           </div>
         </div>
       </div>

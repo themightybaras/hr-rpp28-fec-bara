@@ -13,6 +13,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentProductId: 22161,
+      currentProductName: 'CURRENT PRODUCT NAME',
       currentProductInfo: {}
     };
 
@@ -45,6 +46,7 @@ class App extends React.Component {
     //this.getCurrentProductInfo();
   }
 
+
   render() {
     return (
       <div>
@@ -53,7 +55,7 @@ class App extends React.Component {
           <Placeholder currentProductId = {this.state.currentProductId}/>
           <RelatedOutfit currentProductId = {this.state.currentProductId} changeCurrentProduct={this.changeCurrentProduct}/>
           <QuestionList />
-          <ReviewWidget currentProductId = {this.state.currentProductId} />
+          <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName}/>
         </div>
       </div>
     );
