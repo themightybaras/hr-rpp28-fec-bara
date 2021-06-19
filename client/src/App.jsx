@@ -21,7 +21,7 @@ class App extends React.Component {
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
 
     console.log('App: constructor');
-    // this.getCurrentProductInfo();
+    this.getCurrentProductInfo();
 
   }
 
@@ -30,12 +30,12 @@ class App extends React.Component {
   //   this.getCurrentProductInfo();
   // }
 
-  // Why doesn't componentDidMount take care of this upon a state change?
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.currentProductId !== prevState.currentProductId) {
-  //     this.getCurrentProductInfo();
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.currentProductId !== prevState.currentProductId) {
+      console.log('App: componentDidUpdate fired');
+      this.getCurrentProductInfo();
+    }
+  }
 
   getCurrentProductInfo() {
     console.log('App: called method to retrieve current product data');

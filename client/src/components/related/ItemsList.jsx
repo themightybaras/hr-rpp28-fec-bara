@@ -54,15 +54,16 @@ class ItemsList extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('ItemsList: componentDidUpdate, prevProps: ', prevProps);
-    console.log('ItemsList: componentDidUpdate, current props: ', this.props);
-    // console.log('ItemsList: componentDidUpdate, prevState: ', prevState);
-    console.log('ItemsList: componentDidUpdate, current state: ', this.state);
+    // console.log('ItemsList: componentDidUpdate, prevProps: ', prevProps);
+    // console.log('ItemsList: componentDidUpdate, current props: ', this.props);
+    // // console.log('ItemsList: componentDidUpdate, prevState: ', prevState);
+    // console.log('ItemsList: componentDidUpdate, current state: ', this.state);
 
     // ONLY NEED TO UPDATE RELATED PRODUCTS
     // if new props id is different than previous AND prevState equals current state
     if (this.props.list === 'related' && prevProps.currentProductId !== this.props.currentProductId &&
-      JSON.stringify(prevState.products) === JSON.stringify(this.state.products)) {
+    JSON.stringify(prevState.products) === JSON.stringify(this.state.products)) {
+      console.log('ItemsList: componentDidUpdate fired');
       this.getRelatedProducts(this.props.currentProductId);
     }
 
@@ -91,7 +92,6 @@ class ItemsList extends React.Component {
     $.get('/related', {'id': id }, (products) => {
       // Use refs if this causes unnecessary rendering or long execution time
       this.setState({ products, firstCard: 0 });
-      console.log('ItemsList: Reset state with related products');
     });
   }
 
