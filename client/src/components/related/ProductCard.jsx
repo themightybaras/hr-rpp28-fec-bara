@@ -61,7 +61,7 @@ class ProductCard extends React.Component {
             <Review />
           </div>
         </div>
-        <RelatedModal modal={this.state.modal} actionHandler={this.clickHandler}/>
+        <RelatedModal modal={this.state.modal} actionHandler={this.clickHandler} currentProductInfo={this.props.currentProductInfo}/>
       </div>
     );
   }

@@ -25,11 +25,6 @@ class App extends React.Component {
 
   }
 
-  // componentDidMount() {
-  //   console.log('App: componentDidMount');
-  //   this.getCurrentProductInfo();
-  // }
-
   componentDidUpdate(prevProps, prevState) {
     if (this.state.currentProductId !== prevState.currentProductId) {
       console.log('App: componentDidUpdate fired');
@@ -58,7 +53,7 @@ class App extends React.Component {
         <h1>The MightyBaras Project Atelier</h1>
         <div>
           <Placeholder currentProductId = {this.state.currentProductId}/>
-          <RelatedOutfit currentProductId = {this.state.currentProductId} changeCurrentProduct={this.changeCurrentProduct}/>
+          <RelatedOutfit currentProductId = {this.state.currentProductId} currentProductInfo = {this.state.currentProductInfo} changeCurrentProduct={this.changeCurrentProduct}/>
           <QuestionList />
           <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName}/>
         </div>
