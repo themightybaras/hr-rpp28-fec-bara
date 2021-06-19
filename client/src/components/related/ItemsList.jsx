@@ -22,7 +22,7 @@ class ItemsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProductId: props.currentProductId,
+      // currentProductId: props.currentProductId,
       products: [],
       firstCard: 0
     };
@@ -33,17 +33,19 @@ class ItemsList extends React.Component {
     this.addToOutfit = this.addToOutfit.bind(this);
 
     // if (props.list === 'related') {
-    //   this.getRelatedProducts(this.state.currentProductId);
-    //   // this.getRelatedProducts(props.currentProductId);
+    //   console.log('ItemsList: related constructor');
+    //   this.getRelatedProducts(this.props.currentProductId);
     // }
     // if (props.list === 'outfit') {
+    //   console.log('ItemsList: outfit constructor');
     //   this.getOutfit();
     // }
   }
 
   componentDidMount() {
+    console.log('ItemsList: componentDidMount');
     if (this.props.list === 'related') {
-      this.getRelatedProducts(this.state.currentProductId);
+      this.getRelatedProducts(this.props.currentProductId);
     }
     if (this.props.list === 'outfit') {
       this.getOutfit();
@@ -51,16 +53,23 @@ class ItemsList extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.currentProductId !== this.props.currentProductId) {
-      this.setState({ currentProductId: this.props.currentProductId });
-      if (this.props.list === 'related') {
-        this.getRelatedProducts(this.props.currentProductId);
-      }
-      if (this.props.list === 'outfit') {
-        this.getOutfit();
-      }
+    console.log('ItemsList: componentDidUpdate, prevProps: ', prevProps);
+    console.log('ItemsList: componentDidUpdate, current props: ', this.props);
+    // console.log('ItemsList: componentDidUpdate, prevState: ', prevState);
+    console.log('ItemsList: componentDidUpdate, current state: ', this.state);
 
-    }
+    // ONLY NEED TO UPDATE RELATED PRODUCTS
+
+    // if (this.state.currentProductId !== this.props.currentProductId) {
+    //   this.setState({ currentProductId: this.props.currentProductId });
+    //   if (this.props.list === 'related') {
+    //     this.getRelatedProducts(this.props.currentProductId);
+    //   }
+    //   if (this.props.list === 'outfit') {
+    //     this.getOutfit();
+    //   }
+
+    // }
   }
 
   getTitle () {
@@ -71,6 +80,7 @@ class ItemsList extends React.Component {
     }
   }
 
+  // Rethink this - unnecessary empty method here
   getActionHandler() {
     if (this.props.list === 'related') {
       return this.compareProducts; // try passing null
@@ -81,16 +91,18 @@ class ItemsList extends React.Component {
 
   // API calls
   getRelatedProducts(id) {
+    console.log('ItemsList: call to retrieve related product data');
     $.get('/related', {'id': id }, (products) => {
       // Use refs if this causes unnecessary rendering or long execution time
       this.setState({ products, firstCard: 0 });
+      console.log('ItemsList: Reset state with related products');
     });
   }
 
   getOutfit() {
     // get request to /outfit that parses cookie and gets info for all products
     $.get('/outfit', (products) => {
-      if (products) {
+      if (products.length > 0) {
         this.setState({ products, firstCard: 0 });
       }
     });
