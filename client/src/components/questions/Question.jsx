@@ -24,7 +24,7 @@ class Question extends React.Component {
           <a href='#' className='add-answer' onClick={this.toggleAddAnswerModal}>Add Answer</a>
         </div>
         <AnswerList answers={Object.values(this.props.question.answers)} questionId={this.props.question.question_id} />
-        <AddQuestionOrAnswer addModalOpen={this.state.addAnswerModalOpen} toggleAddModal={this.toggleAddAnswerModal} isQuestionModal={false} />
+        <AddQuestionOrAnswer questionId={this.props.question.question_id} addModalOpen={this.state.addAnswerModalOpen} toggleAddModal={this.toggleAddAnswerModal} isQuestionModal={false} />
       </div>
     );
   }

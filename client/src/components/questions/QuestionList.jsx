@@ -12,7 +12,7 @@ class QuestionList extends React.Component {
       showMoreQuestionsButton: true,
       addQuestionModalOpen: false
     };
-    this.productID = 22126;
+    this.productId = 22126;
     this.fetch = this.fetch.bind(this);
     this.clickMoreQuestionsButtonHandler = this.clickMoreQuestionsButtonHandler.bind(this);
     this.toggleAddQuestionModal = this.toggleAddQuestionModal.bind(this);
@@ -21,7 +21,7 @@ class QuestionList extends React.Component {
   }
 
   fetch() {
-    return axios.get(`qa/questions?product_id=${this.productID}`)
+    return axios.get(`qa/questions?product_id=${this.productId}`)
       .then((response) => {
         this.setState({questions: response.data.results});
         this.setState({questionsToDisplay: response.data.results.slice(0, 2)});
@@ -70,7 +70,7 @@ class QuestionList extends React.Component {
             ADD A QUESTION +
           </button>
         </div>
-        <AddQuestionOrAnswer addModalOpen={this.state.addQuestionModalOpen} toggleAddModal={this.toggleAddQuestionModal} isQuestionModal={true} />
+        <AddQuestionOrAnswer productId={this.productId} addModalOpen={this.state.addQuestionModalOpen} toggleAddModal={this.toggleAddQuestionModal} isQuestionModal={true} />
       </div>
     );
   }

@@ -1,28 +1,30 @@
 import React from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 
 class AddQuestionOrAnswer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: '',
-      nickname: '',
+      body: '',
+      name: '',
       email: ''
     };
     this.changeContentHandler = this.changeContentHandler.bind(this);
     this.changeNicknameHandler = this.changeNicknameHandler.bind(this);
     this.changeEmailHandler = this.changeEmailHandler.bind(this);
     this.clickSubmitHandler = this.clickSubmitHandler.bind(this);
+    this.create = this.create.bind(this);
   }
 
   changeContentHandler(event) {
     event.preventDefault();
-    this.setState({content: event.target.value});
+    this.setState({body: event.target.value});
   }
 
   changeNicknameHandler(event) {
     event.preventDefault();
-    this.setState({nickname: event.target.value});
+    this.setState({name: event.target.value});
   }
 
   changeEmailHandler(event) {
@@ -32,7 +34,28 @@ class AddQuestionOrAnswer extends React.Component {
 
   clickSubmitHandler(event) {
     event.preventDefault();
-    this.props.toggleAddModal();
+    this.create();
+    console.log();
+    $('.form-input').val('');
+    this.setState({body: '', name:'', email: ''});
+    this.props.toggleAddModal(event);
+  }
+
+  create() {
+    if (this.props.isQuestionModal) {
+       var url = 'qa/questions';
+       var data = { ...this.state, product_id: this.props.productID };
+    } else {
+      var url = `/qa/questions/${this.props.questionId}/answers`;
+      var data = this.state;
+    }
+    axios.post(url, data)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
   }
 
   render() {

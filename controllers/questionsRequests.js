@@ -14,23 +14,38 @@ const getQuestions = (req, res) => {
 };
 
 const postQuestion = (req, res) => {
+  console.log(req.body);
+  console.log(req.url);
   axios.defaults.headers.common['Authorization'] = APIKey;
-  axios.post('/qa/questions', {
-    body: '',
-    name: '',
-    email: '',
-    product_id: ''
-  })
+  axios.post('/qa/questions', req.body)
     .then(() => {
+      console.log('success');
       res.end();
     })
     .catch((err) => {
+      console.log('error');
       res.send(err.message);
     });
+};
+
+const postAnswer = (req, res) => {
+  console.log(req.body);
+  console.log(req.url);
+  // axios.defaults.headers.common['Authorization'] = APIKey;
+  // axios.post('/qa/questions', req.body)
+  //   .then(() => {
+  //     console.log('success');
+  //     res.end();
+  //   })
+  //   .catch((err) => {
+  //     console.log('error');
+  //     res.send(err.message);
+  //   });
 };
 
 
 module.exports = {
   getQuestions,
-  postQuestion
+  postQuestion,
+  postAnswer
 };
