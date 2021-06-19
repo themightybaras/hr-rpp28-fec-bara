@@ -38,10 +38,10 @@ class App extends React.Component {
   }
 
   getCurrentProductInfo() {
-    console.log('App: called method to retrieve current product data');
+    // console.log('App: called method to retrieve current product data');
     $.get('/app', { 'id': this.state.currentProductId }, (currentProductInfo) => {
       this.setState({ currentProductInfo: currentProductInfo });
-      console.log('App: state updated with current product data');
+      console.log('App: state updated with current product data', this.state);
     });
   }
 
