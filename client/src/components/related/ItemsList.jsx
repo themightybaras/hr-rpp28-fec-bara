@@ -47,6 +47,7 @@ class ItemsList extends React.Component {
     if (this.props.list === 'related') {
       this.getRelatedProducts(this.props.currentProductId);
     }
+    // MOVE THIS TO CONSTRUCTOR - IF FIRES DIFFERENTLY ON APP RERENDER
     if (this.props.list === 'outfit') {
       this.getOutfit();
     }
@@ -59,17 +60,12 @@ class ItemsList extends React.Component {
     console.log('ItemsList: componentDidUpdate, current state: ', this.state);
 
     // ONLY NEED TO UPDATE RELATED PRODUCTS
+    // if new props id is different than previous AND prevState equals current state
+    if (this.props.list === 'related' && prevProps.currentProductId !== this.props.currentProductId &&
+      JSON.stringify(prevState.products) === JSON.stringify(this.state.products)) {
+      this.getRelatedProducts(this.props.currentProductId);
+    }
 
-    // if (this.state.currentProductId !== this.props.currentProductId) {
-    //   this.setState({ currentProductId: this.props.currentProductId });
-    //   if (this.props.list === 'related') {
-    //     this.getRelatedProducts(this.props.currentProductId);
-    //   }
-    //   if (this.props.list === 'outfit') {
-    //     this.getOutfit();
-    //   }
-
-    // }
   }
 
   getTitle () {
