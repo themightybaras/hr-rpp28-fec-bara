@@ -147,6 +147,13 @@ button.carousel {
   margin-right: 1%;
 }
 
+.close-modal {
+  float: right;
+  font-size: x-large;
+  border: none;
+  background: none;
+}
+
 #search-questions {
   width: 35%;
   height: 30px;

@@ -4,43 +4,36 @@ const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 
 const getQuestions = (req, res) => {
   axios.defaults.headers.common['Authorization'] = APIKey;
-  axios.get(baseURL + '/qa/questions' + '?' + req.url.split('?')[1])
+  axios.get(baseURL + req.url + '&count=100')
     .then((response) => {
       res.send(response.data);
     })
     .catch((err) => {
-      res.sned(err.message);
+      res.status(err.response.status).send(err);
     });
 };
 
 const postQuestion = (req, res) => {
-  console.log(req.body);
-  console.log(req.url);
   axios.defaults.headers.common['Authorization'] = APIKey;
-  axios.post('/qa/questions', req.body)
-    .then(() => {
-      console.log('success');
-      res.end();
+  axios.post(baseURL + req.url, req.body)
+    .then((response) => {
+      res.sendStatus(response.status);
     })
     .catch((err) => {
-      console.log('error');
-      res.send(err.message);
+      res.status(err.response.status).send(err);
     });
 };
 
 const postAnswer = (req, res) => {
   console.log(req.body);
-  console.log(req.url);
-  // axios.defaults.headers.common['Authorization'] = APIKey;
-  // axios.post('/qa/questions', req.body)
-  //   .then(() => {
-  //     console.log('success');
-  //     res.end();
-  //   })
-  //   .catch((err) => {
-  //     console.log('error');
-  //     res.send(err.message);
-  //   });
+  axios.defaults.headers.common['Authorization'] = APIKey;
+  axios.post(baseURL + req.url, req.body)
+    .then((response) => {
+      res.sendStatus(response.status);
+    })
+    .catch((err) => {
+      res.status(err.response.status).send(err);
+    });
 };
 
 

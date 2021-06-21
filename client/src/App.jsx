@@ -13,7 +13,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentProductId: 22161,
-      currentProductName: 'CURRENT PRODUCT NAME',
+      currentProductName: 'Adell 300 Shoes',
       currentProductInfo: {}
     };
 
@@ -54,7 +54,7 @@ class App extends React.Component {
         <div>
           <Placeholder currentProductId = {this.state.currentProductId}/>
           <RelatedOutfit currentProductId = {this.state.currentProductId} changeCurrentProduct={this.changeCurrentProduct}/>
-          <QuestionList />
+          <QuestionList currentProductId = {this.state.currentProductId} currentProductName={this.state.currentProductName} />
           <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName}/>
         </div>
       </div>
