@@ -4,19 +4,41 @@ const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 
 const getQuestions = (req, res) => {
   axios.defaults.headers.common['Authorization'] = APIKey;
-  axios({
-    method: 'get',
-    url: baseURL + '/qa/questions' + '?' + req.url.split('?')[1]
-  })
+  axios.get(baseURL + req.url + '&count=100')
     .then((response) => {
       res.send(response.data);
     })
     .catch((err) => {
-      res.sendStatus(404);
+      res.status(err.response.status).send(err);
+    });
+};
+
+const postQuestion = (req, res) => {
+  axios.defaults.headers.common['Authorization'] = APIKey;
+  axios.post(baseURL + req.url, req.body)
+    .then((response) => {
+      res.sendStatus(response.status);
+    })
+    .catch((err) => {
+      res.status(err.response.status).send(err);
+    });
+};
+
+const postAnswer = (req, res) => {
+  console.log(req.body);
+  axios.defaults.headers.common['Authorization'] = APIKey;
+  axios.post(baseURL + req.url, req.body)
+    .then((response) => {
+      res.sendStatus(response.status);
+    })
+    .catch((err) => {
+      res.status(err.response.status).send(err);
     });
 };
 
 
 module.exports = {
-  getQuestions
+  getQuestions,
+  postQuestion,
+  postAnswer
 };
