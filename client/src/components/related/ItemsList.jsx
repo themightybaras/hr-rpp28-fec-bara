@@ -43,7 +43,6 @@ class ItemsList extends React.Component {
   }
 
   componentDidMount() {
-    console.log('ItemsList: componentDidMount');
     if (this.props.list === 'related') {
       this.getRelatedProducts(this.props.currentProductId);
     }
@@ -63,7 +62,6 @@ class ItemsList extends React.Component {
     // if new props id is different than previous AND prevState equals current state
     if (this.props.list === 'related' && prevProps.currentProductId !== this.props.currentProductId &&
     JSON.stringify(prevState.products) === JSON.stringify(this.state.products)) {
-      console.log('ItemsList: componentDidUpdate fired');
       this.getRelatedProducts(this.props.currentProductId);
     }
 
@@ -88,7 +86,6 @@ class ItemsList extends React.Component {
 
   // API calls
   getRelatedProducts(id) {
-    console.log('ItemsList: call to retrieve related product data');
     $.get('/related', {'id': id }, (products) => {
       // Use refs if this causes unnecessary rendering or long execution time
       this.setState({ products, firstCard: 0 });
@@ -119,7 +116,7 @@ class ItemsList extends React.Component {
   // Action item click handlers
   compareProducts(id) {
     // Will bring up modal display
-    console.log('Called action item handler for related products');
+    // console.log('Called action item handler for related products');
   }
 
   removeFromOutfit(id) {

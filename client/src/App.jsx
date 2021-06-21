@@ -20,14 +20,12 @@ class App extends React.Component {
     this.getCurrentProductInfo = this.getCurrentProductInfo.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
 
-    console.log('App: constructor');
     this.getCurrentProductInfo();
 
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.currentProductId !== prevState.currentProductId) {
-      console.log('App: componentDidUpdate fired');
       this.getCurrentProductInfo();
     }
   }
@@ -36,13 +34,11 @@ class App extends React.Component {
     // console.log('App: called method to retrieve current product data');
     $.get('/app', { 'id': this.state.currentProductId }, (currentProductInfo) => {
       this.setState({ currentProductInfo: currentProductInfo });
-      console.log('App: state updated with current product data', this.state);
     });
   }
 
   // Click handler for product cards. Should reset current product to clicked product and trigger rerender (and get product info for new current product)
   changeCurrentProduct(id) {
-    console.log('App: called function to reset state to ', id);
     this.setState({ currentProductId: id });
   }
 
