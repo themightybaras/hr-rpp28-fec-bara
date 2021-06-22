@@ -170,9 +170,14 @@ button.carousel {
   font-size: large;
 }
 
-#question-container > .add-answer {
+#question-container-right-upper-corner {
+  display: flex;
   color: black;
   font-size: small;
+}
+
+#question-container-right-upper-corner > div {
+  margin-right: 6px;
 }
 
 
