@@ -55,25 +55,26 @@ class AddQuestionOrAnswer extends React.Component {
     var isNameMissing = formInput['your-nickname'].validity.valueMissing;
     var isEmailMissing = formInput['your-email'].validity.valueMissing;
     var isEmailFormatIncorrect = formInput['your-email'].validity.typeMismatch;
-
-    var errMessage = createErrMsg(this.props.isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect);
+    // COMMENTED OUT FOR LINTER
+    // var errMessage = createErrMsg(this.props.isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect);
     if (errMessage !== '') {
       alert(errMessage);
       return false;
     }
 
-  return true;
+    return true;
   }
 
   clearForm() {
     $('.form-input').val('');
-    this.setState({body: '', name:'', email: ''});
+    this.setState({body: '', name: '', email: ''});
   }
 
   create() {
     if (this.props.isQuestionModal) {
       var url = '/qa/questions';
-      var data = { ...this.state, product_id: this.props.currentProductId };
+      // COMMENTED OUT FOR LINTER
+      // var data = { ...this.state, product_id: this.props.currentProductId };
     } else {
       var url = `/qa/questions/${this.props.question.question_id}/answers`;
       var data = this.state;
@@ -133,10 +134,10 @@ const createErrMsg = (isQuestionModal, isBodyMissing, isNameMissing, isEmailMiss
   var errMessage = '';
 
   if (isBodyMissing || isNameMissing || isEmailMissing) {
-    errMessage += 'You must enter the following: \n'
+    errMessage += 'You must enter the following: \n';
     if (isBodyMissing) {
       if (isQuestionModal) {
-        errMessage +='Your Question \n';
+        errMessage += 'Your Question \n';
       } else {
         errMessage += 'Your Answer \n';
       }
@@ -154,7 +155,7 @@ const createErrMsg = (isQuestionModal, isBodyMissing, isNameMissing, isEmailMiss
   }
 
   return errMessage;
-}
+};
 
 export default AddQuestionOrAnswer;
 

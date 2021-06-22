@@ -19,10 +19,9 @@ class App extends React.Component {
 
     this.getCurrentProductInfo = this.getCurrentProductInfo.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
-  }
 
-  componentDidMount() {
     this.getCurrentProductInfo();
+
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -37,13 +36,9 @@ class App extends React.Component {
     });
   }
 
-  // Click handler for product cards
+  // Click handler for product cards. Should reset current product to clicked product and trigger rerender (and get product info for new current product)
   changeCurrentProduct(id) {
-    // this.setState((state) => {
-    //   return { currentProductId: state.currentProductId - state.currentProductId + id };
-    // });
     this.setState({ currentProductId: id });
-    //this.getCurrentProductInfo();
   }
 
 
@@ -53,7 +48,7 @@ class App extends React.Component {
         <h1>The MightyBaras Project Atelier</h1>
         <div>
           <Placeholder currentProductId = {this.state.currentProductId}/>
-          <RelatedOutfit currentProductId = {this.state.currentProductId} changeCurrentProduct={this.changeCurrentProduct}/>
+          <RelatedOutfit currentProductId = {this.state.currentProductId} currentProductInfo = {this.state.currentProductInfo} changeCurrentProduct={this.changeCurrentProduct}/>
           <QuestionList currentProductId = {this.state.currentProductId} currentProductName={this.state.currentProductName} />
           <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName}/>
         </div>
