@@ -56,7 +56,7 @@ class AddQuestionOrAnswer extends React.Component {
     var isEmailMissing = formInput['your-email'].validity.valueMissing;
     var isEmailFormatIncorrect = formInput['your-email'].validity.typeMismatch;
     // COMMENTED OUT FOR LINTER
-    // var errMessage = createErrMsg(this.props.isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect);
+    //var errMessage = createErrMsg(this.props.isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect);
     if (errMessage !== '') {
       alert(errMessage);
       return false;
@@ -74,16 +74,16 @@ class AddQuestionOrAnswer extends React.Component {
     if (this.props.isQuestionModal) {
       var url = '/qa/questions';
       // COMMENTED OUT FOR LINTER
-      // var data = { ...this.state, product_id: this.props.currentProductId };
+      //var data = { ...this.state, product_id: this.props.currentProductId };
     } else {
       var url = `/qa/questions/${this.props.question.question_id}/answers`;
       var data = this.state;
     }
     axios.post(url, data)
-      .then(response => {
+      .then((response) => {
         console.log(response);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err.message);
       });
   }
