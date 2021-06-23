@@ -57,13 +57,6 @@ button.carousel {
   font-size: 16px;
 }
 
-.answer-by, .answer-user, .answer-date {
-  display: inline;
-  font-size: small;
-  padding-right: 5px;
-  padding-bottom: 5px;
-}
-
 .answer-by {
   padding-left: 25px;
 }
@@ -167,13 +160,23 @@ button.carousel {
   font-size: large;
 }
 
-#question-container-right-upper-corner {
+#question-container-right {
   display: flex;
   color: black;
   font-size: small;
 }
 
-#question-container-right-upper-corner > div {
+#question-container-right > div {
+  margin-right: 6px;
+}
+
+#answer-container-bottom {
+  display: flex;
+  font-size: small;
+  margin-bottom: 10px;
+}
+
+#answer-container-bottom > div {
   margin-right: 6px;
 }
 

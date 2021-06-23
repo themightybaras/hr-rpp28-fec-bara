@@ -1,6 +1,7 @@
 import React from 'react';
 import Answer from './Answer.jsx';
 import $ from 'jquery';
+import axios from 'axios';
 
 class AnswerList extends React.Component {
   constructor(props) {
