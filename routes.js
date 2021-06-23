@@ -11,7 +11,6 @@ var router = require('express').Router();
 router.get('/app', appRequests.getCurrentProductInfo);
 
 //overview routes
-// router.get('/products', overviewRequests.getProducts);
 router.get('/products/:product_id/styles', overviewRequests.getProductStyles);
 router.get('/products/:product_id', overviewRequests.getCurrentProduct);
 

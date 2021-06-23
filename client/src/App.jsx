@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import Overview from './components/overview/Overview.jsx';
-// import Placeholder from './components/overview/Placeholder.jsx';
 import Overview from 'overview-module';
 import RelatedOutfit from './components/related/RelatedOutfit.jsx';
 import QuestionList from './components/questions/QuestionList.jsx';
@@ -62,6 +60,3 @@ class App extends React.Component {
 ReactDOM.render(<App />, document.getElementById('root'));
 
 
-
-
-// stars={<StarRating rating={'4'}
