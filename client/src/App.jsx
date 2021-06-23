@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Overview from './components/overview/Overview.jsx';
-import Placeholder from './components/overview/Placeholder.jsx';
+import Overview from 'overview-module';
 import RelatedOutfit from './components/related/RelatedOutfit.jsx';
 import QuestionList from './components/questions/QuestionList.jsx';
 import ReviewWidget from './components/review/ReviewWidget.jsx';
+import StarRating from './components/review/StarRating.jsx';
 import $ from 'jquery';
 
 
@@ -47,7 +47,7 @@ class App extends React.Component {
       <div>
         <h1>The MightyBaras Project Atelier</h1>
         <div>
-          <Placeholder currentProductId = {this.state.currentProductId}/>
+          <Overview apiIP={'http://localhost:3000'} productId={this.state.currentProductId} stars={<StarRating rating={'4'} />} />
           <RelatedOutfit currentProductId = {this.state.currentProductId} currentProductInfo = {this.state.currentProductInfo} changeCurrentProduct={this.changeCurrentProduct}/>
           <QuestionList currentProductId = {this.state.currentProductId} currentProductName={this.state.currentProductName} />
           <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName}/>
@@ -58,4 +58,5 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
+
 
