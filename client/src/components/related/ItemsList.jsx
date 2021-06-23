@@ -22,7 +22,7 @@ class ItemsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProductId: props.currentProductId,
+      // currentProductId: props.currentProductId,
       products: [],
       firstCard: 0
     };
@@ -33,34 +33,38 @@ class ItemsList extends React.Component {
     this.addToOutfit = this.addToOutfit.bind(this);
 
     // if (props.list === 'related') {
-    //   this.getRelatedProducts(this.state.currentProductId);
-    //   // this.getRelatedProducts(props.currentProductId);
+    //   console.log('ItemsList: related constructor');
+    //   this.getRelatedProducts(this.props.currentProductId);
     // }
     // if (props.list === 'outfit') {
+    //   console.log('ItemsList: outfit constructor');
     //   this.getOutfit();
     // }
   }
 
   componentDidMount() {
     if (this.props.list === 'related') {
-      this.getRelatedProducts(this.state.currentProductId);
+      this.getRelatedProducts(this.props.currentProductId);
     }
+    // MOVE THIS TO CONSTRUCTOR - IF FIRES DIFFERENTLY ON APP RERENDER
     if (this.props.list === 'outfit') {
       this.getOutfit();
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.currentProductId !== this.props.currentProductId) {
-      this.setState({ currentProductId: this.props.currentProductId });
-      if (this.props.list === 'related') {
-        this.getRelatedProducts(this.props.currentProductId);
-      }
-      if (this.props.list === 'outfit') {
-        this.getOutfit();
-      }
+    // console.log('ItemsList: componentDidUpdate, prevProps: ', prevProps);
+    // console.log('ItemsList: componentDidUpdate, current props: ', this.props);
+    // // console.log('ItemsList: componentDidUpdate, prevState: ', prevState);
+    // console.log('ItemsList: componentDidUpdate, current state: ', this.state);
 
+    // ONLY NEED TO UPDATE RELATED PRODUCTS
+    // if new props id is different than previous AND prevState equals current state
+    if (this.props.list === 'related' && prevProps.currentProductId !== this.props.currentProductId &&
+    JSON.stringify(prevState.products) === JSON.stringify(this.state.products)) {
+      this.getRelatedProducts(this.props.currentProductId);
     }
+
   }
 
   getTitle () {
@@ -71,6 +75,7 @@ class ItemsList extends React.Component {
     }
   }
 
+  // Rethink this - unnecessary empty method here
   getActionHandler() {
     if (this.props.list === 'related') {
       return this.compareProducts; // try passing null
@@ -90,7 +95,7 @@ class ItemsList extends React.Component {
   getOutfit() {
     // get request to /outfit that parses cookie and gets info for all products
     $.get('/outfit', (products) => {
-      if (products) {
+      if (products.length > 0) {
         this.setState({ products, firstCard: 0 });
       }
     });
@@ -111,7 +116,7 @@ class ItemsList extends React.Component {
   // Action item click handlers
   compareProducts(id) {
     // Will bring up modal display
-    console.log('Called action item handler for related products');
+    // console.log('Called action item handler for related products');
   }
 
   removeFromOutfit(id) {
@@ -152,7 +157,7 @@ class ItemsList extends React.Component {
           {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
           {this.props.list === 'outfit' ? <AddOutfitCard addToOutfit={this.addToOutfit.bind(this)}/> : ''}
           {this.state.products.slice(this.state.firstCard, this.state.firstCard + 3).map((product, i) => {
-            return <ProductCard key={i} product={product} actionHandler={this.getActionHandler()} list={this.props.list} changeCurrentProduct={this.props.changeCurrentProduct}/>;
+            return <ProductCard key={i} product={product} actionHandler={this.getActionHandler()} list={this.props.list} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={this.props.currentProductInfo || {id: null}} />;
           })}
           {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
         </div>

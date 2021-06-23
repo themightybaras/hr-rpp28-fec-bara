@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Overview from './components/overview/Overview.jsx';
-import Placeholder from './components/overview/Placeholder.jsx';
+import Overview from 'overview-module';
 import RelatedOutfit from './components/related/RelatedOutfit.jsx';
 import QuestionList from './components/questions/QuestionList.jsx';
 import ReviewWidget from './components/review/ReviewWidget.jsx';
+import StarRating from './components/review/StarRating.jsx';
 import $ from 'jquery';
 
 
@@ -13,16 +13,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentProductId: 22161,
-      currentProductName: 'CURRENT PRODUCT NAME',
+      currentProductName: 'Adell 300 Shoes',
       currentProductInfo: {}
     };
 
     this.getCurrentProductInfo = this.getCurrentProductInfo.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
-  }
 
-  componentDidMount() {
     this.getCurrentProductInfo();
+
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -37,13 +36,9 @@ class App extends React.Component {
     });
   }
 
-  // Click handler for product cards
+  // Click handler for product cards. Should reset current product to clicked product and trigger rerender (and get product info for new current product)
   changeCurrentProduct(id) {
-    // this.setState((state) => {
-    //   return { currentProductId: state.currentProductId - state.currentProductId + id };
-    // });
     this.setState({ currentProductId: id });
-    //this.getCurrentProductInfo();
   }
 
 
@@ -52,9 +47,9 @@ class App extends React.Component {
       <div>
         <h1>The MightyBaras Project Atelier</h1>
         <div>
-          <Placeholder currentProductId = {this.state.currentProductId}/>
-          <RelatedOutfit currentProductId = {this.state.currentProductId} changeCurrentProduct={this.changeCurrentProduct}/>
-          <QuestionList />
+          <Overview apiIP={'http://localhost:3000'} productId={this.state.currentProductId} stars={<StarRating rating={'4'} />} />
+          <RelatedOutfit currentProductId = {this.state.currentProductId} currentProductInfo = {this.state.currentProductInfo} changeCurrentProduct={this.changeCurrentProduct}/>
+          <QuestionList currentProductId = {this.state.currentProductId} currentProductName={this.state.currentProductName} />
           <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName}/>
         </div>
       </div>
@@ -63,4 +58,5 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
+
 

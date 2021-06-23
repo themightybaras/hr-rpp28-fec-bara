@@ -9,12 +9,15 @@ var router = require('express').Router();
 
 // App routes
 router.get('/app', appRequests.getCurrentProductInfo);
+
 //overview routes
-router.get('/products', overviewRequests.getProducts);
 router.get('/products/:product_id/styles', overviewRequests.getProductStyles);
+router.get('/products/:product_id', overviewRequests.getCurrentProduct);
 
 //question routes
 router.get('/qa/questions', questionsRequests.getQuestions);
+router.post('/qa/questions', questionsRequests.postQuestion);
+router.post('/qa/questions/:question_id/answers', questionsRequests.postAnswer);
 
 //related routes
 router.get('/related', relatedRequests.getRelated);

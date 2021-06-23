@@ -1,9 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: #eee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 
@@ -145,6 +142,13 @@ button.carousel {
   width: 98%;
   margin-left: 1%;
   margin-right: 1%;
+}
+
+.close-modal {
+  float: right;
+  font-size: x-large;
+  border: none;
+  background: none;
 }
 
 #search-questions {
