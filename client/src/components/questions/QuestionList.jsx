@@ -8,39 +8,65 @@ class QuestionList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      unfilteredQuestions: [],
       questions: [],
       questionsToDisplay: [],
+      nInitialQuestions: 2,
       showMoreQuestionsButton: true,
       addQuestionModalOpen: false
     };
-    this.fetch = this.fetch.bind(this);
+    this.nInitialQuestions = 2;
+    this.fetchQuestions = this.fetchQuestions.bind(this);
+    this.searchQuestions = this.searchQuestions.bind(this);
     this.clickMoreQuestionsButtonHandler = this.clickMoreQuestionsButtonHandler.bind(this);
+    this.toggleMoreQuestionsButton = this.toggleMoreQuestionsButton.bind(this);
     this.toggleAddQuestionModal = this.toggleAddQuestionModal.bind(this);
-
-    this.fetch();
   }
 
-  fetch() {
-    return axios.get(`qa/questions?product_id=${this.props.currentProductId}`)
+  fetchQuestions() {
+    return axios.get(`/qa/questions?product_id=${this.props.currentProductId}`)
       .then((response) => {
         var questions = _.sortBy(response.data.results, 'question_helpfulness').reverse();
+        this.setState({unfilteredQuestions: questions});
         this.setState({questions: questions});
-        this.setState({questionsToDisplay: response.data.results.slice(0, 2)});
-        if (response.data.results.length <= 2 ) {
-          this.setState({showMoreQuestionsButton: false});
-        }
+        this.setState({questionsToDisplay: this.state.questions.slice(0, this.nInitialQuestions)});
+        this.toggleMoreQuestionsButton(questions.length, this.nInitialQuestions);
       })
       .catch((err) => {
         console.log('ERROR: ', err.messages);
       });
   }
 
+  searchQuestions(event) {
+    event.preventDefault();
+    let searchTerm = event.target.value;
+    let nQuestionsToDisplay = Math.max(this.state.questionsToDisplay.length, this.nInitialQuestions);
+    if (searchTerm.length >= 3) {
+      var filteredQuestions = _.filter(this.state.unfilteredQuestions, (element) => {
+        return element.question_body.indexOf(searchTerm) > -1;
+      });
+      this.setState({questions: filteredQuestions});
+      this.setState({questionsToDisplay: filteredQuestions.slice(0, nQuestionsToDisplay)});
+      this.toggleMoreQuestionsButton(filteredQuestions.length, nQuestionsToDisplay);
+    } else {
+      this.setState({questions: this.state.unfilteredQuestions});
+      this.setState({questionsToDisplay: this.state.unfilteredQuestions.slice(0, nQuestionsToDisplay)});
+      this.toggleMoreQuestionsButton(this.state.unfilteredQuestions.length, nQuestionsToDisplay);
+    }
+  }
+
   clickMoreQuestionsButtonHandler(event) {
     event.preventDefault();
-    let nQuestionsToDisplay = this.state.questionsToDisplay.length + 2;
+    let nQuestionsToDisplay = this.state.questionsToDisplay.length + this.nInitialQuestions;
     this.setState({questionsToDisplay: this.state.questions.slice(0, nQuestionsToDisplay)});
-    if (this.state.questions.length <= nQuestionsToDisplay) {
+    this.toggleMoreQuestionsButton(this.state.questions.length, nQuestionsToDisplay);
+  }
+
+  toggleMoreQuestionsButton(nQuestions, nQuestionsToDisplay) {
+    if (nQuestions <= nQuestionsToDisplay) {
       this.setState({showMoreQuestionsButton: false});
+    } else {
+      this.setState({showMoreQuestionsButton: true});
     }
   }
 
@@ -49,12 +75,16 @@ class QuestionList extends React.Component {
     this.setState({addQuestionModalOpen: !this.state.addQuestionModalOpen});
   }
 
+  componentDidMount() {
+    this.fetchQuestions();
+  }
+
   render() {
     return (
       <div>
         <h3>Questions & Answers</h3>
         <div>
-          <input id='search-questions' type='text' placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
+          <input id='search-questions' type='text' onChange={this.searchQuestions} placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
         </div>
         <div id='questions-list'>
           {this.state.questionsToDisplay.map((element) => (
