@@ -7,37 +7,38 @@ const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 // OUTFIT - add type handling if more errors
 
 const addToOutfit = (req, res) => {
-  // console.log('add to outfit, cookies', req.cookies);
-  // console.log('add to outfit, cookies type: ', typeof(req.cookies));
-  // console.log('add to outfit, body: ', req.body);
-  // console.log('add to outfit, body type: ', typeof(req.body)); // id in body object is string
-
+  console.log('addToOutfit, request cookie: ', req.cookies);
+  console.log('addToOutfit, request body: ', req.body);
   // If req.cookies has atelier property
   if (req.cookies.atelier) {
     // Only add id to cookie if it doesn't exist
     if (req.cookies.atelier.indexOf(req.body.id) < 0) {
-      //      Add if to string (maybe split, sort, join - order may matter elsewhere in app)
-      res.cookie('atelier', req.cookies.atelier.split(',').push(req.body.id).sort().join(','));
-      // console.log('Response cookie after calling addToOutfit: ', res.cookies);
+      let updatedCookie = req.cookies.atelier + ',' + req.body.id;
+      console.log('addToOutfit, updatedCookie var: ', updatedCookie);
+      res.cookie('atelier', updatedCookie);
+      console.log('addToOutfit, response cookie after adding to existing: ', res.cookies);
       res.end();
     }
   } else {
     // Else define new cookie with atelier property = req body id
     res.cookie('atelier', req.body.id); // Attaching as string here
-    // console.log('Response cookie after calling addToOutfit: ', res.cookies);
+    console.log('addToOutfit, response cookie after creating new cookie: ', res.cookies);
     res.end();
   }
 };
 
 
 const getOutfit = (req, res) => {
-  // console.log('Cookies in related get call: ', req.cookies.atelier);
+  console.log('getOutfit, request cookie: ', req.cookies.atelier);
+  // let altcookie = req.get('Cookie');
+  // console.log('getOutfit, alt cookie: ', altcookie);
   // console.log('Cookies in related get call, type: ', typeof(req.cookies.atelier));
   // res.clearCookie('atelier');
   // res.end();
 
   if (req.cookies.atelier) {
-    let outfitCalls = req.cookies.atelier.split(',').map((id) => {
+    let atelierCookies = req.cookies.atelier.split(',');
+    let outfitCalls = atelierCookies.map((id) => {
     // let outfitCalls = req.cookies.atelier.map((id) => {
       return axios({
         method: 'get',
@@ -62,13 +63,13 @@ const getOutfit = (req, res) => {
 };
 
 const removeFromOutfit = (req, res) => {
-  // console.log('Cookie before removal: ', req.cookies);
+  console.log('removeFromOutfit, request cookie: ', req.cookies);
   let idToRemove = req.url.split('?')[1];
-  // console.log('id to remove: ', idToRemove);
+  console.log('removeFromOutfit, id to remove: ', idToRemove);
   // console.log('id to remove, type: ', typeof(idToRemove)); //string
-  let newCookie = _.without(req.cookies.atelier.split(','), idToRemove);
+  let newCookie = _.without(req.cookies.atelier.split(','), idToRemove).join(',');
   // let newCookie = _.without(req.cookies.atelier, idToRemove); // THIS IS THE PROBLEM
-  // console.log('New cookie in remove call: ', newCookie);
+  console.log('removeFromOutfit, New cookie: ', newCookie);
   if (newCookie.length > 0) {
     res.cookie('atelier', newCookie);
     res.end();
@@ -76,7 +77,6 @@ const removeFromOutfit = (req, res) => {
     res.clearCookie('atelier');
     res.end();
   }
-  // console.log('Cookie after removal: ', res.cookies); // Says it's undefined but getOutfit splitting id
 };
 
 // RELATED PRODUCTS
