@@ -18,6 +18,8 @@ class AddQuestionOrAnswer extends React.Component {
     this.clearForm = this.clearForm.bind(this);
     this.create = this.create.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.onFileChangeHanlder = this.onFileChangeHandler.bind(this);
+    this.clickFileUploadHandler = this.clickFileUploadHandler.bind(this);
   }
 
   changeContentHandler(event) {
@@ -94,6 +96,14 @@ class AddQuestionOrAnswer extends React.Component {
     this.props.toggleAddModal(event);
   }
 
+  onFileChangeHandler(event) {
+    event.preventDefault();
+  }
+
+  clickFileUploadHandler(event) {
+    event.preventDefault();
+  }
+
   render() {
     return (
       <div className = {this.props.addModalOpen ? 'modal display-block' : 'modal display-none'}>
@@ -117,7 +127,12 @@ class AddQuestionOrAnswer extends React.Component {
             <br />
             <div>For authentication reasons, you will not be emailed.</div>
             <br />
-            {this.props.isQuestionModal ? <div></div> : <button type='button' className='upload-your-photos'>Upload Your Photos</button>}
+            {this.props.isQuestionModal ?
+              <div></div> :
+              <div>
+                <input type='file' onChange={this.onFileChangeHandler} />
+                <button type='button' className='upload-your-photos' onClick={this.clickFileUploadHandler}>Upload Your Photos</button>
+              </div>}
             <br />
             <button type='button' className='add-question-or-answer-submit' onClick={this.clickSubmitHandler}>{this.props.isQuestionModal ? 'Submit Question' : 'Submit Answer'}</button>
             <br />
