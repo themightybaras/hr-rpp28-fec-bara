@@ -12,15 +12,15 @@ test('test add question or answer block', () => {
     'question_date': '2018-10-18T00:00:00.000Z',
     'asker_name': 'willsmith',
     'question_helpfulness': 4,
-    reported: false,
-    answers: {
-      1444586: {
-        id: 1444586,
-        body: 'We are selling it here without any markup from the middleman!',
-        date: '2018-08-18T00:00:00.000Z',
+    'reported': false,
+    'answers': {
+      '1444586': {
+        'id': 1444586,
+        'body': 'We are selling it here without any markup from the middleman!',
+        'date': '2018-08-18T00:00:00.000Z',
         'answerer_name': 'Seller',
-        helpfulness: 4,
-        photos: []
+        'helpfulness': 4,
+        'photos': []
       }
     }
   };

@@ -12,23 +12,26 @@ const getProductStyles = ((req, res) => {
     method: 'get',
     url: baseURL + req.url
   })
-    .then (data => {
-      console.log('REQ URL', req.url);
-      res.send(data.data);
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      res.status(err.response.status).send(err);
     });
 });
 
 const getCurrentProduct = (req, res) => {
   axios.defaults.headers.common['Authorization'] = APIKey;
-
   axios({
     method: 'get',
     url: baseURL + req.url
   })
-    .then (data => {
-      res.send(data.data);
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      res.status(err.response.status).send(err);
     });
-
 };
 
 

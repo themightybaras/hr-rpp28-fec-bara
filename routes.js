@@ -1,9 +1,9 @@
-var reviewsRequests = require('./controllers/reviewsRequests');
-var questionsRequests = require('./controllers/questionsRequests');
+const reviewsRequests = require('./controllers/reviewsRequests');
+const questionsRequests = require('./controllers/questionsRequests');
 const relatedRequests = require('./controllers/relatedRequests');
-var overviewRequests = require('./controllers/overviewRequests');
-var appRequests = require('./controllers/appRequests');
-var router = require('express').Router();
+const overviewRequests = require('./controllers/overviewRequests');
+const appRequests = require('./controllers/appRequests');
+const router = require('express').Router();
 
 // connect controller methods to their corresponding routes
 
@@ -18,6 +18,9 @@ router.get('/products/:product_id', overviewRequests.getCurrentProduct);
 router.get('/qa/questions', questionsRequests.getQuestions);
 router.post('/qa/questions', questionsRequests.postQuestion);
 router.post('/qa/questions/:question_id/answers', questionsRequests.postAnswer);
+router.put('/qa/questions/:question_id/helpful', questionsRequests.markQuestionHelpful);
+router.put('/qa/answers/:answer_id/helpful', questionsRequests.markAnswerHelpful);
+router.put('/qa/answers/:answer_id/report', questionsRequests.reportAnswer);
 
 //related routes
 router.get('/related', relatedRequests.getRelated);

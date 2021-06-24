@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import _ from 'underscore';
 import Question from './Question.jsx';
 import AddQuestionOrAnswer from './AddQuestionOrAnswer.jsx';
 
@@ -22,7 +23,8 @@ class QuestionList extends React.Component {
   fetch() {
     return axios.get(`qa/questions?product_id=${this.props.currentProductId}`)
       .then((response) => {
-        this.setState({questions: response.data.results});
+        var questions = _.sortBy(response.data.results, 'question_helpfulness').reverse();
+        this.setState({questions: questions});
         this.setState({questionsToDisplay: response.data.results.slice(0, 2)});
         if (response.data.results.length <= 2 ) {
           this.setState({showMoreQuestionsButton: false});
