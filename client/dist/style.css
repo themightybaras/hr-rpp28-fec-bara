@@ -268,11 +268,12 @@ button.carousel {
 
 #reviewWidgetContainer {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 #reviewListContainer {
   max-height: 100vh;
+  max-width: 100vh;
   overflow-y: scroll;
 }
 

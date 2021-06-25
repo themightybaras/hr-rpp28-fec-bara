@@ -15,28 +15,29 @@ class App extends React.Component {
       currentProductId: 22161,
       currentProductName: 'Adell 300 Shoes',
       overallProductRating: 0,
+      reviewMetaData: {},
       currentProductInfo: {}
     };
 
     this.getCurrentProductInfo = this.getCurrentProductInfo.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
-    this.getOverallProductRating = this.getOverallProductRating.bind(this);
+    this.getReviewMetaData = this.getReviewMetaData.bind(this);
     // this.averageRatings = this.averageRatings.bind(this);
 
     this.getCurrentProductInfo();
-    this.getOverallProductRating();
+    this.getReviewMetaData();
 
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.currentProductId !== prevState.currentProductId) {
       this.getCurrentProductInfo();
-      this.getOverallProductRating();
+      this.getReviewMetaData();
     }
   }
 
   componentDidMount() {
-    this.getOverallProductRating();
+    this.getReviewMetaData();
   }
 
   getCurrentProductInfo() {
@@ -45,13 +46,11 @@ class App extends React.Component {
     });
   }
 
-  getOverallProductRating() {
+  getReviewMetaData() {
     $.ajax({
       type: 'GET',
       url: '/reviews/meta?product_id=' + this.state.currentProductId,
       success: (data) => {
-
-
         var averageRatings = (ratingsCountsObject) => {
           var totalNumberReviews = 0;
           var sumOfRatings = 0;
@@ -70,6 +69,7 @@ class App extends React.Component {
 
         var computedRating = parseInt(averageRatings(data.ratings).toFixed(2));
         this.setState({overallProductRating: computedRating});
+        this.setState({reviewMetaData: data});
       },
       error: (err) => {
         console.log('ERROR Getting Overall Rating: ', err.message);
@@ -92,7 +92,7 @@ class App extends React.Component {
           <Overview apiIP={'http://localhost:3000'} productId={this.state.currentProductId} stars={<StarRating rating={this.state.overallProductRating} />} />
           <RelatedOutfit currentProductId = {this.state.currentProductId} currentProductInfo = {this.state.currentProductInfo} changeCurrentProduct={this.changeCurrentProduct}/>
           <QuestionList currentProductId = {this.state.currentProductId} currentProductName={this.state.currentProductName} />
-          <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName} overallProductRating = {this.state.overallProductRating}/>
+          <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName} overallProductRating = {this.state.overallProductRating} reviewMetaData= {this.state.reviewMetaData}/>
         </div>
       </div>
     );

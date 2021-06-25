@@ -7,6 +7,7 @@ class RatingSection extends React.Component {
     super(props);
     this.state = {
       reviews: props.reviews
+
     };
   }
 
@@ -15,10 +16,10 @@ class RatingSection extends React.Component {
     return (
       <div>
         <div id="ratingBreakdown">
-          <RatingBreakdown avgRating = {this.props.overallProductRating}/>
+          <RatingBreakdown avgRating = {this.props.overallProductRating} reviewMetaData={this.props.reviewMetaData}/>
         </div>
         <div id="productBreakdown">
-          <ProductBreakdown />
+          <ProductBreakdown reviewMetaData={this.props.reviewMetaData}/>
         </div>
       </div>
     );

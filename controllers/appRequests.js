@@ -17,6 +17,12 @@ const getCurrentProductInfo = (req, res) => {
     });
 };
 
+const saveInteractionData = (req, res) => {
+  axios.defaults.headers.common['Authorization'] = APIKey;
+
+};
+
 module.exports = {
-  getCurrentProductInfo
+  getCurrentProductInfo,
+  saveInteractionData
 };
