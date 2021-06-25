@@ -6,15 +6,16 @@ class RatingSection extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      reviews: props.reviews,
-      averageRating: 2.5
+      reviews: props.reviews
     };
   }
+
+
   render() {
     return (
       <div>
         <div id="ratingBreakdown">
-          <RatingBreakdown avgRating = {this.state.averageRating}/>
+          <RatingBreakdown avgRating = {this.props.overallProductRating}/>
         </div>
         <div id="productBreakdown">
           <ProductBreakdown />

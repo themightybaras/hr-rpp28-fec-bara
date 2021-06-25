@@ -29,7 +29,7 @@ class ReviewFormModal extends React.Component {
       summaryCharacterCount: 0,
       body: undefined,
       bodyCharacterCount: 0,
-      photos: [],
+      // photos: [],
       nickname: undefined,
       nicknameCharacterCount: 0,
       email: undefined,
@@ -39,7 +39,7 @@ class ReviewFormModal extends React.Component {
 
     this.formInputSelectionChange = this.formInputSelectionChange.bind(this);
     this.formTextChange = this.formTextChange.bind(this);
-    //this.collectRating = this.collectRating.bind(this);
+    // this.addPhoto = this.addPhoto.bind(this);
   }
 
 
@@ -66,6 +66,25 @@ class ReviewFormModal extends React.Component {
       [characterCount]: count,
     });
   }
+
+  // addPhoto(e) {
+  //   const target = e.target;
+  //   const files = target.files;
+  //   console.log(files[0]);
+  //   const fileNames = (files) => {
+  //     const names = [];
+  //     for (var key in files) {
+  //       names.push(files[key].name);
+  //     }
+  //     return names;
+  //   };
+  //   //console.log(fileNames(files));
+  //   const fileCount = files.length;
+  //   //hard coded image'
+  //   // this.setState({
+  //   //   photos: hardCodedURL
+  //   // });
+  // }
 
   render() {
     if (!this.props.show) {
@@ -182,7 +201,13 @@ class ReviewFormModal extends React.Component {
               }
             </div>
             <br/>
-            <span>image upload</span><br/>
+            <div id= 'addReviewImagesContainer'>
+              {/* {this.state.photos
+                ? <img src = {this.state.photos} />
+                : null
+              } */}
+              <input type='file' value='' multiple onChange = {this.addPhoto}/><br/>
+            </div>
             <br/>
             <div id= 'contactInputsContainer'>
               <label htmlFor = 'nickname'>What is your nickname?</label><br/>

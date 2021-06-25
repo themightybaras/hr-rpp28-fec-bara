@@ -4,9 +4,7 @@ import _ from 'underscore';
 // Individual card components
 const ActionItem = ({product, actionHandler}) => {
 
-  let actionItemHandler = () => {
-    actionHandler(product.id);
-  };
+  let actionItemHandler = () => actionHandler(product.id);
 
   return (
     <span className='actionItem' onClick={actionItemHandler}>
@@ -15,14 +13,14 @@ const ActionItem = ({product, actionHandler}) => {
   );
 };
 
-const Image = ({results}) => {
-  let image = '';
-  if (results !== undefined) {
-    let defaultProduct = _.where(results, { 'default?': true});
+const Image = ({product}) => {
+  let image = 'http://d.ibtimes.co.uk/en/full/429795/13-year-old-norwegian-magnus-carlsen-concentrates-during-match-belarus-player-alexei-fedorov.jpg';
+  if (product.results !== undefined) {
+    let defaultProduct = _.where(product.results, { 'default?': true});
     if (defaultProduct.length > 0) {
       image = defaultProduct[0].photos[0].thumbnail_url;
     } else {
-      image = results[0].photos[0].thumbnail_url;
+      image = product.results[0].photos[0].thumbnail_url;
     }
     // image = defaultProduct
     // image = _.where(results, { 'default?': true})[0].photos[0].thumbnail_url;
@@ -32,27 +30,35 @@ const Image = ({results}) => {
   );
 };
 
-const Category = ({category}) => {
+const Price = ({product}) => {
+
+  let defaultPrice = product.default_price;
+  let salePrice = null;
+  // If product.results
+  if (product.results) {
+    //  Filter product.results for default style
+    let defaultProduct = _.where(product.results, { 'default?': true});
+    //    If default style exists
+    if (defaultProduct.length > 0) {
+    //      Set salePrice to default product sale price
+      salePrice = defaultProduct[0].sale_price;
+    //    Otherwise
+    } else {
+    //      Set salePrice to first product sale price
+      salePrice = product.results[0].sale_price;
+    }
+  }
   return (
-    <span>
-      {category}
-    </span>
+    <p className="productPrice">
+      {salePrice ?
+        <span>
+          <span className="strikethrough">{`$${defaultPrice}`}</span><span className="saleprice">{`$${salePrice}`}</span></span> : <span>{`$${defaultPrice}`}
+        </span>}
+
+    </p>
   );
 };
-const Name = ({name}) => {
-  return (
-    <span>
-      <strong>{name}</strong>
-    </span>
-  );
-};
-const Price = ({price}) => {
-  return (
-    <span>
-      {`$${price}`}
-    </span>
-  );
-};
+
 const Review = () => {
   return (
     <span>
@@ -61,4 +67,4 @@ const Review = () => {
   );
 };
 
-export { ActionItem, Image, Category, Name, Price, Review };
+export { ActionItem, Image, Price, Review };
