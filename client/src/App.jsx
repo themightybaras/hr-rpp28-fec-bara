@@ -95,6 +95,7 @@ class App extends React.Component {
   // Click handler for product cards. Should reset current product to clicked product and trigger rerender (and get product info for new current product)
   changeCurrentProduct(id) {
     this.setState({ currentProductId: id });
+    console.log('App product ID: ', this.state.currentProductId);
   }
 
 
