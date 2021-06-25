@@ -1,5 +1,4 @@
 import React from 'react';
-import ItemsList from './ItemsList.jsx';
 import Outfit from './Outfit.jsx';
 import RelatedProducts from './RelatedProducts.jsx';
 

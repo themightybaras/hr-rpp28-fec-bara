@@ -15,7 +15,9 @@ body {
 
 .productcard {
   border: 1px solid black;
-  height: fit-content;
+  /* height: fit-content; */
+  /* height: auto; */
+  height: 97%;
   flex-basis: 20%;
   width:auto;
   max-width: 40%;
@@ -23,7 +25,12 @@ body {
 }
 
 .addoutfit {
+  height: 97%;
   float: left;
+  flex-basis: 20%;
+  width:auto;
+  max-width: 40%;
+  margin: 1%;
 }
 
 /* flex-flow (combo of flex-direction and flex-wrap) */
