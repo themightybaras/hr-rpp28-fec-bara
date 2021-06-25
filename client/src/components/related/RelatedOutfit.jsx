@@ -1,5 +1,6 @@
 import React from 'react';
 import ItemsList from './ItemsList.jsx';
+import Outfit from './Outfit.jsx';
 import RelatedProducts from './RelatedProducts.jsx';
 
 // Main container for all components related to related products and outfit
@@ -21,7 +22,8 @@ const RelatedOutfit = ({currentProductId, currentProductInfo, changeCurrentProdu
     <div id='relatedWidget'>
       <RelatedProducts currentProductId={currentProductId} currentProductInfo={currentProductInfo} changeCurrentProduct={changeCurrentProduct}/>
       {/* <ItemsList list='related' currentProductId={currentProductId} currentProductInfo={currentProductInfo} changeCurrentProduct={changeCurrentProduct}/> */}
-      <ItemsList list='outfit' currentProductId={currentProductId} changeCurrentProduct={changeCurrentProduct}/>
+      <Outfit currentProductId={currentProductId} changeCurrentProduct={changeCurrentProduct}/>
+      {/* <ItemsList list='outfit' currentProductId={currentProductId} changeCurrentProduct={changeCurrentProduct}/> */}
     </div>
   );
 };
