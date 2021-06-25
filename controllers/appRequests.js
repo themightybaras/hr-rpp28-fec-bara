@@ -17,4 +17,6 @@ const getCurrentProductInfo = (req, res) => {
     });
 };
 
-module.exports.getCurrentProductInfo = getCurrentProductInfo;
+module.exports = {
+  getCurrentProductInfo
+};

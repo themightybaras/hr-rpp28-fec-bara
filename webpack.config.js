@@ -15,5 +15,8 @@ module.exports = {
         loader: 'babel-loader',
       }
     ]
+  },
+  externals: {
+    'sharp': 'commonjs sharp'
   }
 };
