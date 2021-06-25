@@ -33,6 +33,14 @@ body {
   margin: 1%;
 }
 
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.saleprice {
+  color: red;
+}
+
 /* flex-flow (combo of flex-direction and flex-wrap) */
 .carousel {
   height: auto;

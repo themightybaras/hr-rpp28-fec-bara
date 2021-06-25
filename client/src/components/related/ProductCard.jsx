@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
-import {ActionItem, Image, Category, Name, Price, Review} from './CardComponents.jsx';
+import {ActionItem, Image, Price, Review} from './CardComponents.jsx';
 import RelatedModal from './RelatedModal.jsx';
 
 class ProductCard extends React.Component {
@@ -39,12 +39,12 @@ class ProductCard extends React.Component {
           <ActionItem product={this.props.product} actionHandler={this.clickHandler}/>
           <br />
           <div onClick={this.changeCurrentProduct}>
-            <Image results={this.props.product.results} />
+            <Image product={this.props.product} />
           </div>
           <div className="productInfo" onClick={this.changeCurrentProduct}>
             <p className="productCategory"> {this.props.product.category} </p>
             <p className="productName"> <strong>{this.props.product.name}</strong></p>
-            <p className="productPrice">{`$${this.props.product.default_price}`}</p>
+            <Price product={this.props.product}/>
             <Review />
           </div>
         </div>
