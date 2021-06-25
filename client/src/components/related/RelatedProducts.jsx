@@ -12,6 +12,8 @@ class RelatedProducts extends React.Component {
     };
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
     this.getRelatedProducts(props.currentProductId);
+    this.leftArrowClick = this.leftArrowClick.bind(this);
+    this.rightArrowClick = this.rightArrowClick.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -50,11 +52,11 @@ class RelatedProducts extends React.Component {
       <div >
         <h4>Related Products</h4>
         <div className = "carousel">
-          {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
+          {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
           {displayProducts.map((product, i) => {
             return <ProductCard key={i} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} />;
           })}
-          {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
+          {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
         </div>
       </div>
     );

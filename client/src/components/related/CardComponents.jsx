@@ -4,9 +4,7 @@ import _ from 'underscore';
 // Individual card components
 const ActionItem = ({product, actionHandler}) => {
 
-  let actionItemHandler = () => {
-    actionHandler(product.id);
-  };
+  let actionItemHandler = () => actionHandler(product.id);
 
   return (
     <span className='actionItem' onClick={actionItemHandler}>
@@ -32,27 +30,6 @@ const Image = ({results}) => {
   );
 };
 
-const Category = ({category}) => {
-  return (
-    <span>
-      {category}
-    </span>
-  );
-};
-const Name = ({name}) => {
-  return (
-    <span>
-      <strong>{name}</strong>
-    </span>
-  );
-};
-const Price = ({price}) => {
-  return (
-    <span>
-      {`$${price}`}
-    </span>
-  );
-};
 const Review = () => {
   return (
     <span>
@@ -61,4 +38,4 @@ const Review = () => {
   );
 };
 
-export { ActionItem, Image, Category, Name, Price, Review };
+export { ActionItem, Image, Review };

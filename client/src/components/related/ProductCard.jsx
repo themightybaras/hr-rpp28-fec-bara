@@ -41,16 +41,10 @@ class ProductCard extends React.Component {
           <div onClick={this.changeCurrentProduct}>
             <Image results={this.props.product.results} />
           </div>
-          <div onClick={this.changeCurrentProduct}>
-            <Category category={this.props.product.category} />
-          </div>
-          <div onClick={this.changeCurrentProduct}>
-            <Name name={this.props.product.name} />
-          </div>
-          <div onClick={this.changeCurrentProduct}>
-            <Price price={this.props.product.default_price} />
-          </div>
-          <div onClick={this.changeCurrentProduct}>
+          <div className="productInfo" onClick={this.changeCurrentProduct}>
+            <p className="productCategory"> {this.props.product.category} </p>
+            <p className="productName"> <strong>{this.props.product.name}</strong></p>
+            <p className="productPrice">{`$${this.props.product.default_price}`}</p>
             <Review />
           </div>
         </div>
