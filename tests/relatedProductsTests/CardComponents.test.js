@@ -48,31 +48,31 @@ test('Action item should render a span', () => {
 // Test image
 //    renders image for default product when there is one
 
-test('Image component renders default product image', () => {
+// test('Image component renders default product image', () => {
 
-  let defaultThumbnail = 'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80';
+//   let defaultThumbnail = 'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80';
 
-  let testDefault = shallow(
-    <Image results={ExampleOutfit.withDefault.results}/>
-  );
+//   let testDefault = shallow(
+//     <Image results={ExampleOutfit.withDefault.results}/>
+//   );
 
-  expect(testDefault.find('img').prop('src')).toEqual(defaultThumbnail);
+//   expect(testDefault.find('img').prop('src')).toEqual(defaultThumbnail);
 
-});
+// });
 //    renders first image of first product
 
-test('Image component renders first product image when there\'s no default product', () => {
+// test('Image component renders first product image when there\'s no default product', () => {
 
-  let noDefaultThumbnail = 'https://images.unsplash.com/photo-1530821875964-91927b611bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80';
-  let noImage = 'http://d.ibtimes.co.uk/en/full/429795/13-year-old-norwegian-magnus-carlsen-concentrates-during-match-belarus-player-alexei-fedorov.jpg';
+//   let noDefaultThumbnail = 'https://images.unsplash.com/photo-1530821875964-91927b611bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80';
+//   let noImage = 'http://d.ibtimes.co.uk/en/full/429795/13-year-old-norwegian-magnus-carlsen-concentrates-during-match-belarus-player-alexei-fedorov.jpg';
 
-  let testNoDefault = shallow(
-    <Image results={ExampleOutfit.noDefault.results}/>
-  );
-    //    renders image for default product when there is one
-  expect(testNoDefault.find('img').prop('src')).toEqual(noDefaultThumbnail);
+//   let testNoDefault = shallow(
+//     <Image results={ExampleOutfit.noDefault.results}/>
+//   );
+//     //    renders image for default product when there is one
+//   expect(testNoDefault.find('img').prop('src')).toEqual(noDefaultThumbnail);
 
-});
+// });
 
 //    renders placeholder image
 // test('Image component renders default image when there\'s no image available', () => {
