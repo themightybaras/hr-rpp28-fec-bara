@@ -71,7 +71,7 @@ var IndividualReview = (props) => {
       <span onClick = {reportReview}>Report</span>
       <br/>
       <br/>
-      <span><b>---------------------------------------------------------</b></span>
+      <hr/>
     </div>
   );
 };

@@ -280,3 +280,7 @@ button.carousel {
   font-size: 75px;
   font-weight: bolder;
 }
+
+hr {
+  border: 1px solid rgb(150, 150, 150);
+}
