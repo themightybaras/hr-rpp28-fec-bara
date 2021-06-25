@@ -40,6 +40,11 @@ class Answer extends React.Component {
         <h3 className='answer-marker'>A: </h3>
         <div className='answer'>{this.props.answer.body}</div>
         <br />
+        <div className = 'answer-images'>
+          {this.props.answer.photos.map((photo, index) => (
+            <img src = {photo} key={`${this.props.answer.id}-${index}`} className= 'answer-image'/>
+          ))}
+        </div>
         <div id='answer-container-bottom'>
           <div className='answer-by'>by</div>
           <div className='answer-user' id={this.props.answer.answerer_name.toLowerCase()}>{this.props.answer.answerer_name},</div>

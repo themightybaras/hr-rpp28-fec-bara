@@ -180,6 +180,10 @@ button.carousel {
   margin-right: 6px;
 }
 
+.answer-image {
+  width: 60px;
+  height: 60px;
+}
 
 /* REVIEW and RATING CSS */
 

@@ -21,6 +21,7 @@ router.post('/qa/questions/:question_id/answers', questionsRequests.postAnswer);
 router.put('/qa/questions/:question_id/helpful', questionsRequests.markQuestionHelpful);
 router.put('/qa/answers/:answer_id/helpful', questionsRequests.markAnswerHelpful);
 router.put('/qa/answers/:answer_id/report', questionsRequests.reportAnswer);
+router.post('/qa/photos', questionsRequests.postPhotos);
 
 //related routes
 router.get('/related', relatedRequests.getRelated);

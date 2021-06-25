@@ -8,18 +8,21 @@ class AddQuestionOrAnswer extends React.Component {
     this.state = {
       body: '',
       name: '',
-      email: ''
+      email: '',
+      selectedFile: null,
+      photos: []
     };
     this.changeContentHandler = this.changeContentHandler.bind(this);
     this.changeNicknameHandler = this.changeNicknameHandler.bind(this);
     this.changeEmailHandler = this.changeEmailHandler.bind(this);
     this.clickSubmitHandler = this.clickSubmitHandler.bind(this);
     this.isFormValidated = this.isFormValidated.bind(this);
+    this.Upload = this.Upload.bind(this);
+    this.imageUpload = this.imageUpload.bind(this);
     this.clearForm = this.clearForm.bind(this);
-    this.create = this.create.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.onFileChangeHanlder = this.onFileChangeHandler.bind(this);
-    this.clickFileUploadHandler = this.clickFileUploadHandler.bind(this);
+    this.onFileChangeHandler = this.onFileChangeHandler.bind(this);
+    this.createErrMsg = this.createErrMsg.bind(this);
   }
 
   changeContentHandler(event) {
@@ -40,7 +43,11 @@ class AddQuestionOrAnswer extends React.Component {
   clickSubmitHandler(event) {
     event.preventDefault();
     if (this.isFormValidated()) {
-      this.create();
+      if (!this.props.isQuestionModal) {
+        this.imageUpload();
+      } else {
+        this.Upload();
+      }
       this.props.toggleAddModal(event);
     }
   }
@@ -52,42 +59,55 @@ class AddQuestionOrAnswer extends React.Component {
       var formId = document.querySelector(`#answer-${this.props.question.question_id}-form`);
     }
     var formInput = formId.getElementsByClassName('form-input');
-
     var isBodyMissing = formInput['your-question-or-answer'].validity.valueMissing;
     var isNameMissing = formInput['your-nickname'].validity.valueMissing;
     var isEmailMissing = formInput['your-email'].validity.valueMissing;
     var isEmailFormatIncorrect = formInput['your-email'].validity.typeMismatch;
-    // COMMENTED OUT FOR LINTER
-    //var errMessage = createErrMsg(this.props.isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect);
+    var errMessage = this.createErrMsg(this.props.isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect);
     if (errMessage !== '') {
       alert(errMessage);
       return false;
     }
-
     return true;
   }
 
-  clearForm() {
-    $('.form-input').val('');
-    this.setState({body: '', name: '', email: ''});
-  }
-
-  create() {
+  Upload() {
     if (this.props.isQuestionModal) {
       var url = '/qa/questions';
-      // COMMENTED OUT FOR LINTER
-      //var data = { ...this.state, product_id: this.props.currentProductId };
+      var data = { 'body': this.state.body, 'name': this.state.name, 'email': this.state.email, 'product_id': this.props.currentProductId };
     } else {
       var url = `/qa/questions/${this.props.question.question_id}/answers`;
-      var data = this.state;
+      var data = { 'body': this.state.body, 'name': this.state.name, 'email': this.state.email, 'photos': this.state.photos };
     }
     axios.post(url, data)
       .then((response) => {
-        console.log(response);
+        this.clearForm();
       })
       .catch((err) => {
         console.log(err.message);
       });
+  }
+
+  imageUpload() {
+    const data = new FormData();
+    data.append('file', this.state.selectedFile);
+    axios.post('/qa/photos', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then((response) => {
+        this.setState({photos: [...this.state.photos, response.data]});
+        this.Upload();
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+  clearForm() {
+    $('.form-input').val('');
+    this.setState({body: '', name: '', email: '', photos: []});
   }
 
   closeModal(event) {
@@ -98,16 +118,37 @@ class AddQuestionOrAnswer extends React.Component {
 
   onFileChangeHandler(event) {
     event.preventDefault();
+    this.setState({selectedFile: event.target.files[0]});
   }
 
-  clickFileUploadHandler(event) {
-    event.preventDefault();
+  createErrMsg(isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect) {
+    var errMessage = '';
+    if (isBodyMissing || isNameMissing || isEmailMissing) {
+      errMessage += 'You must enter the following: \n';
+      if (isBodyMissing) {
+        if (isQuestionModal) {
+          errMessage += 'Your Question \n';
+        } else {
+          errMessage += 'Your Answer \n';
+        }
+      }
+      if (isNameMissing) {
+        errMessage += 'Your Nickname \n';
+      }
+      if (isEmailMissing) {
+        errMessage += 'Your Email \n';
+      }
+      errMessage += '\n';
+    }
+    if (!isEmailMissing && isEmailFormatIncorrect) {
+      errMessage += 'You must enter a valid email address.\n\n';
+    }
+    return errMessage;
   }
 
   render() {
     return (
       <div className = {this.props.addModalOpen ? 'modal display-block' : 'modal display-none'}>
-
         <form id={this.props.isQuestionModal ? 'question-form' : `answer-${this.props.question.question_id}-form`}>
           <div className='add-form-container'>
             <button type='button' className='close-modal' onClick={this.closeModal} >&times;</button>
@@ -131,7 +172,7 @@ class AddQuestionOrAnswer extends React.Component {
               <div></div> :
               <div>
                 <input type='file' onChange={this.onFileChangeHandler} />
-                <button type='button' className='upload-your-photos' onClick={this.clickFileUploadHandler}>Upload Your Photos</button>
+                {/* <button type='button' className='upload-your-photos' onClick={this.clickFileUploadHandler}>Upload Your Photos</button> */}
               </div>}
             <br />
             <button type='button' className='add-question-or-answer-submit' onClick={this.clickSubmitHandler}>{this.props.isQuestionModal ? 'Submit Question' : 'Submit Answer'}</button>
@@ -143,34 +184,6 @@ class AddQuestionOrAnswer extends React.Component {
   }
 }
 
-
-
-const createErrMsg = (isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect) => {
-  var errMessage = '';
-
-  if (isBodyMissing || isNameMissing || isEmailMissing) {
-    errMessage += 'You must enter the following: \n';
-    if (isBodyMissing) {
-      if (isQuestionModal) {
-        errMessage += 'Your Question \n';
-      } else {
-        errMessage += 'Your Answer \n';
-      }
-    }
-    if (isNameMissing) {
-      errMessage += 'Your Nickname \n';
-    }
-    if (isEmailMissing) {
-      errMessage += 'Your Email \n';
-    }
-    errMessage += '\n';
-  }
-  if (!isEmailMissing && isEmailFormatIncorrect) {
-    errMessage += 'You must enter a valid email address.\n\n';
-  }
-
-  return errMessage;
-};
 
 export default AddQuestionOrAnswer;
 
