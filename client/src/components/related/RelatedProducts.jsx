@@ -44,13 +44,15 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
+    let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 3);
+    let currentProductInfo = this.props.currentProductInfo || {id: null};
     return (
       <div >
         <h4>Related Products</h4>
         <div className = "carousel">
           {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
-          {this.state.products.slice(this.state.firstCard, this.state.firstCard + 3).map((product, i) => {
-            return <ProductCard key={i} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={this.props.currentProductInfo || {id: null}} />;
+          {displayProducts.map((product, i) => {
+            return <ProductCard key={i} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} />;
           })}
           {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
         </div>

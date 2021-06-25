@@ -14,6 +14,8 @@ class Outfit extends React.Component {
     this.getOutfit = this.getOutfit.bind(this);
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
+    this.leftArrowClick = this.leftArrowClick.bind(this);
+    this.rightArrowClick = this.rightArrowClick.bind(this);
 
     this.getOutfit();
   }
@@ -68,16 +70,19 @@ class Outfit extends React.Component {
   }
 
   render() {
+    let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 3);
+    let currentProductInfo = this.props.currentProductInfo || {id: null};
+
     return (
       <div >
         <h4> Your Outfit </h4>
         <div className = "carousel">
-          {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
-          <AddOutfitCard addToOutfit={this.addToOutfit.bind(this)}/>
-          {this.state.products.slice(this.state.firstCard, this.state.firstCard + 3).map((product, i) => {
-            return <ProductCard key={i} product={product} actionHandler={this.removeFromOutfit} list={'outfit'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={this.props.currentProductInfo || {id: null}} />;
+          {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
+          <AddOutfitCard addToOutfit={this.addToOutfit}/>
+          {displayProducts.map((product, i) => {
+            return <ProductCard key={i} product={product} actionHandler={this.removeFromOutfit} list={'outfit'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} />;
           })}
-          {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick.bind(this)} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
+          {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
         </div>
       </div>
     );

@@ -21,9 +21,7 @@ const RelatedOutfit = ({currentProductId, currentProductInfo, changeCurrentProdu
   return (
     <div id='relatedWidget'>
       <RelatedProducts currentProductId={currentProductId} currentProductInfo={currentProductInfo} changeCurrentProduct={changeCurrentProduct}/>
-      {/* <ItemsList list='related' currentProductId={currentProductId} currentProductInfo={currentProductInfo} changeCurrentProduct={changeCurrentProduct}/> */}
       <Outfit currentProductId={currentProductId} changeCurrentProduct={changeCurrentProduct}/>
-      {/* <ItemsList list='outfit' currentProductId={currentProductId} changeCurrentProduct={changeCurrentProduct}/> */}
     </div>
   );
 };
