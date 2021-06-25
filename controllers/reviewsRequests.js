@@ -21,7 +21,6 @@ module.exports = {
 
   getReviewMetadata: function(req, res) {
 
-    console.log('HOLLA');
     axios.defaults.headers.common['Authorization'] = APIKey;
 
     console.log('URL', req.url);

@@ -19,7 +19,7 @@ class ReviewWidget extends React.Component {
       displayXReviews: 2,
       sortBy: 'relevant',
       count: 10000000000000,
-      reviewFormModalShown: false,
+      reviewFormModalShown: false
     };
     this.getProductReviews = this.getProductReviews.bind(this);
     this.getProductReviews();
@@ -67,7 +67,8 @@ class ReviewWidget extends React.Component {
         <h1>REVIEW AND RATING WIDGET</h1>
         <div id= 'reviewWidgetContainer'>
           <div id= 'ratingSectionContainer'>
-            <RatingSection reviews = {this.state.productReviews}/>
+            <RatingSection reviews = {this.state.productReviews} overallProductRating = {this.props.overallProductRating
+            }/>
           </div>
           <div id= 'reviewContainer'>
             <SortingForm sortValue = {this.state.sortBy} numberOfReviews = {this.state.numberOfReviews} changeSorting = {this.changeSorting} />

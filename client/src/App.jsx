@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentProductId: 22161,
+      currentProductId: 22222,
       currentProductName: 'Adell 300 Shoes',
       overallProductRating: 0,
       currentProductInfo: {}
@@ -35,6 +35,10 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.getOverallProductRating();
+  }
+
   getCurrentProductInfo() {
     $.get('/app', { 'id': this.state.currentProductId }, (currentProductInfo) => {
       this.setState({ currentProductInfo: currentProductInfo });
@@ -42,7 +46,6 @@ class App extends React.Component {
   }
 
   getOverallProductRating() {
-    console.log('HERE 1');
     $.ajax({
       type: 'GET',
       url: '/reviews/meta?product_id=' + this.state.currentProductId,
@@ -67,30 +70,12 @@ class App extends React.Component {
 
         var computedRating = parseInt(averageRatings(data.ratings).toFixed(2));
         this.setState({overallProductRating: computedRating});
-        //this.setState({overallProductRating: data.results});
       },
       error: (err) => {
         console.log('ERROR Getting Overall Rating: ', err.message);
       }
     });
   }
-
-  // averageRatings(ratingsCountsObject) {
-  //   var totalNumberReviews = 0;
-  //   var sumOfRatings = 0;
-
-  //   for (var key in ratingsCountsObject) {
-  //     var currentRatingNumber = parseInt(key);
-  //     var numberOfCurrentRating = parseInt(ratingsCountsObject[key]);
-  //     var totalForRating = currentRatingNumber * numberOfCurrentRating;
-
-  //     totalNumberReviews += numberOfCurrentRating;
-  //     sumOfRatings += totalForRating;
-  //   }
-
-  //   return (sumOfRatings / totalNumberReviews);
-  // }
-
 
   // Click handler for product cards. Should reset current product to clicked product and trigger rerender (and get product info for new current product)
   changeCurrentProduct(id) {
@@ -104,10 +89,10 @@ class App extends React.Component {
       <div>
         <h1>MightyBaras Retail</h1>
         <div>
-          <Overview apiIP={'http://localhost:3000'} productId={this.state.currentProductId} stars={<StarRating rating={'4'} />} />
+          <Overview apiIP={'http://localhost:3000'} productId={this.state.currentProductId} stars={<StarRating rating={this.state.overallProductRating} />} />
           <RelatedOutfit currentProductId = {this.state.currentProductId} currentProductInfo = {this.state.currentProductInfo} changeCurrentProduct={this.changeCurrentProduct}/>
           <QuestionList currentProductId = {this.state.currentProductId} currentProductName={this.state.currentProductName} />
-          <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName}/>
+          <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName} overallProductRating = {this.state.overallProductRating}/>
         </div>
       </div>
     );
