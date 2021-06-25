@@ -14,7 +14,7 @@ const ActionItem = ({product, actionHandler}) => {
 };
 
 const Image = ({results}) => {
-  let image = '';
+  let image = 'http://d.ibtimes.co.uk/en/full/429795/13-year-old-norwegian-magnus-carlsen-concentrates-during-match-belarus-player-alexei-fedorov.jpg';
   if (results !== undefined) {
     let defaultProduct = _.where(results, { 'default?': true});
     if (defaultProduct.length > 0) {
