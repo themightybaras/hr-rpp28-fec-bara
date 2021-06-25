@@ -3,7 +3,6 @@ import _ from 'underscore';
 import {ActionItem, Image, Category, Name, Price, Review} from './CardComponents.jsx';
 import RelatedModal from './RelatedModal.jsx';
 
-//const ProductCard = ({product, actionHandler, list}) => {
 class ProductCard extends React.Component {
 
   constructor(props) {
@@ -14,13 +13,7 @@ class ProductCard extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.clickHandler = this.props.list === 'outfit' ? this.props.actionHandler : this.toggleModal;
-    //this.actionHandler = this.actionHandler.bind(this);
   }
-  // ! revise sale price
-
-  // if (list === 'related') {
-  //   actionHandler = setModal(!modal);
-  // }
 
   toggleModal() {
     this.setState((state) => {

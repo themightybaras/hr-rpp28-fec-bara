@@ -1,5 +1,6 @@
 import React from 'react';
 import ItemsList from './ItemsList.jsx';
+import RelatedProducts from './RelatedProducts.jsx';
 
 // Main container for all components related to related products and outfit
 // Functional stateless component
@@ -18,7 +19,8 @@ import ItemsList from './ItemsList.jsx';
 const RelatedOutfit = ({currentProductId, currentProductInfo, changeCurrentProduct}) => {
   return (
     <div id='relatedWidget'>
-      <ItemsList list='related' currentProductId={currentProductId} currentProductInfo={currentProductInfo} changeCurrentProduct={changeCurrentProduct}/>
+      <RelatedProducts currentProductId={currentProductId} currentProductInfo={currentProductInfo} changeCurrentProduct={changeCurrentProduct}/>
+      {/* <ItemsList list='related' currentProductId={currentProductId} currentProductInfo={currentProductInfo} changeCurrentProduct={changeCurrentProduct}/> */}
       <ItemsList list='outfit' currentProductId={currentProductId} changeCurrentProduct={changeCurrentProduct}/>
     </div>
   );

@@ -22,7 +22,6 @@ class ItemsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // currentProductId: props.currentProductId,
       products: [],
       firstCard: 0
     };
@@ -32,31 +31,14 @@ class ItemsList extends React.Component {
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
 
-    // if (props.list === 'related') {
-    //   console.log('ItemsList: related constructor');
-    //   this.getRelatedProducts(this.props.currentProductId);
-    // }
-    // if (props.list === 'outfit') {
-    //   console.log('ItemsList: outfit constructor');
-    //   this.getOutfit();
-    // }
-  }
-
-  componentDidMount() {
-    if (this.props.list === 'related') {
-      this.getRelatedProducts(this.props.currentProductId);
-    }
-    // MOVE THIS TO CONSTRUCTOR - IF FIRES DIFFERENTLY ON APP RERENDER
-    if (this.props.list === 'outfit') {
+    if (props.list === 'related') {
+      this.getRelatedProducts(props.currentProductId);
+    } else if (props.list === 'outfit') {
       this.getOutfit();
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log('ItemsList: componentDidUpdate, prevProps: ', prevProps);
-    // console.log('ItemsList: componentDidUpdate, current props: ', this.props);
-    // // console.log('ItemsList: componentDidUpdate, prevState: ', prevState);
-    // console.log('ItemsList: componentDidUpdate, current state: ', this.state);
 
     // ONLY NEED TO UPDATE RELATED PRODUCTS
     // if new props id is different than previous AND prevState equals current state
