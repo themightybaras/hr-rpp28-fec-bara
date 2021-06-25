@@ -6,6 +6,7 @@ var axios = require('axios');
 module.exports = {
   getReviews: function(req, res) {
     axios.defaults.headers.common['Authorization'] = APIKey;
+    console.log('REQUEST URL', req.url);
     axios({
       method: 'get',
       url: baseURL + req.url
@@ -19,12 +20,16 @@ module.exports = {
   },
 
   getReviewMetadata: function(req, res) {
+
+    console.log('HOLLA');
     axios.defaults.headers.common['Authorization'] = APIKey;
+
+    console.log('URL', req.url);
+
     axios({
       method: 'get',
-      url: baseURL + '/reviews/meta',
-      //need to add param product id
-      params: {}
+      url: baseURL + req.url
+      //need to add param product id????
     })
       .then((response) => {
         res.send(response.data);
