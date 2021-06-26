@@ -6,19 +6,32 @@ class RatingBreakdown extends React.Component {
     super(props);
     this.state = {
     // holds rating percentages fro each num
+      recommendedPercentage: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0
     };
-    console.log(props)
-    // this.getRecommendPercentage = this.getRecommendPercentage.bind(this);
-    // this.getBarPercentages = this.getBarPercentages.bind(this);
 
-    // this.getRecommendPercentage(props.reviewMetaData);
+    this.getRecommendPercentage = this.getRecommendPercentage.bind(this);
+    // this.getBarPercentages = this.getBarPercentages.bind(this);
   }
 
-  // getRecommendPercentage(metaDataObject) {
-  //   var recommendObject = metaDataObject.recommended;
-
-  //   console.log(metaDataObject);
+  // componentDidUpdate() {
+  //   console.log(this.props);
+  //   this.getRecommendPercentage(this.props.reviewMetaData);
   // }
+
+  getRecommendPercentage(metaDataObject) {
+    var recommendObject = metaDataObject.recommended;
+    if (recommendObject) {
+      var totalReviews = parseInt(recommendObject.false) + parseInt(recommendObject.true);
+      var recommendPercentage = parseInt(recommendObject.true) / totalReviews;
+
+      this.setState({recommendPercentage: recommendPercentage});
+    }
+  }
 
   // //function that calculates the percentages for the bars and stores them in state
   // getBarPercentages(metaDataObject) {

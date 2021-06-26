@@ -98,9 +98,7 @@ class App extends React.Component {
         </Track>
 
         <div>
-          <Track>
-            <Overview apiIP={'http://localhost:3000'} productId={this.state.currentProductId} stars={<StarRating rating={this.state.overallProductRating} />} />
-          </Track>
+          <Overview apiIP={'http://localhost:3000'} productId={this.state.currentProductId} stars={<StarRating rating={this.state.overallProductRating} />} />
           <RelatedOutfit currentProductId = {this.state.currentProductId} currentProductInfo = {this.state.currentProductInfo} changeCurrentProduct={this.changeCurrentProduct}/>
           <QuestionList currentProductId = {this.state.currentProductId} currentProductName={this.state.currentProductName} />
           <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName} overallProductRating = {this.state.overallProductRating} reviewMetaData= {this.state.reviewMetaData}/>

@@ -7,7 +7,6 @@ class RatingSection extends React.Component {
     super(props);
     this.state = {
       reviews: props.reviews
-
     };
   }
 
