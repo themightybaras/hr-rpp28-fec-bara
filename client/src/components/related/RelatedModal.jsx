@@ -34,6 +34,12 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
 
   // Input: two arrays of feature objects
   // Output: one array of
+
+  let exampleFeatures = [
+    { feature: 'Loose Cut', current: true, compared: true },
+    { feature: 'Skinny Cut', current: true, compared: false },
+    { feature: 'Lifetime Guarantee', current: true, compared: true }
+  ];
   const getCombinedFeatures = (product1, product2) => {
 
   };
@@ -52,21 +58,15 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
           Characteristic
           {product.name}
         </div>
-        <div className='relatedModalFeature'>
-          <GrCheckmark />
-          Feature1
-          <GrCheckmark />
-        </div>
-        <div className='relatedModalFeature'>
-          {/* <GrCheckmark /> */}
-          Feature2
-          <GrCheckmark />
-        </div>
-        <div className='relatedModalFeature'>
-          <GrCheckmark />
-          Feature3
-          {/* <GrCheckmark /> */}
-        </div>
+        {exampleFeatures.map(featureObj => {
+          return (
+            <div className='relatedModalFeature'>
+              {featureObj.current ? <GrCheckmark /> : ''}
+              {featureObj.feature}
+              {featureObj.compared ? <GrCheckmark /> : ''}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
