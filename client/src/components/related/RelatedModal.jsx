@@ -63,8 +63,18 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
     { feature: 'Lifetime Guarantee', current: true, compared: true },
     { feature: 'Lifetime Guarantee', current: true, compared: true }
   ];
-  const getCombinedFeatures = (product1, product2) => {
+  const getCombinedFeatures = (current, compared) => {
 
+    // set current, compared variables equal to unique arrays or empty array
+
+    // for each unique array of objects
+    //  for each feature object
+    //    define new property with key equal to the name of the array and value = true
+    //    if value is a text value
+    //      replace feature as value + feature
+    //    delete value property
+
+    // return combined array
   };
 
   // Use grid for spacing/styling
