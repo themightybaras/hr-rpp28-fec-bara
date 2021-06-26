@@ -64,11 +64,13 @@ class ReviewWidget extends React.Component {
     const moreReviewsCanDisplay = this.state.numberOfReviews >= this.state.displayXReviews;
     return (
       <div>
-        <h1>REVIEW AND RATING WIDGET</h1>
+        <br/>
+        <h3>RATINGS & REVIEWS</h3>
+        <br/>
         <div id= 'reviewWidgetContainer'>
           <div id= 'ratingSectionContainer'>
-            <RatingSection reviews = {this.state.productReviews} overallProductRating = {this.props.overallProductRating
-            }/>
+            <RatingSection reviews = {this.state.productReviews} overallProductRating = {this.props.overallProductRating} reviewMetaData = {this.props.reviewMetaData}
+            />
           </div>
           <div id= 'reviewContainer'>
             <SortingForm sortValue = {this.state.sortBy} numberOfReviews = {this.state.numberOfReviews} changeSorting = {this.changeSorting} />

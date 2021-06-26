@@ -1,6 +1,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import Track from '../../Track.jsx';
 
 const StarDisplay = styled.div`
   background: -webkit-linear-gradient(left, black ${({rating}) => rating * 20}%, white ${({rating}) => rating * 20 }%);
@@ -13,7 +14,7 @@ const StarDisplay = styled.div`
 
 const StarRating = (props) => {
   return (
-    <StarDisplay className = 'stars' rating={props.rating}></StarDisplay>
+    <StarDisplay widget = 'reviews widget' className = 'stars' rating={props.rating}></StarDisplay>
   );
 };
 
