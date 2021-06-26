@@ -4,6 +4,7 @@ import React from 'react';
 import $ from 'jquery';
 import StarRating from './StarRating.jsx';
 import ReviewImages from './ReviewImages.jsx';
+import Track from '../../Track.jsx';
 
 
 // class component with state

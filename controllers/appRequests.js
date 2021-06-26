@@ -18,8 +18,15 @@ const getCurrentProductInfo = (req, res) => {
 };
 
 const saveInteractionData = (req, res) => {
+  console.log(req.body);
   axios.defaults.headers.common['Authorization'] = APIKey;
-
+  axios.post( baseURL + '/interactions', req.body)
+    .then((response) => {
+      res.status(201).send(response.data);
+    })
+    .catch ((err) => {
+      res.status(422).send(err);
+    });
 };
 
 module.exports = {

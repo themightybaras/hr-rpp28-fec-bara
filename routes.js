@@ -9,7 +9,7 @@ const router = require('express').Router();
 
 // App routes
 router.get('/app', appRequests.getCurrentProductInfo);
-router.post('/interaction', appRequests.saveInteractionData);
+router.post('/interactions', appRequests.saveInteractionData);
 
 //overview routes
 router.get('/products/:product_id/styles', overviewRequests.getProductStyles);
