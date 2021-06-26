@@ -33,11 +33,34 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
   //   √      Skinny Cut         √
 
   // Input: two arrays of feature objects
-  // Output: one array of
+  // Output: one array of combined feature objects, with boolean values for each product for each feature
+  // Constraints: Output should be unique by feature
+  // Edge cases: No features property on product object, empty features array
 
   let exampleFeatures = [
     { feature: 'Loose Cut', current: true, compared: true },
     { feature: 'Skinny Cut', current: true, compared: false },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    { feature: 'Lifetime Guarantee', current: true, compared: true },
     { feature: 'Lifetime Guarantee', current: true, compared: true }
   ];
   const getCombinedFeatures = (product1, product2) => {

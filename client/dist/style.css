@@ -127,9 +127,10 @@ button.carousel {
   width:40%;
   height:40%;
   /* background: rgba(0, 0, 0, 0.6); */
-  background: rgba(241, 245, 244, 1);
+  background: rgb(247, 248, 248);
   border: 1px solid black;
-
+  justify-content: center;
+  overflow: scroll;
 }
 
 .add-form-container {
