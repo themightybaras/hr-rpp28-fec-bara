@@ -1,5 +1,8 @@
 const axios = require('axios');
 const APIKey = require('../config.js');
+const cloudinary = require('cloudinary').v2;
+const streamifier = require('streamifier');
+const cloudinaryConfig = require('../config2.js');
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 
 
@@ -27,6 +30,7 @@ const postQuestion = (req, res) => {
 
 const postAnswer = (req, res) => {
   axios.defaults.headers.common['Authorization'] = APIKey;
+  console.log(req.body);
   axios.post(baseURL + req.url, req.body)
     .then((response) => {
       res.sendStatus(response.status);
@@ -62,7 +66,6 @@ const reportAnswer = (req, res) => {
   axios.defaults.headers.common['Authorization'] = APIKey;
   axios.put(baseURL + req.url)
     .then((response) => {
-      console.log(response);
       res.sendStatus(response.status);
     })
     .catch((err) => {
@@ -70,6 +73,36 @@ const reportAnswer = (req, res) => {
     });
 };
 
+const postPhotos = (req, res) => {
+  cloudinary.config({
+    'cloud_name': cloudinaryConfig.cloudName,
+    'api_key': cloudinaryConfig.APIKey,
+    'api_secret': cloudinaryConfig.APISecret
+  });
+
+  let streamUpload = (req) => {
+    return new Promise((resolve, reject) => {
+      let stream = cloudinary.uploader.upload_stream(
+        (error, result) => {
+          if (result) {
+            resolve(result);
+          } else {
+            reject(error);
+          }
+        }
+      );
+      streamifier.createReadStream(req.file.buffer).pipe(stream);
+    });
+  };
+
+  streamUpload(req)
+    .then((response) => {
+      res.send(response.secure_url);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
 
 module.exports = {
   getQuestions,
@@ -77,5 +110,6 @@ module.exports = {
   postAnswer,
   markQuestionHelpful,
   markAnswerHelpful,
-  reportAnswer
+  reportAnswer,
+  postPhotos
 };

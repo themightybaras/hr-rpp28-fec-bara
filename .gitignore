@@ -108,6 +108,7 @@ client/dist/bundle.js
 
 #config
 config.js
+config2.js
 
 #package-lock
 #package-lock.json
