@@ -38,27 +38,28 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
   // Constraints: Output should be unique by feature
   // Edge cases: No features property on product object, empty features array
 
-  let exampleFeatures = [
-    { feature: 'Cut: Loose', current: true, compared: true },
-    { feature: 'Cut: Skinny', current: true, compared: false },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true }
-  ];
-
-
   var getCombinedFeatures = (currentFeatures, comparedFeatures) => {
-
-    console.log('Current, original: ', currentFeatures);
-    console.log('Compared, original: ', comparedFeatures);
 
     var currentUnique = _.uniq(currentFeatures) || [];
     var comparedUnique = _.uniq(comparedFeatures) || [];
+
+    console.log('unique? ', currentUnique, comparedUnique);
 
     var currentWorking = [];
     var comparedWorking = [];
 
     currentUnique.forEach(featObj => {
-      currentWorking.push(_.clone(featObj));
+      let inWorking = false;
+      let i = 0;
+      while (i < currentWorking.length && !inWorking) {
+        if (JSON.stringify(currentWorking[i]) === JSON.stringify(featObj)) {
+          inWorking = true;
+        }
+        i++;
+      }
+      if (!inWorking) {
+        currentWorking.push(_.clone(featObj));
+      }
     });
 
     comparedUnique.forEach(featObj => {
@@ -72,7 +73,7 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
         //    if value is a text value
         if (typeof(featureObj.value) === 'string') {
           //      replace feature as value + feature
-          featureObj.feature = featureObj.value + ' ' + featureObj.feature;
+          featureObj.feature = featureObj.feature + ': ' + featureObj.value;
         }
         //    delete value property
         delete featureObj.value;
@@ -83,7 +84,6 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
 
     let currentStandard = standardizeFeatures(currentWorking, 'current');
     let comparedStandard = standardizeFeatures(comparedWorking, 'compared');
-
 
     // Define output array as a copy of the current array
     let combined = currentStandard.slice();
@@ -112,12 +112,11 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
         combined.push(comparedElement);
       }
     }
-    console.log('final: ', combined);
     // return combined array
     return combined;
   };
 
-  getCombinedFeatures(currentProductInfo.features, product.features);
+  let combinedFeatures = getCombinedFeatures(currentProductInfo.features, product.features);
 
   // Define new variable to store result of calling getCombinedFeatures
   // console.log(' Compared Product features: ', product.features);
@@ -133,7 +132,7 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
           <div className='relatedCol2'> Characteristic </div>
           <div className='relatedCol3'> {product.name} </div>
         </div>
-        {exampleFeatures.map((featureObj, i) => {
+        {combinedFeatures.map((featureObj, i) => {
           return (
             <div className='relatedModalFeature' key = {i}>
               <div className='relatedCol1'> {featureObj.current ? <GrCheckmark /> : ''}</div>
