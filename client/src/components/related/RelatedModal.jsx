@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'underscore';
 import { GrCheckmark } from 'react-icons/gr';
 //import ExampleOutfit from './ExampleData.js';
 
@@ -38,56 +39,85 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
   // Edge cases: No features property on product object, empty features array
 
   let exampleFeatures = [
-    { feature: 'Loose Cut', current: true, compared: true },
-    { feature: 'Skinny Cut', current: true, compared: false },
+    { feature: 'Cut: Loose', current: true, compared: true },
+    { feature: 'Cut: Skinny', current: true, compared: false },
     { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
-    // { feature: 'Lifetime Guarantee', current: true, compared: true },
     { feature: 'Lifetime Guarantee', current: true, compared: true }
   ];
-  const getCombinedFeatures = (current, compared) => {
 
-    // set current, compared variables equal to input arrays or empty array
 
-    // for each unique array of objects, loop through
-    //  for each feature object
-    //    define new property with key equal to the name of the array and value = true
-    //    if value is a text value
-    //      replace feature as value + feature
-    //    delete value property
+  var getCombinedFeatures = (currentFeatures, comparedFeatures) => {
+
+    console.log('Current, original: ', currentFeatures);
+    console.log('Compared, original: ', comparedFeatures);
+
+    var currentUnique = _.uniq(currentFeatures) || [];
+    var comparedUnique = _.uniq(comparedFeatures) || [];
+
+    var currentWorking = [];
+    var comparedWorking = [];
+
+    currentUnique.forEach(featObj => {
+      currentWorking.push(_.clone(featObj));
+    });
+
+    comparedUnique.forEach(featObj => {
+      comparedWorking.push(_.clone(featObj));
+    });
+
+    const standardizeFeatures = (arr, arrKey) => {
+
+      return arr.map(featureObj => {
+        featureObj[arrKey] = true;
+        //    if value is a text value
+        if (typeof(featureObj.value) === 'string') {
+          //      replace feature as value + feature
+          featureObj.feature = featureObj.value + ' ' + featureObj.feature;
+        }
+        //    delete value property
+        delete featureObj.value;
+        return featureObj;
+      });
+
+    };
+
+    let currentStandard = standardizeFeatures(currentWorking, 'current');
+    let comparedStandard = standardizeFeatures(comparedWorking, 'compared');
+
 
     // Define output array as a copy of the current array
+    let combined = currentStandard.slice();
 
     // Loop through the compared array. for each...
-    //  Define holding variable for current loop feature name of compared element
-    //  Define boolean for whether or not compared value was added to output (extended), set to false
-    //  Loop through output array (length or output array and !boolean)
-    //    If current output array element feature equals holding variable
-    //      Decorate output feature object with compared feature object
-    //      Set boolean to true
-    //  If boolean false
-    //    push compared feature object to output array
-
+    for (var i = 0; i < comparedStandard.length; i++) {
+      //  Define holding variable for current loop feature name of compared element
+      let comparedElement = comparedStandard[i];
+      //  Define boolean for whether or not compared value was added to output (extended), set to false
+      let added = false;
+      //  Loop through output array (length or output array and !boolean)
+      let j = 0;
+      while (j < combined.length && !added) {
+        //    If current output array element feature equals holding variable
+        if (combined[j].feature === comparedElement.feature) {
+          //      Decorate output feature object with compared feature object
+          _.extend(combined[j], comparedElement);
+          //      Set boolean to true
+          added = true;
+        }
+        j++;
+      }
+      //  If boolean false
+      if (!added) {
+        //    push compared feature object to output array
+        combined.push(comparedElement);
+      }
+    }
+    console.log('final: ', combined);
     // return combined array
+    return combined;
   };
+
+  getCombinedFeatures(currentProductInfo.features, product.features);
 
   // Define new variable to store result of calling getCombinedFeatures
   // console.log(' Compared Product features: ', product.features);
