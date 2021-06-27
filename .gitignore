@@ -110,5 +110,8 @@ client/dist/bundle.js
 config.js
 config2.js
 
+#apiIP
+apiIP.js
+
 #package-lock
 #package-lock.json

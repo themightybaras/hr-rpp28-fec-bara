@@ -62,6 +62,7 @@ class Question extends React.Component {
           question={this.props.question}
           addModalOpen={this.state.addAnswerModalOpen}
           toggleAddModal={this.toggleAddAnswerModal}
+          fetchQuestions={this.props.fetchQuestions}
           isQuestionModal={false} />
       </div>
     );

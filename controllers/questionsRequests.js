@@ -30,7 +30,6 @@ const postQuestion = (req, res) => {
 
 const postAnswer = (req, res) => {
   axios.defaults.headers.common['Authorization'] = APIKey;
-  console.log(req.body);
   axios.post(baseURL + req.url, req.body)
     .then((response) => {
       res.sendStatus(response.status);
@@ -80,27 +79,33 @@ const postPhotos = (req, res) => {
     'api_secret': cloudinaryConfig.APISecret
   });
 
-  let streamUpload = (req) => {
+  let streamUpload = (buffer) => {
     return new Promise((resolve, reject) => {
       let stream = cloudinary.uploader.upload_stream(
         (error, result) => {
           if (result) {
-            resolve(result);
+            console.log(result);
+            resolve(result.secure_url);
           } else {
             reject(error);
           }
         }
       );
-      streamifier.createReadStream(req.file.buffer).pipe(stream);
+      streamifier.createReadStream(buffer).pipe(stream);
     });
   };
 
-  streamUpload(req)
+  var promises = [];
+  req.files.map((element) => {
+    promises.push(streamUpload(element.buffer));
+  });
+
+  Promise.all(promises)
     .then((response) => {
-      res.send(response.secure_url);
+      res.send(response);
     })
-    .catch((err) => {
-      res.send(err);
+    .catch(() => {
+      res.sendStatus(400);
     });
 };
 
