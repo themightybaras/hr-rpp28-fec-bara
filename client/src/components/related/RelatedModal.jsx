@@ -41,26 +41,26 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
     { feature: 'Loose Cut', current: true, compared: true },
     { feature: 'Skinny Cut', current: true, compared: false },
     { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
-    { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
+    // { feature: 'Lifetime Guarantee', current: true, compared: true },
     { feature: 'Lifetime Guarantee', current: true, compared: true }
   ];
   const getCombinedFeatures = (current, compared) => {
@@ -87,16 +87,16 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
       </div>
       <div className='relatedModalComparison'>
         <div className='relatedModalHeader'>
-          {currentProductInfo.name}
-          Characteristic
-          {product.name}
+          <div className='relatedCol1'> {currentProductInfo.name} </div>
+          <div className='relatedCol2'> Characteristic </div>
+          <div className='relatedCol3'> {product.name} </div>
         </div>
         {exampleFeatures.map(featureObj => {
           return (
             <div className='relatedModalFeature'>
-              {featureObj.current ? <GrCheckmark /> : ''}
-              {featureObj.feature}
-              {featureObj.compared ? <GrCheckmark /> : ''}
+              <div className='relatedCol1'> {featureObj.current ? <GrCheckmark /> : ''}</div>
+              <div className='relatedCol2'> {featureObj.feature} </div>
+              <div className='relatedCol3'> {featureObj.compared ? <GrCheckmark /> : ''} </div>
             </div>
           );
         })}
