@@ -65,21 +65,33 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
   ];
   const getCombinedFeatures = (current, compared) => {
 
-    // set current, compared variables equal to unique arrays or empty array
+    // set current, compared variables equal to input arrays or empty array
 
-    // for each unique array of objects
+    // for each unique array of objects, loop through
     //  for each feature object
     //    define new property with key equal to the name of the array and value = true
     //    if value is a text value
     //      replace feature as value + feature
     //    delete value property
 
+    // Define output array as a copy of the current array
+
+    // Loop through the compared array. for each...
+    //  Define holding variable for current loop feature name of compared element
+    //  Define boolean for whether or not compared value was added to output (extended), set to false
+    //  Loop through output array (length or output array and !boolean)
+    //    If current output array element feature equals holding variable
+    //      Decorate output feature object with compared feature object
+    //      Set boolean to true
+    //  If boolean false
+    //    push compared feature object to output array
+
     // return combined array
   };
 
-  // Use grid for spacing/styling
-  console.log(' Compared Product features: ', product.features);
-  console.log('Current Product features: ', currentProductInfo.features);
+  // Define new variable to store result of calling getCombinedFeatures
+  // console.log(' Compared Product features: ', product.features);
+  // console.log('Current Product features: ', currentProductInfo.features);
   return (
     <div className = {modal ? 'modal-related display-block' : 'modal-related display-none'}>
       <div className='modalButtonWrapper'>
@@ -91,9 +103,9 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
           <div className='relatedCol2'> Characteristic </div>
           <div className='relatedCol3'> {product.name} </div>
         </div>
-        {exampleFeatures.map(featureObj => {
+        {exampleFeatures.map((featureObj, i) => {
           return (
-            <div className='relatedModalFeature'>
+            <div className='relatedModalFeature' key = {i}>
               <div className='relatedCol1'> {featureObj.current ? <GrCheckmark /> : ''}</div>
               <div className='relatedCol2'> {featureObj.feature} </div>
               <div className='relatedCol3'> {featureObj.compared ? <GrCheckmark /> : ''} </div>
