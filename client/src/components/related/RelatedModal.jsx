@@ -40,15 +40,13 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
 
   var getCombinedFeatures = (currentFeatures, comparedFeatures) => {
 
-    var currentUnique = _.uniq(currentFeatures) || [];
-    var comparedUnique = _.uniq(comparedFeatures) || [];
-
-    console.log('unique? ', currentUnique, comparedUnique);
+    var currentFeatures = currentFeatures || [];
+    var comparedFeatures = comparedFeatures || [];
 
     var currentWorking = [];
     var comparedWorking = [];
 
-    currentUnique.forEach(featObj => {
+    currentFeatures.forEach(featObj => {
       let inWorking = false;
       let i = 0;
       while (i < currentWorking.length && !inWorking) {
@@ -62,8 +60,18 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
       }
     });
 
-    comparedUnique.forEach(featObj => {
-      comparedWorking.push(_.clone(featObj));
+    comparedFeatures.forEach(featObj => {
+      let inWorking = false;
+      let i = 0;
+      while (i < comparedWorking.length && !inWorking) {
+        if (JSON.stringify(comparedWorking[i]) === JSON.stringify(featObj)) {
+          inWorking = true;
+        }
+        i++;
+      }
+      if (!inWorking) {
+        comparedWorking.push(_.clone(featObj));
+      }
     });
 
     const standardizeFeatures = (arr, arrKey) => {
@@ -128,9 +136,9 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
       </div>
       <div className='relatedModalComparison'>
         <div className='relatedModalHeader'>
-          <div className='relatedCol1'> {currentProductInfo.name} </div>
-          <div className='relatedCol2'> Characteristic </div>
-          <div className='relatedCol3'> {product.name} </div>
+          <div className='relatedCol1'> <strong> {currentProductInfo.name} </strong> </div>
+          <div className='relatedCol2'> <strong> Characteristic </strong> </div>
+          <div className='relatedCol3'> <strong> {product.name} </strong> </div>
         </div>
         {combinedFeatures.map((featureObj, i) => {
           return (
