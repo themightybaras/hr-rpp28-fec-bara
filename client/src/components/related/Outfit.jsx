@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 import ProductCard from './ProductCard.jsx';
 import AddOutfitCard from './AddOutfitCard.jsx';
+import { CarouselButtonRight, CarouselButtonLeft } from './CarouselButton.jsx';
 
 class Outfit extends React.Component {
   constructor(props) {
@@ -77,12 +78,12 @@ class Outfit extends React.Component {
       <div className='outfitSection'>
         <h4> Your Outfit </h4>
         <div className = "relatedCarousel">
-          {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
+          <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>
           <AddOutfitCard addToOutfit={this.addToOutfit}/>
           {displayProducts.map((product, i) => {
             return <ProductCard key={i} product={product} actionHandler={this.removeFromOutfit} list={'outfit'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} />;
           })}
-          {this.state.firstCard < this.state.products.length - 2 ? <button type="button" onClick={this.rightArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
+          <CarouselButtonRight firstCard={this.state.firstCard} outfitLength={this.state.products.length} max={2} rightArrowClick={this.rightArrowClick}/>
         </div>
       </div>
     );

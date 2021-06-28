@@ -6,18 +6,20 @@ const CarouselButtonLeft = ({firstCard, leftArrowClick}) => {
   return (
     <div className='relatedCarouselLeft'>
       <div className={firstCard > 0 ? 'other' : 'display-none'}>
-        {firstCard > 0 ? <button type="button" onClick={leftArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
+        <button type="button" onClick={leftArrowClick} > Left </button>
       </div>
     </div>
 
   );
 };
 
-const CarouselButtonRight = ({firstCard, outfitLength, rightArrowClick}) => {
+const CarouselButtonRight = ({firstCard, outfitLength, max, rightArrowClick}) => {
 
   return (
     <div className='relatedCarouselRight'>
-      {firstCard < outfitLength - 3 ? <button type="button" onClick={rightArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
+      <div className={firstCard < outfitLength - max ? 'other' : 'display-none'}>
+        <button type="button" onClick={rightArrowClick} > Right </button>
+      </div>
     </div>
   );
 

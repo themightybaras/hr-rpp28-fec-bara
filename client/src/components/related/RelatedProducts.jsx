@@ -57,7 +57,7 @@ class RelatedProducts extends React.Component {
           {displayProducts.map((product, i) => {
             return <ProductCard key={i} col={i + 2} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} />;
           })}
-          <CarouselButtonRight firstCard={this.state.firstCard} outfitLength={this.state.products.length} rightArrowClick={this.rightArrowClick}/>
+          <CarouselButtonRight firstCard={this.state.firstCard} outfitLength={this.state.products.length} max={3} rightArrowClick={this.rightArrowClick}/>
         </div>
       </div>
     );
