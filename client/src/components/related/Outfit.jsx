@@ -81,7 +81,7 @@ class Outfit extends React.Component {
           <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>
           <AddOutfitCard addToOutfit={this.addToOutfit}/>
           {displayProducts.map((product, i) => {
-            return <ProductCard key={i} product={product} actionHandler={this.removeFromOutfit} list={'outfit'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} />;
+            return <ProductCard key={i} product={product} actionHandler={this.removeFromOutfit} list={'outfit'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} icon={'remove'} />;
           })}
           <CarouselButtonRight firstCard={this.state.firstCard} outfitLength={this.state.products.length} max={2} rightArrowClick={this.rightArrowClick}/>
         </div>

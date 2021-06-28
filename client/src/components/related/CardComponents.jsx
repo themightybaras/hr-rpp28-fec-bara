@@ -1,15 +1,17 @@
 import React from 'react';
 import _ from 'underscore';
 import { MdStarBorder } from 'react-icons/md';
+import { TiDeleteOutline } from 'react-icons/ti';
 
 // Individual card components
-const ActionItem = ({product, actionHandler}) => {
+const ActionItem = ({product, actionHandler, icon}) => {
 
   let actionItemHandler = () => actionHandler(product.id);
 
   return (
     <span className='actionItem' onClick={actionItemHandler}>
-      <MdStarBorder />
+      {icon === 'star' ? <MdStarBorder /> : <TiDeleteOutline />}
+
     </span>
   );
 };
