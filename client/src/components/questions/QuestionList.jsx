@@ -90,7 +90,7 @@ class QuestionList extends React.Component {
       <div>
         <h3>Questions & Answers</h3>
         <div>
-          <input id='search-questions' type='text' onChange={this.searchQuestions} placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>
+          {this.state.unfilteredQuestions.length === 0 ? null : <input id='search-questions' type='text' onChange={this.searchQuestions} placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>}
         </div>
         <div id='questions-list'>
           {this.state.questionsToDisplay.map((element) => (

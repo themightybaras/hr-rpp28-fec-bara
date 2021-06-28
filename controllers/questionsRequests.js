@@ -84,7 +84,6 @@ const postPhotos = (req, res) => {
       let stream = cloudinary.uploader.upload_stream(
         (error, result) => {
           if (result) {
-            console.log(result);
             resolve(result.secure_url);
           } else {
             reject(error);

@@ -16,12 +16,14 @@ class AddQuestionOrAnswer extends React.Component {
     this.changeNicknameHandler = this.changeNicknameHandler.bind(this);
     this.changeEmailHandler = this.changeEmailHandler.bind(this);
     this.changeFileHandler = this.changeFileHandler.bind(this);
+    this.clickUploadPhotosHandler = this.clickUploadPhotosHandler.bind(this);
     this.clickSubmitHandler = this.clickSubmitHandler.bind(this);
     this.isFormValidated = this.isFormValidated.bind(this);
     this.Upload = this.Upload.bind(this);
     this.imageUpload = this.imageUpload.bind(this);
     this.clearForm = this.clearForm.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.createUploadPhotoErrMsg = this.createUploadPhotoErrMsg.bind(this);
     this.createErrMsg = this.createErrMsg.bind(this);
   }
 
@@ -49,14 +51,27 @@ class AddQuestionOrAnswer extends React.Component {
     this.setState({selectedFiles: files});
   }
 
+  clickUploadPhotosHandler(event) {
+    event.preventDefault();
+    let formId = document.querySelector(`#answer-${this.props.question.question_id}-form`);
+    let formInput = formId.getElementsByClassName('form-input');
+    if (formInput['answer-upload-photos']) {
+      let imageFileInfo = formInput['answer-upload-photos'].files;
+      if (imageFileInfo) {
+        let errMessage = this.createUploadPhotoErrMsg(imageFileInfo);
+        if (errMessage !== '') {
+          alert(errMessage);
+        } else {
+          this.imageUpload();
+        }
+      }
+    }
+  }
+
   clickSubmitHandler(event) {
     event.preventDefault();
     if (this.isFormValidated()) {
-      if (!this.props.isQuestionModal) {
-        this.imageUpload();
-      } else {
-        this.Upload();
-      }
+      this.Upload();
       this.props.toggleAddModal(event);
     }
   }
@@ -72,10 +87,7 @@ class AddQuestionOrAnswer extends React.Component {
     var isNameMissing = formInput['your-nickname'].validity.valueMissing;
     var isEmailMissing = formInput['your-email'].validity.valueMissing;
     var isEmailFormatIncorrect = formInput['your-email'].validity.typeMismatch;
-    if (formInput['answer-upload-photos']) {
-      var imageFileInfo = formInput['answer-upload-photos'].files;
-    }
-    var errMessage = this.createErrMsg(this.props.isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect, imageFileInfo);
+    var errMessage = this.createErrMsg(this.props.isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect);
     if (errMessage !== '') {
       alert(errMessage);
       return false;
@@ -114,8 +126,7 @@ class AddQuestionOrAnswer extends React.Component {
       }
     })
       .then((response) => {
-        this.setState({photos: response.data});
-        this.Upload();
+        this.setState({photos: [...this.state.photos, ...response.data]});
       })
       .catch(() => {
         console.log('ERROR: Image Upload Failed!');
@@ -133,7 +144,24 @@ class AddQuestionOrAnswer extends React.Component {
     this.props.toggleAddModal(event);
   }
 
-  createErrMsg(isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect, imageFileInfo) {
+  createUploadPhotoErrMsg(imageFileInfo) {
+    var uploadPhotoErrMessage = '';
+    if (imageFileInfo) {
+      if (this.state.photos.length + imageFileInfo.length > 5) {
+        uploadPhotoErrMessage += 'You can only upload a maxium of 5 images.\n';
+      }
+      for (let i = 0; i < imageFileInfo.length; i++) {
+        let imageFileType = imageFileInfo[i].type;
+        if (imageFileType !== 'image/jpeg' && imageFileType !== 'image/png') {
+          uploadPhotoErrMessage += 'You can only upload jpg, jpeg or png file.\n';
+          break;
+        }
+      }
+    }
+    return uploadPhotoErrMessage;
+  }
+
+  createErrMsg(isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect) {
     var errMessage = '';
     if (isBodyMissing || isNameMissing || isEmailMissing) {
       errMessage += 'You must enter the following: \n';
@@ -154,18 +182,6 @@ class AddQuestionOrAnswer extends React.Component {
     }
     if (!isEmailMissing && isEmailFormatIncorrect) {
       errMessage += 'You must enter a valid email address.\n\n';
-    }
-    if (imageFileInfo) {
-      if (imageFileInfo.length > 5) {
-        errMessage += 'You can only upload a maxium of 5 images.\n';
-      }
-      for (let i = 0; i < imageFileInfo.length; i++) {
-        let imageFileType = imageFileInfo[i].type;
-        if (imageFileType !== 'image/jpeg' && imageFileType !== 'image/png') {
-          errMessage += 'You can only upload jpg, jpeg or png file.\n';
-          break;
-        }
-      }
     }
     return errMessage;
   }
@@ -193,10 +209,15 @@ class AddQuestionOrAnswer extends React.Component {
             <div>For authentication reasons, you will not be emailed.</div>
             <br />
             {this.props.isQuestionModal ?
-              <div></div> :
+              null :
               <div>
                 <div className='upload-your-photos-label'><b>Upload Your Photos</b></div>
-                <input type='file' name='answer-upload-photos' className='form-input' onChange={this.changeFileHandler} multiple />
+                {this.state.photos.map((photo) => (
+                  <img src = {photo} key={photo} className= 'answer-image'/>
+                ))}
+                <br />
+                <input type='file' name='answer-upload-photos' className='form-input upload-your-photos' onChange={this.changeFileHandler} multiple />
+                <button type='button' className='upload-your-photos' onClick={this.clickUploadPhotosHandler}>Upload</button>
               </div>}
             <br />
             <button type='button' className='add-question-or-answer-submit' onClick={this.clickSubmitHandler}>{this.props.isQuestionModal ? 'Submit Question' : 'Submit Answer'}</button>
