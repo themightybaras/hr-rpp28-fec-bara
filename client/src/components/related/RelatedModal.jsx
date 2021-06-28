@@ -3,40 +3,7 @@ import _ from 'underscore';
 import { GrCheckmark } from 'react-icons/gr';
 //import ExampleOutfit from './ExampleData.js';
 
-
-// Does it make sense to use React.children for the modal?
-//    Not sure what's going to be in each one -> could specify that elsewhere and pass as children props
-
-// start with simple modal, see if interaction and display work
-
-// User clicks action item in product card (needs to have toggler passed)
-// Click handler sets modal state to true
-// Modal display shown
-// Modal display clicked
-//  Click handler sets modal state to false
-// Modal disappears
-
 const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
-
-  // construct features rows
-  //   Will contain shared or unique feature
-  //  Construct array or new feature objects with feature, current, compare
-  //    If feature array for that product
-  //    get unique features
-  //    If value is text
-  //        characteristic is value + features
-  //    Else
-  //      char is just feature
-  // Current     Char          Compared
-  //   √      GMO-free           √
-  //         5 year warranty     √
-  //   √     Straight Cut
-  //   √      Skinny Cut         √
-
-  // Input: two arrays of feature objects
-  // Output: one array of combined feature objects, with boolean values for each product for each feature
-  // Constraints: Output should be unique by feature
-  // Edge cases: No features property on product object, empty features array
 
   var getCombinedFeatures = (currentFeatures, comparedFeatures) => {
 
@@ -93,42 +60,28 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
     let currentStandard = standardizeFeatures(currentWorking, 'current');
     let comparedStandard = standardizeFeatures(comparedWorking, 'compared');
 
-    // Define output array as a copy of the current array
     let combined = currentStandard.slice();
 
-    // Loop through the compared array. for each...
     for (var i = 0; i < comparedStandard.length; i++) {
-      //  Define holding variable for current loop feature name of compared element
       let comparedElement = comparedStandard[i];
-      //  Define boolean for whether or not compared value was added to output (extended), set to false
       let added = false;
-      //  Loop through output array (length or output array and !boolean)
       let j = 0;
       while (j < combined.length && !added) {
-        //    If current output array element feature equals holding variable
         if (combined[j].feature === comparedElement.feature) {
-          //      Decorate output feature object with compared feature object
           _.extend(combined[j], comparedElement);
-          //      Set boolean to true
           added = true;
         }
         j++;
       }
-      //  If boolean false
       if (!added) {
-        //    push compared feature object to output array
         combined.push(comparedElement);
       }
     }
-    // return combined array
     return combined;
   };
 
   let combinedFeatures = getCombinedFeatures(currentProductInfo.features, product.features);
 
-  // Define new variable to store result of calling getCombinedFeatures
-  // console.log(' Compared Product features: ', product.features);
-  // console.log('Current Product features: ', currentProductInfo.features);
   return (
     <div className = {modal ? 'modal-related display-block' : 'modal-related display-none'}>
       <div className='modalButtonWrapper'>

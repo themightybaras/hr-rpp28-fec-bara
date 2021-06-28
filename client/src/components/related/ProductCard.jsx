@@ -34,12 +34,11 @@ class ProductCard extends React.Component {
     }
 
     return (
-      <div>
-        <div className="productcard" >
-          <ActionItem product={this.props.product} actionHandler={this.clickHandler}/>
-          <br />
-          <div onClick={this.changeCurrentProduct}>
-            <Image product={this.props.product} />
+      <div className='productcardWrapper'>
+        <div className={`productcard cardcol${this.props.col}`} >
+          <div >
+            <ActionItem product={this.props.product} actionHandler={this.clickHandler}/>
+            <Image product={this.props.product} clickHandler={this.changeCurrentProduct}/>
           </div>
           <div className="productInfo" onClick={this.changeCurrentProduct}>
             <p className="productCategory"> {this.props.product.category} </p>

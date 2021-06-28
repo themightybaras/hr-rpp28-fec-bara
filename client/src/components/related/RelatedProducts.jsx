@@ -49,12 +49,16 @@ class RelatedProducts extends React.Component {
     let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 3);
     let currentProductInfo = this.props.currentProductInfo || {id: null};
     return (
-      <div >
-        <h4>Related Products</h4>
-        <div className = "carousel">
-          {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
+      <div className='relatedSection'>
+        <h4 className='relatedHeader'>Related Products</h4>
+        <div className = "relatedCarousel">
+          <div className='relatedCarouselLeft'>
+            <div className={this.state.firstCard > 0 ? 'other' : 'display-none'}>
+              {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
+            </div>
+          </div>
           {displayProducts.map((product, i) => {
-            return <ProductCard key={i} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} />;
+            return <ProductCard key={i} col={i + 1} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} />;
           })}
           {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
         </div>

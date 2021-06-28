@@ -76,7 +76,7 @@ class Outfit extends React.Component {
     return (
       <div >
         <h4> Your Outfit </h4>
-        <div className = "carousel">
+        <div className = "relatedCarousel">
           {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
           <AddOutfitCard addToOutfit={this.addToOutfit}/>
           {displayProducts.map((product, i) => {

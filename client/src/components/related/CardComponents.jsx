@@ -13,7 +13,7 @@ const ActionItem = ({product, actionHandler}) => {
   );
 };
 
-const Image = ({product}) => {
+const Image = ({product, clickHandler}) => {
   let image = 'http://d.ibtimes.co.uk/en/full/429795/13-year-old-norwegian-magnus-carlsen-concentrates-during-match-belarus-player-alexei-fedorov.jpg';
   if (product.results !== undefined) {
     let defaultProduct = _.where(product.results, { 'default?': true});
@@ -26,7 +26,7 @@ const Image = ({product}) => {
     // image = _.where(results, { 'default?': true})[0].photos[0].thumbnail_url;
   }
   return (
-    <img className='relatedImage' src={image}></img>
+    <img className='relatedImage' src={image} onClick={clickHandler}></img>
   );
 };
 
