@@ -79,14 +79,16 @@ class Outfit extends React.Component {
 
     return (
       <div className='outfitSection'>
-        <h4> Your Outfit </h4>
-        <div className = "relatedCarousel">
-          <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>
-          <AddOutfitCard addToOutfit={this.addToOutfit}/>
-          {displayProducts.map((product, i) => {
-            return <ProductCard key={i} product={product} actionHandler={this.removeFromOutfit} list={'outfit'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} icon={'remove'} />;
-          })}
-          <CarouselButtonRight firstCard={this.state.firstCard} outfitLength={this.state.products.length} max={2} rightArrowClick={this.rightArrowClick}/>
+        <h4 className={'outfitHeader'}> Your Outfit </h4>
+        <div className='relatedSectionFlex'>
+          <div className = "relatedCarousel">
+            <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>
+            <AddOutfitCard addToOutfit={this.addToOutfit}/>
+            {displayProducts.map((product, i) => {
+              return <ProductCard key={i} col={i + 3} product={product} actionHandler={this.removeFromOutfit} list={'outfit'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} icon={'remove'} />;
+            })}
+            <CarouselButtonRight firstCard={this.state.firstCard} outfitLength={this.state.products.length} max={2} rightArrowClick={this.rightArrowClick}/>
+          </div>
         </div>
       </div>
     );
