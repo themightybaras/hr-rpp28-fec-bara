@@ -1,12 +1,12 @@
 import React from 'react';
-import { MdAddCircleOutline } from 'react-icons/md';
+import { GrAdd } from 'react-icons/gr';
 
 const AddOutfitCard = ({addToOutfit}) => {
 
   return (
     <div className="productcard addoutfit" onClick={addToOutfit}>
       <div id='addToOutfitIcon'>
-        <MdAddCircleOutline />
+        <GrAdd />
       </div>
       <div id='addToOutfitText'>
         Add this product to your outfit!
