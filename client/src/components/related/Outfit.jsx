@@ -48,7 +48,10 @@ class Outfit extends React.Component {
         let newOutfit = this.state.products.filter(product => {
           return product.id !== id;
         });
-        this.setState({ products: newOutfit });
+
+        this.setState(state => (
+          { products: newOutfit, firstCard: state.firstCard > 0 ? state.firstCard - 1 : 0 }
+        ));
       }
     });
   }
