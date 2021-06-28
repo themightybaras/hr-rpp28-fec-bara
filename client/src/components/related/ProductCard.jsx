@@ -34,18 +34,16 @@ class ProductCard extends React.Component {
     }
 
     return (
-      <div className='productcardWrapper'>
-        <div className={`productcard cardcol${this.props.col}`} >
-          <div >
-            <ActionItem product={this.props.product} actionHandler={this.clickHandler}/>
-            <Image product={this.props.product} clickHandler={this.changeCurrentProduct}/>
-          </div>
-          <div className="productInfo" onClick={this.changeCurrentProduct}>
-            <p className="productCategory"> {this.props.product.category} </p>
-            <p className="productName"> <strong>{this.props.product.name}</strong></p>
-            <Price product={this.props.product}/>
-            <Review />
-          </div>
+      <div className={`productcard cardcol${this.props.col}`} >
+        <div className='productImageItem'>
+          <ActionItem product={this.props.product} actionHandler={this.clickHandler}/>
+          <Image product={this.props.product} clickHandler={this.changeCurrentProduct}/>
+        </div>
+        <div className="productInfo" onClick={this.changeCurrentProduct}>
+          <p className="productCategory"> {this.props.product.category} </p>
+          <p className="productName"> <strong>{this.props.product.name}</strong></p>
+          <Price product={this.props.product}/>
+          <Review />
         </div>
         <RelatedModal modal={this.state.modal} actionHandler={this.clickHandler} currentProductInfo={this.props.currentProductInfo} product={this.props.product}/>
       </div>

@@ -21,6 +21,17 @@ body {
   /* width:auto; */
   /* max-width: 75%; */
   margin: 5%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 60% 40%;
+}
+
+.productImageItem {
+  grid-row-start: 1;
+}
+
+.productInfo {
+  grid-row-start: 2;
 }
 
 .addoutfit {
@@ -53,14 +64,17 @@ body {
 
 .cardcol2 {
   grid-column-start: 2;
+  grid-row-start: 1;
   justify-self: center;
 }
 .cardcol3 {
   grid-column-start: 3;
+  grid-row-start: 1;
   justify-self: center;
 }
 .cardcol4 {
   grid-column-start: 4;
+  grid-row-start: 1;
   justify-self: center;
 }
 
