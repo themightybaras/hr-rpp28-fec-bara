@@ -23,6 +23,7 @@ class ProductCard extends React.Component {
 
   changeCurrentProduct() {
     this.props.changeCurrentProduct(this.props.product.id);
+    scroll(0, 0);
   }
 
   render() {
