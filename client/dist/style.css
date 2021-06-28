@@ -140,7 +140,7 @@ button.carousel {
 }
 
 .display-block {
-  display: inline;
+  display: block;
 }
 
 .display-none {

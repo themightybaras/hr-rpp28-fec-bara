@@ -216,8 +216,12 @@ class AddQuestionOrAnswer extends React.Component {
                   <img src = {photo} key={photo} className= 'answer-image'/>
                 ))}
                 <br />
-                <input type='file' name='answer-upload-photos' className='form-input upload-your-photos' onChange={this.changeFileHandler} multiple />
-                <button type='button' className='upload-your-photos' onClick={this.clickUploadPhotosHandler}>Upload</button>
+                {this.state.photos.length >= 5 ? null :
+                  <div>
+                    <input type='file' name='answer-upload-photos' className='form-input upload-your-photos' onChange={this.changeFileHandler} multiple />
+                    <button type='button' className='upload-your-photos' onClick={this.clickUploadPhotosHandler}>Upload</button>
+                  </div>
+                }
               </div>}
             <br />
             <button type='button' className='add-question-or-answer-submit' onClick={this.clickSubmitHandler}>{this.props.isQuestionModal ? 'Submit Question' : 'Submit Answer'}</button>

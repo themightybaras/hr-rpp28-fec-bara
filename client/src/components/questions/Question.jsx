@@ -50,7 +50,7 @@ class Question extends React.Component {
           <div id='question-container-right'>
             <div>Helpful?</div>
             {this.state.markedQuestionHelpful ? <span>Yes</span> : <a href='#' onClick={this.markQuestionHelpful}>Yes</a>}
-            <div>({this.props.question.question_helpfulness})</div>
+            <div>({this.state.markedQuestionHelpful ? this.props.question.question_helpfulness + 1 : this.props.question.question_helpfulness})</div>
             <div></div><div>|</div><div></div>
             <a href='#' className='add-answer' onClick={this.toggleAddAnswerModal}>Add Answer</a>
           </div>
