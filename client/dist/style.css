@@ -114,6 +114,10 @@ body {
   cursor: pointer;
   border-radius: 5px; */
 }
+
+#addToOutfitIcon {
+  font-size: 1000%;
+}
 /* .relatedCarousel {
   height: auto;
   max-height: 20%;
