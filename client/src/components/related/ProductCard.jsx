@@ -36,10 +36,8 @@ class ProductCard extends React.Component {
 
     return (
       <div className={`productcard cardcol${this.props.col}`} >
-        <div className='productImageItem'>
-          <ActionItem product={this.props.product} actionHandler={this.clickHandler} icon={this.props.icon}/>
-          <Image product={this.props.product} clickHandler={this.changeCurrentProduct}/>
-        </div>
+        {/* <ActionItem product={this.props.product} actionHandler={this.clickHandler} icon={this.props.icon}/> */}
+        <Image product={this.props.product} clickHandler={this.changeCurrentProduct} actionHandler={this.clickHandler} icon={this.props.icon}/>
         <div className="productInfo" onClick={this.changeCurrentProduct}>
           <p className="productCategory"> {this.props.product.category} </p>
           <p className="productName"> <strong>{this.props.product.name}</strong></p>

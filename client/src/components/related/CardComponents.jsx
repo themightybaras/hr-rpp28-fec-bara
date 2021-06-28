@@ -16,7 +16,7 @@ const ActionItem = ({product, actionHandler, icon}) => {
   );
 };
 
-const Image = ({product, clickHandler}) => {
+const Image = ({product, clickHandler, icon, actionHandler}) => {
   let image = 'http://d.ibtimes.co.uk/en/full/429795/13-year-old-norwegian-magnus-carlsen-concentrates-during-match-belarus-player-alexei-fedorov.jpg';
   if (product.results !== undefined) {
     let defaultProduct = _.where(product.results, { 'default?': true});
@@ -29,7 +29,14 @@ const Image = ({product, clickHandler}) => {
     // image = _.where(results, { 'default?': true})[0].photos[0].thumbnail_url;
   }
   return (
-    <img className='relatedImage' src={image} onClick={clickHandler}></img>
+    <div className='productImageItem'>
+      <img className='relatedImage' src={image} onClick={clickHandler} />
+      <span className='cardActionItem'>
+        <ActionItem product={product} actionHandler={actionHandler} icon={icon} />
+      </span>
+      {/* <button className='cardActionItem'> <MdStarBorder /> </button> */}
+      {/* conditional (maybe prop) */}
+    </div>
   );
 };
 
@@ -37,17 +44,11 @@ const Price = ({product}) => {
 
   let defaultPrice = product.default_price;
   let salePrice = null;
-  // If product.results
   if (product.results) {
-    //  Filter product.results for default style
     let defaultProduct = _.where(product.results, { 'default?': true});
-    //    If default style exists
     if (defaultProduct.length > 0) {
-    //      Set salePrice to default product sale price
       salePrice = defaultProduct[0].sale_price;
-    //    Otherwise
     } else {
-    //      Set salePrice to first product sale price
       salePrice = product.results[0].sale_price;
     }
   }
@@ -57,7 +58,6 @@ const Price = ({product}) => {
         <span>
           <span className="strikethrough">{`$${defaultPrice}`}</span><span className="saleprice">{`$${salePrice}`}</span></span> : <span>{`$${defaultPrice}`}
         </span>}
-
     </p>
   );
 };
