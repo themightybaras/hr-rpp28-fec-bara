@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
+import { MdStarBorder } from 'react-icons/md';
 
 // Individual card components
 const ActionItem = ({product, actionHandler}) => {
@@ -8,7 +9,7 @@ const ActionItem = ({product, actionHandler}) => {
 
   return (
     <span className='actionItem' onClick={actionItemHandler}>
-        Action Item
+      <MdStarBorder />
     </span>
   );
 };
