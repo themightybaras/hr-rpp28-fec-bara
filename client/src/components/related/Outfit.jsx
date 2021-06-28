@@ -54,7 +54,7 @@ class Outfit extends React.Component {
 
   // Click handlers for carousel buttons
   rightArrowClick() {
-    if (this.state.firstCard < this.state.products.length - 3) {
+    if (this.state.firstCard < this.state.products.length - 2) {
       this.setState((state) => (
         { firstCard: state.firstCard + 1 }
       ));
@@ -70,11 +70,11 @@ class Outfit extends React.Component {
   }
 
   render() {
-    let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 3);
+    let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 2);
     let currentProductInfo = this.props.currentProductInfo || {id: null};
 
     return (
-      <div >
+      <div className='outfitSection'>
         <h4> Your Outfit </h4>
         <div className = "relatedCarousel">
           {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
@@ -82,7 +82,7 @@ class Outfit extends React.Component {
           {displayProducts.map((product, i) => {
             return <ProductCard key={i} product={product} actionHandler={this.removeFromOutfit} list={'outfit'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} />;
           })}
-          {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
+          {this.state.firstCard < this.state.products.length - 2 ? <button type="button" onClick={this.rightArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
         </div>
       </div>
     );

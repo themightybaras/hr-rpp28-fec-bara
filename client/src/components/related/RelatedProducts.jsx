@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import _ from 'underscore';
 import ProductCard from './ProductCard.jsx';
+import { CarouselButtonRight, CarouselButtonLeft } from './CarouselButton.jsx';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
@@ -52,15 +53,11 @@ class RelatedProducts extends React.Component {
       <div className='relatedSection'>
         <h4 className='relatedHeader'>Related Products</h4>
         <div className = "relatedCarousel">
-          <div className='relatedCarouselLeft'>
-            <div className={this.state.firstCard > 0 ? 'other' : 'display-none'}>
-              {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
-            </div>
-          </div>
+          <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>
           {displayProducts.map((product, i) => {
             return <ProductCard key={i} col={i + 2} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} />;
           })}
-          {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
+          <CarouselButtonRight firstCard={this.state.firstCard} outfitLength={this.state.products.length} rightArrowClick={this.rightArrowClick}/>
         </div>
       </div>
     );

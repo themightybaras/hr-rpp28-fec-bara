@@ -26,21 +26,18 @@ body {
   grid-template-rows: 60% 40%;
 }
 
-.productImageItem {
+.productImageItem, #addToOutfitIcon {
   grid-row-start: 1;
+  justify-self: center;
 }
 
-.productInfo {
+.productInfo, #addToOutfitText {
   grid-row-start: 2;
+  justify-self: center;
 }
 
 .addoutfit {
-  height: 97%;
-  float: left;
-  flex-basis: 20%;
-  width:auto;
-  max-width: 40%;
-  margin: 1%;
+  grid-column-start: 2;
 }
 
 .strikethrough {
