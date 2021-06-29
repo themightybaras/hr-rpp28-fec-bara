@@ -3,6 +3,7 @@ import React from 'react';
 import _ from 'underscore';
 import AddQuestionOrAnswer from './AddQuestionOrAnswer.jsx';
 import AnswerList from './AnswerList.jsx';
+import Track from '../../Track.jsx';
 
 class Question extends React.Component {
   constructor(props) {
@@ -49,10 +50,19 @@ class Question extends React.Component {
           <div className='question'><b>Q: {this.props.question.question_body}</b></div>
           <div id='question-container-right'>
             <div>Helpful?</div>
-            {this.state.markedQuestionHelpful ? <span>Yes</span> : <a href='#' onClick={this.markQuestionHelpful}>Yes</a>}
+            {this.state.markedQuestionHelpful ? <span>Yes</span> :
+              <Track>
+                <div widget='Questions Widget'>
+                  <a href='#' onClick={this.markQuestionHelpful}>Yes</a>
+                </div>
+              </Track>}
             <div>({this.state.markedQuestionHelpful ? this.props.question.question_helpfulness + 1 : this.props.question.question_helpfulness})</div>
             <div></div><div>|</div><div></div>
-            <a href='#' className='add-answer' onClick={this.toggleAddAnswerModal}>Add Answer</a>
+            <Track>
+              <div widget='Questions Widget'>
+                <a href='#' className='add-answer' onClick={this.toggleAddAnswerModal}>Add Answer</a>
+              </div>
+            </Track>
           </div>
         </div>
         <AnswerList answers={this.sortAnswers()} questionId={this.props.question.question_id} />

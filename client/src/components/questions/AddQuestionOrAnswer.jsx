@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import $ from 'jquery';
+import Track from '../../Track.jsx';
 
 class AddQuestionOrAnswer extends React.Component {
   constructor(props) {
@@ -191,7 +192,11 @@ class AddQuestionOrAnswer extends React.Component {
       <div className = {this.props.addModalOpen ? 'modal display-block' : 'modal display-none'}>
         <form id={this.props.isQuestionModal ? 'question-form' : `answer-${this.props.question.question_id}-form`}>
           <div className='add-form-container'>
-            <button type='button' className='close-modal' onClick={this.closeModal} >&times;</button>
+            <Track>
+              <div widget = 'Questions Widget'>
+                <button type='button' className='close-modal' onClick={this.closeModal} >&times;</button>
+              </div>
+            </Track>
             <h2 className='modal-title-question-or-answer'>{this.props.isQuestionModal ? 'Ask Your Question' : 'Submit Your Answer'}</h2>
             <h3 className='modal-subtitle-question-or-answer'>{this.props.isQuestionModal ? `About the ${this.props.currentProductName}` : `${this.props.currentProductName}: ${this.props.question.question_body}`}</h3>
             <div className='add-your-question-or-answer-label'><b>{this.props.isQuestionModal ? 'Your Question*' : 'Your Answer*'}</b></div>
@@ -218,13 +223,24 @@ class AddQuestionOrAnswer extends React.Component {
                 <br />
                 {this.state.photos.length >= 5 ? null :
                   <div>
-                    <input type='file' name='answer-upload-photos' className='form-input upload-your-photos' onChange={this.changeFileHandler} multiple />
-                    <button type='button' className='upload-your-photos' onClick={this.clickUploadPhotosHandler}>Upload</button>
-                  </div>
-                }
+                    <Track>
+                      <div widget='Questions Widget'>
+                        <input type='file' name='answer-upload-photos' className='form-input upload-your-photos' onChange={this.changeFileHandler} multiple />
+                      </div>
+                    </Track>
+                    <Track>
+                      <div widget = 'Questions Widget'>
+                        <button type='button' className='upload-your-photos' onClick={this.clickUploadPhotosHandler}>Upload</button>
+                      </div>
+                    </Track>
+                  </div>}
               </div>}
             <br />
-            <button type='button' className='add-question-or-answer-submit' onClick={this.clickSubmitHandler}>{this.props.isQuestionModal ? 'Submit Question' : 'Submit Answer'}</button>
+            <Track>
+              <div widget = 'Questions Widget'>
+                <button type='button' className='add-question-or-answer-submit' onClick={this.clickSubmitHandler}>{this.props.isQuestionModal ? 'Submit Question' : 'Submit Answer'}</button>
+              </div>
+            </Track>
             <br />
           </div>
         </form>
