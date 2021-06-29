@@ -68,8 +68,6 @@ const getRelated = (req, res) => {
 
                     combined.results = firstProduct;
                     return combined;
-                    // old end of response 2
-
                   });
               });
           });
@@ -88,29 +86,29 @@ const getRelated = (req, res) => {
 // OUTFIT - add type handling if more errors
 
 const addToOutfit = (req, res) => {
-  console.log('addToOutfit, request cookie: ', req.cookies);
-  console.log('addToOutfit, request body: ', req.body);
+  // console.log('addToOutfit, request cookie: ', req.cookies);
+  // console.log('addToOutfit, request body: ', req.body);
   // If req.cookies has atelier property
   if (req.cookies.atelier) {
     // Only add id to cookie if it doesn't exist
     if (req.cookies.atelier.indexOf(req.body.id) < 0) {
       let updatedCookie = req.cookies.atelier + ',' + req.body.id;
-      console.log('addToOutfit, updatedCookie var: ', updatedCookie);
+      // console.log('addToOutfit, updatedCookie var: ', updatedCookie);
       res.cookie('atelier', updatedCookie);
-      console.log('addToOutfit, response cookie after adding to existing: ', res.cookies);
+      // console.log('addToOutfit, response cookie after adding to existing: ', res.cookies);
       res.end();
     }
   } else {
     // Else define new cookie with atelier property = req body id
     res.cookie('atelier', req.body.id); // Attaching as string here
-    console.log('addToOutfit, response cookie after creating new cookie: ', res.cookies);
+    // console.log('addToOutfit, response cookie after creating new cookie: ', res.cookies);
     res.end();
   }
 };
 
 
 const getOutfit = (req, res) => {
-  console.log('getOutfit, request cookie: ', req.cookies.atelier);
+  // console.log('getOutfit, request cookie: ', req.cookies.atelier);
   // let altcookie = req.get('Cookie');
   // console.log('getOutfit, alt cookie: ', altcookie);
   // console.log('Cookies in related get call, type: ', typeof(req.cookies.atelier));
@@ -131,7 +129,34 @@ const getOutfit = (req, res) => {
             url: `${baseURL}/products/${id}/styles`
           })
             .then((response2) => {
-              return _.extend(response1.data, response2.data);
+              // return _.extend(response1.data, response2.data);
+              return axios({
+                method: 'get',
+                url: `${baseURL}/reviews/meta?product_id=${id}`
+              })
+                .then((response3) => {
+                  // Extend product info with product styles and return
+                  let combined = _.extend(response1.data, response2.data);
+                  //console.log('response3 ratings', response3.ratings);
+                  combined.ratings = response3.data.ratings;
+                  let results = combined.results || [];
+                  // Selected style should be default, or first if no default
+                  let firstProduct = _.where(results, { 'default?': true});
+                  if (firstProduct.length === 0) {
+                    if (results) {
+                      firstProduct = [results[0]];
+                    } else {
+                      firstProduct = [];
+                    }
+                  }
+                  if (firstProduct[0].photos[0]) {
+                    delete firstProduct[0].photos[0].thumbnail_url;
+                    firstProduct[0].photos[0].url = cropUrl(firstProduct[0].photos[0].url, 350);
+                  }
+
+                  combined.results = firstProduct;
+                  return combined;
+                });
             });
         });
     });
@@ -144,13 +169,13 @@ const getOutfit = (req, res) => {
 };
 
 const removeFromOutfit = (req, res) => {
-  console.log('removeFromOutfit, request cookie: ', req.cookies);
+  // console.log('removeFromOutfit, request cookie: ', req.cookies);
   let idToRemove = req.url.split('?')[1];
-  console.log('removeFromOutfit, id to remove: ', idToRemove);
+  // console.log('removeFromOutfit, id to remove: ', idToRemove);
   // console.log('id to remove, type: ', typeof(idToRemove)); //string
   let newCookie = _.without(req.cookies.atelier.split(','), idToRemove).join(',');
   // let newCookie = _.without(req.cookies.atelier, idToRemove); // THIS IS THE PROBLEM
-  console.log('removeFromOutfit, New cookie: ', newCookie);
+  // console.log('removeFromOutfit, New cookie: ', newCookie);
   if (newCookie.length > 0) {
     res.cookie('atelier', newCookie);
     res.end();

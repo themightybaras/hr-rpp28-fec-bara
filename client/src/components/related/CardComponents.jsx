@@ -3,18 +3,9 @@ import _ from 'underscore';
 import { MdStarBorder } from 'react-icons/md';
 import { TiDeleteOutline } from 'react-icons/ti';
 import StarRating from '../review/StarRating.jsx';
-// import {AdvancedImage} from '@cloudinary/react';
-// import {Cloudinary} from '@cloudinary/base';
-// import {fill} from '@cloudinary/base/actions/resize';
-// import cloudinaryConfig from '../../../../config2.js';
 
-// const cld = new Cloudinary({
-//   cloud: {
-//     cloudName: cloudinaryConfig.cloudName,
+// INDIVIDUAL CARD COMPONENTS
 
-//   }
-// });
-// Individual card components
 const ActionItem = ({product, actionHandler, icon}) => {
 
   let actionItemHandler = () => actionHandler(product.id);
@@ -57,9 +48,8 @@ const Price = ({product}) => {
   return (
     <p className="productPrice">
       {salePrice ?
-        <span>
-          <span className="strikethrough">{`$${defaultPrice}`}</span><span className="saleprice">{`$${salePrice}`}</span></span> : <span>{`$${defaultPrice}`}
-        </span>}
+        <span><span className="strikethrough">{`$${defaultPrice}`}</span><span className="saleprice">{`$${salePrice}`}</span></span> :
+        <span>{`$${defaultPrice}`}</span>}
     </p>
   );
 };
@@ -67,33 +57,22 @@ const Price = ({product}) => {
 const Review = ({product}) => {
 
   let ratings = product.ratings;
-  console.log('Ratings: ', ratings);
 
   let ratingsCount = 0;
   let ratingsSum = 0;
 
-  // Define ratings count and ratings total variables
   if (ratings) {
     if (Object.keys(ratings).length > 0) {
-
-      // Loop through ratings object
       for (var key in ratings) {
-        //    variable with number value of rating (count)
         let numRatings = Number(ratings[key]);
-        //    add rating count to overall count
         ratingsCount += numRatings;
-        //    add key * number value to overall rating
         ratingsSum += numRatings * key;
       }
-
     }
   }
-  // if ratings count > 0
+
   let finalRating = ratingsCount > 0 ? ratingsSum / ratingsCount : -1;
-  console.log('final rating: ', finalRating);
-  //    return total/count
-  //  Otherwise
-  //    return -1?
+
   if (finalRating === -1) {
     return (
       <span className='noReview'> No Reviews For This Product </span>
