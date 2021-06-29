@@ -54,7 +54,19 @@ const getRelated = (req, res) => {
                     firstProduct = [];
                   }
                 }
-                // console.log('First product:', firstProduct);
+                var oldUrl = '';
+                if (firstProduct[0].photos[0]) {
+                  oldUrl = firstProduct[0].photos[0].url;
+                }
+                shortUrl = oldUrl.split('crop')[0];
+                let newUrl = shortUrl + 'crop&w=350&q=80';
+                console.log('First product photo:', oldUrl);
+                console.log('First product photo:', newUrl);
+                if (firstProduct[0].photos[0]) {
+                  delete firstProduct[0].photos[0].thumbnail_url;
+                  firstProduct[0].photos[0].url = newUrl;
+                }
+
                 combined.results = firstProduct;
                 //For each photo url
                 // construct array of promises to transform
