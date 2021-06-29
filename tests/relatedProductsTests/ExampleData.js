@@ -4,6 +4,7 @@ module.exports.withDefault = {
   campus: 'hr-rpp',
   name: 'Ernesto Backpack',
   slogan: 'Non corrupti optio.',
+  ratings: {1: '2', 2: '3', 4: '1'},
   description: 'Hic distinctio corrupti amet inventore. Non provident voluptas amet dolorem officia. Aspernatur sed quo nesciunt dolorem ipsum ut repellendus sunt.',
   category: 'Backpack',
   'default_price': '424.00',
@@ -53,6 +54,7 @@ module.exports.noDefault = {
   campus: 'hr-rpp',
   name: 'Ernesto Backpack',
   slogan: 'Non corrupti optio.',
+  ratings: {},
   description: 'Hic distinctio corrupti amet inventore. Non provident voluptas amet dolorem officia. Aspernatur sed quo nesciunt dolorem ipsum ut repellendus sunt.',
   category: 'Backpack',
   'default_price': '424.00',
@@ -131,4 +133,17 @@ module.exports.noImage = {
       skus: { '718142': [Object] }
     }
   ]
+};
+
+module.exports.noResults = {
+  id: 22222,
+  campus: 'hr-rpp',
+  name: 'Ernesto Backpack',
+  slogan: 'Non corrupti optio.',
+  description: 'Hic distinctio corrupti amet inventore. Non provident voluptas amet dolorem officia. Aspernatur sed quo nesciunt dolorem ipsum ut repellendus sunt.',
+  category: 'Backpack',
+  'default_price': '424.00',
+  'created_at': '2021-03-18T16:09:31.545Z',
+  'updated_at': '2021-03-18T16:09:31.545Z',
+  'product_id': '22222',
 };

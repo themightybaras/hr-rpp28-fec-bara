@@ -19,10 +19,13 @@ test('Action item should render a span', () => {
 });
 
 
-test('Price component should show default price when there is no sale price', () => {
+test('Price component should show default price when there is no sale price or results array', () => {
 
   let testPrice = shallow(
     <Price product={ExampleOutfit.noDefault}/>
+  );
+  let noResults = shallow(
+    <Price product={ExampleOutfit.noResults}/>
   );
 
   expect(testPrice.find('.originalPrice').exists()).toBe(true);
@@ -80,12 +83,23 @@ test('Image component renders default image when there\'s no image available', (
 
 });
 
-// Review component
-// test('Review item should render a span', () => {
+test('Review item should render a styled component if there is a ratings object', () => {
 
-//   let testReview = shallow(
-//     <Review />
-//   );
-//   expect(testReview.find('.review-related').exists()).toBe(true);
-// });
+  let testReview = shallow(
+    <Review product={ExampleOutfit.withDefault} />
+  );
+  expect(testReview.find('.noReview').exists()).toBe(false);
+});
+
+test('Review item should render a message if there is no ratings object or an empty ratings object', () => {
+
+  let noRatings = shallow(
+    <Review product={ExampleOutfit.noImage}/>
+  );
+  let emptyRatings = shallow(
+    <Review product={ExampleOutfit.noImage}/>
+  );
+  expect(noRatings.find('.noReview').exists()).toBe(true);
+  expect(emptyRatings.find('.noReview').exists()).toBe(true);
+});
 
