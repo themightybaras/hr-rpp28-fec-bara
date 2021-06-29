@@ -4,8 +4,10 @@ const Promise = require('bluebird');
 const shartp = require('sharp');
 const APIKey = require('../config.js');
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
-const Cloudinary = require('@cloudinary/base');
-const Fill = require('@cloudinary/base/actions/resize');
+// const Cloudinary = require('@cloudinary/base');
+// const Fill = require('@cloudinary/base/actions/resize');
+const cloudinary = require('cloudinary').v2;
+
 const cloudinaryConfig = require('../config2.js');
 
 cloudinary.config({
@@ -41,10 +43,22 @@ const getRelated = (req, res) => {
             })
               .then((response2) => {
                 // Extend product info with product styles and return
-                console.log('Combined product object:', _.extend(response1.data, response2.data).results);
+                let combined = _.extend(response1.data, response2.data);
+                let results = combined.results || [];
+                // Selected style should be default, or first if no default
+                let firstProduct = _.where(results, { 'default?': true});
+                if (firstProduct.length === 0) {
+                  if (results) {
+                    firstProduct = [results[0]];
+                  } else {
+                    firstProduct = [];
+                  }
+                }
+                // console.log('First product:', firstProduct);
+                combined.results = firstProduct;
                 //For each photo url
                 // construct array of promises to transform
-                return _.extend(response1.data, response2.data);
+                return combined;
               });
           });
       });

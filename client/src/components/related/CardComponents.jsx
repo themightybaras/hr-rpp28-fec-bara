@@ -2,10 +2,10 @@ import React from 'react';
 import _ from 'underscore';
 import { MdStarBorder } from 'react-icons/md';
 import { TiDeleteOutline } from 'react-icons/ti';
-import {AdvancedImage} from '@cloudinary/react';
-import {Cloudinary} from '@cloudinary/base';
-import {fill} from '@cloudinary/base/actions/resize';
-import cloudinaryConfig from '../../../../config2.js';
+// import {AdvancedImage} from '@cloudinary/react';
+// import {Cloudinary} from '@cloudinary/base';
+// import {fill} from '@cloudinary/base/actions/resize';
+// import cloudinaryConfig from '../../../../config2.js';
 
 // const cld = new Cloudinary({
 //   cloud: {
