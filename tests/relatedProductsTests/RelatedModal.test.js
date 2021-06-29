@@ -13,13 +13,12 @@ import RelatedModal from '../../client/src/components/related/RelatedModal.jsx';
 
 test('Related products modal display', () => {
 
-  expect(1 + 1).toEqual(2);
   let testCH = () => {};
   let testModalTrue = shallow(
-    <RelatedModal modal={true} actionHandler={testCH} currentProductInfo={ExampleOutfit.withDefault} product={ExampleOutfit.withDefault}/>
+    <RelatedModal modal={true} actionHandler={testCH} currentProductInfo={ExampleOutfit.withDefault} product={ExampleOutfit.noDefault}/>
   );
   let testModalFalse = shallow(
-    <RelatedModal modal={false} actionHandler={testCH} currentProductInfo={ExampleOutfit.withDefault} product={ExampleOutfit.withDefault}/>
+    <RelatedModal modal={false} actionHandler={testCH} currentProductInfo={ExampleOutfit.noDefault} product={ExampleOutfit.withDefault}/>
   );
 
   expect(testModalTrue.find('.modal-related').exists()).toBe(true);
@@ -28,5 +27,25 @@ test('Related products modal display', () => {
 
   expect(testModalFalse.find('.modal-related').exists()).toBe(true);
   expect(testModalFalse.find('.display-none').exists()).toBe(true);
-  expect(testModalFalse.find('.modal-related display-block').exists()).toBe(false);
+  expect(testModalFalse.find('.display-block').exists()).toBe(false);
+});
+
+test('Modal should work even if one product object has no features', () => {
+
+  let testCH = () => {};
+  let testModalCompared = shallow(
+    <RelatedModal modal={true} actionHandler={testCH} currentProductInfo={ExampleOutfit.withDefault} product={ExampleOutfit.noImage}/>
+  );
+  let testModalCurrent = shallow(
+    <RelatedModal modal={true} actionHandler={testCH} currentProductInfo={ExampleOutfit.noImage} product={ExampleOutfit.withDefault}/>
+  );
+
+  expect(testModalCompared.find('.modal-related').exists()).toBe(true);
+  expect(testModalCompared.find('.display-block').exists()).toBe(true);
+  expect(testModalCompared.find('display-none').exists()).toBe(false);
+
+  expect(testModalCurrent.find('.modal-related').exists()).toBe(true);
+  expect(testModalCurrent.find('.display-block').exists()).toBe(true);
+  expect(testModalCurrent.find('display-none').exists()).toBe(false);
+
 });
