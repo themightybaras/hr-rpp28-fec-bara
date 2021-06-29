@@ -44,7 +44,7 @@ const getRelated = (req, res) => {
                 // get review meta data
                 return axios({
                   method: 'get',
-                  url: `${baseURL}/reviews/meta?product_id=${id}` ///reviews/meta?product_id=22161
+                  url: `${baseURL}/reviews/meta?product_id=${id}`
                 })
                   .then((response3) => {
                     // Extend product info with product styles and return

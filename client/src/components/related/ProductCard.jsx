@@ -42,7 +42,7 @@ class ProductCard extends React.Component {
           <p className="productCategory"> {this.props.product.category} </p>
           <p className="productName"> <strong>{this.props.product.name}</strong></p>
           <Price product={this.props.product}/>
-          <Review />
+          <Review product={this.props.product}/>
         </div>
         <RelatedModal modal={this.state.modal} actionHandler={this.clickHandler} currentProductInfo={this.props.currentProductInfo} product={this.props.product}/>
       </div>
