@@ -21,7 +21,7 @@ module.exports.withDefault = {
       'style_id': 123792,
       name: 'Salmon',
       'original_price': '424.00',
-      'sale_price': null,
+      'sale_price': '300.00',
       'default?': true,
       photos: [
         {

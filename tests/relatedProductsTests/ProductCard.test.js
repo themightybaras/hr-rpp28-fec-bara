@@ -14,3 +14,15 @@ test('Product card', () => {
 
   expect(testRelatedProduct.find('.productcard').exists()).toBe(true);
 });
+
+// test('Name and Category components render text passed as a prop', () => {
+//   let testText = 'Test';
+//   let testCategory = shallow(
+//     <Category category={testText}/>
+//   );
+//   let testName = shallow(
+//     <Name name={testText}/>
+//   );
+//   expect(testCategory.text()).toEqual(testText);
+//   expect(testName.text()).toEqual(testText);
+// });

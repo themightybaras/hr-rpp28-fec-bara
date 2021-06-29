@@ -6,7 +6,7 @@ configure({adapter: new Adapter()});
 import RelatedOutfit from '../../client/src/components/related/RelatedOutfit.jsx';
 import ProductCard from '../../client/src/components/related/ProductCard.jsx';
 // import ItemsList from '../../client/src/components/related/ItemsList.jsx';
-import {ActionItem, Image, Review} from '../../client/src/components/related/CardComponents.jsx';
+import {ActionItem, Image, Review, Price} from '../../client/src/components/related/CardComponents.jsx';
 import ExampleOutfit from './ExampleData.js';
 
 test('Action item should render a span', () => {
@@ -18,74 +18,67 @@ test('Action item should render a span', () => {
   expect(testAI.find('.actionItem').exists()).toBe(true);
 });
 
-// test('Name and Category components render text passed as a prop', () => {
-//   let testText = 'Test';
-//   let testCategory = shallow(
-//     <Category category={testText}/>
-//   );
-//   let testName = shallow(
-//     <Name name={testText}/>
-//   );
-//   expect(testCategory.text()).toEqual(testText);
-//   expect(testName.text()).toEqual(testText);
-// });
 
-// test('Price component should show correct price', () => {
+test('Price component should show default price when there is no sale price', () => {
 
-//   let testAmt = 999.99;
-//   let testPrice = shallow(
-//     <Price price={testAmt}/>
-//   );
+  let testPrice = shallow(
+    <Price product={ExampleOutfit.noDefault}/>
+  );
 
-//   expect(testPrice.find('.price-span').text()).toEqual('$' + testAmt);
-//   // Add tests for sale price cases
-//   //  (shows sale price with struck-through default)
-//   //  Way to test color of red?
+  expect(testPrice.find('.originalPrice').exists()).toBe(true);
+  expect(testPrice.find('.originalPrice').text()).toEqual('$424.00');
 
-// });
+});
 
+test('Price component should show sale price when it exists', () => {
 
-// Test image
-//    renders image for default product when there is one
+  let testPrice = shallow(
+    <Price product={ExampleOutfit.withDefault}/>
+  );
 
-// test('Image component renders default product image', () => {
+  expect(testPrice.find('.originalPrice').exists()).toBe(false);
+  expect(testPrice.find('.strikethrough').exists()).toBe(true);
+  expect(testPrice.find('.saleprice').exists()).toBe(true);
+  expect(testPrice.find('.saleprice').text()).toEqual('$300.00');
 
-//   let defaultThumbnail = 'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80';
+});
 
-//   let testDefault = shallow(
-//     <Image results={ExampleOutfit.withDefault.results}/>
-//   );
+test('Image component renders default product image', () => {
 
-//   expect(testDefault.find('img').prop('src')).toEqual(defaultThumbnail);
+  let defaultThumbnail = 'https://images.unsplash.com/photo-1548369735-f548cbe6a294?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=350&q=80';
 
-// });
-//    renders first image of first product
+  let testDefault = shallow(
+    <Image product={ExampleOutfit.withDefault} clickHandler={() => {}} icon={'star'} actionHandler={() => {}}/>
+  );
 
-// test('Image component renders first product image when there\'s no default product', () => {
+  expect(testDefault.find('img').prop('src')).toEqual(defaultThumbnail);
 
-//   let noDefaultThumbnail = 'https://images.unsplash.com/photo-1530821875964-91927b611bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80';
-//   let noImage = 'http://d.ibtimes.co.uk/en/full/429795/13-year-old-norwegian-magnus-carlsen-concentrates-during-match-belarus-player-alexei-fedorov.jpg';
+});
 
-//   let testNoDefault = shallow(
-//     <Image results={ExampleOutfit.noDefault.results}/>
-//   );
-//     //    renders image for default product when there is one
-//   expect(testNoDefault.find('img').prop('src')).toEqual(noDefaultThumbnail);
+test('Image component renders first product image when there\'s no default product', () => {
 
-// });
+  let noDefaultThumbnail = 'https://images.unsplash.com/photo-1507920676663-3b72429774ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=350&q=80';
+
+  let testNoDefault = shallow(
+    <Image product={ExampleOutfit.noDefault} clickHandler={() => {}} icon={'star'} actionHandler={() => {}}/>
+  );
+    //    renders image for default product when there is one
+  expect(testNoDefault.find('img').prop('src')).toEqual(noDefaultThumbnail);
+
+});
 
 //    renders placeholder image
-// test('Image component renders default image when there\'s no image available', () => {
+test('Image component renders default image when there\'s no image available', () => {
 
-//   let noImage = 'http://d.ibtimes.co.uk/en/full/429795/13-year-old-norwegian-magnus-carlsen-concentrates-during-match-belarus-player-alexei-fedorov.jpg';
+  let noImage = 'https://media.istockphoto.com/vectors/photo-coming-soon-image-icon-vector-illustration-isolated-on-white-vector-id1193046540?k=6&m=1193046540&s=170667a&w=0&h=f4NW7AdMrru1TBTUx1NwU6KgEfbf_mT9G4E_ceSMvwg=';
 
-//   let testNoImage = shallow(
-//     <Image results={ExampleOutfit.noImage.results}/>
-//   );
-//     //    renders image for default product when there is one
-//   expect(testNoImage.find('img').prop('src')).toEqual(noImage);
+  let testNoImage = shallow(
+    <Image product={ExampleOutfit.noImage} clickHandler={() => {}} icon={'star'} actionHandler={() => {}}/>
+  );
+    //    renders image for default product when there is one
+  expect(testNoImage.find('img').prop('src')).toEqual(noImage);
 
-// });
+});
 
 // Review component
 // test('Review item should render a span', () => {
