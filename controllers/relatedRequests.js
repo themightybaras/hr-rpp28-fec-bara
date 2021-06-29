@@ -63,7 +63,7 @@ const getRelated = (req, res) => {
                     }
                     if (firstProduct[0].photos[0]) {
                       delete firstProduct[0].photos[0].thumbnail_url;
-                      firstProduct[0].photos[0].url = cropUrl(firstProduct[0].photos[0].url, 325);
+                      firstProduct[0].photos[0].url = cropUrl(firstProduct[0].photos[0].url, 350);
                     }
 
                     combined.results = firstProduct;
@@ -151,7 +151,7 @@ const getOutfit = (req, res) => {
                   }
                   if (firstProduct[0].photos[0]) {
                     delete firstProduct[0].photos[0].thumbnail_url;
-                    firstProduct[0].photos[0].url = cropUrl(firstProduct[0].photos[0].url, 325);
+                    firstProduct[0].photos[0].url = cropUrl(firstProduct[0].photos[0].url, 350);
                   }
 
                   combined.results = firstProduct;
