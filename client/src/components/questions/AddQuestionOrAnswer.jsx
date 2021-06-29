@@ -9,19 +9,21 @@ class AddQuestionOrAnswer extends React.Component {
       body: '',
       name: '',
       email: '',
-      selectedFile: null,
+      selectedFiles: null,
       photos: []
     };
     this.changeContentHandler = this.changeContentHandler.bind(this);
     this.changeNicknameHandler = this.changeNicknameHandler.bind(this);
     this.changeEmailHandler = this.changeEmailHandler.bind(this);
+    this.changeFileHandler = this.changeFileHandler.bind(this);
+    this.clickUploadPhotosHandler = this.clickUploadPhotosHandler.bind(this);
     this.clickSubmitHandler = this.clickSubmitHandler.bind(this);
     this.isFormValidated = this.isFormValidated.bind(this);
     this.Upload = this.Upload.bind(this);
     this.imageUpload = this.imageUpload.bind(this);
     this.clearForm = this.clearForm.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.onFileChangeHandler = this.onFileChangeHandler.bind(this);
+    this.createUploadPhotoErrMsg = this.createUploadPhotoErrMsg.bind(this);
     this.createErrMsg = this.createErrMsg.bind(this);
   }
 
@@ -40,14 +42,36 @@ class AddQuestionOrAnswer extends React.Component {
     this.setState({email: event.target.value});
   }
 
+  changeFileHandler(event) {
+    event.preventDefault();
+    let files = [];
+    for (let i = 0; i < event.target.files.length; i++) {
+      files.push(event.target.files[i]);
+    }
+    this.setState({selectedFiles: files});
+  }
+
+  clickUploadPhotosHandler(event) {
+    event.preventDefault();
+    let formId = document.querySelector(`#answer-${this.props.question.question_id}-form`);
+    let formInput = formId.getElementsByClassName('form-input');
+    if (formInput['answer-upload-photos']) {
+      let imageFileInfo = formInput['answer-upload-photos'].files;
+      if (imageFileInfo) {
+        let errMessage = this.createUploadPhotoErrMsg(imageFileInfo);
+        if (errMessage !== '') {
+          alert(errMessage);
+        } else {
+          this.imageUpload();
+        }
+      }
+    }
+  }
+
   clickSubmitHandler(event) {
     event.preventDefault();
     if (this.isFormValidated()) {
-      if (!this.props.isQuestionModal) {
-        this.imageUpload();
-      } else {
-        this.Upload();
-      }
+      this.Upload();
       this.props.toggleAddModal(event);
     }
   }
@@ -80,8 +104,9 @@ class AddQuestionOrAnswer extends React.Component {
       var data = { 'body': this.state.body, 'name': this.state.name, 'email': this.state.email, 'photos': this.state.photos };
     }
     axios.post(url, data)
-      .then((response) => {
+      .then(() => {
         this.clearForm();
+        this.props.fetchQuestions();
       })
       .catch((err) => {
         console.log(err.message);
@@ -90,18 +115,21 @@ class AddQuestionOrAnswer extends React.Component {
 
   imageUpload() {
     const data = new FormData();
-    data.append('file', this.state.selectedFile);
+    if (this.state.selectedFiles) {
+      this.state.selectedFiles.forEach((file) => {
+        data.append('answerPhotos', file);
+      });
+    }
     axios.post('/qa/photos', data, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
       .then((response) => {
-        this.setState({photos: [...this.state.photos, response.data]});
-        this.Upload();
+        this.setState({photos: [...this.state.photos, ...response.data]});
       })
-      .catch((err) => {
-        console.log(err.message);
+      .catch(() => {
+        console.log('ERROR: Image Upload Failed!');
       });
   }
 
@@ -116,9 +144,21 @@ class AddQuestionOrAnswer extends React.Component {
     this.props.toggleAddModal(event);
   }
 
-  onFileChangeHandler(event) {
-    event.preventDefault();
-    this.setState({selectedFile: event.target.files[0]});
+  createUploadPhotoErrMsg(imageFileInfo) {
+    var uploadPhotoErrMessage = '';
+    if (imageFileInfo) {
+      if (this.state.photos.length + imageFileInfo.length > 5) {
+        uploadPhotoErrMessage += 'You can only upload a maxium of 5 images.\n';
+      }
+      for (let i = 0; i < imageFileInfo.length; i++) {
+        let imageFileType = imageFileInfo[i].type;
+        if (imageFileType !== 'image/jpeg' && imageFileType !== 'image/png') {
+          uploadPhotoErrMessage += 'You can only upload jpg, jpeg or png file.\n';
+          break;
+        }
+      }
+    }
+    return uploadPhotoErrMessage;
   }
 
   createErrMsg(isQuestionModal, isBodyMissing, isNameMissing, isEmailMissing, isEmailFormatIncorrect) {
@@ -127,16 +167,16 @@ class AddQuestionOrAnswer extends React.Component {
       errMessage += 'You must enter the following: \n';
       if (isBodyMissing) {
         if (isQuestionModal) {
-          errMessage += 'Your Question \n';
+          errMessage += '  Your Question \n';
         } else {
-          errMessage += 'Your Answer \n';
+          errMessage += '  Your Answer \n';
         }
       }
       if (isNameMissing) {
-        errMessage += 'Your Nickname \n';
+        errMessage += '  Your Nickname \n';
       }
       if (isEmailMissing) {
-        errMessage += 'Your Email \n';
+        errMessage += '  Your Email \n';
       }
       errMessage += '\n';
     }
@@ -169,10 +209,19 @@ class AddQuestionOrAnswer extends React.Component {
             <div>For authentication reasons, you will not be emailed.</div>
             <br />
             {this.props.isQuestionModal ?
-              <div></div> :
+              null :
               <div>
-                <input type='file' onChange={this.onFileChangeHandler} />
-                {/* <button type='button' className='upload-your-photos' onClick={this.clickFileUploadHandler}>Upload Your Photos</button> */}
+                <div className='upload-your-photos-label'><b>Upload Your Photos</b></div>
+                {this.state.photos.map((photo) => (
+                  <img src = {photo} key={photo} className= 'answer-image'/>
+                ))}
+                <br />
+                {this.state.photos.length >= 5 ? null :
+                  <div>
+                    <input type='file' name='answer-upload-photos' className='form-input upload-your-photos' onChange={this.changeFileHandler} multiple />
+                    <button type='button' className='upload-your-photos' onClick={this.clickUploadPhotosHandler}>Upload</button>
+                  </div>
+                }
               </div>}
             <br />
             <button type='button' className='add-question-or-answer-submit' onClick={this.clickSubmitHandler}>{this.props.isQuestionModal ? 'Submit Question' : 'Submit Answer'}</button>
@@ -186,6 +235,3 @@ class AddQuestionOrAnswer extends React.Component {
 
 
 export default AddQuestionOrAnswer;
-
-
-

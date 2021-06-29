@@ -54,7 +54,7 @@ class Answer extends React.Component {
           <div></div><div>|</div><div></div>
           <div>Helpful?</div>
           {this.state.markedAnswerHelpful ? <span>Yes</span> : <a href='#' onClick={this.markAnswerHelpful}>Yes</a>}
-          <div>({this.props.answer.helpfulness})</div>
+          <div>({this.state.markedAnswerHelpful ? this.props.answer.helpfulness + 1 : this.props.answer.helpfulness})</div>
           <div></div><div>|</div><div></div>
           {this.state.reportedAnswer ? <span>Reported</span> : <a href='#' onClick={this.reportAnswer}>Report</a>}
         </div>

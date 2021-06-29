@@ -153,6 +153,10 @@ button.carousel {
   margin-right: 1%;
 }
 
+.upload-your-photos {
+  margin-left: 1%;
+}
+
 .close-modal {
   float: right;
   font-size: x-large;
@@ -200,6 +204,7 @@ button.carousel {
   width: 60px;
   height: 60px;
 }
+
 
 /* REVIEW and RATING CSS */
 
