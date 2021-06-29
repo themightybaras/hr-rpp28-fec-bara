@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'underscore';
 import { GrCheckmark } from 'react-icons/gr';
+import { IconContext } from 'react-icons';
 //import ExampleOutfit from './ExampleData.js';
 
 const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
@@ -96,7 +97,14 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
         {combinedFeatures.map((featureObj, i) => {
           return (
             <div className='relatedModalFeature' key = {i}>
-              <div className='relatedModalCol1'> {featureObj.current ? <GrCheckmark /> : ''}</div>
+              <div className='relatedModalCol1'> {featureObj.current ?
+                <IconContext.Provider value={{ 'color': 'green'}}>
+                  <div>
+                    <GrCheckmark />
+                  </div>
+                </IconContext.Provider> :
+                ''}
+              </div>
               <div className='relatedModalCol2'> {featureObj.feature} </div>
               <div className='relatedModalCol3'> {featureObj.compared ? <GrCheckmark /> : ''} </div>
             </div>

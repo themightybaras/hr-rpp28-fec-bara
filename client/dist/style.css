@@ -10,7 +10,7 @@ body {
 }
 
 .relatedSectionFlex {
-  display: inline-flexbox;
+  display: flexbox;
 }
 
 .relatedCarousel {
@@ -56,7 +56,7 @@ body {
   width: 100%;
   height: 100%;
   max-width: 325px;
-  /* max-height: 350px; */
+  max-height: 300px;
 }
 
 .productImageItem, #addToOutfitIcon {
@@ -70,13 +70,6 @@ body {
   font-size: 125%;
 }
 
-.strikethrough {
-  text-decoration: line-through;
-}
-
-.saleprice {
-  color: red;
-}
 
 .productImageItem {
   position:relative;
@@ -113,8 +106,28 @@ body {
   display: grid;
   grid-template-columns: 25% 50% 25%;
 }
+
+.relatedModalFeature > .relatedModalCol1, .relatedModalCol3 {
+  fill:chartreuse;
+}
 .relatedModalCol1, .relatedModalCol2, .relatedModalCol3 {
   justify-self: center;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.saleprice {
+  color: red;
+}
+
+.productCategory {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.productName {
+  font-style: italic;
 }
 
 /* QUESTIONS & ANSWERS */
