@@ -21,9 +21,9 @@ const Image = ({product, clickHandler, icon, actionHandler}) => {
   if (product.results !== undefined) {
     let defaultProduct = _.where(product.results, { 'default?': true});
     if (defaultProduct.length > 0) {
-      image = defaultProduct[0].photos[0].url;
+      image = defaultProduct[0].photos[0].thumbnail_url;
     } else {
-      image = product.results[0].photos[0].url;
+      image = product.results[0].photos[0].thumbnail_url;
     }
     // image = defaultProduct
     // image = _.where(results, { 'default?': true})[0].photos[0].thumbnail_url;
