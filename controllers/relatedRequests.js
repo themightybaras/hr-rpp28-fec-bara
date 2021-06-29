@@ -4,7 +4,15 @@ const Promise = require('bluebird');
 const shartp = require('sharp');
 const APIKey = require('../config.js');
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+const Cloudinary = require('@cloudinary/base');
+const Fill = require('@cloudinary/base/actions/resize');
+const cloudinaryConfig = require('../config2.js');
 
+cloudinary.config({
+  'cloud_name': cloudinaryConfig.cloudName,
+  'api_key': cloudinaryConfig.APIKey,
+  'api_secret': cloudinaryConfig.APISecret
+});
 // RELATED PRODUCTS
 
 const getRelated = (req, res) => {
@@ -34,6 +42,8 @@ const getRelated = (req, res) => {
               .then((response2) => {
                 // Extend product info with product styles and return
                 console.log('Combined product object:', _.extend(response1.data, response2.data).results);
+                //For each photo url
+                // construct array of promises to transform
                 return _.extend(response1.data, response2.data);
               });
           });

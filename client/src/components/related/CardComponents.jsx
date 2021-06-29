@@ -2,7 +2,17 @@ import React from 'react';
 import _ from 'underscore';
 import { MdStarBorder } from 'react-icons/md';
 import { TiDeleteOutline } from 'react-icons/ti';
+import {AdvancedImage} from '@cloudinary/react';
+import {Cloudinary} from '@cloudinary/base';
+import {fill} from '@cloudinary/base/actions/resize';
+import cloudinaryConfig from '../../../../config2.js';
 
+// const cld = new Cloudinary({
+//   cloud: {
+//     cloudName: cloudinaryConfig.cloudName,
+
+//   }
+// });
 // Individual card components
 const ActionItem = ({product, actionHandler, icon}) => {
 
@@ -28,6 +38,10 @@ const Image = ({product, clickHandler, icon, actionHandler}) => {
     // image = defaultProduct
     // image = _.where(results, { 'default?': true})[0].photos[0].thumbnail_url;
   }
+
+  // cloudinary start
+
+
   return (
     <div className='productImageItem'>
       <img className='relatedImage' src={image} onClick={clickHandler} />
