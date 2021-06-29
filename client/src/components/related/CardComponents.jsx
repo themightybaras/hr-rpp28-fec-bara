@@ -27,7 +27,7 @@ const ActionItem = ({product, actionHandler, icon}) => {
 };
 
 const Image = ({product, clickHandler, icon, actionHandler}) => {
-  let image = 'http://d.ibtimes.co.uk/en/full/429795/13-year-old-norwegian-magnus-carlsen-concentrates-during-match-belarus-player-alexei-fedorov.jpg';
+  let image = 'https://media.istockphoto.com/vectors/photo-coming-soon-image-icon-vector-illustration-isolated-on-white-vector-id1193046540?k=6&m=1193046540&s=170667a&w=0&h=f4NW7AdMrru1TBTUx1NwU6KgEfbf_mT9G4E_ceSMvwg=';
   //if (product.results !== undefined) {
   // let defaultProduct = _.where(product.results, { 'default?': true});
   // if (defaultProduct.length > 0) {

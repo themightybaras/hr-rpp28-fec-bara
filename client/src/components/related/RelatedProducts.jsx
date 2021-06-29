@@ -25,6 +25,7 @@ class RelatedProducts extends React.Component {
 
   getRelatedProducts(id) {
     $.get('/related', {'id': id }, (products) => {
+      console.log(products);
       this.setState({ products, firstCard: 0 });
     });
   }

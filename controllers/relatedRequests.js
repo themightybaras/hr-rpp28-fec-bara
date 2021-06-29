@@ -1,20 +1,19 @@
 const axios = require('axios');
 const _ = require('underscore');
 const Promise = require('bluebird');
-const shartp = require('sharp');
 const APIKey = require('../config.js');
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
-// const Cloudinary = require('@cloudinary/base');
-// const Fill = require('@cloudinary/base/actions/resize');
-const cloudinary = require('cloudinary').v2;
 
-const cloudinaryConfig = require('../config2.js');
+// Helper function to get cropped url
+const cropUrl = (origUrl, newWidth) => {
+  if (!origUrl) {
+    return '';
+  }
+  newWidth = newWidth || '350';
+  return origUrl.split('crop')[0] + `crop&w=${newWidth}&q=80`;
+};
 
-cloudinary.config({
-  'cloud_name': cloudinaryConfig.cloudName,
-  'api_key': cloudinaryConfig.APIKey,
-  'api_secret': cloudinaryConfig.APISecret
-});
+
 // RELATED PRODUCTS
 
 const getRelated = (req, res) => {
@@ -42,35 +41,36 @@ const getRelated = (req, res) => {
               url: `${baseURL}/products/${id}/styles`
             })
               .then((response2) => {
-                // Extend product info with product styles and return
-                let combined = _.extend(response1.data, response2.data);
-                let results = combined.results || [];
-                // Selected style should be default, or first if no default
-                let firstProduct = _.where(results, { 'default?': true});
-                if (firstProduct.length === 0) {
-                  if (results) {
-                    firstProduct = [results[0]];
-                  } else {
-                    firstProduct = [];
-                  }
-                }
-                var oldUrl = '';
-                if (firstProduct[0].photos[0]) {
-                  oldUrl = firstProduct[0].photos[0].url;
-                }
-                shortUrl = oldUrl.split('crop')[0];
-                let newUrl = shortUrl + 'crop&w=350&q=80';
-                console.log('First product photo:', oldUrl);
-                console.log('First product photo:', newUrl);
-                if (firstProduct[0].photos[0]) {
-                  delete firstProduct[0].photos[0].thumbnail_url;
-                  firstProduct[0].photos[0].url = newUrl;
-                }
+                // get review meta data
+                return axios({
+                  method: 'get',
+                  url: `${baseURL}/reviews/meta?product_id=${id}` ///reviews/meta?product_id=22161
+                })
+                  .then((response3) => {
+                    // Extend product info with product styles and return
+                    let combined = _.extend(response1.data, response2.data);
+                    //console.log('response3 ratings', response3.ratings);
+                    combined.ratings = response3.data.ratings;
+                    let results = combined.results || [];
+                    // Selected style should be default, or first if no default
+                    let firstProduct = _.where(results, { 'default?': true});
+                    if (firstProduct.length === 0) {
+                      if (results) {
+                        firstProduct = [results[0]];
+                      } else {
+                        firstProduct = [];
+                      }
+                    }
+                    if (firstProduct[0].photos[0]) {
+                      delete firstProduct[0].photos[0].thumbnail_url;
+                      firstProduct[0].photos[0].url = cropUrl(firstProduct[0].photos[0].url, 350);
+                    }
 
-                combined.results = firstProduct;
-                //For each photo url
-                // construct array of promises to transform
-                return combined;
+                    combined.results = firstProduct;
+                    return combined;
+                    // old end of response 2
+
+                  });
               });
           });
       });
