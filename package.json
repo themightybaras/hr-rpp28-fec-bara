@@ -21,6 +21,8 @@
   "homepage": "https://github.com/themightybaras/hr-rpp28-fec-bara#readme",
   "dependencies": {
     "@babel/runtime": "^7.14.6",
+    "@cloudinary/base": "^1.0.0-beta.3",
+    "@cloudinary/react": "^1.0.0-beta.8",
     "axios": "^0.21.1",
     "babel-jest": "^27.0.2",
     "bluebird": "^3.7.2",
