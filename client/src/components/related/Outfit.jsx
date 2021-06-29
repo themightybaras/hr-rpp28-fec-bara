@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 import ProductCard from './ProductCard.jsx';
 import AddOutfitCard from './AddOutfitCard.jsx';
+import { CarouselButtonRight, CarouselButtonLeft } from './CarouselButton.jsx';
 
 class Outfit extends React.Component {
   constructor(props) {
@@ -47,14 +48,17 @@ class Outfit extends React.Component {
         let newOutfit = this.state.products.filter(product => {
           return product.id !== id;
         });
-        this.setState({ products: newOutfit });
+
+        this.setState(state => (
+          { products: newOutfit, firstCard: state.firstCard > 0 ? state.firstCard - 1 : 0 }
+        ));
       }
     });
   }
 
   // Click handlers for carousel buttons
   rightArrowClick() {
-    if (this.state.firstCard < this.state.products.length - 3) {
+    if (this.state.firstCard < this.state.products.length - 2) {
       this.setState((state) => (
         { firstCard: state.firstCard + 1 }
       ));
@@ -70,19 +74,21 @@ class Outfit extends React.Component {
   }
 
   render() {
-    let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 3);
+    let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 2);
     let currentProductInfo = this.props.currentProductInfo || {id: null};
 
     return (
-      <div >
-        <h4> Your Outfit </h4>
-        <div className = "carousel">
-          {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
-          <AddOutfitCard addToOutfit={this.addToOutfit}/>
-          {displayProducts.map((product, i) => {
-            return <ProductCard key={i} product={product} actionHandler={this.removeFromOutfit} list={'outfit'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} />;
-          })}
-          {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
+      <div className='outfitSection'>
+        <h4 className={'outfitHeader'}> Your Outfit </h4>
+        <div className='relatedSectionFlex'>
+          <div className = "relatedCarousel">
+            <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>
+            <AddOutfitCard addToOutfit={this.addToOutfit}/>
+            {displayProducts.map((product, i) => {
+              return <ProductCard key={i} col={i + 3} product={product} actionHandler={this.removeFromOutfit} list={'outfit'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} icon={'remove'} />;
+            })}
+            <CarouselButtonRight firstCard={this.state.firstCard} outfitLength={this.state.products.length} max={2} rightArrowClick={this.rightArrowClick}/>
+          </div>
         </div>
       </div>
     );

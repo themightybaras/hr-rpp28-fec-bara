@@ -3,34 +3,76 @@ body {
   background: #eee;
 }
 
+/*  RELATED PRODUCTS & OUTFIT */
 
-.relatedImage {
-  width: 100%;
-  height: 100%;
+#relatedWidget {
+  position: relative;
 }
 
-.actionItem {
-  float: right;
+.relatedSectionFlex {
+  display: flexbox;
+}
+
+.relatedCarousel {
+  display: grid;
+  grid-template-columns: 5% 30% 30% 30% 5%;
+  grid-template-rows: auto;
 }
 
 .productcard {
   border: 1px solid black;
-  /* height: fit-content; */
-  /* height: auto; */
-  height: 97%;
-  /* flex-basis: 30%; */
-  width:auto;
-  max-width: 40%;
-  margin: 1%;
+  margin: 5%;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 60% 40%;
 }
 
 .addoutfit {
-  height: 97%;
-  float: left;
-  flex-basis: 20%;
-  width:auto;
-  max-width: 40%;
-  margin: 1%;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  justify-self: center;
+}
+
+.cardcol2 {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  justify-self: center;
+}
+.cardcol3 {
+  grid-column-start: 3;
+  grid-row-start: 1;
+  justify-self: center;
+}
+.cardcol4 {
+  grid-column-start: 4;
+  grid-row-start: 1;
+  justify-self: center;
+}
+
+.relatedCarouselLeft {
+  grid-column-start: 1;
+  justify-self: center;
+}
+
+.relatedCarouselRight {
+  grid-column-start: 5;
+}
+
+.relatedImage {
+  width: 100%;
+  height: 100%;
+  max-width: 325px;
+  max-height: 350px;
+}
+
+.productImageItem, #addToOutfitIcon {
+  grid-row-start: 1;
+  justify-self: center;
+}
+
+.productInfo, #addToOutfitText {
+  grid-row-start: 2;
+  justify-self: center;
 }
 
 .strikethrough {
@@ -41,30 +83,41 @@ body {
   color: red;
 }
 
-/* flex-flow (combo of flex-direction and flex-wrap) */
-.carousel {
-  height: auto;
-  max-height: 20%;
-  display: inline-flex;
-  width: 100%;
-  left: 0;
-  position: relative;
-  justify-content: space-around;
-  overflow: hidden;
-  /* margin: 0 auto; */
+.productImageItem {
+  position:relative;
 }
 
-#relatedWidget {
-  position: relative;
-  height: fit-content;
-  max-height: 5%;
+.cardActionItem {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  background-color: rgb(0, 0, 0, 0);
+  color: goldenrod;
+  font-size: 150%;
 }
 
-button.carousel {
-  border: none;
-  background-color: white;
+#addToOutfitIcon {
+  font-size: 750%;
 }
 
+.modal-related {
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  /* background: rgba(0, 0, 0, 0.6); */
+  background: whitesmoke;
+  border: 1px solid black;
+  justify-content: center;
+  overflow: scroll;
+  z-index: 2;
+}
+
+.relatedModalHeader, .relatedModalFeature {
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+}
 
 /* Questions & Answers */
 
@@ -117,15 +170,6 @@ button.carousel {
   left: 0;
   width:100%;
   height:100%;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.modal-related {
-  position: fixed;
-  top: 25%;
-  left: 25%;
-  width:40%;
-  height:40%;
   background: rgba(0, 0, 0, 0.6);
 }
 

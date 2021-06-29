@@ -23,6 +23,7 @@ class ProductCard extends React.Component {
 
   changeCurrentProduct() {
     this.props.changeCurrentProduct(this.props.product.id);
+    scroll(0, 0);
   }
 
   render() {
@@ -34,21 +35,16 @@ class ProductCard extends React.Component {
     }
 
     return (
-      <div>
-        <div className="productcard" >
-          <ActionItem product={this.props.product} actionHandler={this.clickHandler}/>
-          <br />
-          <div onClick={this.changeCurrentProduct}>
-            <Image product={this.props.product} />
-          </div>
-          <div className="productInfo" onClick={this.changeCurrentProduct}>
-            <p className="productCategory"> {this.props.product.category} </p>
-            <p className="productName"> <strong>{this.props.product.name}</strong></p>
-            <Price product={this.props.product}/>
-            <Review />
-          </div>
+      <div className={`productcard cardcol${this.props.col}`} >
+        {/* <ActionItem product={this.props.product} actionHandler={this.clickHandler} icon={this.props.icon}/> */}
+        <Image product={this.props.product} clickHandler={this.changeCurrentProduct} actionHandler={this.clickHandler} icon={this.props.icon}/>
+        <div className="productInfo" onClick={this.changeCurrentProduct}>
+          <p className="productCategory"> {this.props.product.category} </p>
+          <p className="productName"> <strong>{this.props.product.name}</strong></p>
+          <Price product={this.props.product}/>
+          <Review />
         </div>
-        <RelatedModal modal={this.state.modal} actionHandler={this.clickHandler} currentProductInfo={this.props.currentProductInfo}/>
+        <RelatedModal modal={this.state.modal} actionHandler={this.clickHandler} currentProductInfo={this.props.currentProductInfo} product={this.props.product}/>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import _ from 'underscore';
 import ProductCard from './ProductCard.jsx';
+import { CarouselButtonRight, CarouselButtonLeft } from './CarouselButton.jsx';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
@@ -49,14 +50,16 @@ class RelatedProducts extends React.Component {
     let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 3);
     let currentProductInfo = this.props.currentProductInfo || {id: null};
     return (
-      <div >
-        <h4>Related Products</h4>
-        <div className = "carousel">
-          {this.state.firstCard > 0 ? <button type="button" onClick={this.leftArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Left </button> : ''}
-          {displayProducts.map((product, i) => {
-            return <ProductCard key={i} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} />;
-          })}
-          {this.state.firstCard < this.state.products.length - 3 ? <button type="button" onClick={this.rightArrowClick} style={{backgroundColor: 'white', border: 'none'}}> Right </button> : ''}
+      <div className='relatedSection'>
+        <h4 className='relatedHeader'>Related Products</h4>
+        <div className='relatedSectionFlex'>
+          <div className = "relatedCarousel">
+            <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>
+            {displayProducts.map((product, i) => {
+              return <ProductCard key={i} col={i + 2} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} icon={'star'}/>;
+            })}
+            <CarouselButtonRight firstCard={this.state.firstCard} outfitLength={this.state.products.length} max={3} rightArrowClick={this.rightArrowClick}/>
+          </div>
         </div>
       </div>
     );
