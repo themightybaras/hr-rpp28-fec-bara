@@ -168,12 +168,16 @@ body {
   padding: 5px;
 }
 
-#questions-list {
+#question-list {
   /* the maximum height of the questions list should be capped
   such that the entire Questions & Answers module should fit on a single screen.
   is max-height 70% screensize good enough? */
   max-height: 70vh;
   overflow: auto;
+}
+
+.question-list-buttons {
+  display: inline-block;
 }
 
 #answers-list {

@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'underscore';
 import Question from './Question.jsx';
 import AddQuestionOrAnswer from './AddQuestionOrAnswer.jsx';
+import Track from '../../Track.jsx';
 
 class QuestionList extends React.Component {
   constructor(props) {
@@ -92,7 +93,7 @@ class QuestionList extends React.Component {
         <div>
           {this.state.unfilteredQuestions.length === 0 ? null : <input id='search-questions' type='text' onChange={this.searchQuestions} placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>}
         </div>
-        <div id='questions-list'>
+        <div id='question-list'>
           {this.state.questionsToDisplay.map((element) => (
             <div key={element.question_id}><Question question={element} ccurrentProductId={this.props.currentProductId} currentProductName={this.props.currentProductName} fetchQuestions={this.fetchQuestions} /></div>
           ))}
@@ -100,12 +101,17 @@ class QuestionList extends React.Component {
         <br />
         <div>
           {this.state.showMoreQuestionsButton ?
-            <button type='button' className='more-questions-button' onClick={this.clickMoreQuestionsButtonHandler}>
-              MORE QUESTIONS
-            </button> : null}
-          <button type='button' className='add-question-button' onClick={this.toggleAddQuestionModal}>
-            ADD A QUESTION +
-          </button>
+            <Track>
+              <div widget='Questions Widget' className='question-list-buttons'>
+                <button type='button' className='more-questions-button' onClick={this.clickMoreQuestionsButtonHandler}>MORE QUESTIONS</button>
+              </div>
+            </Track>
+            : null}
+          <Track>
+            <div widget='Questions Widget' className='question-list-buttons'>
+              <button type='button' className='add-question-button' onClick={this.toggleAddQuestionModal}>ADD A QUESTION +</button>
+            </div>
+          </Track>
         </div>
         <AddQuestionOrAnswer
           currentProductId={this.props.currentProductId}

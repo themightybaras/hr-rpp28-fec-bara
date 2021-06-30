@@ -4,7 +4,7 @@ const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 
 const getCurrentProductInfo = (req, res) => {
   axios.defaults.headers.common['Authorization'] = APIKey;
-  // only need features for ocmparison?
+  // only need features for comparison?
   //  product short name and features
   // console.log('app call for current product request body: ', req.body);
   let currentProductId = req.url.split('=')[1];

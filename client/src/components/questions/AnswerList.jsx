@@ -1,7 +1,7 @@
 import React from 'react';
 import Answer from './Answer.jsx';
 import $ from 'jquery';
-import axios from 'axios';
+import Track from '../../Track.jsx';
 
 class AnswerList extends React.Component {
   constructor(props) {
@@ -43,9 +43,12 @@ class AnswerList extends React.Component {
         <br />
         <div>
           {this.state.showMoreAnswersButton ?
-            <button type='button' className='more-answers-button' id={this.props.questionId} onClick={this.clickMoreAnswersButtonHandler}>
-              SEE MORE ANSWERS
-            </button> : null}
+            <Track>
+              <div widget='Questions Widget'>
+                <button type='button' className='more-answers-button' id={this.props.questionId} onClick={this.clickMoreAnswersButtonHandler}>SEE MORE ANSWERS</button>
+              </div>
+            </Track>
+            : null}
         </div>
       </div>
     );

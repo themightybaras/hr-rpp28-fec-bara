@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 import axios from 'axios';
 
 
@@ -15,14 +14,13 @@ class Track extends React.Component {
       element: this.props.children.type
     };
 
-    axios.post('/interactions', clickObject )
+    axios.post('/interactions', clickObject)
       .then((response) => {
         // console.log(response);
       })
       .catch((err) => {
         console.log(err.message);
       });
-
 
   }
 
