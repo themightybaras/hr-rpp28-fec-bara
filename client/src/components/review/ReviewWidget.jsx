@@ -7,6 +7,7 @@ import ReviewList from './ReviewList.jsx';
 import RatingSection from './RatingSection.jsx';
 import SortingForm from './Sorter.jsx';
 import ReviewFormModal from './ReviewFormModal.jsx';
+import Track from '../../Track.jsx';
 
 class ReviewWidget extends React.Component {
   constructor(props) {
@@ -79,7 +80,11 @@ class ReviewWidget extends React.Component {
             </div>
             <div id = 'reviewButtons'>
               {moreReviewsCanDisplay
-                ? <button onClick={this.displayMore} className= 'moreReviewsButton'>MORE REVIEWS</button>
+                ? <Track>
+                  <div widget= {'Review Widget'}>
+                    <button onClick={this.displayMore} className= 'moreReviewsButton'>MORE REVIEWS</button>
+                  </div>
+                </Track>
                 : null
               }
               <button onClick={this.showReviewFormModal} className= 'addReviewButton'> ADD REVIEW +</button>

@@ -67,25 +67,6 @@ class ReviewFormModal extends React.Component {
     });
   }
 
-  // addPhoto(e) {
-  //   const target = e.target;
-  //   const files = target.files;
-  //   console.log(files[0]);
-  //   const fileNames = (files) => {
-  //     const names = [];
-  //     for (var key in files) {
-  //       names.push(files[key].name);
-  //     }
-  //     return names;
-  //   };
-  //   //console.log(fileNames(files));
-  //   const fileCount = files.length;
-  //   //hard coded image'
-  //   // this.setState({
-  //   //   photos: hardCodedURL
-  //   // });
-  // }
-
   render() {
     if (!this.props.show) {
       return null;
