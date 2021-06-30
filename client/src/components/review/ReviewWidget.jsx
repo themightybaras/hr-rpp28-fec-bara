@@ -87,7 +87,11 @@ class ReviewWidget extends React.Component {
                 </Track>
                 : null
               }
-              <button onClick={this.showReviewFormModal} className= 'addReviewButton'> ADD REVIEW +</button>
+              <Track>
+                <div widget = {'Review Widget'}>
+                  <button onClick={this.showReviewFormModal} className= 'addReviewButton'> ADD REVIEW +</button>
+                </div>
+              </Track>
             </div>
             <ReviewFormModal className = 'modal' onClose={this.showReviewFormModal} show={this.state.reviewFormModalShown} currentProductName = {this.state.productName} />
           </div>
