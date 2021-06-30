@@ -21,20 +21,3 @@ const StarRating = (props) => {
 
 export default StarRating;
 
-// const StarRating = styled.div`
-//   background: linear-gradient(90deg, black ${props.rating}%, white ${100 - props.rating}%);
-// `;
-/*.stars {
-  display: inline-block;
-  font-size: var(--star-size);
-  font-family: Times;
-  line-height: 1;
-}
-
-.stars::before {
-  content: "★★★★★";
-  letter-spacing: 3px;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
- */

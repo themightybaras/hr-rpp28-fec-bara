@@ -25,9 +25,9 @@ class RatingBreakdown extends React.Component {
       this.getBarPercentages(this.props.reviewMetaData);
     }
 
-    console.log(this.props.reviewMetaData.ratings);
+    //console.log(this.props.reviewMetaData.ratings);
 
-    console.log(this.state);
+    //console.log(this.state);
   }
 
 
