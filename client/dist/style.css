@@ -362,7 +362,8 @@ hr {
 
 .ratingBar {
   position: relative;
-  height: 20px;
+  background-color: lightgrey;
+  height: 10px;
   width: 200px;
   border: 1px solid black
 }

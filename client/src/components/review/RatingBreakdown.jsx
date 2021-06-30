@@ -1,13 +1,14 @@
 import React from 'react';
 import StarRating from './StarRating.jsx';
 import RatingBar from './RatingBar.jsx';
+import Track from '../../Track.jsx';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     // holds rating percentages fro each num
-      recommendedPercentage: 0,
+      recommendPercentage: 0,
       1: 0,
       2: 0,
       3: 0,
@@ -25,8 +26,6 @@ class RatingBreakdown extends React.Component {
       this.getBarPercentages(this.props.reviewMetaData);
     }
 
-    //console.log(this.props.reviewMetaData.ratings);
-
     //console.log(this.state);
   }
 
@@ -36,7 +35,7 @@ class RatingBreakdown extends React.Component {
     if (recommendObject) {
       var totalReviews = parseInt(recommendObject.false) + parseInt(recommendObject.true);
       var recommendPercentage = parseInt(recommendObject.true) / totalReviews;
-
+      console.log(recommendPercentage);
       this.setState({recommendPercentage: recommendPercentage});
     }
   }
@@ -66,7 +65,12 @@ class RatingBreakdown extends React.Component {
       <div>
         <span id='largeAverageRating'>{this.props.avgRating}</span>
         <StarRating rating = {this.props.avgRating} />
-
+        <Track>
+          <div widget = {'Review Widget'}>
+            <span>{Math.round(this.state.recommendPercentage * 100)}% of reviews recomend this product</span>
+          </div>
+        </Track>
+        <br/>
         <RatingBar clickNum = {5} percentFilled = {this.state[5]}/>
         <RatingBar clickNum = {4} percentFilled = {this.state[4]}/>
         <RatingBar clickNum = {3} percentFilled = {this.state[3]}/>
