@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'underscore';
 import { GrCheckmark } from 'react-icons/gr';
 import { IconContext } from 'react-icons';
+import ClickTracker from '../../ClickTracker.jsx';
 //import ExampleOutfit from './ExampleData.js';
 
 const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
@@ -85,9 +86,11 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
 
   return (
     <div className = {modal ? 'modal-related display-block' : 'modal-related display-none'}>
-      <div className='modalButtonWrapper'>
-        <button className='modalCloseButton' onClick={actionHandler}> Close </button>
-      </div>
+      <ClickTracker>
+        <div className='modalButtonWrapper' widget='related products' type='button'>
+          <button className='modalCloseButton' onClick={actionHandler}> Close </button>
+        </div>
+      </ClickTracker>
       <div className='relatedModalComparison'>
         <div className='relatedModalHeader'>
           <div className='relatedModalCol1'> <strong> {currentProductInfo.name} </strong> </div>
