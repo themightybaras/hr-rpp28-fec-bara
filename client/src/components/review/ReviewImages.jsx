@@ -7,9 +7,9 @@ var ReviewImages = (props) => {
   return (
     <div className = 'reviewImages'>
       {props.photos.map(photo =>
-        <Track key = {photo.id}>
-          <div widget = {'Review Widget'}>
-            <img src = {photo.url} key = {photo.id} className= 'reviewImage'/>
+        <Track key = {photo.id} >
+          <div widget = {'Review Widget'} className= 'flexChild'>
+            <img src = {photo.url} key = {photo.id} className= 'reviewImage felxChild'/>
           </div>
         </Track>
       )}

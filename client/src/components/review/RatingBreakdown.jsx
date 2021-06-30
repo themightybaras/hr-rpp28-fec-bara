@@ -66,6 +66,7 @@ class RatingBreakdown extends React.Component {
       <div>
         <span id='largeAverageRating'>{this.props.avgRating}</span>
         <StarRating rating = {this.props.avgRating} />
+
         <RatingBar clickNum = {5} percentFilled = {this.state[5]}/>
         <RatingBar clickNum = {4} percentFilled = {this.state[4]}/>
         <RatingBar clickNum = {3} percentFilled = {this.state[3]}/>
