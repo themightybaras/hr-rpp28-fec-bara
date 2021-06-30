@@ -3,6 +3,7 @@ import _ from 'underscore';
 import { MdStarBorder } from 'react-icons/md';
 import { TiDeleteOutline } from 'react-icons/ti';
 import StarRating from '../review/StarRating.jsx';
+import ClickTracker from '../../ClickTracker.jsx';
 
 // INDIVIDUAL CARD COMPONENTS
 
@@ -29,9 +30,11 @@ const Image = ({product, clickHandler, icon, actionHandler}) => {
   return (
     <div className='productImageItem'>
       <img className='relatedImage' src={image} onClick={clickHandler} alt={`${product.name} photo`}/>
-      <span className='cardActionItem'>
-        <ActionItem product={product} actionHandler={actionHandler} icon={icon} />
-      </span>
+      <ClickTracker>
+        <span className='cardActionItem' widget='related products' type='icon'>
+          <ActionItem product={product} actionHandler={actionHandler} icon={icon} />
+        </span>
+      </ClickTracker>
     </div>
   );
 };
