@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Track from '../../Track.jsx';
 
 class Answer extends React.Component {
   constructor(props) {
@@ -53,10 +54,20 @@ class Answer extends React.Component {
           </div>
           <div></div><div>|</div><div></div>
           <div>Helpful?</div>
-          {this.state.markedAnswerHelpful ? <span>Yes</span> : <a href='#' onClick={this.markAnswerHelpful}>Yes</a>}
-          <div>({this.props.answer.helpfulness})</div>
+          {this.state.markedAnswerHelpful ? <span>Yes</span> :
+            <Track>
+              <div widget = 'Questions Widget'>
+                <a href='#' onClick={this.markAnswerHelpful}>Yes</a>
+              </div>
+            </Track>}
+          <div>({this.state.markedAnswerHelpful ? this.props.answer.helpfulness + 1 : this.props.answer.helpfulness})</div>
           <div></div><div>|</div><div></div>
-          {this.state.reportedAnswer ? <span>Reported</span> : <a href='#' onClick={this.reportAnswer}>Report</a>}
+          {this.state.reportedAnswer ? <span>Reported</span> :
+            <Track>
+              <div widget = 'Questions Widget'>
+                <a href='#' onClick={this.reportAnswer}>Report</a>
+              </div>
+            </Track>}
         </div>
       </div>
     );

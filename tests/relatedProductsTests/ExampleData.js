@@ -11,6 +11,7 @@ module.exports.withDefault = {
   'updated_at': '2021-03-18T16:09:31.545Z',
   features: [
     { feature: 'Cut', value: '"Loose"' },
+    { feature: 'Cut', value: '"Skinny"'},
     { feature: 'Lifetime Guarantee', value: null }
   ],
   'product_id': '22222',
