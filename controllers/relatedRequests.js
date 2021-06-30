@@ -109,8 +109,6 @@ const addToOutfit = (req, res) => {
 
 const getOutfit = (req, res) => {
   // console.log('getOutfit, request cookie: ', req.cookies.atelier);
-  // let altcookie = req.get('Cookie');
-  // console.log('getOutfit, alt cookie: ', altcookie);
   // console.log('Cookies in related get call, type: ', typeof(req.cookies.atelier));
   // res.clearCookie('atelier');
   // res.end();

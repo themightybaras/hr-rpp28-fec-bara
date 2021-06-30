@@ -41,9 +41,9 @@ class Answer extends React.Component {
         <div className='answer'>{this.props.answer.body}</div>
         <br />
         <div className = 'answer-images'>
-          {/* {this.props.answer.photos.map((photo, index) => (
+          {this.props.answer.photos.map((photo, index) => (
             <img src = {photo} key={`${this.props.answer.id}-${index}`} className= 'answer-image'/>
-          ))} */}
+          ))}
         </div>
         <div id='answer-container-bottom'>
           <div className='answer-by'>by</div>
