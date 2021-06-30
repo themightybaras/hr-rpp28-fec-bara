@@ -25,7 +25,6 @@ class Outfit extends React.Component {
   getOutfit() {
     return axios.get('/outfit')
       .then((results) => {
-        console.log(results.data);
         if (results.data.length > 0) {
           this.setState({ products: results.data, firstCard: 0 });
         }
