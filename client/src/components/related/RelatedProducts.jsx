@@ -12,9 +12,10 @@ class RelatedProducts extends React.Component {
       firstCard: 0
     };
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
-    this.getRelatedProducts(props.currentProductId);
     this.leftArrowClick = this.leftArrowClick.bind(this);
     this.rightArrowClick = this.rightArrowClick.bind(this);
+
+    this.getRelatedProducts(props.currentProductId);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -25,6 +26,7 @@ class RelatedProducts extends React.Component {
 
   getRelatedProducts(id) {
     $.get('/related', {'id': id }, (products) => {
+      console.log(products);
       this.setState({ products, firstCard: 0 });
     });
   }

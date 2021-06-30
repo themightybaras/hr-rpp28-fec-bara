@@ -5,6 +5,7 @@ module.exports.withDefault = {
   name: 'Ernesto Backpack',
   slogan: 'Non corrupti optio.',
   ratings: {1: '2', 2: '3', 4: '1'},
+  'default_price': '389.00',
   description: 'Hic distinctio corrupti amet inventore. Non provident voluptas amet dolorem officia. Aspernatur sed quo nesciunt dolorem ipsum ut repellendus sunt.',
   category: 'Backpack',
   'default_price': '424.00',

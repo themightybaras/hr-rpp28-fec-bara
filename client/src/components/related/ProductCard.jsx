@@ -28,15 +28,8 @@ class ProductCard extends React.Component {
 
   render() {
 
-    let originalPrice = this.props.product.default_price;
-    let salePrice;
-    if (this.props.product.id) {
-      salePrice = this.props.product.results.sale_price;
-    }
-
     return (
       <div className={`productcard cardcol${this.props.col}`} >
-        {/* <ActionItem product={this.props.product} actionHandler={this.clickHandler} icon={this.props.icon}/> */}
         <Image product={this.props.product} clickHandler={this.changeCurrentProduct} actionHandler={this.clickHandler} icon={this.props.icon}/>
         <div className="productInfo" onClick={this.changeCurrentProduct}>
           <p className="productCategory"> {this.props.product.category} </p>
