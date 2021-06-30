@@ -26,7 +26,6 @@ class RelatedProducts extends React.Component {
 
   getRelatedProducts(id) {
     $.get('/related', {'id': id }, (products) => {
-      console.log(products);
       this.setState({ products, firstCard: 0 });
     });
   }
@@ -53,7 +52,7 @@ class RelatedProducts extends React.Component {
     let currentProductInfo = this.props.currentProductInfo || {id: null};
     return (
       <div className='relatedSection'>
-        <h4 className='relatedHeader'>Related Products</h4>
+        <h2 className='relatedHeader'>Related Products</h2>
         <div className='relatedSectionFlex'>
           <div className = "relatedCarousel">
             <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>

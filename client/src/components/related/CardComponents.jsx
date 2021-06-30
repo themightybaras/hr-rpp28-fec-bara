@@ -18,6 +18,7 @@ const ActionItem = ({product, actionHandler, icon}) => {
 };
 
 const Image = ({product, clickHandler, icon, actionHandler}) => {
+
   // Backup image
   let image = 'https://media.istockphoto.com/vectors/photo-coming-soon-image-icon-vector-illustration-isolated-on-white-vector-id1193046540?k=6&m=1193046540&s=170667a&w=0&h=f4NW7AdMrru1TBTUx1NwU6KgEfbf_mT9G4E_ceSMvwg=';
 
@@ -27,7 +28,7 @@ const Image = ({product, clickHandler, icon, actionHandler}) => {
 
   return (
     <div className='productImageItem'>
-      <img className='relatedImage' src={image} onClick={clickHandler} />
+      <img className='relatedImage' src={image} onClick={clickHandler} alt={`${product.name} photo`}/>
       <span className='cardActionItem'>
         <ActionItem product={product} actionHandler={actionHandler} icon={icon} />
       </span>
