@@ -1,5 +1,6 @@
 import React from 'react';
 import StarRating from './StarRating.jsx';
+import RatingBar from './RatingBar.jsx';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -15,13 +16,20 @@ class RatingBreakdown extends React.Component {
     };
 
     this.getRecommendPercentage = this.getRecommendPercentage.bind(this);
-    // this.getBarPercentages = this.getBarPercentages.bind(this);
+    this.getBarPercentages = this.getBarPercentages.bind(this);
   }
 
-  // componentDidUpdate() {
-  //   console.log(this.props);
-  //   this.getRecommendPercentage(this.props.reviewMetaData);
-  // }
+  componentDidUpdate(prevProps) {
+    if (this.props.reviewMetaData.product_id !== prevProps.reviewMetaData.product_id && this.props.reviewMetaData.ratings[1]) {
+      this.getRecommendPercentage(this.props.reviewMetaData);
+      this.getBarPercentages(this.props.reviewMetaData);
+    }
+
+    console.log(this.props.reviewMetaData.ratings);
+
+    console.log(this.state);
+  }
+
 
   getRecommendPercentage(metaDataObject) {
     var recommendObject = metaDataObject.recommended;
@@ -33,26 +41,36 @@ class RatingBreakdown extends React.Component {
     }
   }
 
-  // //function that calculates the percentages for the bars and stores them in state
-  // getBarPercentages(metaDataObject) {
-  //   var ratingsObject = metaDataObject.ratings;
+  //function that calculates the percentages for the bars and stores them in state
+  getBarPercentages(metaDataObject) {
+    var ratingsObject = metaDataObject.ratings;
 
-  //   var totalNumReviews = 0;
-  //   var currentNumRating = 0;
-  //   //itterate over props rating counts
-  //   // get total count of ratings
-  //   // divide each nbumb over total
-  //   var ratingBarPercentage = currentNumRating / totalNumReviews;
-  //   // set state for that num
+    var totalNumReviews = 0;
+    //itterate over props rating counts
+    for ( var key in ratingsObject) {
+      var addNum = parseInt(ratingsObject[key]);
+      totalNumReviews += addNum;
+    }
+    // get total count of ratings
 
-  // }
+    for (var key in ratingsObject) {
+      var currentNumRating = parseInt(ratingsObject[key]);
+      var ratingBarPercentage = currentNumRating / totalNumReviews;
+      this.setState( {[key]: ratingBarPercentage});
+    }
+
+  }
 
   render() {
     return (
       <div>
         <span id='largeAverageRating'>{this.props.avgRating}</span>
         <StarRating rating = {this.props.avgRating} />
-        {/* pass state for individual numbers here new bar component*/}
+        <RatingBar clickNum = {5} percentFilled = {this.state[5]}/>
+        <RatingBar clickNum = {4} percentFilled = {this.state[4]}/>
+        <RatingBar clickNum = {3} percentFilled = {this.state[3]}/>
+        <RatingBar clickNum = {2} percentFilled = {this.state[2]}/>
+        <RatingBar clickNum = {1} percentFilled = {this.state[1]}/>
       </div>
     );
   }
