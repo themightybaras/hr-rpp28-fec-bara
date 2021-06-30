@@ -1,9 +1,10 @@
 import React from 'react';
 import _ from 'underscore';
+import axios from 'axios';
 import { MdStarBorder } from 'react-icons/md';
 import { TiDeleteOutline } from 'react-icons/ti';
 import StarRating from '../review/StarRating.jsx';
-import { ClickTracker, ImageTracker } from '../../ClickTracker.jsx';
+import ClickTracker from '../../ClickTracker.jsx';
 
 // INDIVIDUAL CARD COMPONENTS
 
@@ -29,9 +30,20 @@ const Image = ({product, clickHandler, icon, actionHandler}) => {
 
   let imageClickHandler = () => {
     clickHandler();
-    console.log('Tracking, widget: ', 'related widget');
-    console.log('Tracking, type: ', 'img');
-    //ADD API CALL HERE (AXIOS)
+    let clickObject = {
+      time: new Date (Date.now()),
+      widget: 'related widget',
+      element: 'img'
+    };
+
+    axios.post('/interactions', clickObject )
+      .then((response) => {
+        // console.log(response);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
   };
 
   return (

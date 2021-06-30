@@ -1,12 +1,25 @@
 import React from 'react';
+import axios from 'axios';
 import { GrAdd } from 'react-icons/gr';
 
 const AddOutfitCard = ({addToOutfit}) => {
 
   let addAndTrack = () => {
     addToOutfit();
-    console.log('Tracking, widget: ', 'related widget');
-    console.log('Tracking, type: ', 'div');
+    let clickObject = {
+      time: new Date (Date.now()),
+      widget: 'related widget',
+      element: 'div'
+    };
+
+    axios.post('/interactions', clickObject )
+      .then((response) => {
+        // console.log(response);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
 
   };
 

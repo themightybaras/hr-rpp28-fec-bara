@@ -1,17 +1,5 @@
 import React from 'react';
-
-const ImageTracker = ({widget, type, children, product}) => {
-
-  console.log('Tracking, products: ', product);
-  console.log('Tracking, widget: ', widget);
-  console.log('Tracking, type: ', type);
-
-  return (
-    children
-  );
-
-};
-
+import axios from 'axios';
 
 class ClickTracker extends React.Component {
   constructor(props) {
@@ -21,8 +9,22 @@ class ClickTracker extends React.Component {
   onClick(event) {
 
 
-    console.log('Tracking, widget: ', this.props.widget);
-    console.log('Tracking, type: ', this.props.type);
+    // console.log('Tracking, widget: ', this.props.widget);
+    // console.log('Tracking, type: ', this.props.type);
+    var clickObject = {
+      time: new Date (Date.now()),
+      widget: this.props.widget,
+      element: this.props.type
+    };
+
+    axios.post('/interactions', clickObject )
+      .then((response) => {
+        // console.log(response);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
 
   }
 
@@ -35,6 +37,6 @@ class ClickTracker extends React.Component {
   }
 }
 
-export { ClickTracker, ImageTracker };
+export default ClickTracker;
 
 

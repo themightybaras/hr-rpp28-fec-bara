@@ -1,8 +1,9 @@
 import React from 'react';
 import _ from 'underscore';
+import axios from 'axios';
 import { GrCheckmark } from 'react-icons/gr';
 import { IconContext } from 'react-icons';
-import { ClickTracker } from '../../ClickTracker.jsx';
+import ClickTracker from '../../ClickTracker.jsx';
 //import ExampleOutfit from './ExampleData.js';
 
 const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {

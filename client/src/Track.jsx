@@ -7,21 +7,21 @@ class Track extends React.Component {
 
   onClick(event) {
 
-    console.log('Tracking, widget: ', this.props.widget);
-    console.log('Tracking, type: ', this.props.children.type);
-    // var clickObject = {
-    //   time: new Date (Date.now()),
-    //   widget: this.props.widget,
-    //   element: this.props.children.type
-    // };
+    // console.log('Tracking, widget: ', this.props.widget);
+    // console.log('Tracking, type: ', this.props.children.type);
+    var clickObject = {
+      time: new Date (Date.now()),
+      widget: this.props.widget,
+      element: this.props.children.type
+    };
 
-    // axios.post('/interactions', clickObject )
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.message);
-    //   });
+    axios.post('/interactions', clickObject )
+      .then((response) => {
+        // console.log(response);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
 
 
   }
