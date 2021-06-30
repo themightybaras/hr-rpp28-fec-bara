@@ -19,7 +19,6 @@ const CarouselButtonRight = ({firstCard, outfitLength, max, rightArrowClick}) =>
   return (
     <div className='relatedCarouselRight' onClick={rightArrowClick}>
       <div className={firstCard < outfitLength - max ? 'other' : 'display-none'}>
-        {/* <button type="button" onClick={rightArrowClick} > Right </button> */}
         <GrCaretNext />
       </div>
     </div>
