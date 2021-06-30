@@ -3,7 +3,7 @@ import _ from 'underscore';
 import {ActionItem, Image, Price, Review} from './CardComponents.jsx';
 import RelatedModal from './RelatedModal.jsx';
 import Track from '../../Track.jsx';
-import ClickTracker from '../../ClickTracker.jsx';
+import { ClickTracker } from '../../ClickTracker.jsx';
 
 class ProductCard extends React.Component {
 

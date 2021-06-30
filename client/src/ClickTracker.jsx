@@ -1,8 +1,19 @@
 import React from 'react';
 
+const ImageTracker = ({widget, type, children, product}) => {
+
+  console.log('Tracking, products: ', product);
+  console.log('Tracking, widget: ', widget);
+  console.log('Tracking, type: ', type);
+
+  return (
+    children
+  );
+
+};
 
 
-class Tracker extends React.Component {
+class ClickTracker extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -24,4 +35,6 @@ class Tracker extends React.Component {
   }
 }
 
-export default Tracker;
+export { ClickTracker, ImageTracker };
+
+

@@ -3,7 +3,7 @@ import _ from 'underscore';
 import { MdStarBorder } from 'react-icons/md';
 import { TiDeleteOutline } from 'react-icons/ti';
 import StarRating from '../review/StarRating.jsx';
-import ClickTracker from '../../ClickTracker.jsx';
+import { ClickTracker, ImageTracker } from '../../ClickTracker.jsx';
 
 // INDIVIDUAL CARD COMPONENTS
 
@@ -27,9 +27,16 @@ const Image = ({product, clickHandler, icon, actionHandler}) => {
     image = product.results[0].photos[0].url;
   }
 
+  let imageClickHandler = () => {
+    clickHandler();
+    console.log('Tracking, widget: ', 'related widget');
+    console.log('Tracking, type: ', 'img');
+    //ADD API CALL HERE (AXIOS)
+  };
+
   return (
     <div className='productImageItem'>
-      <img className='relatedImage' src={image} onClick={clickHandler} alt={`${product.name} photo`}/>
+      <img className='relatedImage' src={image} onClick={imageClickHandler} alt={`${product.name} photo`}/>
       <ClickTracker>
         <span className='cardActionItem' widget='related products' type='icon'>
           <ActionItem product={product} actionHandler={actionHandler} icon={icon} />
