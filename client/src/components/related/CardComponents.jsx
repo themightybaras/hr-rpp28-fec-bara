@@ -104,7 +104,9 @@ const Review = ({product}) => {
     );
   } else {
     return (
-      <StarRating rating={finalRating}/>
+      <div className='relatedStars'>
+        <StarRating rating={finalRating}/>
+      </div>
     );
   }
 };
@@ -113,8 +115,8 @@ const ProductCardInfo = ({product, changeCurrentProduct}) => {
 
   return (
     <div className="productInfo" onClick={changeCurrentProduct}>
-      <ClickTracker>
-        <div widget='related products' type='div'>
+      <ClickTracker className = 'productinfotracker'>
+        <div className = 'productinfowrapper' widget='related products' type='div'>
           <p className="productCategory"> {product.category} </p>
           <p className="productName"> <strong>{product.name}</strong></p>
           <Price product={product}/>
