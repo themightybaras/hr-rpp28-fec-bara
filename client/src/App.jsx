@@ -10,7 +10,6 @@ import $ from 'jquery';
 import apiIP from '../../apiIP.js';
 
 
-
 class App extends React.Component {
   constructor (props) {
     super(props);
@@ -80,8 +79,6 @@ class App extends React.Component {
     });
   }
 
-  //
-
   // Click handler for product cards. Should reset current product to clicked product and trigger rerender (and get product info for new current product)
   changeCurrentProduct(id) {
     this.setState({ currentProductId: id });
@@ -93,11 +90,6 @@ class App extends React.Component {
     return (
       <div>
         <h1>MightyBaras Retail</h1>
-        <Track>
-          <button>CLICK</button>
-          <span>Also click</span>
-        </Track>
-
         <div>
           <Track>
             <Overview apiIP={apiIP} productId={this.state.currentProductId} stars={<StarRating rating={this.state.overallProductRating} />} />
