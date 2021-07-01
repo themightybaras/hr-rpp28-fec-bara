@@ -2,6 +2,8 @@ import React from 'react';
 import _ from 'underscore';
 import {ActionItem, Image, Price, Review} from './CardComponents.jsx';
 import RelatedModal from './RelatedModal.jsx';
+import Track from '../../Track.jsx';
+import ClickTracker from '../../ClickTracker.jsx';
 
 class ProductCard extends React.Component {
 
@@ -23,26 +25,23 @@ class ProductCard extends React.Component {
 
   changeCurrentProduct() {
     this.props.changeCurrentProduct(this.props.product.id);
-    scroll(0, 0);
+    // scroll(0, 0);
   }
 
   render() {
 
-    let originalPrice = this.props.product.default_price;
-    let salePrice;
-    if (this.props.product.id) {
-      salePrice = this.props.product.results.sale_price;
-    }
-
     return (
       <div className={`productcard cardcol${this.props.col}`} >
-        {/* <ActionItem product={this.props.product} actionHandler={this.clickHandler} icon={this.props.icon}/> */}
         <Image product={this.props.product} clickHandler={this.changeCurrentProduct} actionHandler={this.clickHandler} icon={this.props.icon}/>
         <div className="productInfo" onClick={this.changeCurrentProduct}>
-          <p className="productCategory"> {this.props.product.category} </p>
-          <p className="productName"> <strong>{this.props.product.name}</strong></p>
-          <Price product={this.props.product}/>
-          <Review />
+          <ClickTracker>
+            <div widget='related products' type='div'>
+              <p className="productCategory"> {this.props.product.category} </p>
+              <p className="productName"> <strong>{this.props.product.name}</strong></p>
+              <Price product={this.props.product}/>
+              <Review product={this.props.product}/>
+            </div>
+          </ClickTracker>
         </div>
         <RelatedModal modal={this.state.modal} actionHandler={this.clickHandler} currentProductInfo={this.props.currentProductInfo} product={this.props.product}/>
       </div>

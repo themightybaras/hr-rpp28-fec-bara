@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import $ from 'jquery';
 import _ from 'underscore';
 import ProductCard from './ProductCard.jsx';
@@ -22,18 +23,24 @@ class Outfit extends React.Component {
   }
 
   getOutfit() {
-    $.get('/outfit', (products) => {
-      if (products.length > 0) {
-        this.setState({ products, firstCard: 0 });
-      }
-    });
+    return axios.get('/outfit')
+      .then((results) => {
+        if (results.data.length > 0) {
+          this.setState({ products: results.data, firstCard: 0 });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   // Click handler for special Outfit card
   addToOutfit() {
     if (!_.findWhere(this.state.products, {id: this.props.currentProductId})) {
-      $.post('/outfit', { 'id': this.props.currentProductId.toString() }, (data) => {
+      return axios.post('/outfit', { 'id': this.props.currentProductId.toString() }).then(() => {
         this.getOutfit();
+      }).catch(err => {
+        console.log(err);
       });
     } else {
       alert('Product already added to your outfit');
@@ -79,7 +86,7 @@ class Outfit extends React.Component {
 
     return (
       <div className='outfitSection'>
-        <h4 className={'outfitHeader'}> Your Outfit </h4>
+        <h3 className={'outfitHeader'}> Your Outfit </h3>
         <div className='relatedSectionFlex'>
           <div className = "relatedCarousel">
             <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>

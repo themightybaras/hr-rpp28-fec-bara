@@ -1,14 +1,16 @@
 import React from 'react';
 import { GrCaretNext, GrCaretPrevious } from 'react-icons/gr';
+import ClickTracker from '../../ClickTracker.jsx';
 
 const CarouselButtonLeft = ({firstCard, leftArrowClick}) => {
 
   return (
     <div className='relatedCarouselLeft' onClick={leftArrowClick}>
-      <div className={firstCard > 0 ? 'other' : 'display-none'}>
-        {/* <button type="button" onClick={leftArrowClick} > Left </button> */}
-        <GrCaretPrevious />
-      </div>
+      <ClickTracker>
+        <div className={firstCard > 0 ? 'other' : 'display-none'} widget='related products' type='button'>
+          <GrCaretPrevious />
+        </div>
+      </ClickTracker>
     </div>
 
   );
@@ -18,10 +20,11 @@ const CarouselButtonRight = ({firstCard, outfitLength, max, rightArrowClick}) =>
 
   return (
     <div className='relatedCarouselRight' onClick={rightArrowClick}>
-      <div className={firstCard < outfitLength - max ? 'other' : 'display-none'}>
-        {/* <button type="button" onClick={rightArrowClick} > Right </button> */}
-        <GrCaretNext />
-      </div>
+      <ClickTracker>
+        <div className={firstCard < outfitLength - max ? 'other' : 'display-none'} widget='related products' type='button'>
+          <GrCaretNext />
+        </div>
+      </ClickTracker>
     </div>
   );
 

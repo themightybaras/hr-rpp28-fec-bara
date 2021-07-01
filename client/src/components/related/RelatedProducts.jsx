@@ -12,9 +12,10 @@ class RelatedProducts extends React.Component {
       firstCard: 0
     };
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
-    this.getRelatedProducts(props.currentProductId);
     this.leftArrowClick = this.leftArrowClick.bind(this);
     this.rightArrowClick = this.rightArrowClick.bind(this);
+
+    this.getRelatedProducts(props.currentProductId);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -51,7 +52,7 @@ class RelatedProducts extends React.Component {
     let currentProductInfo = this.props.currentProductInfo || {id: null};
     return (
       <div className='relatedSection'>
-        <h4 className='relatedHeader'>Related Products</h4>
+        <h2 className='relatedHeader'>Related Products</h2>
         <div className='relatedSectionFlex'>
           <div className = "relatedCarousel">
             <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>
