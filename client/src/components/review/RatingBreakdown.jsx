@@ -35,7 +35,7 @@ class RatingBreakdown extends React.Component {
     if (recommendObject) {
       var totalReviews = parseInt(recommendObject.false) + parseInt(recommendObject.true);
       var recommendPercentage = parseInt(recommendObject.true) / totalReviews;
-      console.log(recommendPercentage);
+      //console.log(recommendPercentage);
       this.setState({recommendPercentage: recommendPercentage});
     }
   }
