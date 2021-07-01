@@ -14,7 +14,6 @@ class ReviewImages extends React.Component {
 
   modifyImageUrl() {
     let photos = [];
-    console.log(this.props.photos);
     this.props.photos.map((photoObj) => {
       photos.push(photoObj.url.slice(0, photoObj.url.indexOf('fit=crop') + 8) + '&w=100&q=80');
     });
