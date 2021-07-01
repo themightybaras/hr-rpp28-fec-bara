@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "bundle": "webpack --watch --mode=development",
-    "bundle-prod": "webpack --mode=production",
+    "bundle-prod": "webpack --watch --mode=production",
     "test": "jest",
     "coverage": "jest --coverage"
   },
