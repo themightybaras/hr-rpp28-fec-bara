@@ -104,9 +104,7 @@ const Review = ({product}) => {
     );
   } else {
     return (
-      <div className='relatedStars'>
-        <StarRating rating={finalRating}/>
-      </div>
+      <StarRating rating={finalRating}/>
     );
   }
 };
