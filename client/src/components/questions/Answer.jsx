@@ -7,10 +7,12 @@ class Answer extends React.Component {
     super(props);
     this.state = {
       markedAnswerHelpful: false,
-      reportedAnswer: false
+      reportedAnswer: false,
+      modifiedImageUrls: []
     };
     this.markAnswerHelpful = this.markAnswerHelpful.bind(this);
     this.reportAnswer = this.reportAnswer.bind(this);
+    this.modifyImageUrl = this.modifyImageUrl.bind(this);
   }
 
   markAnswerHelpful(event) {
@@ -35,6 +37,18 @@ class Answer extends React.Component {
       });
   }
 
+  modifyImageUrl() {
+    let photos = [];
+    this.props.answer.photos.map((element) => {
+      photos.push(element.slice(0, element.indexOf('fit=crop') + 8) + '&w=200&q=80');
+    });
+    this.setState({modifiedImageUrls: photos});
+  }
+
+  componentDidMount() {
+    this.modifyImageUrl();
+  }
+
   render() {
     return (
       <div>
@@ -42,7 +56,7 @@ class Answer extends React.Component {
         <div className='answer'>{this.props.answer.body}</div>
         <br />
         <div className = 'answer-images'>
-          {this.props.answer.photos.map((photo, index) => (
+          {this.state.modifiedImageUrls.map((photo, index) => (
             <img src = {photo} key={`${this.props.answer.id}-${index}`} className= 'answer-image'/>
           ))}
         </div>
