@@ -43,26 +43,53 @@ var IndividualReview = (props) => {
     <div className = "individualReview">
       <br/>
       <StarRating rating ={props.review.rating}></StarRating>
-      <span className="reviewerName"> Verified Purchaser ✓   {props.review.reviewer_name}  </span>
-      <span className = 'reviewDate'>{new Date(props.review.date).toLocaleDateString({}, {timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric'})}</span><br/>
+      <Track>
+        <div widget = {'Review Widget'}>
+          <span className="reviewerName"> Verified Purchaser ✓   {props.review.reviewer_name}  </span>
+        </div>
+      </Track>
+      <Track>
+        <div widget = {'Review Widget'}>
+          <span className = 'reviewDate'>{new Date(props.review.date).toLocaleDateString({}, {timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric'})}</span>
+        </div>
+      </Track>
       <br/>
-      <b>{props.review.summary}</b><br/>
-      <p>{props.review.body}</p><br/>
+      <Track>
+        <div widget = {'Review Widget'}>
+          <b>{props.review.summary}</b>
+        </div>
+      </Track>
+      <Track>
+        <div widget = {'Review Widget'}>
+          <p>{props.review.body}</p>
+        </div>
+      </Track>
       <div>
         {props.review.photos.length
-          ? <ReviewImages photos = {props.review.photos}/>
+          ? <div className = "flex-container" >
+            <ReviewImages photos = {props.review.photos}/>
+          </div>
           : null
         }
       </div>
       <div>
         {props.review.recommend
-          ? <span className= 'recommended'>✓ I recommend this product</span>
+          ? <Track>
+            <div widget = {'Review Widget'}>
+              <span className= 'recommended'>✓ I recommend this product</span>
+            </div>
+          </Track>
           : null
         }
       </div>
       <div>
         {props.review.response
-          ? <p className = 'response'>Response from Seller: {props.review.response}</p>
+          ?
+          <Track>
+            <div widget = {'Review Widget'}>
+              <p className = 'response'>Response from Seller: {props.review.response}</p>
+            </div>
+          </Track>
           : null
         }
       </div>

@@ -376,3 +376,18 @@ body {
 hr {
   border: 1px solid rgb(150, 150, 150);
 }
+
+
+.ratingBar {
+  position: relative;
+  background-color: lightgrey;
+  height: 10px;
+  width: 200px;
+  border: 1px solid black
+}
+
+.filler {
+  background: green;
+  height: 100%;
+  transition: width .2s ease-in;
+}
