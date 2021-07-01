@@ -18,7 +18,22 @@ class App extends React.Component {
       currentProductName: 'Adell 300 Shoes',
       overallProductRating: 0,
       reviewMetaData: {},
-      currentProductInfo: {}
+      currentProductInfo: {
+        id: 22161,
+        campus: 'hr-rpp',
+        name: 'Adell 300 Shoes',
+        slogan: 'Doloribus voluptas impedit est qui voluptates omnis non omnis soluta.',
+        description: 'Ex molestiae maxime atque ullam quod perspiciatis aut corporis. Perspiciatis consectetur soluta quos corrupti error aut qui est provident. Voluptatem cum id totam temporibus velit rem deleniti.',
+        category: 'Shoes',
+        'default_price': '129.00',
+        'created_at': '2021-03-18T16:09:31.545Z',
+        'updated_at': '2021-03-18T16:09:31.545Z',
+        features: [
+          { feature: 'Cut', value: '"Skinny"' },
+          { feature: 'Stitching', value: '"Double Stitch"' },
+          { feature: 'Non-GMO', value: null }
+        ]
+      }
     };
 
     this.getCurrentProductInfo = this.getCurrentProductInfo.bind(this);
