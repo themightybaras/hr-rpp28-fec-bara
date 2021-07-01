@@ -13,7 +13,7 @@ class ReviewWidget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productID: props.currentProductId,
+      // productID: props.currentProductId,
       productName: props.currentProductName,
       productReviews: [],
       numberOfReviews: 0,
@@ -42,7 +42,7 @@ class ReviewWidget extends React.Component {
       url: '/reviews',
       data: {
         // eslint-disable-next-line camelcase
-        product_id: this.state.productID,
+        product_id: this.props.currentProductId,
         sort: this.state.sortBy,
         count: this.state.count
       },
