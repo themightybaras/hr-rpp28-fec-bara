@@ -29,6 +29,7 @@ class ReviewWidget extends React.Component {
     this.showReviewFormModal = this.showReviewFormModal.bind(this);
   }
 
+  //bug fix
   componentDidUpdate(prevProps) {
     if (this.props.currentProductId !== prevProps.currentProductId) {
       this.getProductReviews();
