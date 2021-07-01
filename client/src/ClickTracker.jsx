@@ -8,9 +8,6 @@ class ClickTracker extends React.Component {
 
   onClick(event) {
 
-
-    // console.log('Tracking, widget: ', this.props.widget);
-    // console.log('Tracking, type: ', this.props.type);
     var clickObject = {
       time: new Date (Date.now()),
       widget: this.props.widget,
@@ -24,7 +21,6 @@ class ClickTracker extends React.Component {
       .catch((err) => {
         console.log(err.message);
       });
-
 
   }
 
