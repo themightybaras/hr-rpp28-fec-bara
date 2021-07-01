@@ -5,7 +5,8 @@
   "main": "./client/dist/bundle.js",
   "scripts": {
     "start": "nodemon server.js",
-    "bundle": "webpack --watch",
+    "bundle": "webpack --watch --mode=development",
+    "bundle-prod": "webpack --mode=production",
     "test": "jest",
     "coverage": "jest --coverage"
   },
