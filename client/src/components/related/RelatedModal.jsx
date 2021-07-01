@@ -1,6 +1,9 @@
 import React from 'react';
 import _ from 'underscore';
+import axios from 'axios';
 import { GrCheckmark } from 'react-icons/gr';
+import { IconContext } from 'react-icons';
+import ClickTracker from '../../ClickTracker.jsx';
 //import ExampleOutfit from './ExampleData.js';
 
 const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
@@ -84,21 +87,30 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
 
   return (
     <div className = {modal ? 'modal-related display-block' : 'modal-related display-none'}>
-      <div className='modalButtonWrapper'>
-        <button className='modalCloseButton' onClick={actionHandler}> Close </button>
-      </div>
+      <ClickTracker>
+        <div className='modalButtonWrapper' widget='related products' type='button'>
+          <button className='modalCloseButton' onClick={actionHandler}> Close </button>
+        </div>
+      </ClickTracker>
       <div className='relatedModalComparison'>
         <div className='relatedModalHeader'>
-          <div className='relatedCol1'> <strong> {currentProductInfo.name} </strong> </div>
-          <div className='relatedCol2'> <strong> Characteristic </strong> </div>
-          <div className='relatedCol3'> <strong> {product.name} </strong> </div>
+          <div className='relatedModalCol1'> <strong> {currentProductInfo.name} </strong> </div>
+          <div className='relatedModalCol2'> <strong> Characteristic </strong> </div>
+          <div className='relatedModalCol3'> <strong> {product.name} </strong> </div>
         </div>
         {combinedFeatures.map((featureObj, i) => {
           return (
             <div className='relatedModalFeature' key = {i}>
-              <div className='relatedCol1'> {featureObj.current ? <GrCheckmark /> : ''}</div>
-              <div className='relatedCol2'> {featureObj.feature} </div>
-              <div className='relatedCol3'> {featureObj.compared ? <GrCheckmark /> : ''} </div>
+              <div className='relatedModalCol1'> {featureObj.current ?
+                <IconContext.Provider value={{ 'color': 'green'}}>
+                  <div>
+                    <GrCheckmark />
+                  </div>
+                </IconContext.Provider> :
+                ''}
+              </div>
+              <div className='relatedModalCol2'> {featureObj.feature} </div>
+              <div className='relatedModalCol3'> {featureObj.compared ? <GrCheckmark /> : ''} </div>
             </div>
           );
         })}

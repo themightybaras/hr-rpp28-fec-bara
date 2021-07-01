@@ -1,26 +1,30 @@
 import React from 'react';
 import axios from 'axios';
 
-
-class Track extends React.Component {
+class ClickTracker extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   onClick(event) {
 
+
     // console.log('Tracking, widget: ', this.props.widget);
-    // console.log('Tracking, type: ', this.props.children.type);
+    // console.log('Tracking, type: ', this.props.type);
     var clickObject = {
       time: new Date (Date.now()),
       widget: this.props.widget,
-      element: this.props.children.type
+      element: this.props.type
     };
 
-    axios.post('/interactions', clickObject)
+    axios.post('/interactions', clickObject )
       .then((response) => {
         // console.log(response);
       })
       .catch((err) => {
         console.log(err.message);
       });
+
 
   }
 
@@ -33,4 +37,6 @@ class Track extends React.Component {
   }
 }
 
-export default Track;
+export default ClickTracker;
+
+

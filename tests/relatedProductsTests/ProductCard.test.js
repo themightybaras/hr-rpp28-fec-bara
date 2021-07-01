@@ -14,3 +14,5 @@ test('Product card', () => {
 
   expect(testRelatedProduct.find('.productcard').exists()).toBe(true);
 });
+
+
