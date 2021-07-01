@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentProductId: 22161,
+      currentProductId: 22331,
       currentProductName: 'Adell 300 Shoes',
       overallProductRating: 0,
       reviewMetaData: {},
@@ -69,6 +69,10 @@ class App extends React.Component {
       url: '/reviews/meta?product_id=' + this.state.currentProductId,
       success: (data) => {
         var averageRatings = (ratingsCountsObject) => {
+          if (JSON.stringify(ratingsCountsObject) === JSON.stringify({})) {
+            return 0;
+          }
+
           var totalNumberReviews = 0;
           var sumOfRatings = 0;
 
@@ -80,7 +84,6 @@ class App extends React.Component {
             totalNumberReviews += numberOfCurrentRating;
             sumOfRatings += totalForRating;
           }
-
           return (sumOfRatings / totalNumberReviews);
         };
 
