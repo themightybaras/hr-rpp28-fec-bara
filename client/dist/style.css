@@ -266,7 +266,13 @@ body {
   margin-right: 6px;
 }
 
+.answer-images {
+  margin-left: 15px;
+}
+
 .answer-image {
+  border-radius: 10px;
+  margin: 5px;
   width: 60px;
   height: 60px;
 }

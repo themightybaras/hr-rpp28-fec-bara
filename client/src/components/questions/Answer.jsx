@@ -40,7 +40,7 @@ class Answer extends React.Component {
   modifyImageUrl() {
     let photos = [];
     this.props.answer.photos.map((element) => {
-      photos.push(element.slice(0, element.indexOf('fit=crop') + 8) + '&w=200&q=80');
+      photos.push(element.slice(0, element.indexOf('fit=crop') + 8) + '&w=100&q=80');
     });
     this.setState({modifiedImageUrls: photos});
   }
