@@ -72,11 +72,11 @@ class RatingBreakdown extends React.Component {
               </div>
             </Track>
             <br/>
-            <RatingBar clickNum = {5} percentFilled = {this.state[5]}/>
-            <RatingBar clickNum = {4} percentFilled = {this.state[4]}/>
-            <RatingBar clickNum = {3} percentFilled = {this.state[3]}/>
-            <RatingBar clickNum = {2} percentFilled = {this.state[2]}/>
-            <RatingBar clickNum = {1} percentFilled = {this.state[1]}/>
+            <RatingBar clickNum = {5} percentFilled = {this.state[5]} filterReviews = {this.props.filterReviews}/>
+            <RatingBar clickNum = {4} percentFilled = {this.state[4]} filterReviews = {this.props.filterReviews}/>
+            <RatingBar clickNum = {3} percentFilled = {this.state[3]} filterReviews = {this.props.filterReviews}/>
+            <RatingBar clickNum = {2} percentFilled = {this.state[2]} filterReviews = {this.props.filterReviews}/>
+            <RatingBar clickNum = {1} percentFilled = {this.state[1]} filterReviews = {this.props.filterReviews}/>
           </div>
           : null
         }

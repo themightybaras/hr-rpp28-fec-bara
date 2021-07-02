@@ -15,7 +15,7 @@ class RatingSection extends React.Component {
     return (
       <div>
         <div id="ratingBreakdown">
-          <RatingBreakdown avgRating = {this.props.overallProductRating} reviewMetaData={this.props.reviewMetaData}/>
+          <RatingBreakdown avgRating = {this.props.overallProductRating} reviewMetaData={this.props.reviewMetaData} filterReviews = {this.props.filterReviews} />
         </div>
         <div id="productBreakdown">
           <ProductBreakdown avgRating = {this.props.overallProductRating} reviewMetaData= {this.props.reviewMetaData} />
