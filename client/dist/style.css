@@ -22,10 +22,6 @@
   color: black;
 }
 
-.theme-light a {
-  color: black;
-}
-
 .theme-dark {
   color: white;
   background-color: #181818;
@@ -50,10 +46,6 @@
 
 .theme-dark .more-answers-button {
   background-color: #181818;
-  color: white;
-}
-
-.theme-dark a {
   color: white;
 }
 
@@ -264,6 +256,11 @@ h3 {
 #question-container-right {
   display: flex;
   font-size: small;
+}
+
+.hyperlink {
+  text-decoration: underline;
+  cursor: default;
 }
 
 #question-container-right > div {

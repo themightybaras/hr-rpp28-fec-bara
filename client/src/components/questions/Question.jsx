@@ -53,14 +53,14 @@ class Question extends React.Component {
             {this.state.markedQuestionHelpful ? <span>Yes</span> :
               <Track>
                 <div widget='Questions Widget'>
-                  <a href='#' onClick={this.markQuestionHelpful}>Yes</a>
+                  <div className='hyperlink' onClick={this.markQuestionHelpful}>Yes</div>
                 </div>
               </Track>}
             <div>({this.state.markedQuestionHelpful ? this.props.question.question_helpfulness + 1 : this.props.question.question_helpfulness})</div>
             <div></div><div>|</div><div></div>
             <Track>
               <div widget='Questions Widget'>
-                <a href='#' onClick={this.toggleAddAnswerModal}>Add Answer</a>
+                <div className='hyperlink' onClick={this.toggleAddAnswerModal}>Add Answer</div>
               </div>
             </Track>
           </div>
