@@ -1,8 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
 import axios from 'axios';
-import { GrCheckmark } from 'react-icons/gr';
-import { IconContext } from 'react-icons';
 import ClickTracker from '../../ClickTracker.jsx';
 //import ExampleOutfit from './ExampleData.js';
 
@@ -98,19 +96,13 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
           <div className='relatedModalCol2'> <strong> Characteristic </strong> </div>
           <div className='relatedModalCol3'> <strong> {product.name} </strong> </div>
         </div>
+        <br></br>
         {combinedFeatures.map((featureObj, i) => {
           return (
             <div className='relatedModalFeature' key = {i}>
-              <div className='relatedModalCol1'> {featureObj.current ?
-                <IconContext.Provider value={{ 'color': 'green'}}>
-                  <div>
-                    <GrCheckmark />
-                  </div>
-                </IconContext.Provider> :
-                ''}
-              </div>
+              <div className='relatedModalCol1'> {featureObj.current ? '✓' : ''} </div>
               <div className='relatedModalCol2'> {featureObj.feature} </div>
-              <div className='relatedModalCol3'> {featureObj.compared ? <GrCheckmark /> : ''} </div>
+              <div className='relatedModalCol3'> {featureObj.compared ? '✓' : ''} </div>
             </div>
           );
         })}

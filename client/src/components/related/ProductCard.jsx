@@ -36,14 +36,13 @@ class ProductCard extends React.Component {
       widget: 'related widget',
       element: 'div'
     };
-    console.log(clickObject);
-    // axios.post('/interactions', clickObject )
-    //   .then((response) => {
-    //     // console.log(response);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.message);
-    //   });
+    axios.post('/interactions', clickObject )
+      .then((response) => {
+        // console.log(response);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
 
 
   }

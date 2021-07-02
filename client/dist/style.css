@@ -194,8 +194,8 @@ body {
   grid-template-columns: 25% 50% 25%;
 }
 
-.relatedModalFeature > .relatedModalCol1, .relatedModalCol3 {
-  fill:chartreuse;
+.relatedModalHeader {
+  text-decoration: underline;
 }
 .relatedModalCol1, .relatedModalCol2, .relatedModalCol3 {
   justify-self: center;
