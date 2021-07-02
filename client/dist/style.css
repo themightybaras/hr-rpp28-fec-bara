@@ -71,10 +71,18 @@ body {
   position: relative;
 }
 
-.relatedSection {
+.relatedSection, .outfitSection {
+  position: relative;
   height: 50%;
+  left: 10%;
+  width: 80%;
 }
 
+.relatedHeader, .outfitHeader {
+  position: relative;
+  left: 10%;
+  width: 80%;
+}
 .relatedSectionFlex {
   display: flexbox;
 }
