@@ -6,7 +6,7 @@ var axios = require('axios');
 module.exports = {
   getReviews: function(req, res) {
     axios.defaults.headers.common['Authorization'] = APIKey;
-    console.log('REQUEST URL', req.url);
+    // console.log('REQUEST URL', req.url);
     axios({
       method: 'get',
       url: baseURL + req.url
@@ -23,7 +23,7 @@ module.exports = {
 
     axios.defaults.headers.common['Authorization'] = APIKey;
 
-    console.log('URL', req.url);
+    // console.log('URL', req.url);
 
     axios({
       method: 'get',
