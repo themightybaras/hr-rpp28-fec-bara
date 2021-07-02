@@ -2,7 +2,6 @@ import React from 'react';
 import _ from 'underscore';
 import axios from 'axios';
 import ClickTracker from '../../ClickTracker.jsx';
-//import ExampleOutfit from './ExampleData.js';
 
 const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
 

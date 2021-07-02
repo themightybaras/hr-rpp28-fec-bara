@@ -1,5 +1,4 @@
 import React from 'react';
-import { GrCaretNext, GrCaretPrevious } from 'react-icons/gr';
 import ClickTracker from '../../ClickTracker.jsx';
 
 const CarouselButtonLeft = ({firstCard, leftArrowClick}) => {
