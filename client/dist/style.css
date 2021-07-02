@@ -220,6 +220,10 @@ body {
   grid-row-start: 2;
 }
 
+.carouselButton:hover {
+  color: lavender;
+}
+
 .strikethrough {
   text-decoration: line-through;
 }
