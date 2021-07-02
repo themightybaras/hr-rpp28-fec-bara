@@ -100,7 +100,7 @@ class ReviewWidget extends React.Component {
                 </div>
               </Track>
             </div>
-            <ReviewFormModal className = 'modal' onClose={this.showReviewFormModal} show={this.state.reviewFormModalShown} currentProductName = {this.state.productName} />
+            <ReviewFormModal className = 'modal' onClose={this.showReviewFormModal} show={this.state.reviewFormModalShown} currentProductName = {this.state.productName} getProductReviews = {this.getProductReviews} reviewMetaData = {this.props.reviewMetaData}/>
           </div>
         </div>
       </div>

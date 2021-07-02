@@ -9,7 +9,7 @@ const cloudinaryConfig = require('../config2.js');
 module.exports = {
   getReviews: function(req, res) {
     axios.defaults.headers.common['Authorization'] = APIKey;
-    // console.log('REQUEST URL', req.url);
+
     axios({
       method: 'get',
       url: baseURL + req.url
@@ -41,17 +41,12 @@ module.exports = {
 
   addReview: function(req, res) {
     axios.defaults.headers.common['Authorization'] = APIKey;
-    axios({
-      method: 'post',
-      url: baseURL + '/reviews',
-      //need to add params product-ID, rating, summary, body, reccomend, name, email, photos, characteritics
-      params: {}
-    })
+    axios.post(baseURL + req.url, req.body)
       .then((response) => {
-        res.send(response.data);
+        res.sendStatus(response.status);
       })
       .catch((err) => {
-        res.sendStatus(404);
+        res.status(err.response.status).send(err);
       });
   },
 
@@ -108,7 +103,7 @@ module.exports = {
     };
 
     var promises = [];
-    console.log('REQUEST', req.files);
+
     req.files.map((element) => {
       promises.push(streamUpload(element.buffer));
     });

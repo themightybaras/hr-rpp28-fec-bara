@@ -48,6 +48,7 @@ class ReviewFormModal extends React.Component {
     this.clickUploadPhotosHandler = this.clickUploadPhotosHandler.bind(this);
     this.validateForm = this.validateForm.bind(this);
     this.createErrMsg = this.createErrMsg.bind(this);
+    this.getCharacteristicIds = this.getCharacteristicIds.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -144,7 +145,6 @@ class ReviewFormModal extends React.Component {
     const data = new FormData();
     if (this.state.selectedFiles.length > 0) {
       this.state.selectedFiles.forEach((file) => {
-        //console.log(file);
         data.append('reviewPhoto', file);
       });
     }
@@ -233,14 +233,44 @@ class ReviewFormModal extends React.Component {
     return errMessage;
   }
 
+  getCharacteristicIds() {
+    var characteristicsKeys = Object.keys(this.props.reviewMetaData.characteristics);
+    var characteristicObj = {};
+    for ( var key in characteristicsKeys) {
+      var characteristicName = characteristicsKeys[key];
+      var currentId = this.props.reviewMetaData.characteristics[characteristicName].id;
+      var currentValue = parseInt(this.state[characteristicName.toLowerCase()]);
+      characteristicObj[currentId] = currentValue;
+    }
+    return characteristicObj;
+  }
+
   handleSubmit(e) {
     //validate inputs required
     if (this.validateForm()) {
+      var url = '/reviews';
+      var recommendBoolean = this.state.recommend === 'yes';
+      var characteristicValues = this.getCharacteristicIds();
+      var data = {
+        'product_id': parseInt(this.props.reviewMetaData.product_id),
+        rating: parseInt(this.state.rating),
+        summary: this.state.summary,
+        body: this.state.body,
+        recommend: recommendBoolean,
+        name: this.state.nickname,
+        email: this.state.email,
+        photos: this.state.photos,
+        characteristics: characteristicValues
+      };
       //axios request
-      // if error
-      // iff success
-      //  clear form and close modal
-      //  rerun get all reviews
+      axios.post(url, data)
+        .then(() => {
+          this.closeReviewModal();
+          this.props.getProductReviews();
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     }
   }
 
