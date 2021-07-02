@@ -255,6 +255,7 @@ body {
 .productCard > .stars {
   grid-row-start: 4;
   justify-self: left;
+  font-size: 110%;
 }
 
 
