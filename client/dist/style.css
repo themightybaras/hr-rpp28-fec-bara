@@ -95,7 +95,7 @@ body {
 }
 
 .productcard:hover {
-  border: 1px solid orangered;
+  border: solid orangered;
 }
 
 .addoutfit {
@@ -199,6 +199,10 @@ body {
 }
 .relatedModalCol1, .relatedModalCol2, .relatedModalCol3 {
   justify-self: center;
+}
+
+.carouselButton {
+  font-size: 300%;
 }
 
 .strikethrough {
