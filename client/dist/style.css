@@ -95,7 +95,7 @@ body {
 }
 
 .productcard:hover {
-  border: solid orangered;
+  border: 1px solid orangered;
 }
 
 .addoutfit {
@@ -127,6 +127,12 @@ body {
 
 .relatedCarouselRight {
   grid-column-start: 5;
+}
+
+.relatedCarouselLeft, .relatedCarouselRight {
+  display: grid;
+  grid-template-rows: 1 1 1;
+  grid-template-columns: auto;
 }
 
 .relatedImage {
@@ -203,6 +209,7 @@ body {
 
 .carouselButton {
   font-size: 300%;
+  grid-row-start: 2;
 }
 
 .strikethrough {
