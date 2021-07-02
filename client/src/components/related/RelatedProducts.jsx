@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+import axios from 'axios';
 import _ from 'underscore';
 import ProductCard from './ProductCard.jsx';
 import { CarouselButtonRight, CarouselButtonLeft } from './CarouselButton.jsx';
@@ -25,9 +25,15 @@ class RelatedProducts extends React.Component {
   }
 
   getRelatedProducts(id) {
-    $.get('/related', {'id': id }, (products) => {
-      this.setState({ products, firstCard: 0 });
-    });
+    // $.get('/related', {'id': id }, (products) => {
+    //   this.setState({ products, firstCard: 0 });
+    // });
+    return axios.get('/related', { params: {'id': id }})
+      .then(results => {
+        this.setState({ products: results.data, firstCard: 0 });
+      })
+      .catch(err => console.log(err));
+
   }
 
   // Click handlers for carousel buttons
@@ -48,8 +54,14 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
-    let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 3);
     let currentProductInfo = this.props.currentProductInfo || {id: null};
+    if (this.state.products.length === 0) {
+      return (
+        <div className='relatedSection'>
+          Loading...
+        </div>);
+    }
+    let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 3);
     return (
       <div className='relatedSection'>
         <h3 className='relatedHeader'>RELATED PRODUCTS</h3>
@@ -57,7 +69,7 @@ class RelatedProducts extends React.Component {
           <div className = "relatedCarousel">
             <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>
             {displayProducts.map((product, i) => {
-              return <ProductCard key={i} col={i + 2} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} icon={'star'}/>;
+              return <ProductCard key={product.id} col={i + 2} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} icon={'star'}/>;
             })}
             <CarouselButtonRight firstCard={this.state.firstCard} outfitLength={this.state.products.length} max={3} rightArrowClick={this.rightArrowClick}/>
           </div>

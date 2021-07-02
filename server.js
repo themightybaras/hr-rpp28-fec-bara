@@ -22,5 +22,5 @@ app.use(bodyParser.json());
 app.use('/', router);
 
 app.listen(port, () => {
-  console.log(`Example app listening at port ${port}`);
+  console.log(`Mighty Baras listening at port ${port}`);
 });
