@@ -86,7 +86,7 @@ class Outfit extends React.Component {
 
     return (
       <div className='outfitSection'>
-        <h3 className={'outfitHeader'}> Your Outfit </h3>
+        <h3 className={'outfitHeader'}> YOUR OUTFIT </h3>
         <div className='relatedSectionFlex'>
           <div className = "relatedCarousel">
             <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>

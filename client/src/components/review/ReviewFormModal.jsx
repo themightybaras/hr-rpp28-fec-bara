@@ -74,6 +74,8 @@ class ReviewFormModal extends React.Component {
     return (
       <div className = 'modal' id = 'addReviewContainer'>
         <div className = 'addReviewFormContent'>
+          <br/>
+          <button onClick = {this.props.onClose}> &times; </button>
           <form>
             <h2>Write Your Review </h2>
             <h3> About the {this.props.currentProductName}</h3><br/>
@@ -202,7 +204,6 @@ class ReviewFormModal extends React.Component {
             </div>
             <span>Submit button</span><br/>
           </form>
-          <button onClick = {this.props.onClose}>Close</button>
         </div>
       </div>);
   }

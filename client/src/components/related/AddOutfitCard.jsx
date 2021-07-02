@@ -26,7 +26,7 @@ const AddOutfitCard = ({addToOutfit}) => {
   return (
     <div className="productcard addoutfit" onClick={addAndTrack}>
       <div id='addToOutfitIcon'>
-        <GrAdd />
+      +
       </div>
       <div id='addToOutfitText'>
         Add this product to your outfit!

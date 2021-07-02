@@ -88,8 +88,8 @@ class QuestionList extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>Questions & Answers</h3>
+      <div id = 'questionWidgetContainer'>
+        <h3>QUESTIONS & ANSWERS</h3>
         <div>
           {this.state.unfilteredQuestions.length === 0 ? null : <input id='search-questions' type='text' onChange={this.searchQuestions} placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>}
         </div>
