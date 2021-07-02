@@ -88,38 +88,40 @@ class QuestionList extends React.Component {
 
   render() {
     return (
-      <div id = 'questionWidgetContainer'>
+      <div>
         <h3>QUESTIONS & ANSWERS</h3>
-        <div>
-          {this.state.unfilteredQuestions.length === 0 ? null : <input id='search-questions' type='text' onChange={this.searchQuestions} placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>}
-        </div>
-        <div id='question-list'>
-          {this.state.questionsToDisplay.map((element) => (
-            <div key={element.question_id}><Question question={element} ccurrentProductId={this.props.currentProductId} currentProductName={this.props.currentProductName} fetchQuestions={this.fetchQuestions} /></div>
-          ))}
-        </div>
-        <br />
-        <div>
-          {this.state.showMoreQuestionsButton ?
+        <div id = 'question-widget'>
+          <div>
+            {this.state.unfilteredQuestions.length === 0 ? null : <input id='search-questions' type='text' onChange={this.searchQuestions} placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'></input>}
+          </div>
+          <div id='question-list'>
+            {this.state.questionsToDisplay.map((element) => (
+              <div key={element.question_id}><Question question={element} ccurrentProductId={this.props.currentProductId} currentProductName={this.props.currentProductName} fetchQuestions={this.fetchQuestions} /></div>
+            ))}
+          </div>
+          <br />
+          <div>
+            {this.state.showMoreQuestionsButton ?
+              <Track>
+                <div widget='Questions Widget' className='question-list-buttons'>
+                  <button type='button' className='more-questions-button' onClick={this.clickMoreQuestionsButtonHandler}>MORE QUESTIONS</button>
+                </div>
+              </Track>
+              : null}
             <Track>
               <div widget='Questions Widget' className='question-list-buttons'>
-                <button type='button' className='more-questions-button' onClick={this.clickMoreQuestionsButtonHandler}>MORE QUESTIONS</button>
+                <button type='button' className='add-question-button' onClick={this.toggleAddQuestionModal}>ADD A QUESTION +</button>
               </div>
             </Track>
-            : null}
-          <Track>
-            <div widget='Questions Widget' className='question-list-buttons'>
-              <button type='button' className='add-question-button' onClick={this.toggleAddQuestionModal}>ADD A QUESTION +</button>
-            </div>
-          </Track>
+          </div>
+          <AddQuestionOrAnswer
+            currentProductId={this.props.currentProductId}
+            currentProductName={this.props.currentProductName}
+            addModalOpen={this.state.addQuestionModalOpen}
+            toggleAddModal={this.toggleAddQuestionModal}
+            fetchQuestions={this.fetchQuestions}
+            isQuestionModal={true} />
         </div>
-        <AddQuestionOrAnswer
-          currentProductId={this.props.currentProductId}
-          currentProductName={this.props.currentProductName}
-          addModalOpen={this.state.addQuestionModalOpen}
-          toggleAddModal={this.toggleAddQuestionModal}
-          fetchQuestions={this.fetchQuestions}
-          isQuestionModal={true} />
       </div>
     );
   }
