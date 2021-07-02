@@ -54,8 +54,12 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
-    let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 3);
     let currentProductInfo = this.props.currentProductInfo || {id: null};
+    if (this.state.products.length === 0) {
+      return 'Loading...';
+    }
+    let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 3);
+    console.log('displayProducts', displayProducts);
     return (
       <div className='relatedSection'>
         <h3 className='relatedHeader'>RELATED PRODUCTS</h3>
@@ -63,7 +67,7 @@ class RelatedProducts extends React.Component {
           <div className = "relatedCarousel">
             <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>
             {displayProducts.map((product, i) => {
-              return <ProductCard key={i} col={i + 2} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} icon={'star'}/>;
+              return <ProductCard key={product.id} col={i + 2} product={product} list={'related'} changeCurrentProduct={this.props.changeCurrentProduct} currentProductInfo={currentProductInfo} icon={'star'}/>;
             })}
             <CarouselButtonRight firstCard={this.state.firstCard} outfitLength={this.state.products.length} max={3} rightArrowClick={this.rightArrowClick}/>
           </div>

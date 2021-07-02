@@ -6,7 +6,7 @@ import { TiDeleteOutline } from 'react-icons/ti';
 import StarRating from '../review/StarRating.jsx';
 import ClickTracker from '../../ClickTracker.jsx';
 
-// INDIVIDUAL CARD COMPONENTS
+// Product card image section
 
 const ActionItem = ({product, actionHandler, icon}) => {
 
@@ -57,6 +57,8 @@ const Image = ({product, clickHandler, icon, actionHandler}) => {
     </div>
   );
 };
+
+// Product card info section
 
 const Price = ({product}) => {
 
@@ -109,4 +111,16 @@ const Review = ({product}) => {
   }
 };
 
-export { ActionItem, Image, Price, Review };
+const ProductCardInfo = ({product, changeAndTrack}) => {
+
+  return (
+    <div className="productInfo" onClick={changeAndTrack}>
+      <p className="productCategory"> {product.category} </p>
+      <p className="productName"> <strong>{product.name}</strong></p>
+      <Price product={product}/>
+      <Review product={product}/>
+    </div>
+  );
+};
+
+export { Image, ProductCardInfo, ActionItem, Review, Price };
