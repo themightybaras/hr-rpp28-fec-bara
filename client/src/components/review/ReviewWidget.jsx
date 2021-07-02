@@ -14,7 +14,7 @@ class ReviewWidget extends React.Component {
     super(props);
     this.state = {
       // productID: props.currentProductId,
-      productName: props.currentProductName,
+      //productName: props.currentProductName,
       productReviews: [],
       numberOfReviews: 0,
       displayXReviews: 2,
@@ -100,7 +100,7 @@ class ReviewWidget extends React.Component {
                 </div>
               </Track>
             </div>
-            <ReviewFormModal className = 'modal' onClose={this.showReviewFormModal} show={this.state.reviewFormModalShown} currentProductName = {this.state.productName} getProductReviews = {this.getProductReviews} reviewMetaData = {this.props.reviewMetaData}/>
+            <ReviewFormModal className = 'modal' onClose={this.showReviewFormModal} show={this.state.reviewFormModalShown} currentProductName = {this.props.currentProductName} getProductReviews = {this.getProductReviews} reviewMetaData = {this.props.reviewMetaData}/>
           </div>
         </div>
       </div>
