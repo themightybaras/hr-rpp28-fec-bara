@@ -46,7 +46,9 @@ class ReviewFormModal extends React.Component {
     this.changeFileHandler = this.changeFileHandler.bind(this);
     this.imageUpload = this.imageUpload.bind(this);
     this.clickUploadPhotosHandler = this.clickUploadPhotosHandler.bind(this);
-    // this.addPhoto = this.addPhoto.bind(this);
+    this.validateForm = this.validateForm.bind(this);
+    this.createErrMsg = this.createErrMsg.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   //when selection is made, changes state
@@ -105,9 +107,9 @@ class ReviewFormModal extends React.Component {
       nicknameCharacterCount: 0,
       email: undefined,
       emailCharacterCount: 0});
+
     this.props.onClose();
   }
-
 
 
   //when user picks files, sets selected files state
@@ -153,7 +155,9 @@ class ReviewFormModal extends React.Component {
       }
     })
       .then((response) => {
-        this.setState({photos: [...this.state.photos, ...response.data]});
+        this.setState({photos: [...this.state.photos, ...response.data]}, () => {
+          console.log(this.state.photos);
+        });
         this.setState({selectedFiles: null});
       })
       .catch(() => {
@@ -161,6 +165,84 @@ class ReviewFormModal extends React.Component {
       });
   }
 
+
+  validateForm() {
+    var overallRatingMissing = this.state.rating === 0;
+    var recommendationMissing = this.state.recommend === 'unanswered';
+    var sizeMissing = this.state.size === 0;
+    var widthMissing = this.state.width === 0;
+    var comfortMissing = this.state.comfort === 0;
+    var qualityMissing = this.state.quality === 0;
+    var lengthMissing = this.state.length === 0;
+    var fitMissing = this.state.fit === 0;
+    var reviewBodyIssue = (this.state.body === undefined) || (this.state.body.length < 50) || (this.state.body.length > 1000);
+    var photoIssue = this.state.selectedFiles !== [] && this.state.photos.length === 0;
+    var emailIssue = this.state.email === undefined || (this.state.email.indexOf('@') === -1 || this.state.email.indexOf('.') === -1);
+
+    var errMessage = this.createErrMsg(overallRatingMissing, recommendationMissing, sizeMissing, widthMissing, comfortMissing, qualityMissing, lengthMissing, fitMissing, reviewBodyIssue, photoIssue, emailIssue);
+
+    if (errMessage !== '') {
+      alert(errMessage);
+      return false;
+    }
+
+    return true;
+  }
+
+  createErrMsg(overallRatingMissing, recommendationMissing, sizeMissing, widthMissing, comfortMissing, qualityMissing, lengthMissing, fitMissing, reviewBodyIssue, photoIssue, emailIssue) {
+    var errMessage = '';
+    if (overallRatingMissing || recommendationMissing || sizeMissing || widthMissing || comfortMissing || qualityMissing || lengthMissing || fitMissing || reviewBodyIssue || photoIssue || emailIssue) {
+
+      errMessage += 'You must correct the following:\n\n';
+
+      if (overallRatingMissing) {
+        errMessage += '  Your Overall Rating \n';
+      }
+      if (recommendationMissing) {
+        errMessage += '  Your Recomendation \n';
+      }
+      if (sizeMissing) {
+        errMessage += '  Your Size Rating \n';
+      }
+      if (widthMissing) {
+        errMessage += '  Your Width Rating \n';
+      }
+      if (comfortMissing) {
+        errMessage += '  Your Comfort Rating \n';
+      }
+      if (qualityMissing) {
+        errMessage += '  Your Quality Rating \n';
+      }
+      if (lengthMissing) {
+        errMessage += '  Your Length Rating \n';
+      }
+      if (fitMissing) {
+        errMessage += '  Your Fit Rating \n';
+      }
+      if (reviewBodyIssue) {
+        errMessage += '  Your Review Body \n';
+      }
+      if (photoIssue) {
+        errMessage += '  Your Photo Uploads \n';
+      }
+      if (emailIssue) {
+        errMessage += '  Your Email \n';
+      }
+      errMessage += '\n';
+    }
+    return errMessage;
+  }
+
+  handleSubmit(e) {
+    //validate inputs required
+    if (this.validateForm()) {
+      //axios request
+      // if error
+      // iff success
+      //  clear form and close modal
+      //  rerun get all reviews
+    }
+  }
 
   render() {
     if (!this.props.show) {
@@ -311,8 +393,7 @@ class ReviewFormModal extends React.Component {
               <span className='disclaimer'>For authentication reasons, you will not be emailed</span><br/>
               <br/>
             </div>
-            {/* NEED TO POST REQUEST AND THEN CLEAR FORM */}
-            <input type="submit" value='Submit Review'/>
+            <button onClick = {this.handleSubmit}>Submit Review</button>
           </form>
         </div>
       </div>);
