@@ -1,6 +1,68 @@
+
+.theme-light {
+  color:black;
+  background-color: white;
+  /* display: flex;
+  justify-content: center; */
+}
+
+.theme-light .add-form-container, .theme-light .modal-related, .theme-light .addReviewFormContent {
+  color: black;
+  background-color: white;
+}
+
+.theme-dark {
+  color: white;
+  background-color: #181818;
+}
+
+.theme-dark button {
+  color:white;
+  background-color: #181818;
+  border: solid white
+}
+
+.theme-dark .productcard {
+  border: solid white;
+}
+
+.theme-dark #search-questions {
+  background-color:#181818;
+  border: solid white;
+}
+
+.theme-dark a {
+  color: white;
+}
+
+.theme-dark .add-form-container, .addReviewFormContent, .modal-related{
+  color: white;
+  background-color: rgb(88, 88, 88);
+}
+
+
+
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #eee;
+}
+
+
+#pageHead {
+  display: flex;
+}
+
+#pageTitle {
+  justify-self: center;
+  margin-left: 100px;
+  width: 80%;
+}
+
+#themebutton {
+  display: flex;
+  justify-self: right;
+  height: 20%;
+  margin-top: 20px;
+  margin-right: 100px;
 }
 
 /*  RELATED PRODUCTS & OUTFIT */
@@ -109,7 +171,7 @@ body {
   width: 50%;
   height: 50%;
   /* background: rgba(0, 0, 0, 0.6); */
-  background: whitesmoke;
+  /* background: whitesmoke; */
   border: 1px solid black;
   justify-content: center;
   overflow: scroll;
@@ -204,7 +266,7 @@ body {
 
 .add-form-container {
   position:fixed;
-  background: white;
+  /* background: white; */
   width: 80%;
   height: auto;
   top:20%;
@@ -248,6 +310,11 @@ body {
   display: flex;
 }
 
+/* #questionWidgetContainer {
+  display: flex;
+  justify-content: center;
+} */
+
 #question-container > .question {
   margin-right: auto;
   font-size: large;
@@ -255,7 +322,6 @@ body {
 
 #question-container-right {
   display: flex;
-  color: black;
   font-size: small;
 }
 
@@ -355,7 +421,7 @@ body {
 
 .addReviewFormContent {
   position:fixed;
-  background: white;
+  /* background: white; */
   width: 80%;
   height: auto;
   top:20%;
@@ -364,7 +430,6 @@ body {
   overflow-y: scroll;
   padding: 0 20px;
 }
-
 
 #ratingSelection {
   font-size: xx-large;
@@ -389,7 +454,6 @@ body {
 hr {
   border: 1px solid rgb(150, 150, 150);
 }
-
 
 .ratingBar {
   position: relative;
@@ -418,7 +482,6 @@ hr {
   background: #d3d3d3; /* Grey background */
 }
 
-
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
@@ -426,6 +489,6 @@ hr {
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 10px solid black;
+  border-top: 10px solid green;
 }
 

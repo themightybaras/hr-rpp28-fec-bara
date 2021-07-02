@@ -89,7 +89,7 @@ const RelatedModal = ({modal, product, actionHandler, currentProductInfo}) => {
     <div className = {modal ? 'modal-related display-block' : 'modal-related display-none'}>
       <ClickTracker>
         <div className='modalButtonWrapper' widget='related products' type='button'>
-          <button className='modalCloseButton' onClick={actionHandler}> Close </button>
+          <button className='modalCloseButton' onClick={actionHandler}> &times; </button>
         </div>
       </ClickTracker>
       <div className='relatedModalComparison'>

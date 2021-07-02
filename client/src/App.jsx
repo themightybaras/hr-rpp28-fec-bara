@@ -14,6 +14,7 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      darkTheme: false,
       currentProductId: 22161,
       currentProductName: 'Adell 300 Shoes',
       overallProductRating: 0,
@@ -39,6 +40,7 @@ class App extends React.Component {
     this.getCurrentProductInfo = this.getCurrentProductInfo.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.getReviewMetaData = this.getReviewMetaData.bind(this);
+    this.changeTheme = this.changeTheme.bind(this);
     // this.averageRatings = this.averageRatings.bind(this);
 
     this.getCurrentProductInfo();
@@ -100,14 +102,25 @@ class App extends React.Component {
   // Click handler for product cards. Should reset current product to clicked product and trigger rerender (and get product info for new current product)
   changeCurrentProduct(id) {
     this.setState({ currentProductId: id });
-    console.log('App product ID: ', this.state.currentProductId);
+    //console.log('App product ID: ', this.state.currentProductId);
+  }
+
+  changeTheme(e) {
+    this.setState(state => ({
+      darkTheme: !this.state.darkTheme
+    }), () => {
+      console.log(this.state.darkTheme);
+    });
   }
 
 
   render() {
     return (
-      <div>
-        <h1>MightyBaras Retail</h1>
+      <div className = {this.state.darkTheme ? 'theme-dark' : 'theme-light'}>
+        <div id='pageHead'>
+          <h1 id= 'pageTitle'>MightyBaras 🦆 Retail</h1>
+          <button id='themebutton' onClick={this.changeTheme}>{this.state.darkTheme ? 'Light Mode ☀' : 'Dark Mode ☽︎'}</button>
+        </div>
         <div>
           <Overview apiIP={apiIP} productId={this.state.currentProductId} stars={<StarRating rating={this.state.overallProductRating} />} />
           <RelatedOutfit currentProductId = {this.state.currentProductId} currentProductInfo = {this.state.currentProductInfo} changeCurrentProduct={this.changeCurrentProduct}/>

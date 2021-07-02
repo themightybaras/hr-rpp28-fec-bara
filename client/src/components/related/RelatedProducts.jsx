@@ -52,7 +52,7 @@ class RelatedProducts extends React.Component {
     let currentProductInfo = this.props.currentProductInfo || {id: null};
     return (
       <div className='relatedSection'>
-        <h2 className='relatedHeader'>Related Products</h2>
+        <h3 className='relatedHeader'>RELATED PRODUCTS</h3>
         <div className='relatedSectionFlex'>
           <div className = "relatedCarousel">
             <CarouselButtonLeft firstCard={this.state.firstCard} leftArrowClick={this.leftArrowClick}/>
