@@ -1,6 +1,8 @@
 import React from 'react';
 import ClickableStarRating from './ClickableStarRating.jsx';
-
+import axios from 'axios';
+import $ from 'jquery';
+import Track from '../../Track.jsx';
 
 class ReviewFormModal extends React.Component {
 
@@ -29,7 +31,8 @@ class ReviewFormModal extends React.Component {
       summaryCharacterCount: 0,
       body: undefined,
       bodyCharacterCount: 0,
-      // photos: [],
+      selectedFiles: null,
+      photos: [],
       nickname: undefined,
       nicknameCharacterCount: 0,
       email: undefined,
@@ -39,10 +42,14 @@ class ReviewFormModal extends React.Component {
 
     this.formInputSelectionChange = this.formInputSelectionChange.bind(this);
     this.formTextChange = this.formTextChange.bind(this);
+    this.closeReviewModal = this.closeReviewModal.bind(this);
+    this.changeFileHandler = this.changeFileHandler.bind(this);
+    this.imageUpload = this.imageUpload.bind(this);
+    this.clickUploadPhotosHandler = this.clickUploadPhotosHandler.bind(this);
     // this.addPhoto = this.addPhoto.bind(this);
   }
 
-
+  //when selection is made, changes state
   formInputSelectionChange(e) {
     const target = e.target;
     const value = target.value; // number value
@@ -55,6 +62,7 @@ class ReviewFormModal extends React.Component {
     });
   }
 
+  //when input text is changes, changes state
   formTextChange(e) {
     const target = e.target;
     const value = target.value; // what is entered into the field
@@ -67,6 +75,93 @@ class ReviewFormModal extends React.Component {
     });
   }
 
+  // reverses state and closes modal window
+  closeReviewModal() {
+    event.preventDefault();
+    this.setState({ rating: 0,
+      ratingDisplayValue: null,
+      recommend: 'unanswered',
+      recommendDisplayValue: null,
+      //characteristics
+      size: 0,
+      sizeDisplayValue: 'none selected',
+      width: 0,
+      widthDisplayValue: 'none selected',
+      comfort: 0,
+      comfortDisplayValue: 'none selected',
+      quality: 0,
+      qualityDisplayValue: 'none selected',
+      length: 0,
+      lengthDisplayValue: 'none selected',
+      fit: 0,
+      fitDisplayValue: 'none selected',
+      summary: undefined,
+      summaryCharacterCount: 0,
+      body: undefined,
+      bodyCharacterCount: 0,
+      selectedFiles: [],
+      photos: [],
+      nickname: undefined,
+      nicknameCharacterCount: 0,
+      email: undefined,
+      emailCharacterCount: 0});
+    this.props.onClose();
+  }
+
+
+
+  //when user picks files, sets selected files state
+  changeFileHandler(event) {
+    event.preventDefault();
+    let files = [];
+    for (let i = 0; i < event.target.files.length; i++) {
+      files.push(event.target.files[i]);
+    }
+    this.setState({selectedFiles: files});
+  }
+
+  clickUploadPhotosHandler(event) {
+    event.preventDefault();
+    let formId = document.querySelector('#addReviewForm');
+    let formInput = formId.getElementsByClassName('form-input');
+    if (formInput['review-upload-photos']) {
+      let imageFileInfo = formInput['review-upload-photos'].files;
+      if (imageFileInfo) {
+        //this.imageUpload();
+        try {
+          this.imageUpload();
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    }
+  }
+
+  //makes call to cloudinary and sets photo urls in state
+  imageUpload() {
+    const data = new FormData();
+    if (this.state.selectedFiles.length > 0) {
+      this.state.selectedFiles.forEach((file) => {
+        //console.log(file);
+        data.append('reviewPhoto', file);
+      });
+    }
+
+    axios.post('/reviews/photos', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then((response) => {
+        this.setState({photos: [...this.state.photos, ...response.data]});
+        this.setState({selectedFiles: null});
+      })
+      .catch(() => {
+        console.log('ERROR: Image Upload Failed!');
+      });
+  }
+
+
   render() {
     if (!this.props.show) {
       return null;
@@ -75,15 +170,15 @@ class ReviewFormModal extends React.Component {
       <div className = 'modal' id = 'addReviewContainer'>
         <div className = 'addReviewFormContent'>
           <br/>
-          <button onClick = {this.props.onClose}> &times; </button>
-          <form>
+          <button onClick = {this.closeReviewModal}> &times; </button>
+          <form id = 'addReviewForm'>
             <h2>Write Your Review </h2>
             <h3> About the {this.props.currentProductName}</h3><br/>
             <div>
               <h4>Rate the product:</h4><br/>
               <ClickableStarRating collectRating = {this.formInputSelectionChange}/><br/>
               {this.state.ratingDisplayValue
-                ? <span id='ratingSelection'>{this.state.ratingDisplayValue}</span>
+                ? <span id='ratingSelection' >{this.state.ratingDisplayValue}</span>
                 : null
               }
               <br/>
@@ -185,11 +280,25 @@ class ReviewFormModal extends React.Component {
             </div>
             <br/>
             <div id= 'addReviewImagesContainer'>
-              {/* {this.state.photos
-                ? <img src = {this.state.photos} />
-                : null
-              } */}
-              <input type='file' value='' multiple onChange = {this.addPhoto}/><br/>
+              <div className='upload-your-photos-label'><b>Upload Your Photos</b></div>
+              {this.state.photos.map((photo) => (
+                <img src = {photo} key={photo} className= 'form-input addReview-image'/>
+              ))}
+              <br />
+              {this.state.photos.length >= 5 ? null :
+                <div>
+                  <Track>
+                    <div widget='Review Widget'>
+                      <input type='file' name='review-upload-photos' className='form-input upload-your-photos' onChange={this.changeFileHandler} multiple />
+                    </div>
+                  </Track>
+                  <Track>
+                    <div widget = 'Review Widget'>
+                      <button type='button' className='upload-your-photos' onClick={this.imageUpload}>Upload</button>
+                    </div>
+                  </Track>
+                </div>
+              }
             </div>
             <br/>
             <div id= 'contactInputsContainer'>
@@ -202,7 +311,8 @@ class ReviewFormModal extends React.Component {
               <span className='disclaimer'>For authentication reasons, you will not be emailed</span><br/>
               <br/>
             </div>
-            <span>Submit button</span><br/>
+            {/* NEED TO POST REQUEST AND THEN CLEAR FORM */}
+            <input type="submit" value='Submit Review'/>
           </form>
         </div>
       </div>);

@@ -95,6 +95,7 @@ const postPhotos = (req, res) => {
   };
 
   var promises = [];
+  // console.log("REQUEST QUESTION", req.files);
   req.files.map((element) => {
     promises.push(streamUpload(element.buffer));
   });

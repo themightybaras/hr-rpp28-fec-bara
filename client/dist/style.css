@@ -422,7 +422,7 @@ body {
   background-color: #ebebeb ;
 }
 
-.reviewImage {
+.reviewImage, .addReview-image {
     border-radius: 10px;
     padding: 5px;
     width: 15%;
