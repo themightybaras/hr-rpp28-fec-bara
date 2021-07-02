@@ -7,7 +7,9 @@ const RelatedOutfit = ({currentProductId, currentProductInfo, changeCurrentProdu
   return (
     <div id='relatedWidget'>
       <RelatedProducts currentProductId={currentProductId} currentProductInfo={currentProductInfo} changeCurrentProduct={changeCurrentProduct}/>
+      <br></br>
       <Outfit currentProductId={currentProductId} changeCurrentProduct={changeCurrentProduct}/>
+      <br></br>
     </div>
   );
 };

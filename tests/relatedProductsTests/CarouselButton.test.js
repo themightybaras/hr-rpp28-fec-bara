@@ -15,7 +15,7 @@ test('Should render left carousel button when carousel has been shifted right', 
     <CarouselButtonLeft firstCard={0} leftArrowClick={()=>{}}/>
   );
 
-  expect(leftButton.find('.other').exists()).toBe(true);
+  expect(leftButton.find('.carouselButton').exists()).toBe(true);
   expect(noButton.find('.other').exists()).toBe(false);
 });
 
@@ -28,6 +28,6 @@ test('Should render right carousel button when there are additional products to 
     <CarouselButtonRight firstCard={0} rightArrowClick={()=>{}} max={3} outfitLength={2}/>
   );
 
-  expect(rightButton.find('.other').exists()).toBe(true);
+  expect(rightButton.find('.carouselButton').exists()).toBe(true);
   expect(noButton.find('.other').exists()).toBe(false);
 });
