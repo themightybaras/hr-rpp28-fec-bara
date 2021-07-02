@@ -14,6 +14,7 @@ class ProductCard extends React.Component {
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
+    this.changeAndTrack = this.changeAndTrack.bind(this);
     this.clickHandler = this.props.list === 'outfit' ? this.props.actionHandler : this.toggleModal;
   }
 
@@ -28,12 +29,31 @@ class ProductCard extends React.Component {
     // scroll(0, 0);
   }
 
+  changeAndTrack () {
+    this.changeCurrentProduct();
+    let clickObject = {
+      time: new Date (Date.now()),
+      widget: 'related widget',
+      element: 'div'
+    };
+    console.log(clickObject);
+    // axios.post('/interactions', clickObject )
+    //   .then((response) => {
+    //     // console.log(response);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.message);
+    //   });
+
+
+  }
+
   render() {
 
     return (
       <div className={`productcard cardcol${this.props.col}`} >
         <Image product={this.props.product} clickHandler={this.changeCurrentProduct} actionHandler={this.clickHandler} icon={this.props.icon}/>
-        <div className="productInfo" onClick={this.changeCurrentProduct}>
+        <div className="productInfo" onClick={this.changeAndTrack}>
           <p className="productCategory"> {this.props.product.category} </p>
           <p className="productName"> <strong>{this.props.product.name}</strong></p>
           <Price product={this.props.product}/>
