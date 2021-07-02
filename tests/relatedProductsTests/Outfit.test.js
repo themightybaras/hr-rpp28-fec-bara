@@ -9,18 +9,38 @@ import ExampleOutfit from './ExampleData.js';
 
 jest.mock('axios');
 
-test('Outfit', () => {
+test('Should make axios call to retrieve Outfit', () => {
 
   axios.get.mockResolvedValue({data: ExampleOutfit.withDefault});
 
   const getSpy = jest.spyOn(axios, 'get');
-  const related = shallow(
-    // <RelatedProducts />
+  const outfit = shallow(
     <Outfit currentProductId={22161} changeCurrentProduct={() => {}}/>
   );
 
   expect(getSpy).toBeCalled();
-  expect(related.find('.outfitSection').exists()).toBe(true);
-  // done();
-  // expect(1 + 1).toEqual(2);
+
+  expect(outfit.find('.outfitSection').exists()).toBe(true);
+});
+
+test('Shouldn\'t change firstCard if outfit has fewer than two products', () => {
+
+  axios.get.mockResolvedValue({data: ExampleOutfit.withDefault});
+
+  const getSpy = jest.spyOn(axios, 'get');
+  const outfit = shallow(
+    <Outfit currentProductId={22161} changeCurrentProduct={() => {}}/>
+  );
+
+  expect(getSpy).toBeCalled();
+  let instance = outfit.instance();
+
+  instance.rightArrowClick();
+  // Need to mock cookie with  2 products for this to work
+  // expect(outfit.state('firstCard')).toEqual(1);
+  expect(outfit.state('firstCard')).toEqual(0);
+
+  instance.leftArrowClick();
+  expect(outfit.state('firstCard')).toEqual(0);
+
 });
