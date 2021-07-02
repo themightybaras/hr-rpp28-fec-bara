@@ -1,9 +1,8 @@
 import React from 'react';
 import _ from 'underscore';
-import {ActionItem, Image, Price, Review} from './CardComponents.jsx';
+import axios from 'axios';
+import { Image, ProductCardInfo } from './CardComponents.jsx';
 import RelatedModal from './RelatedModal.jsx';
-import Track from '../../Track.jsx';
-import ClickTracker from '../../ClickTracker.jsx';
 
 class ProductCard extends React.Component {
 
@@ -48,16 +47,10 @@ class ProductCard extends React.Component {
   }
 
   render() {
-
     return (
       <div className={`productcard cardcol${this.props.col}`} >
         <Image product={this.props.product} clickHandler={this.changeCurrentProduct} actionHandler={this.clickHandler} icon={this.props.icon}/>
-        <div className="productInfo" onClick={this.changeAndTrack}>
-          <p className="productCategory"> {this.props.product.category} </p>
-          <p className="productName"> <strong>{this.props.product.name}</strong></p>
-          <Price product={this.props.product}/>
-          <Review product={this.props.product}/>
-        </div>
+        <ProductCardInfo product={this.props.product} changeAndTrack={this.changeAndTrack}/>
         <RelatedModal modal={this.state.modal} actionHandler={this.clickHandler} currentProductInfo={this.props.currentProductInfo} product={this.props.product}/>
       </div>
     );

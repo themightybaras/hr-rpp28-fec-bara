@@ -9,7 +9,7 @@ const cloudinaryConfig = require('../config2.js');
 module.exports = {
   getReviews: function(req, res) {
     axios.defaults.headers.common['Authorization'] = APIKey;
-    console.log('REQUEST URL', req.url);
+    // console.log('REQUEST URL', req.url);
     axios({
       method: 'get',
       url: baseURL + req.url

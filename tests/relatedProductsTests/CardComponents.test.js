@@ -6,7 +6,7 @@ configure({adapter: new Adapter()});
 import RelatedOutfit from '../../client/src/components/related/RelatedOutfit.jsx';
 import ProductCard from '../../client/src/components/related/ProductCard.jsx';
 // import ItemsList from '../../client/src/components/related/ItemsList.jsx';
-import {ActionItem, Image, Review, Price} from '../../client/src/components/related/CardComponents.jsx';
+import {ActionItem, Image, Review, Price, ProductCardInfo} from '../../client/src/components/related/CardComponents.jsx';
 import ExampleOutfit from './ExampleData.js';
 
 test('Action item should render a span', () => {
@@ -101,5 +101,14 @@ test('Review item should render a message if there is no ratings object or an em
   );
   expect(noRatings.find('.noReview').exists()).toBe(true);
   expect(emptyRatings.find('.noReview').exists()).toBe(true);
+});
+
+test('Product card info section should render', () => {
+
+  let cardinfo = shallow(
+    <ProductCardInfo product={ExampleOutfit.withDefault} changeAndTrack={() => {}} />
+  );
+
+  expect(cardinfo.find('.productInfo').exists()).toBe(true);
 });
 
