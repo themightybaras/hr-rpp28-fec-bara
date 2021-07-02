@@ -56,10 +56,12 @@ class RelatedProducts extends React.Component {
   render() {
     let currentProductInfo = this.props.currentProductInfo || {id: null};
     if (this.state.products.length === 0) {
-      return 'Loading...';
+      return (
+        <div className='relatedSection'>
+          Loading...
+        </div>);
     }
     let displayProducts = this.state.products.slice(this.state.firstCard, this.state.firstCard + 3);
-    console.log('displayProducts', displayProducts);
     return (
       <div className='relatedSection'>
         <h3 className='relatedHeader'>RELATED PRODUCTS</h3>
