@@ -72,6 +72,12 @@ class RatingBreakdown extends React.Component {
               </div>
             </Track>
             <br/>
+            {this.props.filtered
+              ? <button onClick = {this.props.removeFilters}>Remove Filters</button>
+              : null
+            }
+            <br/>
+            <br/>
             <RatingBar clickNum = {5} percentFilled = {this.state[5]} filterReviews = {this.props.filterReviews}/>
             <RatingBar clickNum = {4} percentFilled = {this.state[4]} filterReviews = {this.props.filterReviews}/>
             <RatingBar clickNum = {3} percentFilled = {this.state[3]} filterReviews = {this.props.filterReviews}/>

@@ -14,6 +14,7 @@ class ReviewWidget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      filtered: false,
       unfilteredProductReviews: [],
       productReviews: [],
       numberOfReviews: 0,
@@ -28,6 +29,7 @@ class ReviewWidget extends React.Component {
     this.displayMore = this.displayMore.bind(this);
     this.showReviewFormModal = this.showReviewFormModal.bind(this);
     this.filterReviews = this.filterReviews.bind(this);
+    this.removeFilters = this.removeFilters.bind(this);
   }
 
   //bug fix
@@ -61,7 +63,11 @@ class ReviewWidget extends React.Component {
     var filteredReviews = _.filter(this.state.unfilteredProductReviews, (element) => {
       return element.rating === ratingNum;
     });
-    this.setState({productReviews: filteredReviews});
+    this.setState({productReviews: filteredReviews, filtered: true});
+  }
+
+  removeFilters() {
+    this.setState({productReviews: this.state.unfilteredProductReviews, filtered: false});
   }
 
   changeSorting(e) {
@@ -85,7 +91,7 @@ class ReviewWidget extends React.Component {
         <br/>
         <div id= 'reviewWidgetContainer'>
           <div id= 'ratingSectionContainer'>
-            <RatingSection reviews = {this.state.productReviews} overallProductRating = {this.props.overallProductRating} reviewMetaData = {this.props.reviewMetaData} filterReviews = {this.filterReviews}
+            <RatingSection reviews = {this.state.productReviews} filtered = {this.state.filtered} overallProductRating = {this.props.overallProductRating} reviewMetaData = {this.props.reviewMetaData} filterReviews = {this.filterReviews} removeFilters = {this.removeFilters}
             />
           </div>
           <div id= 'reviewContainer'>
