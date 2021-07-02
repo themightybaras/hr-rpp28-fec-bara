@@ -9,6 +9,7 @@ const RelatedOutfit = ({currentProductId, currentProductInfo, changeCurrentProdu
       <RelatedProducts currentProductId={currentProductId} currentProductInfo={currentProductInfo} changeCurrentProduct={changeCurrentProduct}/>
       <br></br>
       <Outfit currentProductId={currentProductId} changeCurrentProduct={changeCurrentProduct}/>
+      <br></br>
     </div>
   );
 };

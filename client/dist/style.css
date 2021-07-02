@@ -69,19 +69,21 @@ body {
 
 #relatedWidget {
   position: relative;
+  left: 10%;
+  width: 80%;
 }
 
 .relatedSection, .outfitSection {
   position: relative;
   height: 50%;
-  left: 10%;
-  width: 80%;
+  /* left: 10%;
+  width: 80%; */
 }
 
 .relatedHeader, .outfitHeader {
   position: relative;
   left: 10%;
-  width: 80%;
+  /* width: 80%; */
 }
 .relatedSectionFlex {
   display: flexbox;
@@ -221,7 +223,7 @@ body {
 }
 
 .carouselButton:hover {
-  color: lavender;
+  color: orangered;
 }
 
 .strikethrough {
@@ -229,7 +231,7 @@ body {
 }
 
 .saleprice {
-  color: red;
+  color: orangered;
 }
 
 .productCategory {
