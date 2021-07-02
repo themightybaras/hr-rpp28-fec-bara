@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+import axios from 'axios';
 import _ from 'underscore';
 import ProductCard from './ProductCard.jsx';
 import { CarouselButtonRight, CarouselButtonLeft } from './CarouselButton.jsx';
@@ -25,9 +25,15 @@ class RelatedProducts extends React.Component {
   }
 
   getRelatedProducts(id) {
-    $.get('/related', {'id': id }, (products) => {
-      this.setState({ products, firstCard: 0 });
-    });
+    // $.get('/related', {'id': id }, (products) => {
+    //   this.setState({ products, firstCard: 0 });
+    // });
+    return axios.get('/related', { params: {'id': id }})
+      .then(results => {
+        this.setState({ products: results.data, firstCard: 0 });
+      })
+      .catch(err => console.log(err));
+
   }
 
   // Click handlers for carousel buttons

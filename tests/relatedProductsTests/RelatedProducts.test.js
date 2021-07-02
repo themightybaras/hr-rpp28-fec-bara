@@ -10,7 +10,8 @@ import ExampleOutfit from './ExampleData.js';
 test('Related products', () => {
 
   // let related = shallow(
-  //   <RelatedProducts currentProductId={22166} currentProductInfo={ExampleOutfit.withDefault} changeCurrentProduct={() => {}}/>
+  //   <RelatedProducts />
+  //   // <RelatedProducts currentProductId={22166} currentProductInfo={ExampleOutfit.withDefault} changeCurrentProduct={() => {}}/>
   // );
 
   // expect(related.find('#relatedWidget').exists()).toBe(true);
