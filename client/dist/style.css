@@ -71,6 +71,10 @@ body {
   position: relative;
 }
 
+.relatedSection {
+  height: 50%;
+}
+
 .relatedSectionFlex {
   display: flexbox;
 }
@@ -146,6 +150,13 @@ body {
   /* font-size: 115%; */
 }
 
+.productInfo {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 20% 30% 30% 20%;
+  width: 100%;
+}
+
 
 .productImageItem {
   position:relative;
@@ -200,11 +211,28 @@ body {
 
 .productCategory {
   font-family: 'Courier New', Courier, monospace;
+  grid-row-start: 1;
+  justify-self: left;
 }
 
 .productName {
   font-style: italic;
+  grid-row-start: 2;
+  justify-self: left;
 }
+
+.productPrice {
+  grid-row-start: 3;
+  justify-self: left;
+  width: 100%;
+}
+
+.productCard > .stars {
+  grid-row-start: 4;
+  justify-self: left;
+}
+
+
 
 /* QUESTIONS & ANSWERS */
 

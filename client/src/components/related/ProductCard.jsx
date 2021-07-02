@@ -34,14 +34,10 @@ class ProductCard extends React.Component {
       <div className={`productcard cardcol${this.props.col}`} >
         <Image product={this.props.product} clickHandler={this.changeCurrentProduct} actionHandler={this.clickHandler} icon={this.props.icon}/>
         <div className="productInfo" onClick={this.changeCurrentProduct}>
-          <ClickTracker>
-            <div widget='related products' type='div'>
-              <p className="productCategory"> {this.props.product.category} </p>
-              <p className="productName"> <strong>{this.props.product.name}</strong></p>
-              <Price product={this.props.product}/>
-              <Review product={this.props.product}/>
-            </div>
-          </ClickTracker>
+          <p className="productCategory"> {this.props.product.category} </p>
+          <p className="productName"> <strong>{this.props.product.name}</strong></p>
+          <Price product={this.props.product}/>
+          <Review product={this.props.product}/>
         </div>
         <RelatedModal modal={this.state.modal} actionHandler={this.clickHandler} currentProductInfo={this.props.currentProductInfo} product={this.props.product}/>
       </div>
