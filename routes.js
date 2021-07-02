@@ -36,5 +36,6 @@ router.get('/reviews/meta', reviewsRequests.getReviewMetadata);
 router.post('/reviews', reviewsRequests.addReview);
 router.put('/reviews/:review_id/helpful', reviewsRequests.markHelpful);
 router.put('/reviews/:review_id/report', reviewsRequests.reportReview);
+router.post('/reviews/photos', reviewsRequests.postPhotos);
 
 module.exports = router;
