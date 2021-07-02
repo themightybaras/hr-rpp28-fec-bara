@@ -2,8 +2,14 @@
 .theme-light {
   color:black;
   background-color: white;
-  /* display: flex;
-  justify-content: center; */
+  margin-left: 7.5%;
+  width: 85%;
+}
+
+.theme-light button:not(.close-modal):not(.more-answers-button):not(.upload-photos-button):not(.submit-question-or-answer-button) {
+  color:black;
+  background-color: white;
+  border: solid 1px black;
 }
 
 .theme-light .add-form-container, .theme-light .modal-related, .theme-light .addReviewFormContent {
@@ -11,24 +17,40 @@
   background-color: white;
 }
 
+.theme-light .more-answers-button {
+  background-color: white;
+  color: black;
+}
+
+.theme-light a {
+  color: black;
+}
+
 .theme-dark {
   color: white;
   background-color: #181818;
+  margin-left: 7.5%;
+  width: 85%;
 }
 
-.theme-dark button {
+.theme-dark button:not(.close-modal):not(.more-answers-button):not(.upload-photos-button):not(.submit-question-or-answer-button) {
   color:white;
   background-color: #181818;
-  border: solid white
+  border: solid 1px white
 }
 
 .theme-dark .productcard {
-  border: solid white;
+  border: solid 1px white;
 }
 
 .theme-dark #search-questions {
   background-color:#181818;
-  border: solid white;
+  border: solid 1px white;
+}
+
+.theme-dark .more-answers-button {
+  background-color: #181818;
+  color: white;
 }
 
 .theme-dark a {
@@ -40,29 +62,25 @@
   background-color: rgb(88, 88, 88);
 }
 
-
-
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
-
 
 #pageHead {
   display: flex;
 }
 
 #pageTitle {
-  justify-self: center;
-  margin-left: 100px;
-  width: 80%;
+  width: 85%;
 }
 
 #themebutton {
-  display: flex;
-  justify-self: right;
   height: 20%;
   margin-top: 20px;
-  margin-right: 100px;
+}
+
+h3 {
+  margin-top: 5%;
 }
 
 /*  RELATED PRODUCTS & OUTFIT */
@@ -208,39 +226,15 @@ body {
 
 /* QUESTIONS & ANSWERS */
 
-.answer-marker, .answer {
-  display: inline;
-  font-size: 16px;
-}
-
-.answer-by {
-  padding-left: 25px;
-}
-
-#seller {
+#search-questions {
+  margin-left: 1%;
+  width: 98%;
+  height: 30px;
   font-weight: bold;
-}
-
-.more-questions-button, .add-question-button, .moreReviewsButton, .addReviewButton{
-  display: inline-block;
-  background-color: white;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 15px;
-  margin-right: 10px;
-}
-
-.more-answers-button{
-  background-color: white;
-  border: none;
-  font-weight: bold;
-  padding: 5px;
+  margin-bottom: 10px;
 }
 
 #question-list {
-  /* the maximum height of the questions list should be capped
-  such that the entire Questions & Answers module should fit on a single screen.
-  is max-height 70% screensize good enough? */
   max-height: 70vh;
   overflow: auto;
 }
@@ -249,73 +243,20 @@ body {
   display: inline-block;
 }
 
-#answers-list {
-  max-height: 50vh;
-  overflow: auto;
-  padding-top: 10px;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width:100%;
-  height:100%;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.add-form-container {
-  position:fixed;
-  /* background: white; */
-  width: 80%;
-  height: auto;
-  top:20%;
-  left:10%;
-  /* transform: translate(-50%,-50%); */
-}
-
-.display-block {
-  display: block;
-}
-
-.display-none {
-  display: none;
-}
-
-.form-input {
-  width: 98%;
-  margin-left: 1%;
-  margin-right: 1%;
-}
-
-.upload-your-photos {
-  margin-left: 1%;
-}
-
-.close-modal {
-  float: right;
-  font-size: x-large;
-  border: none;
-  background: none;
-}
-
-#search-questions {
-  width: 35%;
-  height: 30px;
+.more-questions-button, .add-question-button, .moreReviewsButton, .addReviewButton{
+  display: inline-block;
+  font-size: 15px;
   font-weight: bold;
-  margin-bottom: 10px;
+  padding: 15px;
+  margin-right: 10px;
 }
 
 #question-container {
   display: flex;
+  margin-top: 15px;
 }
 
-/* #questionWidgetContainer {
-  display: flex;
-  justify-content: center;
-} */
-
-#question-container > .question {
+.question {
   margin-right: auto;
   font-size: large;
 }
@@ -329,14 +270,21 @@ body {
   margin-right: 6px;
 }
 
-#answer-container-bottom {
-  display: flex;
-  font-size: small;
-  margin-bottom: 10px;
+#answers-list {
+  max-height: 50vh;
+  overflow: auto;
+  padding-top: 10px;
 }
 
-#answer-container-bottom > div {
-  margin-right: 6px;
+.more-answers-button{
+  border: none;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+.answer-marker, .answer {
+  display: inline;
+  font-size: 16px;
 }
 
 .answer-images {
@@ -349,6 +297,62 @@ body {
   width: 60px;
   height: 60px;
 }
+
+.answer-by {
+  padding-left: 25px;
+}
+
+#seller {
+  font-weight: bold;
+}
+
+#answer-container-bottom {
+  display: flex;
+  font-size: small;
+  margin-bottom: 10px;
+}
+
+#answer-container-bottom > div {
+  margin-right: 6px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.display-none {
+  display: none;
+}
+
+.add-form-container {
+  position:fixed;
+  width: 80%;
+  height: auto;
+  top:20%;
+  left:10%;
+  padding: 1%;
+}
+
+.form-input {
+  width: 98%;
+}
+
+.footnote {
+  font-size: 11px;
+}
+
+.close-modal {
+  float: right;
+  font-size: x-large;
+  border: none;
+  background: none;
+}
+
 
 /* REVIEW and RATING CSS */
 

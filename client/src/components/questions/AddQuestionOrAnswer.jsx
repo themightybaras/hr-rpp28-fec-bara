@@ -198,7 +198,7 @@ class AddQuestionOrAnswer extends React.Component {
               </div>
             </Track>
             <h2 className='modal-title-question-or-answer'>{this.props.isQuestionModal ? 'Ask Your Question' : 'Submit Your Answer'}</h2>
-            <h3 className='modal-subtitle-question-or-answer'>{this.props.isQuestionModal ? `About the ${this.props.currentProductName}` : `${this.props.currentProductName}: ${this.props.question.question_body}`}</h3>
+            <h4 className='modal-subtitle-question-or-answer'>{this.props.isQuestionModal ? `About the ${this.props.currentProductName}` : `${this.props.currentProductName}: ${this.props.question.question_body}`}</h4>
             <div className='add-your-question-or-answer-label'><b>{this.props.isQuestionModal ? 'Your Question*' : 'Your Answer*'}</b></div>
             <textarea name='your-question-or-answer' className='form-input' maxLength='1000' onChange={this.changeContentHandler} required />
             <br />
@@ -206,12 +206,12 @@ class AddQuestionOrAnswer extends React.Component {
             <div className='add-your-nickname-label'><b>What is Your Nickname*</b></div>
             <input type='text' name='your-nickname' className='form-input' maxLength='60' onChange={this.changeNicknameHandler} placeholder='Example: jack543!' required />
             <br />
-            <div>For privacy reasons, do not use your full name or email address.</div>
+            <div className='footnote'>For privacy reasons, do not use your full name or email address.</div>
             <br />
             <div className='add-your-email-label'><b>Your Email*</b></div>
             <input type='email' name='your-email' className='form-input' maxLength='60' onChange={this.changeEmailHandler} placeholder='Example: jack@email.com' required />
             <br />
-            <div>For authentication reasons, you will not be emailed.</div>
+            <div className='footnote'>For authentication reasons, you will not be emailed.</div>
             <br />
             {this.props.isQuestionModal ?
               null :
@@ -220,17 +220,16 @@ class AddQuestionOrAnswer extends React.Component {
                 {this.state.photos.map((photo) => (
                   <img src = {photo} key={photo} className= 'answer-image'/>
                 ))}
-                <br />
                 {this.state.photos.length >= 5 ? null :
                   <div>
                     <Track>
                       <div widget='Questions Widget'>
-                        <input type='file' name='answer-upload-photos' className='form-input upload-your-photos' onChange={this.changeFileHandler} multiple />
+                        <input type='file' name='answer-upload-photos' className='form-input' onChange={this.changeFileHandler} multiple />
                       </div>
                     </Track>
                     <Track>
                       <div widget = 'Questions Widget'>
-                        <button type='button' className='upload-your-photos' onClick={this.clickUploadPhotosHandler}>Upload</button>
+                        <button type='button' className='upload-photos-button' onClick={this.clickUploadPhotosHandler}>Upload</button>
                       </div>
                     </Track>
                   </div>}
@@ -238,7 +237,7 @@ class AddQuestionOrAnswer extends React.Component {
             <br />
             <Track>
               <div widget = 'Questions Widget'>
-                <button type='button' className='add-question-or-answer-submit' onClick={this.clickSubmitHandler}>{this.props.isQuestionModal ? 'Submit Question' : 'Submit Answer'}</button>
+                <button type='button' className='submit-question-or-answer-button' onClick={this.clickSubmitHandler}>{this.props.isQuestionModal ? 'Submit Question' : 'Submit Answer'}</button>
               </div>
             </Track>
             <br />

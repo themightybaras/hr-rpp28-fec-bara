@@ -52,7 +52,7 @@ class Answer extends React.Component {
   render() {
     return (
       <div>
-        <h3 className='answer-marker'>A: </h3>
+        <div className='answer-marker'>A: </div>
         <div className='answer'>{this.props.answer.body}</div>
         <br />
         <div className = 'answer-images'>

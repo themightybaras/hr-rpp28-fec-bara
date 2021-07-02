@@ -60,7 +60,7 @@ class Question extends React.Component {
             <div></div><div>|</div><div></div>
             <Track>
               <div widget='Questions Widget'>
-                <a href='#' className='add-answer' onClick={this.toggleAddAnswerModal}>Add Answer</a>
+                <a href='#' onClick={this.toggleAddAnswerModal}>Add Answer</a>
               </div>
             </Track>
           </div>
