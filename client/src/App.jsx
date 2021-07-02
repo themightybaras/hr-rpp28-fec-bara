@@ -5,7 +5,6 @@ import RelatedOutfit from './components/related/RelatedOutfit.jsx';
 import QuestionList from './components/questions/QuestionList.jsx';
 import ReviewWidget from './components/review/ReviewWidget.jsx';
 import StarRating from './components/review/StarRating.jsx';
-import Track from './Track.jsx';
 import $ from 'jquery';
 import apiIP from '../../apiIP.js';
 
@@ -108,24 +107,24 @@ class App extends React.Component {
   changeTheme(e) {
     this.setState(state => ({
       darkTheme: !this.state.darkTheme
-    }), () => {
-      console.log(this.state.darkTheme);
-    });
+    }));
   }
 
 
   render() {
     return (
       <div className = {this.state.darkTheme ? 'theme-dark' : 'theme-light'}>
-        <div id='pageHead'>
-          <h1 id= 'pageTitle'>MightyBaras 🦆 Retail</h1>
-          <button id='themebutton' onClick={this.changeTheme}>{this.state.darkTheme ? 'Light Mode ☀' : 'Dark Mode ☽︎'}</button>
-        </div>
         <div>
-          <Overview apiIP={apiIP} productId={this.state.currentProductId} stars={<StarRating rating={this.state.overallProductRating} />} />
-          <RelatedOutfit currentProductId = {this.state.currentProductId} currentProductInfo = {this.state.currentProductInfo} changeCurrentProduct={this.changeCurrentProduct}/>
-          <QuestionList currentProductId = {this.state.currentProductId} currentProductName={this.state.currentProductName} />
-          <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName} overallProductRating = {this.state.overallProductRating} reviewMetaData= {this.state.reviewMetaData}/>
+          <div id='pageHead'>
+            <h1 id= 'pageTitle'>MightyBaras 🦆 Retail</h1>
+            <button id='themebutton' onClick={this.changeTheme}>{this.state.darkTheme ? 'Light Mode ☀' : 'Dark Mode ☽︎'}</button>
+          </div>
+          <div>
+            <Overview apiIP={apiIP} productId={this.state.currentProductId} stars={<StarRating rating={this.state.overallProductRating} />} />
+            <RelatedOutfit currentProductId = {this.state.currentProductId} currentProductInfo = {this.state.currentProductInfo} changeCurrentProduct={this.changeCurrentProduct}/>
+            <QuestionList currentProductId = {this.state.currentProductId} currentProductName={this.state.currentProductName} />
+            <ReviewWidget currentProductId = {this.state.currentProductId} currentProductName = {this.state.currentProductName} overallProductRating = {this.state.overallProductRating} reviewMetaData= {this.state.reviewMetaData}/>
+          </div>
         </div>
       </div>
     );

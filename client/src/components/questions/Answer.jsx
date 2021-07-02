@@ -52,7 +52,7 @@ class Answer extends React.Component {
   render() {
     return (
       <div>
-        <h3 className='answer-marker'>A: </h3>
+        <div className='answer-marker'>A: </div>
         <div className='answer'>{this.props.answer.body}</div>
         <br />
         <div className = 'answer-images'>
@@ -71,7 +71,7 @@ class Answer extends React.Component {
           {this.state.markedAnswerHelpful ? <span>Yes</span> :
             <Track>
               <div widget = 'Questions Widget'>
-                <a href='#' onClick={this.markAnswerHelpful}>Yes</a>
+                <div className='hyperlink' onClick={this.markAnswerHelpful}>Yes</div>
               </div>
             </Track>}
           <div>({this.state.markedAnswerHelpful ? this.props.answer.helpfulness + 1 : this.props.answer.helpfulness})</div>
@@ -79,7 +79,7 @@ class Answer extends React.Component {
           {this.state.reportedAnswer ? <span>Reported</span> :
             <Track>
               <div widget = 'Questions Widget'>
-                <a href='#' onClick={this.reportAnswer}>Report</a>
+                <div className='hyperlink' onClick={this.reportAnswer}>Report</div>
               </div>
             </Track>}
         </div>

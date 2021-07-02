@@ -41,10 +41,10 @@ test('test add question or answer block', () => {
   expect(addQuestionBlock.find('.add-your-question-or-answer-label').text()).toBe('Your Question*');
   expect(addQuestionBlock.find('.add-your-nickname-label').text()).toBe('What is Your Nickname*');
   expect(addQuestionBlock.find('.add-your-email-label').text()).toBe('Your Email*');
-  expect(addQuestionBlock.find('.add-question-or-answer-submit').text()).toBe('Submit Question');
+  expect(addQuestionBlock.find('.submit-question-or-answer-button').text()).toBe('Submit Question');
   expect(addAnswerBlock.find('.add-your-question-or-answer-label').text()).toBe('Your Answer*');
   expect(addAnswerBlock.find('.add-your-nickname-label').text()).toBe('What is Your Nickname*');
   expect(addAnswerBlock.find('.add-your-email-label').text()).toBe('Your Email*');
-  expect(addAnswerBlock.find('.add-question-or-answer-submit').text()).toBe('Submit Answer');
+  expect(addAnswerBlock.find('.submit-question-or-answer-button').text()).toBe('Submit Answer');
 
 });
