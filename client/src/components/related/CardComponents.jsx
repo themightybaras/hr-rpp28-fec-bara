@@ -71,11 +71,11 @@ const Price = ({product}) => {
     }
   }
   return (
-    <p className="productPrice">
+    <div className="productPrice">
       {salePrice ?
         <span><span className="strikethrough">{`$${defaultPrice}`}</span><span className="saleprice">{`$${salePrice}`}</span></span> :
         <span className='originalPrice'>{`$${defaultPrice}`}</span>}
-    </p>
+    </div>
   );
 };
 

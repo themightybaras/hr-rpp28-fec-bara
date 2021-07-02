@@ -69,8 +69,22 @@ body {
 
 #relatedWidget {
   position: relative;
+  left: 10%;
+  width: 80%;
 }
 
+.relatedSection, .outfitSection {
+  position: relative;
+  height: 50%;
+  /* left: 10%;
+  width: 80%; */
+}
+
+.relatedHeader, .outfitHeader {
+  position: relative;
+  left: 10%;
+  /* width: 80%; */
+}
 .relatedSectionFlex {
   display: flexbox;
 }
@@ -125,6 +139,12 @@ body {
   grid-column-start: 5;
 }
 
+.relatedCarouselLeft, .relatedCarouselRight {
+  display: grid;
+  grid-template-rows: 1 1 1;
+  grid-template-columns: auto;
+}
+
 .relatedImage {
   height: 100%;
   max-height: 250px;
@@ -144,6 +164,13 @@ body {
   width: 100%;
   height: 100%;
   /* font-size: 115%; */
+}
+
+.productInfo {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 20% 30% 30% 20%;
+  width: 100%;
 }
 
 
@@ -183,11 +210,20 @@ body {
   grid-template-columns: 25% 50% 25%;
 }
 
-.relatedModalFeature > .relatedModalCol1, .relatedModalCol3 {
-  fill:chartreuse;
+.relatedModalHeader {
+  text-decoration: underline;
 }
 .relatedModalCol1, .relatedModalCol2, .relatedModalCol3 {
   justify-self: center;
+}
+
+.carouselButton {
+  font-size: 300%;
+  grid-row-start: 2;
+}
+
+.carouselButton:hover {
+  color: orangered;
 }
 
 .strikethrough {
@@ -195,16 +231,34 @@ body {
 }
 
 .saleprice {
-  color: red;
+  color: orangered;
 }
 
 .productCategory {
   font-family: 'Courier New', Courier, monospace;
+  grid-row-start: 1;
+  justify-self: left;
 }
 
 .productName {
   font-style: italic;
+  grid-row-start: 2;
+  justify-self: left;
 }
+
+.productPrice {
+  grid-row-start: 3;
+  justify-self: left;
+  width: 100%;
+}
+
+.productCard > .stars {
+  grid-row-start: 4;
+  justify-self: left;
+  font-size: 110%;
+}
+
+
 
 /* QUESTIONS & ANSWERS */
 

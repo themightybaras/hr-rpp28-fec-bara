@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { GrAdd } from 'react-icons/gr';
 
 const AddOutfitCard = ({addToOutfit}) => {
 
@@ -19,8 +18,6 @@ const AddOutfitCard = ({addToOutfit}) => {
       .catch((err) => {
         console.log(err.message);
       });
-
-
   };
 
   return (
