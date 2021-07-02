@@ -12,6 +12,11 @@ test('Product card', () => {
     <ProductCard key={1} product={ExampleOutfit.withDefault} actionHandler={() => {}} list={'related'} changeCurrentProduct={() => {}}/>
   );
 
+  let instance = testRelatedProduct.instance();
+
+  instance.toggleModal();
+  expect(testRelatedProduct.state('modal')).toBe(true);
+
   expect(testRelatedProduct.find('.productcard').exists()).toBe(true);
 });
 
