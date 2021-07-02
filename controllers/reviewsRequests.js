@@ -2,6 +2,9 @@
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 const APIKey = require('../config.js');
 var axios = require('axios');
+const cloudinary = require('cloudinary').v2;
+const streamifier = require('streamifier');
+const cloudinaryConfig = require('../config2.js');
 
 module.exports = {
   getReviews: function(req, res) {
@@ -22,8 +25,6 @@ module.exports = {
   getReviewMetadata: function(req, res) {
 
     axios.defaults.headers.common['Authorization'] = APIKey;
-
-    // console.log('URL', req.url);
 
     axios({
       method: 'get',
@@ -81,6 +82,43 @@ module.exports = {
       })
       .catch((err) => {
         res.status(400).send('ERROR Reporting Review in API:', err);
+      });
+  },
+
+  postPhotos: function (req, res) {
+    cloudinary.config({
+      'cloud_name': cloudinaryConfig.cloudName,
+      'api_key': cloudinaryConfig.APIKey,
+      'api_secret': cloudinaryConfig.APISecret
+    });
+
+    let streamUpload = (buffer) => {
+      return new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream(
+          (error, result) => {
+            if (result) {
+              resolve(result.secure_url);
+            } else {
+              reject(error);
+            }
+          }
+        );
+        streamifier.createReadStream(buffer).pipe(stream);
+      });
+    };
+
+    var promises = [];
+    console.log('REQUEST', req.files);
+    req.files.map((element) => {
+      promises.push(streamUpload(element.buffer));
+    });
+
+    Promise.all(promises)
+      .then((response) => {
+        res.send(response);
+      })
+      .catch(() => {
+        res.sendStatus(400);
       });
   }
 

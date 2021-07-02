@@ -13,6 +13,7 @@ app.use('/outfit', express.urlencoded({extended: true}));
 app.use('/app', express.urlencoded({extended: true}));
 app.use('/related', express.urlencoded({extended: true}));
 app.use('/qa/photos', upload.array('answerPhotos'));
+app.use('/reviews/photos', upload.array('reviewPhoto'));
 
 //this tells our server to refer to our routes file when requests are made to "/" (aka all request)
 var router = require('./routes.js');

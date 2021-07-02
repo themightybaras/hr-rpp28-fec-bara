@@ -28,9 +28,7 @@ class ProductBreakdown extends React.Component {
   getCharacteristicPointers(reviewMetaDataObj) {
     var characteristicObj = reviewMetaDataObj.characteristics;
     for ( var charName in characteristicObj) {
-      this.setState({[charName]: characteristicObj[charName].value}, () => {
-        console.log(this.state);
-      });
+      this.setState({[charName]: characteristicObj[charName].value});
     }
   }
 
