@@ -12,10 +12,30 @@ module.exports = {
         test: /\.jsx$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-      }
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.svg$/,
+        use: 'file-loader',
+      },
+      {
+        test: /\.png$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              mimetype: 'image/png',
+            },
+          },
+        ],
+      },
     ]
   },
   externals: {
-    'sharp': 'commonjs sharp'
+    'sharp': 'commonjs sharp',
+    react: 'commonjs react',
   }
 };
