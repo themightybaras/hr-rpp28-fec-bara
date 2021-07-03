@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.scss';
 import StyleSelector from './StyleSelector.jsx';
-import AddToCart from './AddToCart';
+import AddToCart from './AddToCart.jsx';
 
 const ProductInformation = ({
   productInfo,

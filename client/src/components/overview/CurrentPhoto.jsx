@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './styles.scss';
 import { FaArrowLeft, FaArrowRight, FaExpand } from 'react-icons/fa';
 import PhotoCarousel from './PhotoCarousel.jsx';

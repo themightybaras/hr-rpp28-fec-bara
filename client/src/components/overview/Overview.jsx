@@ -32,6 +32,13 @@ class Overview extends React.Component {
     this.getStyles(this.props.apiIP, this.props.productId);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.productId !== this.props.productId && JSON.stringify(prevState.productInfo) === JSON.stringify(this.state.productInfo)) {
+      this.getCurrentProductInfo(this.props.apiIP, this.props.productId);
+      this.getStyles(this.props.apiIP, this.props.productId);
+    }
+  }
+
   getCurrentProductInfo(ip, id) {
     return axios
       .get(`${ip}/products/${id}`)

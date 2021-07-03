@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './styles.scss';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { image } from './Image.jsx';
