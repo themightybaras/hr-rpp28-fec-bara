@@ -500,9 +500,14 @@ h3 {
 }
 
 #reviewListContainer {
+  margin-left: 10px;
   max-height: 100vh;
-  max-width: 100vh;
+  max-width: 150vh;
   overflow-y: scroll;
+}
+
+#ratingSectionContainer {
+  margin-right: 10px;
 }
 
 #largeAverageRating {

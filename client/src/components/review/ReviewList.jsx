@@ -9,11 +9,11 @@ import IndividualReview from './IndividualReview.jsx';
 // review list will need to map over the props and pass them to individual review as props
 var ReviewList = (props) => {
   return (
-    <ul className = 'reviewList'>
+    <div className = 'reviewList'>
       {props.reviews.map(review =>
         <IndividualReview key = {review.review_id} review = {review}/>
       )}
-    </ul>
+    </div>
   );
 };
 
