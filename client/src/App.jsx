@@ -121,7 +121,6 @@ class App extends React.Component {
             <button id='themebutton' onClick={this.changeTheme}>{this.state.darkTheme ? 'Light Mode ☀' : 'Dark Mode ☽︎'}</button>
           </div>
           <div>
-            <h3>{this.state.currentProductInfo.name.toUpperCase()}</h3>
             <Overview apiIP={apiIP} productId={this.state.currentProductId} stars={<StarRating rating={this.state.overallProductRating} />} />
             <RelatedOutfit currentProductId = {this.state.currentProductId} currentProductInfo = {this.state.currentProductInfo} changeCurrentProduct={this.changeCurrentProduct}/>
             <QuestionList currentProductId = {this.state.currentProductId} currentProductName={this.state.currentProductInfo.name} />
