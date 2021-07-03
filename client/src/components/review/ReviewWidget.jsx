@@ -15,6 +15,7 @@ class ReviewWidget extends React.Component {
     super(props);
     this.state = {
       filtered: false,
+      clickedFilterNums: [],
       unfilteredProductReviews: [],
       productReviews: [],
       numberOfReviews: 0,
@@ -60,8 +61,13 @@ class ReviewWidget extends React.Component {
   }
 
   filterReviews(ratingNum) {
+    var numArray = this.state.clickedFilterNums;
+    numArray.push(ratingNum);
+    console.log(typeof(numArray));
+    this.setState({clickedFilterNums: numArray});
+
     var filteredReviews = _.filter(this.state.unfilteredProductReviews, (element) => {
-      return element.rating === ratingNum;
+      return numArray.includes(element.rating);
     });
     this.setState({productReviews: filteredReviews, filtered: true});
   }
