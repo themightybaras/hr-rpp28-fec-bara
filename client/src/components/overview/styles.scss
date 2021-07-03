@@ -1,0 +1,399 @@
+$primary-color: #333;
+.announcement {
+  text-align: center;
+  color: #333;
+  font-size: 14px;
+  font-family: "adobe-clean", sans-serif;
+}
+
+a:visited {
+  color: black;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+.no-props {
+  font-family: "adobe-clean", sans-serif;
+  font-size: 22px;
+  height: 500px;
+  width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: lightgray;
+}
+
+.overview-component {
+  height: 800px;
+  position: relative;
+  color: $primary-color;
+  font-family: "adobe-clean", sans-serif;
+  font-size: 14px;
+  display: grid;
+  grid-template-columns: 8fr 21fr 13fr 8fr;
+  grid-template-rows: 3fr 1fr;
+  background-color: #fff;
+  color: #444;
+}
+
+.current-photo-container {
+  height: 590px;
+  background-color: lightgray;
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+  display: grid;
+  grid-template-columns: 17% 83%;
+  #current-photo {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    img {
+      padding-left: 1em;
+      padding-right: 8em;
+      padding-top: 3em;
+      padding-bottom: 3em;
+      height: 500px;
+      width: 95%;
+      object-fit: contain;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  #left-arrow {
+    z-index: 1;
+    position: absolute;
+    font-size: 18px;
+    cursor: pointer;
+    top: 35%;
+    left: 25%;
+  }
+  #right-arrow {
+    z-index: 1;
+    position: absolute;
+    font-size: 18px;
+    cursor: pointer;
+    top: 35%;
+    left: 55%;
+  }
+  #expand {
+    z-index: 1;
+    position: absolute;
+    font-size: 18px;
+    cursor: pointer;
+    top: 4%;
+    left: 55%;
+  }
+}
+.expanded-photo-container {
+  height: 590px;
+  background-color: #d3d3d3;
+  grid-column: 2 / span 2;
+  grid-row: 1 / span 1;
+  display: grid;
+  grid-template-columns: 17% 83%;
+  overflow: hidden;
+
+  #current-photo2 {
+    height: 590px;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    img {
+      padding-left: 1em;
+      padding-right: 10em;
+      padding-bottom: 1em;
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      cursor: zoom-in;
+      transition: transform 0.5s ease;
+    }
+    img:hover {
+      transform: scale(1.5);
+    }
+  }
+
+  #left-arrow {
+    z-index: 1;
+    position: absolute;
+    font-size: 18px;
+    cursor: pointer;
+    top: 35%;
+    left: 28%;
+  }
+  #right-arrow {
+    z-index: 1;
+    position: absolute;
+    font-size: 18px;
+    cursor: pointer;
+    top: 35%;
+    left: 80%;
+  }
+  #fold {
+    z-index: 1;
+    position: absolute;
+    font-size: 24px;
+    cursor: pointer;
+    top: 4%;
+    left: 80%;
+  }
+}
+
+.photo-carousel {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  margin-top: 85px;
+
+  #photo-1 {
+    background-color: white;
+    border: solid 1px;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    height: 60px;
+    width: 60px;
+    margin-left: 25px;
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-position: center;
+  }
+  #photo-2 {
+    background-color: white;
+    border: solid 1px;
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    height: 60px;
+    width: 60px;
+    margin-left: 25px;
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-position: center;
+  }
+  #photo-3 {
+    background-color: white;
+    border: solid 1px;
+    grid-column: 1 / span 1;
+    grid-row: 3 / span 1;
+    height: 60px;
+    width: 60px;
+    margin-left: 25px;
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-position: center;
+  }
+  #photo-4 {
+    border: solid 1px;
+    background-color: white;
+    grid-column: 1 / span 1;
+    grid-row: 4 / span 1;
+    height: 60px;
+    width: 60px;
+    margin-left: 25px;
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-position: center;
+  }
+  #photo-5 {
+    background-color: white;
+    border: solid 1px;
+    grid-column: 1 / span 1;
+    grid-row: 5 / span 1;
+    height: 60px;
+    width: 60px;
+    margin-left: 25px;
+    left: 19%;
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-position: center;
+  }
+  #arrow-up {
+    z-index: 1;
+    position: absolute;
+    font-size: 18px;
+    cursor: pointer;
+    top: 5%;
+    left: 19%;
+  }
+  #arrow-down {
+    z-index: 1;
+    position: absolute;
+    font-size: 18px;
+    cursor: pointer;
+    top: 60%;
+    left: 19%;
+  }
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.product-information {
+  a {
+    font-size: 11px;
+    margin-left: 10px;
+    margin-top: 3px;
+  }
+  a:visited {
+    color: $primary-color;
+  }
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+  display: grid;
+  height: 590px;
+  grid-template-rows: repeat(3, 1fr);
+  .information-holder {
+    grid-row: 1 / span 1;
+    .rating {
+      margin-left: 30px;
+      margin-top: 30px;
+    }
+    .product-category {
+      margin-left: 30px;
+      margin-top: 15px;
+      text-transform: uppercase;
+      font-size: 15px;
+    }
+    .product-title {
+      margin-left: 30px;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 32px;
+    }
+    .product-price {
+      margin-left: 30px;
+      margin-top: 15px;
+      font-size: 15px;
+    }
+    #sale {
+      color: darkred;
+    }
+  }
+  .style-selector {
+    grid-row: 2 / span 1;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    width: 80%;
+    .style-type {
+      grid-row: 1 / span 1;
+      margin-left: 30px;
+      text-transform: uppercase;
+      font-size: 15px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 15px;
+    }
+    .selected-style-container {
+      margin-left: 30px;
+      grid-row: 2 / span 2;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      .style-icon {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        border: 1px solid #444;
+        border-radius: 50%;
+        height: 65px;
+        width: 65px;
+        cursor: pointer;
+      }
+      .checkmark {
+        float: right;
+        background-color: white;
+        border: 1px solid #444;
+        border-radius: 50%;
+      }
+    }
+  }
+  .add-to-cart {
+    height: 70%;
+    grid-row: 3 / span 1;
+    margin-left: 30px;
+    font-size: 18px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    .select-size {
+      grid-row: 1 / span 1;
+      .select-size-box {
+        position: relative;
+        border: solid 2px;
+        width: 50%;
+        height: 60px;
+        font-weight: bold;
+      }
+      .quantity-box {
+        margin-left: 15px;
+        position: relative;
+        border: solid 2px;
+        width: 30%;
+        height: 60px;
+        font-weight: bold;
+      }
+    }
+    .add-to-bag {
+      grid-row: 2 / span 1;
+      margin-top: 20px;
+      .add-to-bag-box {
+        position: relative;
+        border: solid 2px;
+        width: 60%;
+        height: 60px;
+        font-weight: bold;
+        text-align: left;
+        #add-icon {
+          float: right;
+          font-weight: bold;
+        }
+      }
+      .add-to-favorites {
+        margin-left: 15px;
+        position: relative;
+        border: solid 2px;
+        width: 20%;
+        height: 60px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+.description {
+  grid-column: 2 / span 2;
+  grid-row: 2 / span 1;
+  display: grid;
+  grid-template-columns: 21fr 13fr;
+  margin-top: 20px;
+}
+.slogan-box {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.features-box {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+  border-left: 2px solid #444;
+  height: 120px;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+#slogan {
+  margin-left: 100px;
+  font-size: 16px;
+  margin-top: 30px;
+}
+#description {
+  margin-left: 100px;
+}
+#features {
+  margin-left: 20px;
+}
+.no-stars-prop {
+  color: red;
+}
