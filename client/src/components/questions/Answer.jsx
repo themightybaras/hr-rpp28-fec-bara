@@ -57,7 +57,7 @@ class Answer extends React.Component {
         <br />
         <div className = 'answer-images'>
           {this.state.modifiedImageUrls.map((photo, index) => (
-            <img src = {photo} key={`${this.props.answer.id}-${index}`} className= 'answer-image'/>
+            <img src = {photo} key={`${this.props.answer.id}-${index}`} alt = '' className= 'answer-image'/>
           ))}
         </div>
         <div id='answer-container-bottom'>

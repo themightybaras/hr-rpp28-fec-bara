@@ -28,7 +28,7 @@ class ReviewImages extends React.Component {
     return (
       <div className = 'reviewImages'>
         {this.state.modifiedImageUrls.map((photo, index) =>
-          <img src = {photo} key = {index} className= 'reviewImage'/>
+          <img src = {photo} key = {index} alt = '' className= 'reviewImage'/>
         )}
       </div>
     );
