@@ -7,14 +7,16 @@ import ReviewList from './ReviewList.jsx';
 import RatingSection from './RatingSection.jsx';
 import SortingForm from './Sorter.jsx';
 import ReviewFormModal from './ReviewFormModal.jsx';
+import _ from 'underscore';
 import Track from '../../Track.jsx';
 
 class ReviewWidget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // productID: props.currentProductId,
-      productName: props.currentProductName,
+      filtered: false,
+      clickedFilterNums: [],
+      unfilteredProductReviews: [],
       productReviews: [],
       numberOfReviews: 0,
       displayXReviews: 2,
@@ -27,6 +29,8 @@ class ReviewWidget extends React.Component {
     this.changeSorting = this.changeSorting.bind(this);
     this.displayMore = this.displayMore.bind(this);
     this.showReviewFormModal = this.showReviewFormModal.bind(this);
+    this.filterReviews = this.filterReviews.bind(this);
+    this.removeFilters = this.removeFilters.bind(this);
   }
 
   //bug fix
@@ -47,13 +51,29 @@ class ReviewWidget extends React.Component {
         count: this.state.count
       },
       success: (data) => {
-        this.setState({productReviews: data.results});
+        this.setState({unfilteredProductReviews: data.results, productReviews: data.results});
         this.setState({numberOfReviews: data.results.length});
       },
       error: (err) => {
         console.log('ERROR Getting Reviews: ', err.message);
       }
     });
+  }
+
+  filterReviews(ratingNum) {
+    var numArray = this.state.clickedFilterNums;
+    numArray.push(ratingNum);
+    console.log(typeof(numArray));
+    this.setState({clickedFilterNums: numArray});
+
+    var filteredReviews = _.filter(this.state.unfilteredProductReviews, (element) => {
+      return numArray.includes(element.rating);
+    });
+    this.setState({productReviews: filteredReviews, filtered: true});
+  }
+
+  removeFilters() {
+    this.setState({productReviews: this.state.unfilteredProductReviews, filtered: false});
   }
 
   changeSorting(e) {
@@ -77,7 +97,7 @@ class ReviewWidget extends React.Component {
         <br/>
         <div id= 'reviewWidgetContainer'>
           <div id= 'ratingSectionContainer'>
-            <RatingSection reviews = {this.state.productReviews} overallProductRating = {this.props.overallProductRating} reviewMetaData = {this.props.reviewMetaData}
+            <RatingSection reviews = {this.state.productReviews} filtered = {this.state.filtered} overallProductRating = {this.props.overallProductRating} reviewMetaData = {this.props.reviewMetaData} filterReviews = {this.filterReviews} removeFilters = {this.removeFilters}
             />
           </div>
           <div id= 'reviewContainer'>
@@ -100,7 +120,7 @@ class ReviewWidget extends React.Component {
                 </div>
               </Track>
             </div>
-            <ReviewFormModal className = 'modal' onClose={this.showReviewFormModal} show={this.state.reviewFormModalShown} currentProductName = {this.state.productName} />
+            <ReviewFormModal className = 'modal' onClose={this.showReviewFormModal} show={this.state.reviewFormModalShown} currentProductName = {this.props.currentProductName} getProductReviews = {this.getProductReviews} reviewMetaData = {this.props.reviewMetaData}/>
           </div>
         </div>
       </div>

@@ -79,29 +79,24 @@ h3 {
 
 #relatedWidget {
   position: relative;
-  left: 10%;
-  width: 80%;
 }
 
 .relatedSection, .outfitSection {
   position: relative;
   height: 50%;
-  /* left: 10%;
-  width: 80%; */
 }
 
 .relatedHeader, .outfitHeader {
   position: relative;
-  left: 10%;
-  /* width: 80%; */
 }
+
 .relatedSectionFlex {
   display: flexbox;
 }
 
 .relatedCarousel {
   display: grid;
-  grid-template-columns: 5% 30% 30% 30% 5%;
+  grid-template-columns: .5% 33% 33% 33% .5%;
   grid-template-rows: auto;
 }
 
