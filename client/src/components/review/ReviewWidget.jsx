@@ -63,7 +63,6 @@ class ReviewWidget extends React.Component {
   filterReviews(ratingNum) {
     var numArray = this.state.clickedFilterNums;
     numArray.push(ratingNum);
-    console.log(typeof(numArray));
     this.setState({clickedFilterNums: numArray});
 
     var filteredReviews = _.filter(this.state.unfilteredProductReviews, (element) => {
@@ -105,17 +104,17 @@ class ReviewWidget extends React.Component {
             <div id = 'reviewListContainer'>
               <ReviewList reviews = {this.state.productReviews.slice(0, this.state.displayXReviews)} />
             </div>
-            <div id = 'reviewButtons'>
+            <div id = 'reviewButtonsContainer'>
               {moreReviewsCanDisplay
                 ? <Track>
-                  <div widget= {'Review Widget'}>
+                  <div widget= {'Review Widget'} className = 'reviewButtons'>
                     <button onClick={this.displayMore} className= 'moreReviewsButton'>MORE REVIEWS</button>
                   </div>
                 </Track>
                 : null
               }
               <Track>
-                <div widget = {'Review Widget'}>
+                <div widget = {'Review Widget'} className = 'reviewButtons'>
                   <button onClick={this.showReviewFormModal} className= 'addReviewButton'> ADD REVIEW +</button>
                 </div>
               </Track>
