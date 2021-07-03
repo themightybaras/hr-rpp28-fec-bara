@@ -96,7 +96,7 @@ h3 {
 
 .relatedCarousel {
   display: grid;
-  grid-template-columns: .5% 33% 33% 33% .5%;
+  grid-template-columns: 5% 30% 30% 30% 5%;
   grid-template-rows: auto;
 }
 
