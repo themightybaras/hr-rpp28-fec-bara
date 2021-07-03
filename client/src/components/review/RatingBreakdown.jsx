@@ -73,7 +73,11 @@ class RatingBreakdown extends React.Component {
             </Track>
             <br/>
             {this.props.filtered
-              ? <button onClick = {this.props.removeFilters}>Remove Filters</button>
+              ? <Track>
+                <div widget = {'Review Widget'}>
+                  <button onClick = {this.props.removeFilters}>Remove Filters</button>
+                </div>
+              </Track>
               : null
             }
             <br/>
