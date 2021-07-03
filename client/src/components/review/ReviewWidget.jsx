@@ -72,7 +72,7 @@ class ReviewWidget extends React.Component {
   }
 
   removeFilters() {
-    this.setState({productReviews: this.state.unfilteredProductReviews, filtered: false});
+    this.setState({productReviews: this.state.unfilteredProductReviews, filtered: false, clickedFilterNums: []});
   }
 
   changeSorting(e) {
