@@ -63,7 +63,6 @@ class ReviewWidget extends React.Component {
   filterReviews(ratingNum) {
     var numArray = this.state.clickedFilterNums;
     numArray.push(ratingNum);
-    console.log(typeof(numArray));
     this.setState({clickedFilterNums: numArray});
 
     var filteredReviews = _.filter(this.state.unfilteredProductReviews, (element) => {
